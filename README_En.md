@@ -101,5 +101,5 @@ async def progress(ctx):
     progress = await bar.progress(fill=fill_emoji, line=line_emoji)
     return await ctx.send(embed=progress)
 ```
-
-[![Header](https://github.com/Animatea/DiscordProgressbar/blob/main/assets/example2.png)]()
+We got 2 fields in a row, because the first field in the list has inline=True and we also set the parameter field_inlie=True
+[![Header](https://github.com/Animatea/DiscordProgressbar/blob/main/assets/example3.png)]()

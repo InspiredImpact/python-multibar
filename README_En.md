@@ -45,3 +45,4 @@ async def progress(ctx):
     progress = await Bar(now=pnow, needed=pneed, embed=embed, type='post').progress()
     return await ctx.send(embed=progress)
 ```
+[![Header](https://github.com/Animatea/DiscordProgressbar/blob/main/assets/example1.png)]()

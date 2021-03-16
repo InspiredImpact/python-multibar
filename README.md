@@ -1,3 +1,5 @@
+[![Header](https://github.com/Animatea/DiscordProgressbar/blob/main/assets/progressbar.gif)]()
+
 # 📚 Paginator
 [![InviteToServer](https://img.shields.io/badge/-RU_Документация-2f3136?style=for-the-badge)](https://github.com/Animatea/DiscordProgressbar/blob/main/README_Ru.md)
 [![InviteToServer](https://img.shields.io/badge/-EN_Documentation-2f3136?style=for-the-badge)](https://github.com/Animatea/DiscordProgressbar/blob/main/README_En.md)

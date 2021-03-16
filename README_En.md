@@ -135,7 +135,7 @@ async def progress(ctx):
 ```
 [![Header](https://github.com/Animatea/DiscordProgressbar/blob/main/assets/example4.png)]()
 
-> Convert to embed with progressbar to dictionary
+> Convert embed with progressbar to dictionary
 
 ```py
 from random import randint
@@ -177,4 +177,4 @@ async def progress(ctx):
         f"Progress now:\n {progress}"
     )
 ```
-[![Header](https://github.com/Animatea/DiscordProgressbar/blob/main/assets/example5.png)]()
+[![Header](https://github.com/Animatea/DiscordProgressbar/blob/main/assets/example6.png)]()

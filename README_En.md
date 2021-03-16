@@ -101,5 +101,31 @@ async def progress(ctx):
     progress = await bar.progress(fill=fill_emoji, line=line_emoji)
     return await ctx.send(embed=progress)
 ```
-We got 2 fields in a row, because the first field in the list has inline=True and we also set the parameter field_inlie=True
+We got 2 fields in a row, because the first field in the list has inline=True and we also set the parameter field_inline=True
 [![Header](https://github.com/Animatea/DiscordProgressbar/blob/main/assets/example3.png)]()
+
+> Clearing existing fields
+
+```
+@commands.command()
+async def progress(self, ctx):
+    embed = discord.Embed()
+
+    embed.add_field(name='1', value='1')
+    embed.add_field(name='2', value='2')
+    embed.add_field(name='3', value='3')
+
+    pnow, pneed = randint(1, 100), randint(100, 1000)
+
+    name = "My Custom Name Of The Progressbar"
+    fill_emoji = '<:fill_bar:784863727463170068>'
+    line_emoji = '<:line_bar:784864314552352768>'
+
+    bar = Bar(now=pnow, needed=pneed, embed=embed,
+                type='post', is_left=True, percents=True,
+                field_name=name, clear_fields=True)
+                # cleared all already existing fields
+
+    progress = await bar.progress(fill=fill_emoji, line=line_emoji)
+    return await ctx.send(embed=progress)
+```

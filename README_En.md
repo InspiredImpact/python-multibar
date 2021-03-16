@@ -46,3 +46,22 @@ async def progress(ctx):
     return await ctx.send(embed=progress)
 ```
 [![Header](https://github.com/Animatea/DiscordProgressbar/blob/main/assets/example1.png)]()
+
+> More modified
+
+```py
+from random import randint
+import DiscordProgressbar as Bar
+
+
+@bot.command()
+async def progress(ctx):
+    embed = discord.Embed()
+    pnow, pneed = randint(1, 100), randint(100, 1000)
+    name = "My Custom Name Of The Progressbar"
+
+    progress = await Bar(now=pnow, needed=pneed, embed=embed, type='post',
+                        is_left=True, percents=True, field_name=name).progress()
+
+    return await ctx.send(embed=progress)
+```

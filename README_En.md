@@ -106,9 +106,9 @@ We got 2 fields in a row, because the first field in the list has inline=True an
 
 > Clearing existing fields
 
-```
-@commands.command()
-async def progress(self, ctx):
+```py
+@bot.command()
+async def progress(ctx):
     embed = discord.Embed()
 
     embed.add_field(name='1', value='1')
@@ -129,3 +129,4 @@ async def progress(self, ctx):
     progress = await bar.progress(fill=fill_emoji, line=line_emoji)
     return await ctx.send(embed=progress)
 ```
+[![Header](https://github.com/Animatea/DiscordProgressbar/blob/main/assets/example4.png)]()

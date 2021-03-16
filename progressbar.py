@@ -168,6 +168,7 @@ class DSprogressbar:
         progressline = await self.__calculate_progress(to_line=to_line, to_fill=to_fill)
         if self.type == 'get':
             return progressline
+
         else:
             return await self._embed_checker(progressline=progressline)
 
@@ -228,13 +229,13 @@ class DSprogressbar:
                 index=self.field_position,
                 name=name,
                 value=value,
-                inline = self.field_inline
+                inline=self.field_inline
             )
         else:
             self.embed.add_field(
                 name=name,
                 value=value,
-                inline = self.field_inline
+                inline=self.field_inline
             )
 
         if self.to_dict:

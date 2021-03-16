@@ -9,7 +9,7 @@
 |          type `[]`        |               `str (post/get)`              |   `None`   | The type of progressbar that will be returned to you, `get` - will return you a progressbar in string, `post` - add a field to your discord.Embed with progressbar
 |    embed `[]` *(optional when type is 'get')* | `discord.Embed`         |   `None`   | Your [discord.Embed](https://discordpy.readthedocs.io/en/latest/api.html#discord.Embed)
 |         is_left `<>`      |                    `bool`                   |   `False`  | If True, shows what progress is now from the needed progress, set to the right of the progressbar in the format [100/1000]
-|         to_dict `<>`      |                    `dict`                   |   `None`   | This parameter requires discord.Embed, returns you an embed with a progress bar in the dictionary
+|         to_dict `<>`      |                    `bool`                   |   `False`   | This parameter requires discord.Embed, returns you an embed with a progress bar in the dictionary
 |        percents `<>`      |                    `bool`                   |   `False`  | Shows the percentage of progress made, set to the right of the progressbar before (is_left), if specified
 |       field_name `<>`     |                    `str`                    |`"Progress"`| Changes the name of the added field with a progressbar
 |      field_inline `<>`    |                    `bool`                   |   `False`  | Changes the inline of the added field with a progressbar
@@ -107,6 +107,10 @@ We got 2 fields in a row, because the first field in the list has inline=True an
 > Clearing existing fields
 
 ```py
+from random import randint
+import DiscordProgressbar as Bar
+
+
 @bot.command()
 async def progress(ctx):
     embed = discord.Embed()
@@ -128,5 +132,29 @@ async def progress(ctx):
 
     progress = await bar.progress(fill=fill_emoji, line=line_emoji)
     return await ctx.send(embed=progress)
+```
+[![Header](https://github.com/Animatea/DiscordProgressbar/blob/main/assets/example4.png)]()
+
+> Convert to embed with progressbar to dictionary
+
+```py
+from random import randint
+import DiscordProgressbar as Bar
+
+@bot.command()
+async def progress(ctx):
+    embed = discord.Embed(
+        title = 'Embed title',
+        description = 'Some description',
+        color = 0x2f3136
+    )
+
+    pnow, pneed = randint(1, 100), randint(100, 1000)
+
+    bar = Bar(now=pnow, needed=pneed, embed=embed,
+                type='post', percents=True, to_dict=True)
+
+    progress = await bar.progress(fill='+', line='-')
+    return await ctx.send(progress)
 ```
 [![Header](https://github.com/Animatea/DiscordProgressbar/blob/main/assets/example4.png)]()

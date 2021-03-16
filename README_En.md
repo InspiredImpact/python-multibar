@@ -29,3 +29,19 @@
 |         `BadType`         |      Raised when type not in [post / get]   |
 
 ### Examples
+
+> Simple example of use
+
+```py
+from random import randint
+import DiscordProgressbar as Bar
+
+
+@bot.command()
+async def progress(ctx):
+    embed = discord.Embed()
+    pnow, pneed = randint(1, 100), randint(100, 1000)
+
+    progress = await Bar(now=pnow, needed=pneed, embed=embed, type='post').progress()
+    return await ctx.send(embed=progress)
+```

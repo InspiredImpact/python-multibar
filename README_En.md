@@ -157,4 +157,24 @@ async def progress(ctx):
     progress = await bar.progress(fill='+', line='-')
     return await ctx.send(progress)
 ```
-[![Header](https://github.com/Animatea/DiscordProgressbar/blob/main/assets/example4.png)]()
+[![Header](https://github.com/Animatea/DiscordProgressbar/blob/main/assets/example5.png)]()
+
+> And a few more words about the "get" method
+
+```py
+from random import randint
+import DiscordProgressbar as Bar
+
+
+@bot.command()
+async def progress(ctx):
+    pnow, pneed = randint(1, 100), randint(100, 1000)
+
+    bar = Bar(now=pnow, needed=pneed, type='get')
+    progress = await bar.progress(line='-', fill='+')
+
+    return await ctx.send(
+        f"Progress now:\n {progress}"
+    )
+```
+[![Header](https://github.com/Animatea/DiscordProgressbar/blob/main/assets/example5.png)]()

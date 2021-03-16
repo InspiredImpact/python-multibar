@@ -7,7 +7,7 @@
 
 ## 📂 Установка | Installation
 ```
-pip install DiscordProgressbar
+pip install discordbar
 ```
 
 ## 📚 Документация | Documentation

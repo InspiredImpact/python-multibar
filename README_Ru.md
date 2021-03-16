@@ -34,7 +34,7 @@
 
 ```py
 from random import randint
-import DiscordProgressbar as Bar
+from DiscordBar import DSprogressbar as Bar
 
 
 @bot.command()
@@ -51,7 +51,7 @@ async def progress(ctx):
 
 ```py
 from random import randint
-import DiscordProgressbar as Bar
+from DiscordBar import DSprogressbar as Bar
 
 
 @bot.command()
@@ -71,7 +71,7 @@ async def progress(ctx):
 
 ```py
 from random import randint
-import DiscordProgressbar as Bar
+from DiscordBar import DSprogressbar as Bar
 
 
 @bot.command()
@@ -108,7 +108,7 @@ We got 2 fields in a row, because the first field in the list has inline=True an
 
 ```py
 from random import randint
-import DiscordProgressbar as Bar
+from DiscordBar import DSprogressbar as Bar
 
 
 @bot.command()
@@ -139,7 +139,8 @@ async def progress(ctx):
 
 ```py
 from random import randint
-import DiscordProgressbar as Bar
+from DiscordBar import DSprogressbar as Bar
+
 
 @bot.command()
 async def progress(ctx):
@@ -163,7 +164,7 @@ async def progress(ctx):
 
 ```py
 from random import randint
-import DiscordProgressbar as Bar
+from DiscordBar import DSprogressbar as Bar
 
 
 @bot.command()

@@ -65,3 +65,41 @@ async def progress(ctx):
 
     return await ctx.send(embed=progress)
 ```
+[![Header](https://github.com/Animatea/DiscordProgressbar/blob/main/assets/example2.png)]()
+
+> Working with fields and our custom symbols
+
+```py
+from random import randint
+import DiscordProgressbar as Bar
+
+
+@bot.command()
+async def progress(ctx):
+    embed = discord.Embed()
+
+    fields = [ # our fields
+        ('name_1', 'value_1', True),
+        ('name_2', 'value_2', False),
+        ('name_3', 'value_3', False),
+        ('name_4', 'value_4', False),
+        ('name_5', 'value_5', False),
+    ]
+    for name, value, inline in fields: # add fields
+        embed.add_field(name=name, value=value, inline=inline)
+
+    pnow, pneed = randint(1, 100), randint(100, 1000)
+
+    name = "My Custom Name Of The Progressbar"
+    fill_emoji = '<:fill_bar:784863727463170068>'
+    line_emoji = '<:line_bar:784864314552352768>'
+
+    bar = Bar(now=pnow, needed=pneed, embed=embed,
+                type='post', is_left=True, percents=True,
+                field_name=name, field_inline=True, field_position=0)
+
+    progress = await bar.progress(fill=fill_emoji, line=line_emoji)
+    return await ctx.send(embed=progress)
+```
+
+[![Header](https://github.com/Animatea/DiscordProgressbar/blob/main/assets/example2.png)]()

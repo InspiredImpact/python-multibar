@@ -15,6 +15,7 @@
 |      field_inline `<>`    |                    `bool`                   |   `False`  | Changes the inline of the added field with a progressbar
 |     field_position `<>`   |                    `int`                    |   `None`   | Default - sets it as the last field in embed, sets the position of the field in the embed, the counting starts from 0
 |      clear_fields `<>`    |                    `bool`                   |   `False`  | Removes all fields from your discord.Embed before adding a field with a progressbar
+|    progress() function `[]`|                 `coroutine`                |            | Params:<br>`line` : the character or string that will be a line that we will fill in as progress increases<br> `fill` : the character or string that will fill the line as progress increases.<br>If nothing is specified, then default fill emoji is ":red_square:" and default line emoji is ":black_large_square:"
 
 ### 💢 Errors
 |         type              |                    cause                    |
@@ -26,3 +27,5 @@
 |       `TooManyFields`     | Raised when len(embed fields) + field with progressbar > 25  |
 |         `BadEmbed`        |     Raised when embed != discord.Embed()    |
 |         `BadType`         |      Raised when type not in [post / get]   |
+
+### Examples

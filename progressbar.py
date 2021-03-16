@@ -143,10 +143,10 @@ class DSprogressbar:
         ↳ fill default is ":red_square:"
 
         Params:
-        - line : A character or string that will be a line
+        - line : the character or string that will be a line
         that we will fill in as progress increases
 
-        - fill : a character or string that will fill the
+        - fill : the character or string that will fill the
         line as progress increases
         """
         return await self._write_progress(to_line=line, to_fill=fill)

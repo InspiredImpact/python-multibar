@@ -101,7 +101,7 @@ async def progress(ctx):
     progress = await bar.progress(fill=fill_emoji, line=line_emoji)
     return await ctx.send(embed=progress)
 ```
-We got 2 fields in a row, because the first field in the list has inline=True and we also set the parameter field_inline=True
+Мы получили 2 поля в 1 строке потому что параметр inline первого поля True и мы так же указали field_inline=True
 [![Header](https://github.com/Animatea/DiscordProgressbar/blob/main/assets/example3.png)]()
 
 > Очистка уже существующих полей

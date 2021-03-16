@@ -22,11 +22,11 @@ class DSprogressbar:
      ↳ post : This parameter requires an embed,
      adds a field to the embed with progressbar
 
-     - [progress_now] : Progress now, used when calculating
-     the progress, should not be more than [needed_progress]
+     - [now] : Progress now, used when calculating
+     the progress, should not be more than [needed]
 
-     - [needed_progress] : The progress that is generally required
-     is used to calculate the progress. Should be more than [progress_now]
+     - [needed] : The progress that is generally required
+     is used to calculate the progress. Should be more than [now]
 
      - [embed] : (Optional if the type is "get")
      Required parameter for the "post" type, must be discord.Embed()
@@ -54,58 +54,58 @@ class DSprogressbar:
     """
 
     __slots__ = [
+        'now',
         'type',
         'embed',
+        'needed',
         'is_left',
         'to_dict',
         'percents',
         'field_name',
         'clear_fields',
         'field_inline',
-        'progress_now',
-        'field_position',
-        'needed_progress'
+        'field_position'
     ]
 
     def __init__(
             self,
+            now: int=None,
             type: str=None,
+            needed: int=None,
             to_dict: bool=False,
             is_left: bool=False,
             percents: bool=False,
             field_name: str=None,
-            progress_now: int=None,
             field_inline: bool=False,
             clear_fields: bool=False,
             field_position: int=None,
-            embed: discord.Embed=None,
-            needed_progress: int=None,
+            embed: discord.Embed=None
     ):
+            self.now = now
             self.type = type
             self.embed = embed
+            self.needed = needed
             self.is_left = is_left
             self.to_dict = to_dict
             self.percents = percents
             self.field_name = field_name
             self.field_inline = field_inline
             self.clear_fields = clear_fields
-            self.progress_now = progress_now
             self.field_position = field_position
-            self.needed_progress = needed_progress
 
-            if progress_now is None:
-                raise errors.MissingArgument('The [progress now] argument was expected')
+            if now is None:
+                raise errors.MissingArgument('The [now] argument was expected')
 
-            if progress_now is not None:
-                if not isinstance(self.progress_now, int):
-                    raise TypeError('[progress now] argument must be integer')
+            if now is not None:
+                if not isinstance(self.now, int):
+                    raise TypeError('The [now] argument must be integer')
 
-            if needed_progress is None:
-                raise errors.MissingArgument('The [needed progress] argument was expected')
+            if needed is None:
+                raise errors.MissingArgument('The [needed] argument was expected')
 
-            if needed_progress is not None:
-                if not isinstance(self.needed_progress, int):
-                    raise TypeError('[needed progress] argument must be integer')
+            if needed is not None:
+                if not isinstance(self.needed, int):
+                    raise TypeError('The [needed] argument must be integer')
 
             if type is None:
                 raise errors.MissingArgument('The [type] argument was expected (post / get)')
@@ -130,8 +130,8 @@ class DSprogressbar:
             if field_position is not None and field_position > 25:
                 raise errors.TooLargeArgument('The value specified is too high')
 
-            if progress_now > needed_progress:
-                raise errors.ProgressError('[progress_now] cannot be greater than what is [needed_progress]')
+            if now > needed:
+                raise errors.ProgressError('[now] cannot be greater than what is [needed]')
 
 
     async def progress(self, line=None, fill=None) -> str:
@@ -181,7 +181,7 @@ class DSprogressbar:
         - to_fill : the character with which we will fill the string
         """
 
-        procent_bar = round(self.progress_now/self.needed_progress * 100)
+        procent_bar = round(self.now/self.needed * 100)
         progressbar = ""
 
         for i in range(round(procent_bar / 5)):
@@ -210,17 +210,17 @@ class DSprogressbar:
             value = progressline
 
         if self.percents and self.percents is not None:
-            _percents = round((self.progress_now/self.needed_progress) * 100)
+            _percents = round((self.now/self.needed) * 100)
             value = f"{progressline} {_percents}%"
 
             if self.is_left and self.is_left is not None:
-                _is_left = f"{self.progress_now}/{self.needed_progress}"
+                _is_left = f"{self.now}/{self.needed}"
                 value = f"{progressline} {_percents}% [{_is_left}]"
 
         elif (self.is_left and self.is_left is not None
             and not self.percents is None and self.percents is None):
 
-            _is_left = f"{self.progress_now}/{self.needed_progress}"
+            _is_left = f"{self.now}/{self.needed}"
             value = f"{progressline} [{_is_left}]"
 
         if self.field_position is not None:

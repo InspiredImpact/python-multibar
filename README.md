@@ -1,7 +1,7 @@
 [![Header](https://github.com/Animatea/DiscordProgressbar/blob/main/assets/progressbar.gif)]()
 
 # ⚙️ **DiscordProgressbar**
-![](https://img.shields.io/badge/version-0.0.1-red)
+![](https://img.shields.io/badge/version-0.0.3-red)
 ![](https://img.shields.io/badge/python->=_3.7-blue)
 ![](https://img.shields.io/badge/discord.py->=_1.5-blue)
 

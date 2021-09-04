@@ -16,8 +16,6 @@ limitations under the License.
 
 from __future__ import annotations
 
-import os
-import json
 import typing
 import contextlib
 
@@ -31,8 +29,23 @@ __all__: typing.Sequence[str] = (
 )
 
 
-with open(os.getcwd() + '/bar/blanks/blanks.json', 'r', encoding='utf-8') as file:
-    all_templates = json.load(file)
+# There were too many errors with paths when opening the json file, I decided not to risk it.
+_blanks: typing.Dict[str, typing.Any] = {
+    "ProgressBlanks": {
+        "ADVANCED": {
+            "fill": "█",
+            "line": "●",
+            "start": "◄",
+            "end": "►",
+            "unfilled_start": "◁",
+            "unfilled_end": "▷"
+        },
+        "DEFAULT": {
+            "fill": "█",
+            "line": "●"
+        }
+    }
+}
 
 
 class BlanksMeta(type):
@@ -47,10 +60,10 @@ class BlanksMeta(type):
         name: str,
         bases: typing.Tuple[type, ...],
         attrs: typing.Dict[str, typing.Any],
-    ) -> type:
+    ) -> BlanksMeta:
         with contextlib.suppress(KeyError):
             for attr in attrs['__annotations__']:
-                attrs[attr] = all_templates[name][attr]
+                attrs[attr] = _blanks[name][attr]
         return super().__new__(mcs, name, bases, attrs)
 
 
@@ -61,3 +74,4 @@ class ProgressBlanks(metaclass=BlanksMeta):
 
 class DiscordBlanks(metaclass=BlanksMeta):
     ...
+

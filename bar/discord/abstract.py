@@ -14,13 +14,27 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
+import abc
 import typing
-
-from .core import *
 
 
 __all__: typing.Sequence[str] = (
-    'ProgressBar',
-    'ProgressObject',
-    'MusicBar',
+    'EmbedABC',
 )
+
+
+class EmbedABC(abc.ABC):
+    """ ``|abc class|``
+
+    The main abstract class for embed and its parameters.
+
+    Abstract methods:
+    -----------------
+    _source_: :class:`typing.Dict[str, typing.Any]`
+        Method that returns the source code of the embed or
+        its parameter in json format for API request.
+    """
+
+    @abc.abstractmethod
+    def _source_(self) -> typing.Any:
+        ...

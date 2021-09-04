@@ -16,11 +16,14 @@ limitations under the License.
 
 import typing
 
-from .core import *
+from bar.discord import ext
+from bar.discord.mentions import *
+from bar.discord.main import *
+from bar.discord.embed import *
 
 
 __all__: typing.Sequence[str] = (
-    'ProgressBar',
-    'ProgressObject',
-    'MusicBar',
+    'ProgressEmbed',
+    'AllowedMentions',
+    'send',
 )

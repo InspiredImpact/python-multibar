@@ -16,6 +16,7 @@ limitations under the License.
 
 import typing
 
+from .blanks import *
 from .core import *
 from .__about__ import *
 
@@ -33,4 +34,5 @@ __all__: typing.Sequence[str] = (
 
 
 def version_info() -> str:
-    return '.'.join((str(getattr(__version__, i)) for i in Version._fields))
+    return '.'.join((str(getattr(__version__.value, i)) for i in Version._fields))
+

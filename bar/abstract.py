@@ -71,7 +71,7 @@ class SectorFactoryABC(abc.ABC):
     """
 
     @abc.abstractmethod
-    def create_sector(self, emoji: str, position: int) -> Sector:
+    def create_sector(self, emoji: str, position: int) -> typing.Any:
         ...
 
 
@@ -97,7 +97,7 @@ class Sector(typing.Protocol):
     ...
     ```
     """
-    __slots__: typing.Sequence[str] = ()
+    __slots__ = ()
 
     @property
     def emoji_name(self) -> str:

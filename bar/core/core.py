@@ -23,7 +23,6 @@ import collections
 import dataclasses
 
 from bar import abstract
-from bar.core import errors
 from bar.utils import PackArgs
 from bar.bases import ProgressBase
 from bar.flags import FillFlag, MusicBarFlag
@@ -40,8 +39,11 @@ __all__: typing.Sequence[str] = (
 )
 
 
-KT = typing.TypeVar('KT')  # Key type
+T = typing.TypeVar('T')
 VT = typing.TypeVar('VT')  # Value type
+AT = typing.TypeVar('AT', bound=typing.Iterable[typing.Any])  # Args type
+KWT = typing.TypeVar('KWT', bound=typing.Dict[str, typing.Any])  # Kwargs type
+PO = typing.TypeVar('PO', bound='ProgressObject')  # Self type
 
 
 @dataclasses.dataclass(eq=False)
@@ -85,11 +87,13 @@ class ProgressObject:
     bar: Bar
     length: int
     percents: int
+    now: int
+    needed: int
 
     def __iadd__(self, other: typing.Any) -> PackArgs:
         return PackArgs(progress=self, callback=other)
 
-    def __call__(self, *args, **kwargs):
+    def __call__(self, *args: AT, **kwargs: KWT) -> ProgressObject:
         return self
 
     def __len__(self) -> int:
@@ -105,7 +109,7 @@ class ProgressObject:
         attrs = dict(self.__dict__)
         return iter(attrs)
 
-    def __getitem__(self, item: typing.Any) -> abstract.Sector:
+    def __getitem__(self, item: int) -> abstract.Sector:
         return self.bar[item]
 
     def __reversed__(self) -> ProgressObject:
@@ -118,12 +122,11 @@ class ProgressObject:
     def __str__(self) -> str:
         return "".join(i.emoji_name for i in self.bar)
 
-    @property
-    def as_dict(self) -> typing.Dict[KT, VT]:
-        return dict(self)
+    def as_dict(self) -> typing.Dict[str, VT]:
+        return {k: getattr(self, k) for k in self.__dict__}
 
 
-class ProgressBar(ProgressBase, abstract.ProgressABC):
+class ProgressBar(ProgressBase, abstract.ProgressABC[T]):
     """ ``|main class|``
 
     The main class that is used throughout the project to work with the progress bar.
@@ -166,7 +169,7 @@ class ProgressBar(ProgressBase, abstract.ProgressABC):
 
         self._check_locals(**locals())
 
-        self.percents: int = int((now / needed) * 100)
+        self.percents: int = int((now / needed) * 100)  # type: ignore[operator] #mypy doesn't see logic of check_locals
         self.__bar: Bar = [] if not deque else collections.deque()
         self.__fill_factory: abstract.SectorFactoryABC = FillSectorFactory()
         self.__empty_factory: abstract.SectorFactoryABC = LineSectorFactory()
@@ -237,7 +240,11 @@ class ProgressBar(ProgressBase, abstract.ProgressABC):
             self.__bar[-1].emoji_name = end
 
         return ProgressObject(
-            length=self.length, percents=self.percents, bar=self.__bar
+            length=self.length,
+            percents=self.percents,
+            bar=self.__bar,
+            now=self.now,
+            needed=self.needed,
         )
 
     async def async_write_progress(
@@ -354,7 +361,11 @@ class MusicBar(ProgressBase, abstract.ProgressABC):
                 )
             )
         return ProgressObject(
-            length=self.length, percents=self.percents, bar=self.__bar
+            length=self.length,
+            percents=self.percents,
+            bar=self.__bar,
+            now=self.now,
+            needed=self.needed,
         )
 
     async def async_write_progress(
@@ -384,5 +395,3 @@ class MusicBar(ProgressBase, abstract.ProgressABC):
         return await loop.run_in_executor(
             None, functools.partial(self.write_progress, **chars)
         )
-
-

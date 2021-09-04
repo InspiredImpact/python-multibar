@@ -36,7 +36,7 @@ class FillSectorFactory(abstract.SectorFactoryABC):
 
     The factory that creates objects of the :class:`FillSector`.
     """
-    def create_sector(self, emoji: str, position: int) -> abstract.Sector:
+    def create_sector(self, emoji: str, position: int) -> FillSector:
         """ ``|function|``
 
         Method that creates an object of the class :class:`FillSector`.
@@ -61,7 +61,7 @@ class LineSectorFactory(abstract.SectorFactoryABC):
 
     The factory that creates objects of the :class:`EmptySector`.
     """
-    def create_sector(self, emoji: str, position: int) -> abstract.Sector:
+    def create_sector(self, emoji: str, position: int) -> EmptySector:
         """ ``|function|``
 
         Method that creates an object of the class :class:`EmptySector`
@@ -120,7 +120,7 @@ class SectorBase:
         Emoji for a certain part of the progress bar.
 
     is_discord_emoji: :class:`bool`
-        Will return True if regex detects that this is a discord.soon emoji by template.
+        Will return True if regex detects that this is a discord emoji by template.
 
     position: :class:`int`
         Item position in the progress bar.

@@ -33,11 +33,12 @@ __all__: typing.Sequence[str] = (
 
 
 T = typing.TypeVar('T')
-C = typing.TypeVar('C', bound=typing.Callable[..., typing.Any])  # Callable
+AT = typing.TypeVar('AT', bound=typing.Sequence[typing.Any])  # Args type
+KWT = typing.TypeVar('KWT', bound=typing.Dict[str, typing.Any])  # Kwargs type
 FT = typing.TypeVar('FT', bound=typing.Callable[..., bool])  # Function type
 
 
-def ignored(method: C, /) -> C:
+def ignored(method: typing.Callable[..., typing.Any], /) -> typing.Callable[..., typing.Any]:
     """ ``|decorator|``
 
     Used primarily to ignore and not call a specific method.
@@ -55,7 +56,7 @@ def ignored(method: C, /) -> C:
     method: :class:`Callable[..., Any]`
         Callable object.
     """
-    method.__progress_ignored__ = True
+    setattr(method, '__progress_ignored__', True)
     return method
 
 
@@ -64,7 +65,7 @@ def deprecated(
     /,
     *,
     with_invoke: bool = False
-) -> C[..., C]:
+) -> typing.Callable[..., typing.Callable[..., typing.Any]]:
     """ ``|decorator|``
 
     Warning for deprecated methods from old version of
@@ -91,10 +92,10 @@ def deprecated(
     Wrapped function: :class:`Callable[..., [Callable[..., Any]]]`
         Callback if with_invoke = True or callable object.
     """
-    def inner(callable_: C, /) -> C:
+    def inner(callable_: typing.Callable[..., typing.Any], /) -> typing.Callable[..., typing.Any]:
         @functools.wraps(callable_)
         def wrapper(*args: typing.Any, **kwargs: typing.Any) -> typing.Any:
-            callable_.__progress_deprecated__ = True
+            setattr(callable_, '__progress_deprecated__', True)
             warnings.warn(
                 f'Method {callable_.__qualname__} is deprecated, just use {outdated}',
                 category=DeprecationWarning
@@ -111,7 +112,7 @@ def deprecated(
     return inner
 
 
-def find(
+def find(  # type: ignore
     predicate: FT,
     iterator: typing.Iterable[T],
     /,
@@ -212,7 +213,7 @@ class PackArgs:
         for k, v in kwargs.items():
             self[str(k)] = v
 
-    def __call__(self, *args, **kwargs):
+    def __call__(self, *args: AT, **kwargs: KWT) -> typing.List[typing.Any]:
         return [getattr(self, i) for i in self]
 
     def __setitem__(self, key: str, value: typing.Any) -> None:
@@ -257,7 +258,7 @@ class AsCallable:
     def __init__(self, result: typing.Any) -> None:
         self.result = result
 
-    def __call__(self, *args: typing.Any, **kwargs: typing.Any) -> typing.Any:
+    def __call__(self, *args: AT, **kwargs: KWT) -> typing.Any:
         return self.result
 
     def __repr__(self) -> str:

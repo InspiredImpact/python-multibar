@@ -73,12 +73,12 @@ class ProgressBase:
         return self
 
     @staticmethod
-    def _check_locals(**parameters: typing.Dict[str, typing.Any]) -> None:
+    def _check_locals(**parameters: typing.Any) -> None:
         """ Checks for the correct operation of the progress bar. """
-        if any((
-            (now := parameters.pop('now', None)) is None,
-            (needed := parameters.pop('needed', None)) is None
-        )):
+        now: typing.Optional[int] = parameters.pop('now', None)
+        needed: typing.Optional[int] = parameters.pop('needed', None)
+
+        if now is None or needed is None:
             raise errors.MissingRequiredArguments('<now> or <needed> :class:`int`')
 
         elif parameters.pop('length') < 1:

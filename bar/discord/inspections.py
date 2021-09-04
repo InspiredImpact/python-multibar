@@ -16,11 +16,24 @@ limitations under the License.
 
 import typing
 
-from .core import *
-
 
 __all__: typing.Sequence[str] = (
-    'ProgressBar',
-    'ProgressObject',
-    'MusicBar',
+    'is_empty_field',
 )
+
+
+def is_empty_field(obj: str, /) -> bool:
+    """ ``|inspection|``
+
+    Checks if an object is empty.
+
+    Parameters:
+    -----------
+    obj: :class:`str` [Positional only]
+        Object to be checked.
+
+    Returns:
+    --------
+    :class:`bool`
+    """
+    return any((len(obj) == 0, obj is None))

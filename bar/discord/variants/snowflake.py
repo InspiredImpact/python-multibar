@@ -16,11 +16,10 @@ limitations under the License.
 
 import typing
 
-from .core import *
-
 
 __all__: typing.Sequence[str] = (
-    'ProgressBar',
-    'ProgressObject',
-    'MusicBar',
+    'SnowFlake',
 )
+
+
+SnowFlake = typing.Union[str, int]

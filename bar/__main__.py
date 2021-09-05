@@ -56,7 +56,7 @@ if __name__ == "__main__":
         prog="ProgressBar",
         usage="Available flags:\n" "--mypy",
         description="Some description",
-        epilog="Source code: https://github.com/Animatea/Discord-Progressbar",
+        epilog="Source code: https://github.com/Animatea/python-multibar",
         formatter_class=argparse.RawTextHelpFormatter,
     )
     sphinx_parser.add_argument(

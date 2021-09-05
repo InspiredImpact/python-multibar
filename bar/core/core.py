@@ -43,7 +43,6 @@ T = typing.TypeVar('T')
 VT = typing.TypeVar('VT')  # Value type
 AT = typing.TypeVar('AT', bound=typing.Iterable[typing.Any])  # Args type
 KWT = typing.TypeVar('KWT', bound=typing.Dict[str, typing.Any])  # Kwargs type
-PO = typing.TypeVar('PO', bound='ProgressObject')  # Self type
 
 
 @dataclasses.dataclass(eq=False)

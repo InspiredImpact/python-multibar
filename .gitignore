@@ -9,6 +9,8 @@ __pycache__/
 # Testing files
 *.in_testing
 
+# Pycharm IDE
+.idea
 
 # Distribution / packaging
 .Python

@@ -49,10 +49,9 @@ _blanks: typing.Dict[str, typing.Any] = {
 
 
 class BlanksMeta(type):
-    """
+    """ ``|metaclass|``
 
-    soon.
-
+    The metaclass with which templates are set.
     """
 
     def __new__(

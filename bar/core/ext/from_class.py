@@ -195,10 +195,23 @@ class FromClassSetup:
 
 
 class FromClass:
-    """
+    """ ``|class|``
 
-    soon.
+    The class containing the main methods for working with the decorator.
 
+    Parameters:
+    -----------
+    cls: :class:`FromClassInstance` [Keyword only]
+        Instance of the class to be decorated.
+
+    save_callback: :class:`bool` = False [Keyword only]
+        If True, will keep the function callback.
+
+    return_as: :class:`ReturnAs` = 1 [Keyword only]
+        Returns an object depending on the selected type.
+
+    loop: :class:`typing.Optional[asyncio.AbstractEventLoop]` = None [Keyword only]
+        Asyncio loop.
     """
 
     def __init__(
@@ -208,17 +221,16 @@ class FromClass:
             save_callback: bool = False,
             return_as: ReturnAs = 1,
             loop: typing.Optional[asyncio.AbstractEventLoop] = None,
-    ):
+    ) -> None:
         self.__cls = cls
         self.__save_callback = save_callback
         self.__return_as = return_as
         self.__loop = loop or asyncio.get_event_loop()
 
     def invoke_and_hook_all(self, *args: AT, **kwargs: KWT) -> FromClassInstance:
-        """
+        """ ``|method|``
 
-        soon.
-
+        The main method where all methods are called and their values are set.
         """
         for c in itertools.filterfalse(
             lambda i: i.startswith('_'), dir((base := FromClassSetup()))
@@ -260,10 +272,17 @@ class FromClass:
             callback: typing.Union[PackArgs, ProgressObject],
             /,
     ) -> typing.Union[PackArgs, ProgressObject]:
-        """
+        """ ``|coro|``
 
-        soon.
+        The method in which we wrap the callback by setting a new value to it.
 
+        Parameters:
+        -----------
+        instance: :class:`FromClassInstance` [Positional only]
+            The state of the class from which the parameters will be taken.
+
+        callback: :class:`typing.Union[PackArgs, ProgressObject]` [Positional only]
+            Initial function callback.
         """
         deque: typing.Optional[DequeParam] = getattr(instance, 'deque_param', None)
         length: typing.Optional[LengthParam] = getattr(instance, 'length_param', None)
@@ -285,14 +304,23 @@ class FromClass:
 
 
 def from_class(
-        save_callback: bool = False,
-        return_as: typing.Literal[1, 2, 3] = 1,
-        loop: typing.Optional[asyncio.AbstractEventLoop] = None
+    *,
+    save_callback: bool = False,
+    return_as: ReturnAs = 1,
+    loop: typing.Optional[asyncio.AbstractEventLoop] = None
 ) -> typing.Callable[..., typing.Callable[..., typing.Any]]:
-    """
+    """ ``|decorator|``
 
-    soon.
+    Parameters:
+    -----------
+    save_callback: :class:`bool` = False [Keyword only]
+        If True, will keep the function callback.
 
+    return_as: :class:`ReturnAs` = 1 [Keyword only]
+        Returns an object depending on the selected type.
+
+    loop: :class:`typing.Optional[asyncio.AbstractEventLoop]` = None [Keyword only]
+        Asyncio loop.
     """
     def inner(cls: typing.Callable[..., typing.Any]) -> typing.Callable[..., typing.Any]:
         @functools.wraps(cls)

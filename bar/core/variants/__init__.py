@@ -21,6 +21,7 @@ from .chars import *
 from .progress import *
 from .lib_info import *
 from .from_class import *
+from .return_as import *
 
 
 __all__: typing.Sequence[str] = (
@@ -38,4 +39,5 @@ __all__: typing.Sequence[str] = (
     'CharsParam',
     'MusicChars',
     'ProgressType',
+    'ReturnAs',
 )

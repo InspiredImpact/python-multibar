@@ -79,7 +79,7 @@ class ManipulatorIsAlreadyExistsError(DiscordError):
     Raised when trying to add an embed manipulator a second time.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         super().__init__('The manipulator is already installed on this embed.')
 
 
@@ -118,7 +118,11 @@ class HTTPError(DiscordError):
         Received message.
     """
 
-    def __init__(self, response: ClientResponse, message: typing.Union[str, dict]) -> None:
+    def __init__(
+        self,
+        response: ClientResponse,
+        message: typing.Union[str, typing.Dict[str, typing.Any]],
+    ) -> None:
         super().__init__(f'Status: {response.status}.\nResponse: {response}\nMessage: {message}')
 
 

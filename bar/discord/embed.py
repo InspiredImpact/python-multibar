@@ -65,7 +65,10 @@ ALLOWED_ATTRS: typing.Final[typing.List[str]] = ([
 ])
 
 
-def field_converter(_: typing.Any, fields: typing.Iterable) -> typing.List[T]:
+def field_converter(
+    _: typing.Any,
+    fields: typing.Iterable[typing.Any]
+) -> typing.List[typing.Any]:
     """ ``|attr converter|``
 
     Field converter by annotation.
@@ -83,7 +86,7 @@ def field_converter(_: typing.Any, fields: typing.Iterable) -> typing.List[T]:
     results: :class:`typing.List[T]`
         Converted fields.
     """
-    results: typing.List[T] = []
+    results: typing.List[typing.Any] = []
     for field in fields:
         if field.converter is not None:
             # Converter is already set.
@@ -372,7 +375,7 @@ class EmbedField(EmbedABC):
         If <name> or <value> of the field is empty.
     """
 
-    def _footer_validator(self, attribute: attr.Attribute, value: typing.Any) -> None:
+    def _footer_validator(self, attribute: attr.Attribute[typing.Any], value: typing.Any) -> None:
         """ ``|footer validator|``
 
         Validator that checks the value of certain attributes.
@@ -455,7 +458,7 @@ class EmbedField(EmbedABC):
                     f'{self.progress.percents}%'
                 )
             else:
-                self.progress.isleft = f'{self.progress.now}/{self.progress.needed}'
+                setattr(self.progress, 'isleft', f'{self.progress.now}/{self.progress.needed}')
                 _value: typing.List[str] = ['', '', '']
                 for attrib in ('_percents', '_bar', '_isleft'):
                     if hasattr(manipulator, attrib):
@@ -895,7 +898,11 @@ class ProgressEmbed(EmbedABC):
             Class instance to allow for fluent-style chaining.
         """
         setattr(
-            self, '_author', EmbedAuthor(name=name, url=url, icon_url=icon_url, proxy_icon_url=proxy_icon_url)
+            self,
+            '_author',
+            EmbedAuthor(
+                name=name, url=url, icon_url=icon_url, proxy_icon_url=proxy_icon_url
+            )
         )
         return self
 

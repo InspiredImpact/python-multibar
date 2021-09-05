@@ -14,9 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
+from __future__ import annotations
+
 import typing
 
-from bar import abstract
+from bar.sectors import SectorBase
 
 
 __all__: typing.Sequence[str] = (
@@ -25,6 +27,6 @@ __all__: typing.Sequence[str] = (
 
 
 Bar = typing.Union[
-    typing.Deque[abstract.Sector],
-    typing.List[abstract.Sector]
+    typing.Deque[SectorBase],
+    typing.List[SectorBase]
 ]

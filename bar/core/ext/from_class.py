@@ -16,9 +16,9 @@ limitations under the License.
 
 from __future__ import annotations
 
+import typing
 import inspect
 import asyncio
-import typing
 import itertools
 import functools
 
@@ -30,7 +30,7 @@ from bar.utils import to_async, PackArgs, AsCallable
 from bar.core.variants import LengthParam, DequeParam, CharsParam
 
 if typing.TYPE_CHECKING:
-    from bar.core.variants import CharsSnowflake, FromClassInstance
+    from bar.core.variants import CharsSnowflake, FromClassInstance, ReturnAs
 
 
 __all__: typing.Sequence[str] = (
@@ -40,11 +40,12 @@ __all__: typing.Sequence[str] = (
 
 
 T = typing.TypeVar('T')
-IT = typing.TypeVar('IT')  # Instance type
-CT = typing.TypeVar('CT', bound=typing.Callable[..., typing.Any])  # Callable type
+T_co = typing.TypeVar('T_co', covariant=True)  # covariant
+AT = typing.TypeVar('AT', bound=typing.Sequence[typing.Any])  # Args type
+KWT = typing.TypeVar('KWT', bound=typing.Dict[str, typing.Any])  # Kwargs type
 
 
-class ParamBase(typing.Generic[T]):
+class ParamBase(typing.Generic[T_co]):
     """ ``|class|``
 
     The main class for all parameters used to further customize the progress bar.
@@ -58,12 +59,12 @@ class ParamBase(typing.Generic[T]):
         Parameter class instance attribute.
     """
 
-    def __init__(self, instance: ParamBase, value: T) -> None:
+    def __init__(self, instance: ParamBase[T_co], value: T) -> None:
         self.value = value
         setattr(instance, self.__class__.__name__.lower() + '_param', self)
 
 
-class Chars(ParamBase):
+class Chars(ParamBase[T]):
     """ ``|class-parameter|``
 
     A class-parameter for the main decorator.
@@ -99,7 +100,7 @@ class Chars(ParamBase):
 
     def __init__(
             self,
-            instance: ParamBase,
+            instance: ParamBase[T],
             /,
             *,
             fill: typing.Optional[str] = None,
@@ -129,10 +130,10 @@ class Chars(ParamBase):
 
     @classmethod
     def from_dict(
-        cls: typing.Type[Chars],
-        instance: IT,
-        chars: CharsSnowflake
-    ) -> Chars:
+        cls: typing.Type[Chars[T]],
+        instance: typing.Any,
+        chars: CharsSnowflake,
+    ) -> Chars[T]:
         """ ``|classmethod|``
 
         The second way is to pass characters to create a progress bar.
@@ -178,7 +179,7 @@ class FromClassSetup:
     __allowed_params__: :class:`typing.Sequence[typing.Any]`
         Allowed parameters that will later be used as classes.
     """
-    __allowed_params__: typing.Sequence[T] = (
+    __allowed_params__: typing.Sequence[typing.Any] = (
         'Now', 'Needed', 'Length', 'Deque', Chars
     )
 
@@ -203,9 +204,9 @@ class FromClass:
     def __init__(
             self,
             *,
-            cls: CT,
+            cls: FromClassInstance,
             save_callback: bool = False,
-            return_as: typing.Literal[1, 2, 3] = 1,
+            return_as: ReturnAs = 1,
             loop: typing.Optional[asyncio.AbstractEventLoop] = None,
     ):
         self.__cls = cls
@@ -213,7 +214,7 @@ class FromClass:
         self.__return_as = return_as
         self.__loop = loop or asyncio.get_event_loop()
 
-    def invoke_and_hook_all(self, *args: typing.Any, **kwargs: typing.Any) -> FromClassInstance:
+    def invoke_and_hook_all(self, *args: AT, **kwargs: KWT) -> FromClassInstance:
         """
 
         soon.
@@ -234,7 +235,7 @@ class FromClass:
                     if inspect.iscoroutinefunction(method):
                         callback = asyncio.run(method(*args, **kwargs))
                     else:
-                        callback = method(*args, **kwargs)  # type: ignore
+                        callback = method(*args, **kwargs)
                 except Exception as exc:
                     raise errors.ProgressInvokeError(exc) from exc
 
@@ -268,7 +269,7 @@ class FromClass:
         length: typing.Optional[LengthParam] = getattr(instance, 'length_param', None)
         chars: typing.Optional[CharsParam] = getattr(instance, 'chars_param', None)
 
-        bar = ProgressBar(
+        bar: ProgressBar = ProgressBar(
             instance.now_param.value,
             instance.needed_param.value,
             length=20 if not isinstance(length, LengthParam) else length.value,
@@ -295,7 +296,7 @@ def from_class(
     """
     def inner(cls: typing.Callable[..., typing.Any]) -> typing.Callable[..., typing.Any]:
         @functools.wraps(cls)
-        def wrapper(*args, **kwargs) -> FromClassInstance:
+        def wrapper(*args: AT, **kwargs: KWT) -> FromClassInstance:
             cfg = {
                 'cls': cls(*args, **kwargs),
                 'save_callback': save_callback,

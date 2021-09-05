@@ -28,6 +28,7 @@ __all__: typing.Sequence[str] = (
     'LineSectorFactory',
     'FillSector',
     'EmptySector',
+    'SectorBase',
 )
 
 

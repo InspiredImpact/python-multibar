@@ -26,7 +26,7 @@ from bar import abstract
 from bar.utils import PackArgs
 from bar.bases import ProgressBase
 from bar.flags import FillFlag, MusicBarFlag
-from bar.sectors import FillSectorFactory, LineSectorFactory
+from bar.sectors import FillSectorFactory, LineSectorFactory, SectorBase
 
 if typing.TYPE_CHECKING:
     from bar.core.variants import Bar, CharsSnowflake, MusicChars
@@ -87,8 +87,8 @@ class ProgressObject:
     bar: Bar
     length: int
     percents: int
-    now: int
-    needed: int
+    now: typing.Optional[int]
+    needed: typing.Optional[int]
 
     def __iadd__(self, other: typing.Any) -> PackArgs:
         return PackArgs(progress=self, callback=other)
@@ -109,7 +109,7 @@ class ProgressObject:
         attrs = dict(self.__dict__)
         return iter(attrs)
 
-    def __getitem__(self, item: int) -> abstract.Sector:
+    def __getitem__(self, item: int) -> SectorBase:
         return self.bar[item]
 
     def __reversed__(self) -> ProgressObject:
@@ -126,7 +126,7 @@ class ProgressObject:
         return {k: getattr(self, k) for k in self.__dict__}
 
 
-class ProgressBar(ProgressBase, abstract.ProgressABC[T]):
+class ProgressBar(ProgressBase):
     """ ``|main class|``
 
     The main class that is used throughout the project to work with the progress bar.
@@ -252,7 +252,7 @@ class ProgressBar(ProgressBase, abstract.ProgressABC[T]):
         chars: CharsSnowflake,
         /,
         *,
-        loop: typing.Optional[asyncio.AbstractEventLoop] = None
+        loop: typing.Optional[asyncio.AbstractEventLoop] = None,
     ) -> ProgressObject:
         """ ``|coro|``
 
@@ -276,7 +276,7 @@ class ProgressBar(ProgressBase, abstract.ProgressABC[T]):
         )
 
 
-class MusicBar(ProgressBase, abstract.ProgressABC):
+class MusicBar(ProgressBase):
     """ ``|main class|``
 
     The main class for generating a "music bar".
@@ -373,7 +373,7 @@ class MusicBar(ProgressBase, abstract.ProgressABC):
         chars: MusicChars,
         /,
         *,
-        loop: typing.Optional[asyncio.AbstractEventLoop] = None
+        loop: typing.Optional[asyncio.AbstractEventLoop] = None,
     ) -> ProgressObject:
         """ ``|coro|``
 

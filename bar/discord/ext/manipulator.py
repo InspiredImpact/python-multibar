@@ -161,7 +161,7 @@ class Manipulator:
         If all three parameters are not specified.
     """
 
-    def __init__(self, setup: typing.Iterable) -> None:
+    def __init__(self, setup: typing.Iterable[typing.Any]) -> None:
         if not any(i is not None for i in setup):
             raise errors.MissingRequiredArgument('<BAR | PERCENTS | IS_LEFT> for manipulator')
 

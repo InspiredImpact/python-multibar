@@ -24,9 +24,6 @@ from bar.discord.ext.context import Context
 from bar.discord.embed import ProgressEmbed
 from bar.discord.HTTP import DiscordHTTP, Route
 
-if typing.TYPE_CHECKING:
-    from aiohttp import ClientResponse
-
 
 __all__: typing.Sequence[str] = (
     'send',
@@ -45,7 +42,7 @@ async def send(
     loop: typing.Optional[asyncio.AbstractEventLoop] = None,
     allowed_mentions: AllowedMentions = AllowedMentions.all(),
     embeds: typing.Optional[typing.List[ProgressEmbed]] = None,
-) -> typing.Optional[ClientResponse]:
+) -> typing.Any:
     """ ``|coro|``
 
     Main method for sending messages in discord.

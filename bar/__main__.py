@@ -71,5 +71,5 @@ if __name__ == "__main__":
             warnings.warn("Mypy is not installed!")
         else:
             os.system(
-                "mypy --config-file mypy.ini bar"
+                "mypy --config-file pyproject.toml bar"
             )

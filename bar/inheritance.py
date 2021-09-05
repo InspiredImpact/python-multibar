@@ -23,15 +23,19 @@ import itertools
 
 import bar.blanks as blanks
 from bar.enums import CallbackAs
-from bar.utils import ignored, to_async, AsCallable, PackArgs
+from bar.utils import ignored, to_async, AsCallable
 from bar.core import ProgressBar, errors, ProgressObject
 
 if typing.TYPE_CHECKING:
-    from bar.core.variants import CharsSnowflake
+    T_co = typing.TypeVar('T_co', covariant=True)
+
+    class _HasIadd(typing.Protocol[T_co]):
+        def __iadd__(self, other: typing.Any) -> typing.Any: ...
+
+    from bar.core.variants import CharsSnowflake, ReturnAs
 
 
 T = typing.TypeVar('T')
-IT = typing.TypeVar('IT')  # Instance type
 C = typing.TypeVar('C', bound=typing.Callable[..., typing.Any])  # Callable
 
 
@@ -77,7 +81,13 @@ class _ParametersInterface:
         Unique pattern of parameter names.
     """
 
-    def __init__(self, current_instance: IT, other_instance: IT, method: str, /) -> None:
+    def __init__(
+        self,
+        current_instance: typing.Any,
+        other_instance: typing.Any,
+        method: str,
+        /
+    ) -> None:
         self.__method_name = method
         self.__c_instance = current_instance
 
@@ -85,23 +95,38 @@ class _ParametersInterface:
 
     @property
     def now_param(self) -> typing.Optional[int]:
-        return self.__c_instance[f'__now_param__{self.__unique}']
+        return typing.cast(
+            typing.Optional[int],
+            self.__c_instance[f'__now_param__{self.__unique}']
+        )
 
     @property
     def needed_param(self) -> typing.Optional[int]:
-        return self.__c_instance[f'__needed_param__{self.__unique}']
+        return typing.cast(
+            typing.Optional[int],
+            self.__c_instance[f'__needed_param__{self.__unique}']
+        )
 
     @property
     def length_param(self) -> int:
-        return getattr(self, f'__length_param__{self.__unique}', 20)
+        return typing.cast(
+            int,
+            getattr(self, f'__length_param__{self.__unique}', 20)
+        )
 
     @property
     def deque_param(self) -> bool:
-        return getattr(self, f'__deque_param__{self.__unique}', False)
+        return typing.cast(
+            bool,
+            getattr(self, f'__deque_param__{self.__unique}', False)
+        )
 
     @property
     def chars_param(self) -> CharsSnowflake:
-        return getattr(self, f'__chars_param__{self.__unique}', blanks.ProgressBlanks.ADVANCED)
+        return typing.cast(
+            CharsSnowflake,
+            getattr(self, f'__chars_param__{self.__unique}', blanks.ProgressBlanks.ADVANCED)
+        )
 
     @property
     def unique(self) -> str:
@@ -191,14 +216,14 @@ class Progress:
     def __init_subclass__(
         cls: typing.Type[Progress],
         save_callback: bool = False,
-        return_as: typing.Literal[1, 2, 3] = 1,
+        return_as: ReturnAs = 1,
         loop: typing.Optional[asyncio.AbstractEventLoop] = None,
         **kwargs: typing.Any,
     ) -> None:
-        super().__init_subclass__(**kwargs)
-        cls._save_callback = save_callback
-        cls._return_as = return_as
-        cls._loop = loop
+        super().__init_subclass__(**kwargs)  # type: ignore[call-arg] # Mypy doesn't understand __init_subclass__.
+        for new_attr in ('_save_callback', '_return_as', '_loop'):  # For mypy "attr-defined".
+            setattr(cls, new_attr, locals().get(new_attr))
+
         for method_name in itertools.filterfalse(
             lambda m: m.startswith('_'), dir(cls)
         ):
@@ -244,56 +269,15 @@ class Progress:
     def __getitem__(self, item: str) -> typing.Any:
         return getattr(self, item, None)
 
-    @typing.overload
-    def __wrap_method(
-        self,
-        instance: IT,
-        method: str,
-        /,
-        *,
-        loop: asyncio.AbstractEventLoop,
-        ret_type: typing.Literal[1, 2, 3] = 1
-    ) -> typing.Union[ProgressObject, PackArgs]:
-        """ ``|overloading|``
-
-        Overloading the function, in accordance with the given parameters,
-        will return a ``:ProgressObject | PackArgs(callback, ProgressObject):``
-        """
-
-    @typing.overload
-    def __wrap_method(
-        self,
-        instance: IT,
-        method: str,
-        /,
-        *,
-        loop: asyncio.AbstractEventLoop,
-        ret_type: typing.Literal[1, 2, 3] = 2
-    ) -> C:
-        """ ``|overloading|``
-
-        Overloading the function, in accordance with the
-        given parameters, will return a ``:Callable object:``
-        """
-
-    @typing.overload
-    def __wrap_method(
-        self,
-        instance: IT,
-        method: str,
-        /,
-        *,
-        loop: asyncio.AbstractEventLoop,
-        ret_type: typing.Literal[1, 2, 3] = 3
-    ) -> asyncio.Future[T]:
-        """ ``|overloading|``
-
-        Overloading the function, in accordance with the
-        given parameters, will return a ``:Awaitable asyncio.Future:``
-        """
-
     @ignored
-    def __wrap_method(self, instance, method, /, *, loop=None, ret_type=1):
+    def __wrap_method(
+        self,
+        instance: typing.Any,
+        method: str,
+        *,
+        loop: typing.Optional[asyncio.AbstractEventLoop] = None,
+        ret_type: ReturnAs = 1,
+    ) -> typing.Any:
         """ ``|function|``
 
         The method by which the function is wrapped and the progress bar is generated.
@@ -323,13 +307,15 @@ class Progress:
             If the wrong callback type is specified.
         """
         interface = _ParametersInterface(self, instance, method)
-        bar = ProgressBar(
+        bar: ProgressBar = ProgressBar(
             interface.now_param,
             interface.needed_param,
             length=interface.length_param,
             deque=interface.deque_param,
         )
-        progress = asyncio.run(bar.async_write_progress(interface.chars_param, loop=loop))
+        progress: _HasIadd[ProgressObject] = asyncio.run(
+            bar.async_write_progress(interface.chars_param, loop=loop)
+        )
         if getattr(instance, f'_save_callback', False):
             # With __iadd__ we have parsed this into PackArgs with progress and callback attrs.
             progress += getattr(instance, f'__{interface.unique}_callback__')

@@ -22,38 +22,8 @@ import typing
 
 __all__: typing.Sequence[str] = (
     'Sector',
-    'ProgressABC',
     'SectorFactoryABC',
 )
-
-
-T = typing.TypeVar('T')
-
-
-class ProgressABC(typing.Generic[T], abc.ABC):
-    """ ``|ABC class|``
-
-    Abstract class, currently used in:
-
-    * :class:`ProgressBar`
-    * :class:`MusicBar`
-
-    Abstract methods:
-    -----------------
-    write_progress: :class:`TypeVar`
-        Sync function for generating progress bars.
-
-    async_write_progress: :class:`TypeVar`
-        Async function for generating progress bars.
-    """
-
-    @abc.abstractmethod
-    def write_progress(self, *_: T) -> T:
-        ...
-
-    @abc.abstractmethod
-    async def async_write_progress(self, *_: T) -> T:
-        ...
 
 
 class SectorFactoryABC(abc.ABC):

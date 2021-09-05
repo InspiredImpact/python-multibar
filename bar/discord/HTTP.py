@@ -14,6 +14,8 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
+from __future__ import annotations
+
 import sys
 import types
 import typing
@@ -24,7 +26,12 @@ import dataclasses
 
 from bar import version_info
 from bar.discord import errors
-from bar.discord.variants import SnowFlake
+
+if typing.TYPE_CHECKING:
+    from bar.discord.variants import SnowFlake
+
+
+T = typing.TypeVar('T')
 
 
 __all__: typing.Sequence[str] = (
@@ -147,7 +154,7 @@ class DiscordHTTP:
         _user_agent = 'DiscordBot (https://github.com/Animatea/python-multibar {0}) Python/{1[1]}.{1[0]} aiohttp/{2}'
         self.headers = {'User-Agent': _user_agent.format(version_info(), sys.version_info, aiohttp.__version__)}
 
-    async def __aenter__(self) -> aiohttp.ClientResponse:
+    async def __aenter__(self) -> typing.Any:
         return await self.make_request()
 
     async def __aexit__(
@@ -158,7 +165,7 @@ class DiscordHTTP:
     ) -> None:
         await self.close()
 
-    async def make_request(self):
+    async def make_request(self) -> typing.Any:
         self.headers.update({'Content-Type': 'application/json', 'Authorization': f'Bot {self._token}'})
         async with self.__session.request(
             method=self._route.method, url=self._route.url, headers=self.headers, json=self._route.json
@@ -182,5 +189,5 @@ class DiscordHTTP:
             else:
                 raise errors.HTTPError(response, data)
 
-    async def close(self):
+    async def close(self) -> typing.NoReturn:
         await self.__session.close()

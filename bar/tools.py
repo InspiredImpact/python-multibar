@@ -77,7 +77,7 @@ class ProgressTools:
         if fill is None or line is None:
             raise errors.MissingRequiredArguments('<fill> or <line>')
 
-        return locals()
+        return typing.cast(CharsSnowflake, locals())
 
     @ignored
     def can_run(self, func: str, /, *, reraise: bool = False) -> bool:

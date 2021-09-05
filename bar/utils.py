@@ -112,7 +112,7 @@ def deprecated(
     return inner
 
 
-def find(  # type: ignore
+def find(
     predicate: FT,
     iterator: typing.Iterable[T],
     /,

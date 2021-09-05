@@ -145,7 +145,8 @@ class LibraryInfo:
     def __init__(self) -> None:
         valuesgl = dict(globals())
         for name, value in valuesgl['__annotations__'].items():
-            if Info in inspect.getmro(typing.get_origin(value)):
+            _origin: type = typing.cast(type, typing.get_origin(value))  # for mypy "arg-type"
+            if Info in inspect.getmro(_origin):
                 setattr(self, _prune_param(name), valuesgl.get(name))
 
     def __str__(self) -> str:

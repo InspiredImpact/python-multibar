@@ -4,7 +4,6 @@ from bar import ProgressBlanks
 
 
 class BlanksTest(unittest.TestCase):
-
     def test_default_blanks(self) -> None:
         self.assertEqual(
             ProgressBlanks.DEFAULT,

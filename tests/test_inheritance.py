@@ -55,7 +55,6 @@ class _TestWithTools(Progress, ProgressTools, return_as=3):
 
 
 class InheritanceTest(unittest.TestCase):
-
     def test_inheritance_default(self) -> None:
         default = _TestDefault()
         self.assertIsInstance(default.foo, ProgressObject)

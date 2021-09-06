@@ -14,7 +14,6 @@ def sync_function() -> str:
 
 
 class UtilsTest(unittest.TestCase):
-
     def test_deprecation_warning(self) -> None:
         # Will display warning.
         invoke = deprecated("some_new_method", with_invoke=True)(deprecated_function)()

@@ -10,7 +10,6 @@ from bar import ProgressBar, ProgressBlanks
 
 
 class BarTest(unittest.TestCase):
-
     def test_simple_bar(self) -> None:
         bar = ProgressBar(10, 100, length=10)
         self.assertEqual(bar.length, 10)

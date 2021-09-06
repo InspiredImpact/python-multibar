@@ -31,7 +31,7 @@ from bar.discord.ext.manipulator import Manipulator
 if typing.TYPE_CHECKING:
     from bar.discord.ext.manipulator import _Bar, _Percents, _IsLeft
 
-    _AnyValueT = typing.TypeVar('_AnyValueT')
+    _AnyValueT = typing.TypeVar("_AnyValueT")
     MaybeNone = typing.Union[_AnyValueT, None]
 
     _EmbedType = typing.Literal["rich", "image", "video", "gifv", "article", "link"]
@@ -54,12 +54,11 @@ PT_invariant = typing.TypeVar("PT_invariant")  # Proxy type
 
 
 class ParamProxy(typing.Generic[PT_invariant]):
-
     def __init__(self, *parameters: typing.Any) -> None:
         self.__parameters = parameters
 
     def __repr__(self) -> str:
-        return f'<Param.Proxy{self.__parameters}>'
+        return f"<Param.Proxy{self.__parameters}>"
 
     def __iter__(self) -> typing.Iterator[typing.Any]:
         return iter(self.__parameters)
@@ -979,13 +978,7 @@ class ProgressEmbed(EmbedABC):
         self: :class:`ProgressEmbed`
             Class instance to allow for fluent-style chaining.
         """
-        setattr(
-            self,
-            "_video",
-            EmbedVideo(
-                url=url, proxy_url=proxy_url, height=height, width=width
-            )
-        )
+        setattr(self, "_video", EmbedVideo(url=url, proxy_url=proxy_url, height=height, width=width))
         return self
 
     def set_provider(
@@ -1011,11 +1004,7 @@ class ProgressEmbed(EmbedABC):
         self: :class:`ProgressEmbed`
             Class instance to allow for fluent-style chaining.
         """
-        setattr(
-            self,
-            "_provider",
-            EmbedProvider(name=name, url=url)
-        )
+        setattr(self, "_provider", EmbedProvider(name=name, url=url))
         return self
 
     def __replace_value(

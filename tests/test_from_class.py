@@ -36,7 +36,6 @@ class MypyClear(FromClassBase):
 
 
 class FromClassTest(unittest.TestCase):
-
     def test_default(self) -> None:
         default = Default()
         invoke = default.foo()

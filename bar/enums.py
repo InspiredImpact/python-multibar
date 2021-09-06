@@ -18,9 +18,12 @@ import enum
 import typing
 
 
+__all__: typing.Sequence[str] = ("CallbackAs",)
+
+
 @typing.final
 class CallbackAs(enum.IntEnum):
-    """ ``|int enumeration|``
+    """``|int enumeration|``
 
     Enumeration for callback type.
 
@@ -33,6 +36,7 @@ class CallbackAs(enum.IntEnum):
     awaitable: :class:`int` = 3
         Awaitable object (asyncio.Future).
     """
+
     default = 1
     callable = 2
     awaitable = 3

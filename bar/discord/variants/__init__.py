@@ -21,7 +21,7 @@ from .coro import *
 
 
 __all__: typing.Sequence[str] = (
-    'SnowFlake',
-    'Coro',
-    'CoroFunc',
+    "SnowFlake",
+    "Coro",
+    "CoroFunc",
 )

@@ -24,8 +24,8 @@ if typing.TYPE_CHECKING:
 
 
 __all__: typing.Sequence[str] = (
-    'ProgressBlanks',
-    'DiscordBlanks',
+    "ProgressBlanks",
+    "DiscordBlanks",
 )
 
 
@@ -38,18 +38,15 @@ _blanks: typing.Dict[str, typing.Any] = {
             "start": "◄",
             "end": "►",
             "unfilled_start": "◁",
-            "unfilled_end": "▷"
+            "unfilled_end": "▷",
         },
-        "DEFAULT": {
-            "fill": "█",
-            "line": "●"
-        }
+        "DEFAULT": {"fill": "█", "line": "●"},
     }
 }
 
 
 class BlanksMeta(type):
-    """ ``|metaclass|``
+    """``|metaclass|``
 
     The metaclass with which templates are set.
     """
@@ -61,7 +58,7 @@ class BlanksMeta(type):
         attrs: typing.Dict[str, typing.Any],
     ) -> BlanksMeta:
         with contextlib.suppress(KeyError):
-            for attr in attrs['__annotations__']:
+            for attr in attrs["__annotations__"]:
                 attrs[attr] = _blanks[name][attr]
         return super().__new__(mcs, name, bases, attrs)
 
@@ -73,4 +70,3 @@ class ProgressBlanks(metaclass=BlanksMeta):
 
 class DiscordBlanks(metaclass=BlanksMeta):
     ...
-

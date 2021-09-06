@@ -19,14 +19,14 @@ import typing
 
 
 __all__: typing.Sequence[str] = (
-    'FillFlag',
-    'MusicBarFlag',
+    "FillFlag",
+    "MusicBarFlag",
 )
 
 
 @typing.final
 class FillFlag(enum.IntFlag):
-    """ ``|int flag|``
+    """``|int flag|``
 
     The flag that is used to generate the progress bar.
 
@@ -40,13 +40,14 @@ class FillFlag(enum.IntFlag):
     LAST: :class:`int` = 97
         At `ninety-seven percent`, the last sector of the progress bar is filled.
     """
+
     FIRST = 3
     LAST = 97
 
 
 @typing.final
 class MusicBarFlag(enum.IntFlag):
-    """ ``|int flag|``
+    """``|int flag|``
 
     ClassVars:
     ----------
@@ -55,4 +56,5 @@ class MusicBarFlag(enum.IntFlag):
     CORRECT_START: :class:`int` = 1
         Flag for correct calculation of progress.
     """
+
     CORRECT_START = 1

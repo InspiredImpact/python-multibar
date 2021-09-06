@@ -17,21 +17,19 @@ limitations under the License.
 from __future__ import annotations
 
 import typing
+import asyncio
+import collections.abc
 
 from bar.utils import ignored
 from bar.core import errors
-
-if typing.TYPE_CHECKING:
-    from bar.core.variants import CharsSnowflake
+from bar.core.variants import CharsSnowflake
 
 
-__all__: typing.Sequence[str] = (
-    'ProgressTools',
-)
+__all__: typing.Sequence[str] = ("ProgressTools",)
 
 
 class ProgressTools:
-    """ ``|class|``
+    """``|class|``
 
     Additional methods for working with inheritance in our library.
     """
@@ -47,7 +45,7 @@ class ProgressTools:
         unfilled_start: typing.Optional[str] = None,
         unfilled_end: typing.Optional[str] = None,
     ) -> CharsSnowflake:
-        """ ``|staticmethod|``
+        """``|staticmethod|``
 
         Initially, the chars parameter takes a dictionary,
         this method allows you to pass chars as parameters and
@@ -75,13 +73,20 @@ class ProgressTools:
         ```
         """
         if fill is None or line is None:
-            raise errors.MissingRequiredArguments('<fill> or <line>')
+            raise errors.MissingRequiredArguments("<fill> or <line>")
 
         return typing.cast(CharsSnowflake, locals())
 
     @ignored
-    def can_run(self, func: str, /, *, reraise: bool = False) -> bool:
-        """ ``|function|``
+    def can_run(
+        self,
+        func: str,
+        /,
+        *,
+        reraise: bool = False,
+        loop: typing.Optional[asyncio.AbstractEventLoop] = None,
+    ) -> bool:
+        """``|function|``
 
         We can say that this method is practically useless,
         because most of the errors will be detected during the
@@ -127,7 +132,12 @@ class ProgressTools:
         :class:`bool`
         """
         try:
-            getattr(self, func)()
+            fn = getattr(self, func)
+            if isinstance(fn, collections.abc.Awaitable):
+                loop = loop if loop is not None else asyncio.get_event_loop()
+                loop.run_until_complete(fn)
+            else:
+                fn()
             return True
         except Exception as exc:
             if reraise:

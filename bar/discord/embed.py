@@ -30,46 +30,80 @@ from bar.discord.ext.manipulator import Manipulator
 
 if typing.TYPE_CHECKING:
     from bar.discord.ext.manipulator import _Bar, _Percents, _IsLeft
-    _EmbedType = typing.Literal['rich', 'image', 'video', 'gifv', 'article', 'link']
+
+    _AnyValueT = typing.TypeVar('_AnyValueT')
+    MaybeNone = typing.Union[_AnyValueT, None]
+
+    _EmbedType = typing.Literal["rich", "image", "video", "gifv", "article", "link"]
 
 
 __all__: typing.Sequence[str] = (
-    'ProgressEmbed',
+    "ProgressEmbed",
+    "EmbedVideo",
+    "EmbedProvider",
+    "EmbedField",
+    "EmbedImage",
+    "EmbedAuthor",
 )
 
 
-T = typing.TypeVar('T')
-KT = typing.TypeVar('KT')  # Key type
-VT = typing.TypeVar('VT')  # Value type
+T = typing.TypeVar("T")
+KT = typing.TypeVar("KT")  # Key type
+VT = typing.TypeVar("VT")  # Value type
+PT_invariant = typing.TypeVar("PT_invariant")  # Proxy type
+
+
+class ParamProxy(typing.Generic[PT_invariant]):
+
+    def __init__(self, *parameters: typing.Any) -> None:
+        self.__parameters = parameters
+
+    def __repr__(self) -> str:
+        return f'<Param.Proxy{self.__parameters}>'
+
+    def __iter__(self) -> typing.Iterator[typing.Any]:
+        return iter(self.__parameters)
+
+    def __contains__(self, item: str) -> bool:
+        return getattr(self, item, None) is not None
+
+    def __len__(self) -> int:
+        return len(self.__parameters)
+
+    def __getitem__(self, index: int) -> typing.Any:
+        return self.__parameters[index]
+
+    def __new__(cls, *args: typing.Any) -> typing.Any:
+        if cls is not ParamProxy:
+            raise TypeError("Proxy cannot be inherited.")
+        return super().__new__(cls, *args)
 
 
 """ ``|const|``
 All attributes available to the embed.
 """
-ALLOWED_ATTRS: typing.Final[typing.List[str]] = ([
-    '_' + i for i in (
-        'title',
-        'type',
-        'url',
-        'description',
-        'timestamp',
-        'color',
-        'video',
-        'provider',
-        'fields',
-        'author',
-        'footer',
-        'image',
-        'thumbnail',
+ALLOWED_ATTRS: typing.Final[typing.List[str]] = [
+    "_" + i
+    for i in (
+        "title",
+        "type",
+        "url",
+        "description",
+        "timestamp",
+        "color",
+        "video",
+        "provider",
+        "fields",
+        "author",
+        "footer",
+        "image",
+        "thumbnail",
     )
-])
+]
 
 
-def field_converter(
-    _: typing.Any,
-    fields: typing.Iterable[typing.Any]
-) -> typing.List[typing.Any]:
-    """ ``|attr converter|``
+def field_converter(_: typing.Any, fields: typing.Iterable[typing.Any]) -> typing.List[typing.Any]:
+    """``|attr converter|``
 
     Field converter by annotation.
 
@@ -93,17 +127,15 @@ def field_converter(
             results.append(field)
             continue
 
-        elif field.type in {str, 'str'}:
-            converter = (lambda v: str(v) if v else v)
+        elif field.type in {str, "str"}:
+            converter = lambda v: str(v) if v else v
 
-        elif field.type in {int, 'int'}:
-            converter = (lambda v: int(v) if v else v)
+        elif field.type in {int, "int"}:
+            converter = lambda v: int(v) if v else v
 
-        elif field.type in {datetime.datetime, 'datetime.datetime'}:
+        elif field.type in {datetime.datetime, "datetime.datetime"}:
             # From datetime.datetime to isoformat convert.
-            converter = (
-                lambda d: datetime.datetime.isoformat(d) if isinstance(d, datetime.datetime) else d
-            )
+            converter = lambda d: datetime.datetime.isoformat(d) if isinstance(d, datetime.datetime) else d
         else:
             converter = None
         results.append(field.evolve(converter=converter))
@@ -112,7 +144,7 @@ def field_converter(
 
 @attr.define(kw_only=True, slots=True, repr=False, field_transformer=field_converter)
 class EmbedVideo(EmbedABC):
-    """ ``|Embed video attribute|``
+    """``|Embed video attribute|``
 
     Parameters:
     -----------
@@ -142,19 +174,19 @@ class EmbedVideo(EmbedABC):
     """ !!! will be converted to :class:`int` """
 
     def _source_(self) -> typing.Dict[str, VT]:
-        """ ``|abc method|``
+        """``|abc method|``
 
         !!! note:
             Since there were problems with inheritance and extensibility was needed,
             it was decided to make this method abstract. A method that returns the
             source code for the API requesting any embed or embed parameter in the dictionary.
         """
-        return {i: getattr(self, i) for i in dir(self) if not i.startswith('_')}
+        return {i: getattr(self, i) for i in dir(self) if not i.startswith("_")}
 
 
 @attr.define(kw_only=True, slots=True, repr=False, field_transformer=field_converter)
 class EmbedProvider(EmbedABC):
-    """ ``|Embed provider attribute|``
+    """``|Embed provider attribute|``
 
     Parameters:
     -----------
@@ -172,19 +204,19 @@ class EmbedProvider(EmbedABC):
     """ !!! will be converted to :class:`str` """
 
     def _source_(self) -> typing.Dict[str, typing.Any]:
-        """ ``|abc method|``
+        """``|abc method|``
 
         !!! note:
             Since there were problems with inheritance and extensibility was needed,
             it was decided to make this method abstract. A method that returns the
             source code for the API requesting any embed or embed parameter in the dictionary.
         """
-        return {i: getattr(self, i) for i in dir(self) if not i.startswith('_')}
+        return {i: getattr(self, i) for i in dir(self) if not i.startswith("_")}
 
 
 @attr.define(kw_only=True, slots=True, repr=False, field_transformer=field_converter)
 class EmbedFooter(EmbedABC):
-    """ ``|Embed footer attribute|``
+    """``|Embed footer attribute|``
 
     Parameters:
     -----------
@@ -208,19 +240,19 @@ class EmbedFooter(EmbedABC):
     """ !!! will be converted to :class:`str` """
 
     def _source_(self) -> typing.Dict[str, typing.Any]:
-        """ ``|abc method|``
+        """``|abc method|``
 
         !!! note:
             Since there were problems with inheritance and extensibility was needed,
             it was decided to make this method abstract. A method that returns the
             source code for the API requesting any embed or embed parameter in the dictionary.
         """
-        return {i: getattr(self, i) for i in dir(self) if not i.startswith('_')}
+        return {i: getattr(self, i) for i in dir(self) if not i.startswith("_")}
 
 
 @attr.define(kw_only=True, slots=True, repr=False, field_transformer=field_converter)
 class EmbedThumbnail(EmbedABC):
-    """ ``|Embed thumbnail attribute|``
+    """``|Embed thumbnail attribute|``
 
     Parameters:
     -----------
@@ -250,19 +282,19 @@ class EmbedThumbnail(EmbedABC):
     """ !!! will be converted to :class:`int` """
 
     def _source_(self) -> typing.Dict[str, typing.Any]:
-        """ ``|abc method|``
+        """``|abc method|``
 
         !!! note:
             Since there were problems with inheritance and extensibility was needed,
             it was decided to make this method abstract. A method that returns the
             source code for the API requesting any embed or embed parameter in the dictionary.
         """
-        return {i: getattr(self, i) for i in dir(self) if not i.startswith('_')}
+        return {i: getattr(self, i) for i in dir(self) if not i.startswith("_")}
 
 
 @attr.define(kw_only=True, slots=True, repr=False, field_transformer=field_converter)
 class EmbedImage(EmbedABC):
-    """ ``|Embed image attribute|``
+    """``|Embed image attribute|``
 
     Parameters:
     -----------
@@ -292,19 +324,19 @@ class EmbedImage(EmbedABC):
     """ !!! will be converted to :class:`int` """
 
     def _source_(self) -> typing.Dict[str, typing.Any]:
-        """ ``|abc method|``
+        """``|abc method|``
 
         !!! note:
             Since there were problems with inheritance and extensibility was needed,
             it was decided to make this method abstract. A method that returns the
             source code for the API requesting any embed or embed parameter in the dictionary.
         """
-        return {i: getattr(self, i) for i in dir(self) if not i.startswith('_')}
+        return {i: getattr(self, i) for i in dir(self) if not i.startswith("_")}
 
 
 @attr.define(kw_only=True, slots=True, repr=False, field_transformer=field_converter)
 class EmbedAuthor(EmbedABC):
-    """ ``|Embed author attribute|``
+    """``|Embed author attribute|``
 
     Parameters:
     -----------
@@ -334,19 +366,19 @@ class EmbedAuthor(EmbedABC):
     """ !!! will be converted to :class:`str` """
 
     def _source_(self) -> typing.Dict[str, typing.Any]:
-        """ ``|abc method|``
+        """``|abc method|``
 
         !!! note:
             Since there were problems with inheritance and extensibility was needed,
             it was decided to make this method abstract. A method that returns the
             source code for the API requesting any embed or embed parameter in the dictionary.
         """
-        return {i: getattr(self, i) for i in dir(self) if not i.startswith('_')}
+        return {i: getattr(self, i) for i in dir(self) if not i.startswith("_")}
 
 
 @attr.define(kw_only=True, slots=True, repr=False, field_transformer=field_converter)
 class EmbedField(EmbedABC):
-    """ ``|Embed author attribute|``
+    """``|Embed author attribute|``
 
     !!! note:
         <name> and <value> are required attributes,
@@ -376,7 +408,7 @@ class EmbedField(EmbedABC):
     """
 
     def _footer_validator(self, attribute: attr.Attribute[typing.Any], value: typing.Any) -> None:
-        """ ``|footer validator|``
+        """``|footer validator|``
 
         Validator that checks the value of certain attributes.
 
@@ -390,7 +422,7 @@ class EmbedField(EmbedABC):
         """
         if inspections.is_empty_field(value):
             raise ValueError(
-                f'Attribute <{attribute.name}> cannot be None or <{attribute.name}> length must be > 0'
+                f"Attribute <{attribute.name}> cannot be None or <{attribute.name}> length must be > 0"
             )
 
     name: str = attr.field(default=None, validator=_footer_validator)
@@ -407,7 +439,7 @@ class EmbedField(EmbedABC):
 
     @staticmethod
     def __format_value(attrib: str, value: typing.Any) -> typing.Any:
-        """ ``|staticmethod|``
+        """``|staticmethod|``
 
         A method that, depending on the context, changes a specific value.
 
@@ -426,13 +458,13 @@ class EmbedField(EmbedABC):
         """
 
         if isinstance(value, (list, collections.deque)):
-            return ''.join(i.emoji_name for i in value)
-        if attrib == '_percents':
-            return f'{value}%'
+            return "".join(i.emoji_name for i in value)
+        if attrib == "_percents":
+            return f"{value}%"
         return value
 
-    def _set_progress(self, manipulator: Manipulator = None, sep: str = ' ') -> typing.Optional[Manipulator]:
-        """ ``|method|``
+    def _set_progress(self, manipulator: Manipulator = None, sep: str = " ") -> typing.Optional[Manipulator]:
+        """``|method|``
 
         A method that sets progress and changes its output depending on the `embed manipulator`.
 
@@ -453,42 +485,46 @@ class EmbedField(EmbedABC):
         if self.progress is not None:
             if manipulator is None:
                 self.value = (
-                    f'[{self.progress.now}/{self.progress.needed}] '
-                    f'{self.progress} '
-                    f'{self.progress.percents}%'
+                    f"[{self.progress.now}/{self.progress.needed}] "
+                    f"{self.progress} "
+                    f"{self.progress.percents}%"
                 )
             else:
-                setattr(self.progress, 'isleft', f'{self.progress.now}/{self.progress.needed}')
-                _value: typing.List[str] = ['', '', '']
-                for attrib in ('_percents', '_bar', '_isleft'):
+                setattr(
+                    self.progress,
+                    "isleft",
+                    f"{self.progress.now}/{self.progress.needed}",
+                )
+                _value: typing.List[str] = ["", "", ""]
+                for attrib in ("_percents", "_bar", "_isleft"):
                     if hasattr(manipulator, attrib):
                         temp = getattr(manipulator, attrib)
                         _value.insert(
                             temp.position,
-                            f'{temp.prefix}'
-                            f'{self.__format_value(attrib, getattr(self.progress, attrib[1:]))}'
-                            f'{temp.suffix}'
+                            f"{temp.prefix}"
+                            f"{self.__format_value(attrib, getattr(self.progress, attrib[1:]))}"
+                            f"{temp.suffix}",
                         )
-                self.value = f'{sep}'.join(_value)
-                if hasattr(getattr(manipulator, '_bar', None), '_reverse'):
+                self.value = f"{sep}".join(_value)
+                if hasattr(getattr(manipulator, "_bar", None), "_reverse"):
                     self.name, self.value = self.value, self.name
 
                 return manipulator
 
     def _source_(self) -> typing.Dict[str, typing.Any]:
-        """ ``|abc method|``
+        """``|abc method|``
 
         !!! note:
             Since there were problems with inheritance and extensibility was needed,
             it was decided to make this method abstract. A method that returns the
             source code for the API requesting any embed or embed parameter in the dictionary.
         """
-        return {i: getattr(self, i) for i in dir(self) if not i.startswith('_') and i not in ('progress',)}
+        return {i: getattr(self, i) for i in dir(self) if not i.startswith("_") and i not in ("progress",)}
 
 
 @attr.define(kw_only=True, slots=True, repr=False, field_transformer=field_converter)
 class ProgressEmbed(EmbedABC):
-    """ ``|Main Embed class|``
+    """``|Main Embed class|``
 
     The main class that represents an `embed`.
 
@@ -525,7 +561,7 @@ class ProgressEmbed(EmbedABC):
     _title: str = attr.field(default=None)
     """ !!! will be converted to :class:`str` """
 
-    _type: _EmbedType = attr.field(default='rich')
+    _type: _EmbedType = attr.field(default="rich")
     """ !!! without converter """
 
     _description: str = attr.field(default=None)
@@ -550,7 +586,7 @@ class ProgressEmbed(EmbedABC):
     """ !!! without converter """
 
     async def _source_(self) -> typing.Any:
-        """ ``|abc method|``
+        """``|abc method|``
 
         !!! note:
             Since there were problems with inheritance and extensibility was needed,
@@ -559,24 +595,36 @@ class ProgressEmbed(EmbedABC):
         """
         _source = {}
         for attribute in dir(self):
-            if (
-                attribute in ALLOWED_ATTRS and
-                not repr(value := getattr(self, attribute)).startswith('(_CountingAttr')
+            if attribute in ALLOWED_ATTRS and not repr(value := getattr(self, attribute)).startswith(
+                "(_CountingAttr"
             ):
-                if hasattr(value, '_source_'):
+                if hasattr(value, "_source_"):
                     _source.update({attribute[1:]: value._source_()})
                 elif isinstance(value, list):
-                    fields: typing.Dict[str, typing.List[EmbedField]] = {'fields': []}
+                    fields: typing.Dict[str, typing.List[EmbedField]] = {"fields": []}
                     for idx, field in enumerate(value):
-                        fields['fields'].append(field._source_())
+                        fields["fields"].append(field._source_())
                     _source.update(fields)
                 else:
                     _source.update({attribute[1:]: value})
         return _source
 
     @property
+    def fields(self) -> ParamProxy[typing.List[MaybeNone[EmbedField]]]:
+        """``|property|``
+
+        Returns information about `fields` in the given embed.
+
+        Returns:
+        --------
+        Fields information: :class:`types.MappingProxyType`
+            Fields attribute value.
+        """
+        return ParamProxy(getattr(self, "_fields", []))
+
+    @property
     def footer(self) -> types.MappingProxyType[KT, VT]:
-        """ ``|property|``
+        """``|property|``
 
         Returns information about `footer` in the given embed.
 
@@ -585,11 +633,11 @@ class ProgressEmbed(EmbedABC):
         footer information: :class:`types.MappingProxyType`
             Footer attribute value.
         """
-        return types.MappingProxyType(getattr(self, '_footer', {}))
+        return types.MappingProxyType(getattr(self, "_footer", {}))
 
     @property
-    def title(self) -> types.MappingProxyType[KT, VT]:
-        """ ``|property|``
+    def title(self) -> ParamProxy[MaybeNone[str]]:
+        """``|property|``
 
         Returns information about `title` in the given embed.
 
@@ -598,19 +646,19 @@ class ProgressEmbed(EmbedABC):
         title information: :class:`types.MappingProxyType`
             Title attribute value.
         """
-        return types.MappingProxyType(getattr(self, '_title', None))
+        return ParamProxy(getattr(self, "_title", None))
 
     @title.setter
     def title(self, new: str) -> None:
-        """ ``|property setter|``
+        """``|property setter|``
 
         A setter that changes the value of the `title` attribute.
         """
         self._title = new
 
     @property
-    def type(self) -> types.MappingProxyType[KT, VT]:
-        """ ``|property|``
+    def type(self) -> ParamProxy[MaybeNone[str]]:
+        """``|property|``
 
         Returns information about `type` in the given embed.
 
@@ -619,19 +667,19 @@ class ProgressEmbed(EmbedABC):
         type information: :class:`types.MappingProxyType`
             Type attribute value.
         """
-        return types.MappingProxyType(getattr(self, '_type', None))
+        return ParamProxy(getattr(self, "_type", None))
 
     @type.setter
     def type(self, new: _EmbedType) -> None:
-        """ ``|property setter|``
+        """``|property setter|``
 
         A setter that changes the value of the `type` attribute.
         """
         self._type = new
 
     @property
-    def description(self) -> types.MappingProxyType[KT, VT]:
-        """ ``|property|``
+    def description(self) -> ParamProxy[MaybeNone[str]]:
+        """``|property|``
 
         Returns information about `description` in the given embed.
 
@@ -640,19 +688,19 @@ class ProgressEmbed(EmbedABC):
         description information: :class:`types.MappingProxyType`
             Description attribute value.
         """
-        return types.MappingProxyType(getattr(self, '_description', None))
+        return ParamProxy(getattr(self, "_description", None))
 
     @description.setter
     def description(self, new: str) -> None:
-        """ ``|property setter|``
+        """``|property setter|``
 
         A setter that changes the value of the `description` attribute.
         """
         self._description = new
 
     @property
-    def url(self) -> types.MappingProxyType[KT, VT]:
-        """ ``|property|``
+    def url(self) -> ParamProxy[MaybeNone[str]]:
+        """``|property|``
 
         Returns information about `url` in the given embed.
 
@@ -661,19 +709,19 @@ class ProgressEmbed(EmbedABC):
         url information: :class:`types.MappingProxyType`
             Url attribute value.
         """
-        return types.MappingProxyType(getattr(self, '_url', None))
+        return ParamProxy(getattr(self, "_url", None))
 
     @url.setter
     def url(self, new: str) -> None:
-        """ ``|property setter|``
+        """``|property setter|``
 
         A setter that changes the value of the `url` attribute.
         """
         self._url = new
 
     @property
-    def timestamp(self) -> types.MappingProxyType[KT, VT]:
-        """ ``|property|``
+    def timestamp(self) -> ParamProxy[MaybeNone[datetime.datetime]]:
+        """``|property|``
 
         Returns information about `timestamp` in the given embed.
 
@@ -682,19 +730,19 @@ class ProgressEmbed(EmbedABC):
         timestamp information: :class:`types.MappingProxyType`
             Timestamp attribute value.
         """
-        return types.MappingProxyType(getattr(self, '_timestamp', None))
+        return ParamProxy(getattr(self, "_timestamp", None))
 
     @timestamp.setter
     def timestamp(self, new: datetime.datetime) -> None:
-        """ ``|property setter|``
+        """``|property setter|``
 
         A setter that changes the value of the `timestamp` attribute.
         """
         self._timestamp = new
 
     @property
-    def color(self) -> types.MappingProxyType[KT, VT]:
-        """ ``|property|``
+    def color(self) -> ParamProxy[MaybeNone[int]]:
+        """``|property|``
 
         Returns information about `color` in the given embed.
 
@@ -703,19 +751,19 @@ class ProgressEmbed(EmbedABC):
         color information: :class:`types.MappingProxyType`
             Color attribute value.
         """
-        return types.MappingProxyType(getattr(self, '_color', None))
+        return ParamProxy(getattr(self, "_color", None))
 
     @color.setter
     def color(self, new: int) -> None:
-        """ ``|property setter|``
+        """``|property setter|``
 
         A setter that changes the value of the `color` attribute.
         """
         self._color = new
 
     @property
-    def video(self) -> types.MappingProxyType[KT, VT]:
-        """ ``|property|``
+    def video(self) -> ParamProxy[MaybeNone[EmbedVideo]]:
+        """``|property|``
 
         Returns information about `video` in the given embed.
 
@@ -724,19 +772,11 @@ class ProgressEmbed(EmbedABC):
         video information: :class:`types.MappingProxyType`
             Video attribute value.
         """
-        return types.MappingProxyType(getattr(self, '_video', None))
-
-    @video.setter
-    def video(self, new: EmbedVideo) -> None:
-        """ ``|property setter|``
-
-        A setter that changes the value of the `video` attribute.
-        """
-        self._video = new
+        return ParamProxy(getattr(self, "_video", None))
 
     @property
-    def provider(self) -> types.MappingProxyType[KT, VT]:
-        """ ``|property|``
+    def provider(self) -> ParamProxy[MaybeNone[EmbedProvider]]:
+        """``|property|``
 
         Returns information about `provider` in the given embed.
 
@@ -745,19 +785,11 @@ class ProgressEmbed(EmbedABC):
         provider information: :class:`types.MappingProxyType`
             Provider attribute value.
         """
-        return types.MappingProxyType(getattr(self, '_provider', None))
-
-    @provider.setter
-    def provider(self, new: EmbedProvider) -> None:
-        """ ``|property setter|``
-
-        A setter that changes the value of the `provider` attribute.
-        """
-        self._provider = new
+        return ParamProxy(getattr(self, "_provider", None))
 
     @property
-    def image(self) -> types.MappingProxyType[KT, VT]:
-        """ ``|property|``
+    def image(self) -> ParamProxy[MaybeNone[EmbedImage]]:
+        """``|property|``
 
         Returns information about `image` in the given embed.
 
@@ -766,7 +798,7 @@ class ProgressEmbed(EmbedABC):
         image information: :class:`types.MappingProxyType`
             Image attribute value.
         """
-        return types.MappingProxyType(getattr(self, '_image', None))
+        return ParamProxy(getattr(self, "_image", None))
 
     def set_footer(
         self,
@@ -775,7 +807,7 @@ class ProgressEmbed(EmbedABC):
         icon_url: typing.Optional[str] = None,
         proxy_icon_url: typing.Optional[str] = None,
     ) -> ProgressEmbed:
-        """ ``|method|``
+        """``|method|``
 
         The method by which you can set the footer to the embed.
 
@@ -795,7 +827,11 @@ class ProgressEmbed(EmbedABC):
         self: :class:`ProgressEmbed`
             Class instance to allow for fluent-style chaining.
         """
-        setattr(self, '_footer', EmbedFooter(text=text, icon_url=icon_url, proxy_icon_url=proxy_icon_url))
+        setattr(
+            self,
+            "_footer",
+            EmbedFooter(text=text, icon_url=icon_url, proxy_icon_url=proxy_icon_url),
+        )
         return self
 
     def set_image(
@@ -806,7 +842,7 @@ class ProgressEmbed(EmbedABC):
         width: typing.Optional[int] = None,
         height: typing.Optional[int] = None,
     ) -> ProgressEmbed:
-        """ ``|method|``
+        """``|method|``
 
         The method by which you can set the image to the embed.
 
@@ -829,7 +865,11 @@ class ProgressEmbed(EmbedABC):
         self: :class:`ProgressEmbed`
             Class instance to allow for fluent-style chaining.
         """
-        setattr(self, '_image', EmbedImage(url=url, proxy_url=proxy_url, width=width, height=height))
+        setattr(
+            self,
+            "_image",
+            EmbedImage(url=url, proxy_url=proxy_url, width=width, height=height),
+        )
         return self
 
     def set_thumbnail(
@@ -840,7 +880,7 @@ class ProgressEmbed(EmbedABC):
         width: typing.Optional[int] = None,
         height: typing.Optional[int] = None,
     ) -> ProgressEmbed:
-        """ ``|method|``
+        """``|method|``
 
         The method by which you can set the thumbnail to the embed.
 
@@ -863,7 +903,11 @@ class ProgressEmbed(EmbedABC):
         self: :class:`ProgressEmbed`
             Class instance to allow for fluent-style chaining.
         """
-        setattr(self, '_thumbnail', EmbedThumbnail(url=url, proxy_url=proxy_url, width=width, height=height))
+        setattr(
+            self,
+            "_thumbnail",
+            EmbedThumbnail(url=url, proxy_url=proxy_url, width=width, height=height),
+        )
         return self
 
     def set_author(
@@ -874,7 +918,7 @@ class ProgressEmbed(EmbedABC):
         icon_url: typing.Optional[str] = None,
         proxy_icon_url: typing.Optional[str] = None,
     ) -> ProgressEmbed:
-        """ ``|method|``
+        """``|method|``
 
         The method by which you can set the author to the embed.
 
@@ -899,10 +943,78 @@ class ProgressEmbed(EmbedABC):
         """
         setattr(
             self,
-            '_author',
-            EmbedAuthor(
-                name=name, url=url, icon_url=icon_url, proxy_icon_url=proxy_icon_url
+            "_author",
+            EmbedAuthor(name=name, url=url, icon_url=icon_url, proxy_icon_url=proxy_icon_url),
+        )
+        return self
+
+    def set_video(
+        self,
+        *,
+        url: typing.Optional[str] = None,
+        proxy_url: typing.Optional[str] = None,
+        height: typing.Optional[int] = None,
+        width: typing.Optional[int] = None,
+    ) -> ProgressEmbed:
+        """``|method|``
+
+        The method by which you can set the video to the embed.
+
+        Parameters:
+        -----------
+        url: :class:`typing.Optional[str]` = None
+            Source url of video.
+
+        proxy_url: :class:`typing.Optional[str]` = None
+            A proxied url of the video.
+
+        height: :class:`typing.Optional[int]` = None
+            Height of video.
+
+        width: :class:`typing.Optional[int]` = None
+            Width of video.
+
+        Returns:
+        --------
+        self: :class:`ProgressEmbed`
+            Class instance to allow for fluent-style chaining.
+        """
+        setattr(
+            self,
+            "_video",
+            EmbedVideo(
+                url=url, proxy_url=proxy_url, height=height, width=width
             )
+        )
+        return self
+
+    def set_provider(
+        self,
+        *,
+        name: typing.Optional[str] = None,
+        url: typing.Optional[str] = None,
+    ) -> ProgressEmbed:
+        """``|method|``
+
+        The method by which you can set the provider to the embed.
+
+        Parameters:
+        -----------
+        name: :class:`typing.Optional[str]` = None
+            Name of provider.
+
+        url: :class:`typing.Optional[str]` = None
+            Url of provider.
+
+        Returns:
+        --------
+        self: :class:`ProgressEmbed`
+            Class instance to allow for fluent-style chaining.
+        """
+        setattr(
+            self,
+            "_provider",
+            EmbedProvider(name=name, url=url)
         )
         return self
 
@@ -911,9 +1023,9 @@ class ProgressEmbed(EmbedABC):
         current_field: EmbedField,
         /,
         *,
-        set_to: typing.Optional[typing.Literal['description', 'title', 'field']]
+        set_to: typing.Optional[typing.Literal["description", "title", "field"]],
     ) -> None:
-        """ ``|private method|``
+        """``|private method|``
 
         A method with which it becomes possible to set progress on
         other embed positions besides fields.
@@ -932,14 +1044,13 @@ class ProgressEmbed(EmbedABC):
             If a wrong position is specified.
         """
         if set_to is not None:
-            if set_to in ('title', 'description'):
-                setattr(self, f'_{set_to}', current_field.value)
-            elif set_to == 'field':
+            if set_to in ("title", "description"):
+                setattr(self, f"_{set_to}", current_field.value)
+            elif set_to == "field":
                 ...
             else:
                 raise errors.UnexpectedArgumentError(
-                    set_to,
-                    expected='Literal["description", "title", "field"]'
+                    set_to, expected='Literal["description", "title", "field"]'
                 )
 
     def add_field(
@@ -949,9 +1060,9 @@ class ProgressEmbed(EmbedABC):
         value: str,
         inline: bool = False,
         progress: typing.Optional[ProgressObject] = None,
-        progress_sep: str = ' ',
+        progress_sep: str = " ",
     ) -> ProgressEmbed:
-        """ ``|method|``
+        """``|method|``
 
         !!! note:
             <name> and <value> are required attributes,
@@ -984,12 +1095,10 @@ class ProgressEmbed(EmbedABC):
             Class instance to allow for fluent-style chaining.
         """
         field = EmbedField(name=name, value=value, inline=inline, progress=progress)
-        edited = field._set_progress(getattr(self, '_has_manipulator', None), sep=progress_sep)
+        edited = field._set_progress(getattr(self, "_has_manipulator", None), sep=progress_sep)
         if edited is not None:
-            self.__replace_value(
-                field, set_to=(place := getattr(self, '_progress_place', None))
-            )
-            if place != 'field':
+            self.__replace_value(field, set_to=(place := getattr(self, "_progress_place", None)))
+            if place != "field":
                 # After fixing one error, another appears...
                 field: typing.Optional[EmbedField] = None  # type: ignore[no-redef]
 
@@ -999,7 +1108,7 @@ class ProgressEmbed(EmbedABC):
         return self
 
     def remove_footer(self) -> ProgressEmbed:
-        """ ``|method|``
+        """``|method|``
 
         A method by which you can remove a footer from your embed.
 
@@ -1008,13 +1117,13 @@ class ProgressEmbed(EmbedABC):
         self: :class:`ProgressEmbed`
             Class instance to allow for fluent-style chaining.
         """
-        if hasattr(self, '_footer'):
+        if hasattr(self, "_footer"):
             del self._footer  # type: ignore[attr-defined]
 
         return self
 
     def remove_image(self) -> ProgressEmbed:
-        """ ``|method|``
+        """``|method|``
 
         A method by which you can remove a image from your embed.
 
@@ -1023,13 +1132,13 @@ class ProgressEmbed(EmbedABC):
         self: :class:`ProgressEmbed`
             Class instance to allow for fluent-style chaining.
         """
-        if hasattr(self, '_image'):
+        if hasattr(self, "_image"):
             del self._image  # type: ignore[attr-defined]
 
         return self
 
     def remove_thumbnail(self) -> ProgressEmbed:
-        """ ``|method|``
+        """``|method|``
 
         A method by which you can remove a thumbnail from your embed.
 
@@ -1038,13 +1147,13 @@ class ProgressEmbed(EmbedABC):
         self: :class:`ProgressEmbed`
             Class instance to allow for fluent-style chaining.
         """
-        if hasattr(self, '_thumbnail'):
+        if hasattr(self, "_thumbnail"):
             del self._thumbnail  # type: ignore[attr-defined]
 
         return self
 
     def remove_field(self, index: int) -> ProgressEmbed:
-        """ ``|method|``
+        """``|method|``
 
         A method by which you can remove a field by index from your embed.
 
@@ -1064,13 +1173,9 @@ class ProgressEmbed(EmbedABC):
         return self
 
     def remove_field_by(
-        self,
-        predicate: typing.Callable[..., typing.Any],
-        /,
-        *,
-        stop_at: int = 1
+        self, predicate: typing.Callable[..., typing.Any], /, *, stop_at: int = 1
     ) -> ProgressEmbed:
-        """ ``|method|``
+        """``|method|``
 
         !!! note:
             May not see the first field.
@@ -1098,7 +1203,7 @@ class ProgressEmbed(EmbedABC):
         return self
 
     def remove_author(self) -> ProgressEmbed:
-        """ ``|method|``
+        """``|method|``
 
         A method by which you can remove an author from your embed.
 
@@ -1107,20 +1212,13 @@ class ProgressEmbed(EmbedABC):
         self: :class:`ProgressEmbed`
             Class instance to allow for fluent-style chaining.
         """
-        if hasattr(self, '_author'):
+        if hasattr(self, "_author"):
             del self._author  # type: ignore[attr-defined]
 
         return self
 
-    def insert_field_at(
-        self,
-        index: int,
-        *,
-        name: str,
-        value: str,
-        inline: bool = True
-    ) -> ProgressEmbed:
-        """ ``|method|``
+    def insert_field_at(self, index: int, *, name: str, value: str, inline: bool = True) -> ProgressEmbed:
+        """``|method|``
 
         A method by which you can place a field at a specific position by index.
 
@@ -1151,9 +1249,9 @@ class ProgressEmbed(EmbedABC):
         bar: typing.Optional[_Bar] = None,
         percents: typing.Optional[_Percents] = None,
         is_left: typing.Optional[_IsLeft] = None,
-        set_to: typing.Literal['description', 'title', 'field'] = 'field',
+        set_to: typing.Literal["description", "title", "field"] = "field",
     ) -> ProgressEmbed:
-        """ ``|method|``
+        """``|method|``
 
         A method by which you can add a `manipulator` to your embed,
         which will change the progress output according to your chosen settings.
@@ -1182,9 +1280,9 @@ class ProgressEmbed(EmbedABC):
         :class:`errors.ManipulatorIsAlreadyExistsError`
             If the manipulator has already been installed.
         """
-        if hasattr(self, '_has_manipulator'):
+        if hasattr(self, "_has_manipulator"):
             raise errors.ManipulatorIsAlreadyExistsError
 
-        setattr(self, '_progress_place', set_to)
-        setattr(self, '_has_manipulator', Manipulator((bar, percents, is_left)))
+        setattr(self, "_progress_place", set_to)
+        setattr(self, "_has_manipulator", Manipulator((bar, percents, is_left)))
         return self

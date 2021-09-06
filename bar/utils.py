@@ -24,22 +24,23 @@ import functools
 
 
 __all__: typing.Sequence[str] = (
-    'find',
-    'to_async',
-    'PackArgs',
-    'ignored',
-    'AsCallable',
+    "find",
+    "to_async",
+    "PackArgs",
+    "ignored",
+    "AsCallable",
+    "deprecated",
 )
 
 
-T = typing.TypeVar('T')
-AT = typing.TypeVar('AT', bound=typing.Sequence[typing.Any])  # Args type
-KWT = typing.TypeVar('KWT', bound=typing.Dict[str, typing.Any])  # Kwargs type
-FT = typing.TypeVar('FT', bound=typing.Callable[..., bool])  # Function type
+T = typing.TypeVar("T")
+AT = typing.TypeVar("AT", bound=typing.Sequence[typing.Any])  # Args type
+KWT = typing.TypeVar("KWT", bound=typing.Dict[str, typing.Any])  # Kwargs type
+FT = typing.TypeVar("FT", bound=typing.Callable[..., bool])  # Function type
 
 
 def ignored(method: typing.Callable[..., typing.Any], /) -> typing.Callable[..., typing.Any]:
-    """ ``|decorator|``
+    """``|decorator|``
 
     Used primarily to ignore and not call a specific method.
     Used both from the user side and in the source code
@@ -56,17 +57,14 @@ def ignored(method: typing.Callable[..., typing.Any], /) -> typing.Callable[...,
     method: :class:`Callable[..., Any]`
         Callable object.
     """
-    setattr(method, '__progress_ignored__', True)
+    setattr(method, "__progress_ignored__", True)
     return method
 
 
 def deprecated(
-    outdated: str,
-    /,
-    *,
-    with_invoke: bool = False
+    replacement: str, /, *, with_invoke: bool = False
 ) -> typing.Callable[..., typing.Callable[..., typing.Any]]:
-    """ ``|decorator|``
+    """``|decorator|``
 
     Warning for deprecated methods from old version of
     library or currently outdated classes/functions.
@@ -76,8 +74,8 @@ def deprecated(
     callable_: :class:`Callable[..., Any]` [Positional only]
         Callable object.
 
-    outdated: :class:`str` [Positional only]
-        Object that is deprecated.
+    replacement: :class:`str` [Positional only]
+        Method to use instead of deprecated.
 
     with_invoke: :class:`bool` = False [Keyword only]
         If True, it will return the result of calling the object.
@@ -92,13 +90,14 @@ def deprecated(
     Wrapped function: :class:`Callable[..., [Callable[..., Any]]]`
         Callback if with_invoke = True or callable object.
     """
+
     def inner(callable_: typing.Callable[..., typing.Any], /) -> typing.Callable[..., typing.Any]:
         @functools.wraps(callable_)
         def wrapper(*args: typing.Any, **kwargs: typing.Any) -> typing.Any:
-            setattr(callable_, '__progress_deprecated__', True)
+            setattr(callable_, "__progress_deprecated__", True)
             warnings.warn(
-                f'Method {callable_.__qualname__} is deprecated, just use {outdated}',
-                category=DeprecationWarning
+                f"Method {callable_.__qualname__} is deprecated, just use {replacement}",
+                category=DeprecationWarning,
             )
             if with_invoke:
                 if inspect.iscoroutinefunction(callable_):
@@ -108,18 +107,16 @@ def deprecated(
                 return callback
             else:
                 return callable_
+
         return wrapper
+
     return inner
 
 
 def find(
-    predicate: FT,
-    iterator: typing.Iterable[T],
-    /,
-    *,
-    get_all: bool = False
+    predicate: FT, iterator: typing.Iterable[T], /, *, get_all: bool = False
 ) -> typing.Optional[typing.Union[T, typing.List[T]]]:
-    """ ``|function|``
+    """``|function|``
 
     A function with which you can find the first or all matches in an iterable object.
 
@@ -149,9 +146,9 @@ def find(
 
 
 def to_async(
-        loop: typing.Optional[asyncio.AbstractEventLoop] = None
+    loop: typing.Optional[asyncio.AbstractEventLoop] = None,
 ) -> typing.Callable[..., typing.Callable[..., asyncio.Future[T]]]:
-    """ ``|decorator|``
+    """``|decorator|``
 
     A decorator that turns the callable object into Awaitalbe asyncio.Future.
 
@@ -167,19 +164,26 @@ def to_async(
     --------
     Wrapped function: :class:`Callable[..., Callable[..., Future[T]]]`
     """
+
     def inner(func: typing.Callable[..., asyncio.Future[T]]) -> typing.Callable[..., asyncio.Future[T]]:
         @functools.wraps(func)
         def wrapper(*args: T, **kwargs: T) -> asyncio.Future[T]:
-            _loop: asyncio.AbstractEventLoop = asyncio.get_event_loop() if loop is None else loop
-            future = _loop.create_future()
+            if loop is None:
+                loop_ = asyncio.new_event_loop()
+                asyncio.set_event_loop(loop_)
+            else:
+                loop_ = loop
+            future = loop_.create_future()
             future.set_result(func(*args, **kwargs))
-            return asyncio.wrap_future(future, loop=_loop)
+            return asyncio.wrap_future(future, loop=loop_)
+
         return wrapper
+
     return inner
 
 
 class PackArgs:
-    """ ``|class|``
+    """``|class|``
 
     A class for wrapping arguments to make it easier to access attributes in the future.
 
@@ -208,7 +212,7 @@ class PackArgs:
 
     def __init__(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         for idx, arg in enumerate(args, 1):
-            self[f'positional_{idx}'] = arg
+            self[f"positional_{idx}"] = arg
 
         for k, v in kwargs.items():
             self[str(k)] = v
@@ -229,15 +233,15 @@ class PackArgs:
 
     @property
     def args(self) -> typing.List[typing.Any]:
-        return [getattr(self, arg) for arg in dir(self) if arg.startswith('positional_')]
+        return [getattr(self, arg) for arg in dir(self) if arg.startswith("positional_")]
 
     @property
     def kwargs(self) -> typing.Dict[str, typing.Any]:
-        return {k: getattr(self, k) for k, _ in self.__dict__.items() if not k.startswith('positional_')}
+        return {k: getattr(self, k) for k, _ in self.__dict__.items() if not k.startswith("positional_")}
 
 
 class AsCallable:
-    """ ``|class|``
+    """``|class|``
 
     The class that makes of :non callable: object - :callable: object.
 
@@ -262,4 +266,4 @@ class AsCallable:
         return self.result
 
     def __repr__(self) -> str:
-        return f'<ProgressObject(callback={self.result})>'
+        return f"<ProgressObject(callback={self.result})>"

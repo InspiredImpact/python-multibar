@@ -27,26 +27,25 @@ from bar.enums import CallbackAs
 from bar.blanks import ProgressBlanks
 from bar.core import ProgressBar, ProgressObject
 from bar.utils import to_async, PackArgs, AsCallable
-from bar.core.variants import LengthParam, DequeParam, CharsParam
 
 if typing.TYPE_CHECKING:
     from bar.core.variants import CharsSnowflake, FromClassInstance, ReturnAs
 
 
 __all__: typing.Sequence[str] = (
-    'from_class',
-    'ParamBase',
+    "from_class",
+    "ParamBase",
 )
 
 
-T = typing.TypeVar('T')
-T_co = typing.TypeVar('T_co', covariant=True)  # covariant
-AT = typing.TypeVar('AT', bound=typing.Sequence[typing.Any])  # Args type
-KWT = typing.TypeVar('KWT', bound=typing.Dict[str, typing.Any])  # Kwargs type
+T = typing.TypeVar("T")
+T_co = typing.TypeVar("T_co", covariant=True)  # covariant
+AT = typing.TypeVar("AT", bound=typing.Sequence[typing.Any])  # Args type
+KWT = typing.TypeVar("KWT", bound=typing.Dict[str, typing.Any])  # Kwargs type
 
 
 class ParamBase(typing.Generic[T_co]):
-    """ ``|class|``
+    """``|class|``
 
     The main class for all parameters used to further customize the progress bar.
 
@@ -61,11 +60,11 @@ class ParamBase(typing.Generic[T_co]):
 
     def __init__(self, instance: ParamBase[T_co], value: T) -> None:
         self.value = value
-        setattr(instance, self.__class__.__name__.lower() + '_param', self)
+        setattr(instance, self.__class__.__name__.lower() + "_param", self)
 
 
 class Chars(ParamBase[T]):
-    """ ``|class-parameter|``
+    """``|class-parameter|``
 
     A class-parameter for the main decorator.
 
@@ -99,29 +98,29 @@ class Chars(ParamBase[T]):
     """
 
     def __init__(
-            self,
-            instance: ParamBase[T],
-            /,
-            *,
-            fill: typing.Optional[str] = None,
-            line: typing.Optional[str] = None,
-            start: typing.Optional[str] = None,
-            end: typing.Optional[str] = None,
-            unfilled_start: typing.Optional[str] = None,
-            unfilled_end: typing.Optional[str] = None,
+        self,
+        instance: ParamBase[T],
+        /,
+        *,
+        fill: typing.Optional[str] = None,
+        line: typing.Optional[str] = None,
+        start: typing.Optional[str] = None,
+        end: typing.Optional[str] = None,
+        unfilled_start: typing.Optional[str] = None,
+        unfilled_end: typing.Optional[str] = None,
     ) -> None:
         self.instance = instance
         self.fill = fill
         self.line = line
         if fill is None or line is None:
-            raise errors.MissingRequiredArguments(f'<fill:str:> or <line:str:>')
+            raise errors.MissingRequiredArguments("<fill:str:> or <line:str:>")
         self.start = start
         self.end = end
         self.unfilled_start = unfilled_start
         self.unfilled_end = unfilled_end
         super().__init__(
             self.instance,
-            {k: v for k, v in locals().items() if isinstance(v, str) or v is None}
+            {k: v for k, v in locals().items() if isinstance(v, str) or v is None},
         )
 
     @property
@@ -134,7 +133,7 @@ class Chars(ParamBase[T]):
         instance: typing.Any,
         chars: CharsSnowflake,
     ) -> Chars[T]:
-        """ ``|classmethod|``
+        """``|classmethod|``
 
         The second way is to pass characters to create a progress bar.
 
@@ -170,7 +169,7 @@ class Chars(ParamBase[T]):
 
 
 class FromClassSetup:
-    """ ``|class|``
+    """``|class|``
 
     The class with the help of which the basis for further work is created.
 
@@ -179,8 +178,13 @@ class FromClassSetup:
     __allowed_params__: :class:`typing.Sequence[typing.Any]`
         Allowed parameters that will later be used as classes.
     """
+
     __allowed_params__: typing.Sequence[typing.Any] = (
-        'Now', 'Needed', 'Length', 'Deque', Chars
+        "Now",
+        "Needed",
+        "Length",
+        "Deque",
+        Chars,
     )
 
     def __init__(self) -> None:
@@ -188,14 +192,16 @@ class FromClassSetup:
         for maybe_cls in FromClassSetup.__allowed_params__:
             if not inspect.isclass(maybe_cls):
                 setattr(
-                    self, maybe_cls.lower(), type(maybe_cls, (ParamBase,), {'__progress_object__': True})
+                    self,
+                    maybe_cls.lower(),
+                    type(maybe_cls, (ParamBase,), {"__progress_object__": True}),
                 )
             else:
                 setattr(self, maybe_cls.__name__.lower(), maybe_cls)
 
 
 class FromClass:
-    """ ``|class|``
+    """``|class|``
 
     The class containing the main methods for working with the decorator.
 
@@ -215,34 +221,41 @@ class FromClass:
     """
 
     def __init__(
-            self,
-            *,
-            cls: FromClassInstance,
-            save_callback: bool = False,
-            return_as: ReturnAs = 1,
-            loop: typing.Optional[asyncio.AbstractEventLoop] = None,
+        self,
+        *,
+        cls: FromClassInstance,
+        save_callback: bool = False,
+        return_as: ReturnAs = 1,
+        loop: typing.Optional[asyncio.AbstractEventLoop] = None,
     ) -> None:
         self.__cls = cls
         self.__save_callback = save_callback
         self.__return_as = return_as
-        self.__loop = loop or asyncio.get_event_loop()
+        if loop is None:
+            self.__loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(self.__loop)
+        else:
+            self.__loop = loop
 
     def invoke_and_hook_all(self, *args: AT, **kwargs: KWT) -> FromClassInstance:
-        """ ``|method|``
+        """``|method|``
 
         The main method where all methods are called and their values are set.
         """
-        for c in itertools.filterfalse(
-            lambda i: i.startswith('_'), dir((base := FromClassSetup()))
-        ):
+        for c in itertools.filterfalse(lambda i: i.startswith("_"), dir((base := FromClassSetup()))):
             setattr(self.__cls, c, getattr(base, c))
         for method_name in dir(self.__cls):
-            if all((
-                not method_name.startswith('_'),
-                not hasattr((method := getattr(self.__cls, method_name)), '__progress_object__'),
-                not hasattr(method, '__progress_ignored__'),
-                inspect.ismethod(method)
-            )):
+            if all(
+                (
+                    not method_name.startswith("_"),
+                    not hasattr(
+                        (method := getattr(self.__cls, method_name)),
+                        "__progress_object__",
+                    ),
+                    not hasattr(method, "__progress_ignored__"),
+                    inspect.ismethod(method),
+                )
+            ):
                 try:
                     if inspect.iscoroutinefunction(method):
                         callback = asyncio.run(method(*args, **kwargs))
@@ -259,20 +272,21 @@ class FromClass:
                     setattr(self.__cls, method.__name__, AsCallable(wrapped_callback))
                 elif self.__return_as == CallbackAs.awaitable:
                     setattr(
-                        self.__cls, method.__name__, to_async(loop=self.__loop)(lambda: wrapped_callback)
+                        self.__cls,
+                        method.__name__,
+                        to_async(loop=self.__loop)(lambda: wrapped_callback),
                     )
                 else:
-                    raise errors.BadCallbackTypeSpecified(self.__return_as, 'Literal[1, 2, 3]')
-
+                    raise errors.BadCallbackTypeSpecified(self.__return_as, "Literal[1, 2, 3]")
         return self.__cls
 
     async def wrap_callback(
-            self,
-            instance: FromClassInstance,
-            callback: typing.Union[PackArgs, ProgressObject],
-            /,
+        self,
+        instance: FromClassInstance,
+        callback: typing.Union[PackArgs, ProgressObject],
+        /,
     ) -> typing.Union[PackArgs, ProgressObject]:
-        """ ``|coro|``
+        """``|coro|``
 
         The method in which we wrap the callback by setting a new value to it.
 
@@ -284,18 +298,18 @@ class FromClass:
         callback: :class:`typing.Union[PackArgs, ProgressObject]` [Positional only]
             Initial function callback.
         """
-        deque: typing.Optional[DequeParam] = getattr(instance, 'deque_param', None)
-        length: typing.Optional[LengthParam] = getattr(instance, 'length_param', None)
-        chars: typing.Optional[CharsParam] = getattr(instance, 'chars_param', None)
+        deque = getattr(instance, "deque_param", None)
+        length = getattr(instance, "length_param", None)
+        chars = getattr(instance, "chars_param", None)
 
         bar: ProgressBar = ProgressBar(
             instance.now_param.value,
             instance.needed_param.value,
-            length=20 if not isinstance(length, LengthParam) else length.value,
-            deque=False if not isinstance(deque, DequeParam) else deque.value
+            length=20 if not hasattr(length, "value") else length.value,
+            deque=False if not hasattr(length, "value") else deque.value,
         )
         progress = await bar.async_write_progress(
-            ProgressBlanks.ADVANCED if chars is None else chars.value
+            ProgressBlanks.ADVANCED if not hasattr(chars, "value") else chars.value
         )
         if self.__save_callback:
             return PackArgs(callback=callback, progress=progress)
@@ -307,9 +321,9 @@ def from_class(
     *,
     save_callback: bool = False,
     return_as: ReturnAs = 1,
-    loop: typing.Optional[asyncio.AbstractEventLoop] = None
+    loop: typing.Optional[asyncio.AbstractEventLoop] = None,
 ) -> typing.Callable[..., typing.Callable[..., typing.Any]]:
-    """ ``|decorator|``
+    """``|decorator|``
 
     Parameters:
     -----------
@@ -322,15 +336,18 @@ def from_class(
     loop: :class:`typing.Optional[asyncio.AbstractEventLoop]` = None [Keyword only]
         Asyncio loop.
     """
+
     def inner(cls: typing.Callable[..., typing.Any]) -> typing.Callable[..., typing.Any]:
         @functools.wraps(cls)
         def wrapper(*args: AT, **kwargs: KWT) -> FromClassInstance:
             cfg = {
-                'cls': cls(*args, **kwargs),
-                'save_callback': save_callback,
-                'return_as': return_as,
-                'loop': loop
+                "cls": cls(*args, **kwargs),
+                "save_callback": save_callback,
+                "return_as": return_as,
+                "loop": loop,
             }
             return FromClass(**cfg).invoke_and_hook_all(*args, **kwargs)
+
         return wrapper
+
     return inner

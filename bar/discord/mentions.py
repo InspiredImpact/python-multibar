@@ -20,14 +20,12 @@ import typing
 import dataclasses
 
 
-__all__: typing.Sequence[str] = (
-    'AllowedMentions',
-)
+__all__: typing.Sequence[str] = ("AllowedMentions",)
 
 
 @dataclasses.dataclass()
 class AllowedMentions:
-    """ ``|dataclass|``
+    """``|dataclass|``
 
     The class that defines allowed mentions in message.
 
@@ -42,13 +40,14 @@ class AllowedMentions:
     everyone: :class:`bool` = False
         If True, it will allow to mention everyone.
     """
+
     users: bool = False
     roles: bool = False
     everyone: bool = False
 
     @staticmethod
     def as_dict(cls: AllowedMentions, /) -> typing.Dict[str, typing.Any]:
-        """ ``|staticmethod|``
+        """``|staticmethod|``
 
         Returns the AllowedMentions object as dictionary.
 
@@ -62,15 +61,15 @@ class AllowedMentions:
         data: :class:`typing.Dict[str, typing.Any]`
             AllowedMentions object as dict.
         """
-        data: typing.Dict[str, typing.Any] = {'parse': []}
+        data: typing.Dict[str, typing.Any] = {"parse": []}
         for k, v in cls.__dict__.items():
             if v:
-                data['parse'].append(k)
+                data["parse"].append(k)
         return data
 
     @classmethod
     def none(cls) -> AllowedMentions:
-        """ ``|classmethod|``
+        """``|classmethod|``
 
         Template for AllowedMentions, which prohibits all mentions.
 
@@ -82,7 +81,7 @@ class AllowedMentions:
 
     @classmethod
     def all(cls) -> AllowedMentions:
-        """ ``|classmethod|``
+        """``|classmethod|``
 
         Template for AllowedMentions, which allows all mentions.
 
@@ -91,4 +90,3 @@ class AllowedMentions:
         :class:`AllowedMentions`
         """
         return cls(users=True, roles=True, everyone=True)
-

@@ -21,9 +21,9 @@ from .manipulator import *
 
 
 __all__: typing.Sequence[str] = (
-    'Context',
-    'Manipulator',
-    'BAR',
-    'PERCENTS',
-    'IS_LEFT',
+    "Context",
+    "Manipulator",
+    "BAR",
+    "PERCENTS",
+    "IS_LEFT",
 )

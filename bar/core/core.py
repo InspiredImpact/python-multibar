@@ -33,22 +33,22 @@ if typing.TYPE_CHECKING:
 
 
 __all__: typing.Sequence[str] = (
-    'ProgressBar',
-    'ProgressObject',
-    'MusicBar',
+    "ProgressBar",
+    "ProgressObject",
+    "MusicBar",
 )
 
 
-T = typing.TypeVar('T')
-VT = typing.TypeVar('VT')  # Value type
-AT = typing.TypeVar('AT', bound=typing.Iterable[typing.Any])  # Args type
-KWT = typing.TypeVar('KWT', bound=typing.Dict[str, typing.Any])  # Kwargs type
+T = typing.TypeVar("T")
+VT = typing.TypeVar("VT")  # Value type
+AT = typing.TypeVar("AT", bound=typing.Iterable[typing.Any])  # Args type
+KWT = typing.TypeVar("KWT", bound=typing.Dict[str, typing.Any])  # Kwargs type
 
 
 @dataclasses.dataclass(eq=False)
 @functools.total_ordering
 class ProgressObject:
-    """ ``|dataclass|``
+    """``|dataclass|``
 
     Object with bar, percents and length attributes.
     (All comparison operations are performed based on 'percentages: :class:`int`').
@@ -83,6 +83,7 @@ class ProgressObject:
         Returns all attributes by a dictionary.
 
     """
+
     bar: Bar
     length: int
     percents: int
@@ -126,7 +127,7 @@ class ProgressObject:
 
 
 class ProgressBar(ProgressBase):
-    """ ``|main class|``
+    """``|main class|``
 
     The main class that is used throughout the project to work with the progress bar.
 
@@ -183,7 +184,7 @@ class ProgressBar(ProgressBase):
         unfilled_end: typing.Optional[str] = None,
         end: typing.Optional[str] = None,
     ) -> ProgressObject:
-        """ ``|method|``
+        """``|method|``
 
         Synchronous method for generating progress bar.
 
@@ -216,9 +217,7 @@ class ProgressBar(ProgressBase):
             self.__bar.append(self.__fill_factory.create_sector(emoji=fill, position=i))
 
         for i in range(self.length - rest):
-            self.__bar.append(
-                self.__empty_factory.create_sector(emoji=line, position=i + rest)
-            )
+            self.__bar.append(self.__empty_factory.create_sector(emoji=line, position=i + rest))
 
         # Add `unfilled_start` if it is specified and none of the sectors is yet filled.
         if unfilled_start is not None and self.percents < FillFlag.FIRST:
@@ -253,7 +252,7 @@ class ProgressBar(ProgressBase):
         *,
         loop: typing.Optional[asyncio.AbstractEventLoop] = None,
     ) -> ProgressObject:
-        """ ``|coro|``
+        """``|coro|``
 
         Asynchronous method for generating progress bar.
 
@@ -270,13 +269,11 @@ class ProgressBar(ProgressBase):
         :class:`ProgressObject`
         """
         loop = loop or asyncio.get_event_loop()
-        return await loop.run_in_executor(
-            None, functools.partial(self.write_progress, **chars)
-        )
+        return await loop.run_in_executor(None, functools.partial(self.write_progress, **chars))
 
 
 class MusicBar(ProgressBase):
-    """ ``|main class|``
+    """``|main class|``
 
     The main class for generating a "music bar".
 
@@ -329,7 +326,7 @@ class MusicBar(ProgressBase):
         line: str,
         current: str,
     ) -> ProgressObject:
-        """ ``|method|``
+        """``|method|``
 
         Synchronous method for generating music bar.
 
@@ -355,9 +352,7 @@ class MusicBar(ProgressBase):
 
         for i in range(self.length - len(self.__bar)):
             self.__bar.append(
-                self.__line_factory.create_sector(
-                    emoji=line, position=i+rest+MusicBarFlag.CORRECT_START
-                )
+                self.__line_factory.create_sector(emoji=line, position=i + rest + MusicBarFlag.CORRECT_START)
             )
         return ProgressObject(
             length=self.length,
@@ -374,7 +369,7 @@ class MusicBar(ProgressBase):
         *,
         loop: typing.Optional[asyncio.AbstractEventLoop] = None,
     ) -> ProgressObject:
-        """ ``|coro|``
+        """``|coro|``
 
         Asynchronous method for generating music bar.
 
@@ -391,6 +386,4 @@ class MusicBar(ProgressBase):
         :class:`ProgressObject`
         """
         loop = loop or asyncio.get_event_loop()
-        return await loop.run_in_executor(
-            None, functools.partial(self.write_progress, **chars)
-        )
+        return await loop.run_in_executor(None, functools.partial(self.write_progress, **chars))

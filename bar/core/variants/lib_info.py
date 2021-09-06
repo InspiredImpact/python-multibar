@@ -17,16 +17,14 @@ limitations under the License.
 import typing
 
 
-__all__: typing.Sequence[str] = (
-    'Info',
-)
+__all__: typing.Sequence[str] = ("Info",)
 
 
-T = typing.TypeVar('T')
+T = typing.TypeVar("T")
 
 
 class Info(typing.Generic[T]):
-    """ Annotation for filtering global variables.
+    """Annotation for filtering global variables.
 
     Parameters:
     -----------
@@ -46,7 +44,7 @@ class Info(typing.Generic[T]):
         self.value = value
 
     def __repr__(self) -> str:
-        return f'Info(value={self.value})'
+        return f"Info(value={self.value})"
 
     def __str__(self) -> str:
         return str(self.value)

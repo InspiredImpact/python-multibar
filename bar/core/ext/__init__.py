@@ -20,6 +20,6 @@ from .from_class import *
 
 
 __all__: typing.Sequence[str] = (
-    'from_class',
-    'ParamBase',
+    "from_class",
+    "ParamBase",
 )

@@ -18,13 +18,13 @@ import typing
 
 
 __all__: typing.Sequence[str] = (
-    'ProgressError',
-    'MissingRequiredArguments',
-    'ProgressInvokeError',
-    'CannotFindReference',
-    'BadValue',
-    'BadValueSpecified',
-    'BadCallbackTypeSpecified',
+    "ProgressError",
+    "MissingRequiredArguments",
+    "ProgressInvokeError",
+    "CannotFindReference",
+    "BadValue",
+    "BadValueSpecified",
+    "BadCallbackTypeSpecified",
 )
 
 
@@ -42,14 +42,14 @@ ProgressError:
 
 
 class ProgressError(Exception):
-    """ ``|exception|``
+    """``|exception|``
 
     Base exception from which all others in this library inherit.
     """
 
 
 class MissingRequiredArguments(ProgressError):
-    """ ``|exception|``
+    """``|exception|``
 
     Called when no required arguments are specified.
 
@@ -60,11 +60,11 @@ class MissingRequiredArguments(ProgressError):
     """
 
     def __init__(self, *args: typing.Any) -> None:
-        super().__init__(f'Missing required args: {args}')
+        super().__init__(f"Missing required args: {args}")
 
 
 class ProgressInvokeError(ProgressError):
-    """ ``|exception|``
+    """``|exception|``
 
     Used at some point to reraise an error.
 
@@ -76,11 +76,11 @@ class ProgressInvokeError(ProgressError):
 
     def __init__(self, exc: BaseException) -> None:
         self.original_exc = exc
-        super().__init__(f'Function raised an exception: {exc.__class__.__name__}: {exc}')
+        super().__init__(f"Function raised an exception: {exc.__class__.__name__}: {exc}")
 
 
 class CannotFindReference(ProgressError):
-    """ ``|exception|``
+    """``|exception|``
 
     Called when a reference to a specific object is not found .
 
@@ -95,7 +95,7 @@ class CannotFindReference(ProgressError):
 
 
 class BadValue(ProgressError):
-    """ ``|exception|``
+    """``|exception|``
 
     Basic error for the category of exceptions that are
     thrown when an invalid value is specified.
@@ -103,7 +103,7 @@ class BadValue(ProgressError):
 
 
 class BadCallbackTypeSpecified(BadValue):
-    """ ``|exception|``
+    """``|exception|``
 
     Raised when an invalid value is specified for the callback setting.
 
@@ -117,11 +117,11 @@ class BadCallbackTypeSpecified(BadValue):
     """
 
     def __init__(self, received: typing.Any, expected: str) -> None:
-        super().__init__(f'Got {received}, expected {expected}:')
+        super().__init__(f"Got {received}, expected {expected}:")
 
 
 class BadValueSpecified(BadValue):
-    """ ``|exception|``
+    """``|exception|``
 
     Raised when an invalid value has been specified.
     """

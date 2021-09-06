@@ -31,33 +31,34 @@ if typing.TYPE_CHECKING:
     from bar.discord.variants import SnowFlake
 
 
-T = typing.TypeVar('T')
+T = typing.TypeVar("T")
 
 
 __all__: typing.Sequence[str] = (
-    'Route',
-    'DiscordHTTP',
-    'DiscordWebSocketResponse',
+    "Route",
+    "DiscordHTTP",
+    "DiscordWebSocketResponse",
 )
 
 
-if sys.platform.startswith('win'):
-    """ Fixing an error with an unclosed session on windows. """
+if sys.platform.startswith("win"):
+    """Fixing an error with an unclosed session on windows."""
     asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 
 class DiscordWebSocketResponse(aiohttp.ClientWebSocketResponse):
-    """ ``|class|``
+    """``|class|``
 
     WebSocket response class for ClientSession.
     """
+
     async def close(self, *, code: int = 1000, message: bytes = b"") -> bool:
         return await super().close(code=code, message=message)
 
 
 @dataclasses.dataclass()
 class Route:
-    """ ``|dataclass|``
+    """``|dataclass|``
 
     Router class for the basis of the request.
 
@@ -89,25 +90,26 @@ class Route:
     url: :class:`str`
         Final url for API request.
     """
+
     method: str
     endpoint: str
     json: typing.Dict[str, typing.Any]
     guild_id: typing.Optional[SnowFlake] = None
     message_id: typing.Optional[SnowFlake] = None
     channel_id: typing.Optional[SnowFlake] = None
-    BASE: typing.Final[str] = 'https://discord.com/api/v8'
+    BASE: typing.Final[str] = "https://discord.com/api/v8"
 
     @property
     def url(self) -> str:
         return (Route.BASE + self.endpoint).format(
             channel_id=self.channel_id,
             guild_id=self.guild_id,
-            message_id=self.message_id
+            message_id=self.message_id,
         )
 
 
 class DiscordHTTP:
-    """ ``|class|``
+    """``|class|``
 
     The main class for calling the API.
 
@@ -147,12 +149,18 @@ class DiscordHTTP:
         self._route = route
         self._token = token
         self._loop = loop or asyncio.get_event_loop()
-        self.__session = session if session is not None else (
-            aiohttp.ClientSession(connector=connector, ws_response_class=ws_response_class)
+        self.__session = (
+            session
+            if session is not None
+            else (aiohttp.ClientSession(connector=connector, ws_response_class=ws_response_class))
         )
 
-        _user_agent = 'DiscordBot (https://github.com/Animatea/python-multibar {0}) Python/{1[1]}.{1[0]} aiohttp/{2}'
-        self.headers = {'User-Agent': _user_agent.format(version_info(), sys.version_info, aiohttp.__version__)}
+        _user_agent = (
+            "DiscordBot (https://github.com/Animatea/python-multibar {0}) Python/{1[1]}.{1[0]} aiohttp/{2}"
+        )
+        self.headers = {
+            "User-Agent": _user_agent.format(version_info(), sys.version_info, aiohttp.__version__)
+        }
 
     async def __aenter__(self) -> typing.Any:
         return await self.make_request()
@@ -161,21 +169,24 @@ class DiscordHTTP:
         self,
         exc_type: typing.Optional[typing.Type[BaseException]],
         exc_val: typing.Optional[BaseException],
-        exc_tb: typing.Optional[types.TracebackType]
+        exc_tb: typing.Optional[types.TracebackType],
     ) -> None:
         await self.close()
 
     async def make_request(self) -> typing.Any:
-        self.headers.update({'Content-Type': 'application/json', 'Authorization': f'Bot {self._token}'})
+        self.headers.update({"Content-Type": "application/json", "Authorization": f"Bot {self._token}"})
         async with self.__session.request(
-            method=self._route.method, url=self._route.url, headers=self.headers, json=self._route.json
+            method=self._route.method,
+            url=self._route.url,
+            headers=self.headers,
+            json=self._route.json,
         ) as response:
             data = await response.json()
             if 300 > response.status >= 200:
                 return data
 
             elif response.status == 429:
-                warnings.warn('We are being rate limited.')
+                warnings.warn("We are being rate limited.")
 
             elif response.status == 403:
                 raise errors.ForbiddenError(response, data)

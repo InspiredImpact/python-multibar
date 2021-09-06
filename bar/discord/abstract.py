@@ -18,13 +18,11 @@ import abc
 import typing
 
 
-__all__: typing.Sequence[str] = (
-    'EmbedABC',
-)
+__all__: typing.Sequence[str] = ("EmbedABC",)
 
 
 class EmbedABC(abc.ABC):
-    """ ``|abc class|``
+    """``|abc class|``
 
     The main abstract class for embed and its parameters.
 

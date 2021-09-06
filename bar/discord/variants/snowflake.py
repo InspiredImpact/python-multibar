@@ -17,9 +17,7 @@ limitations under the License.
 import typing
 
 
-__all__: typing.Sequence[str] = (
-    'SnowFlake',
-)
+__all__: typing.Sequence[str] = ("SnowFlake",)
 
 
 SnowFlake = typing.Union[str, int]

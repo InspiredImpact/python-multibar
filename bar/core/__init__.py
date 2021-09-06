@@ -20,7 +20,7 @@ from .core import *
 
 
 __all__: typing.Sequence[str] = (
-    'ProgressBar',
-    'ProgressObject',
-    'MusicBar',
+    "ProgressBar",
+    "ProgressObject",
+    "MusicBar",
 )

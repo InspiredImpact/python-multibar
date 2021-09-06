@@ -21,14 +21,13 @@ if typing.TYPE_CHECKING:
     from .bar import Bar
 
 
-__all__: typing.Sequence[str] = (
-    'ProgressType',
-)
+__all__: typing.Sequence[str] = ("ProgressType",)
 
 
 @dataclasses.dataclass()
 class ProgressType:
-    """ ProgressObject type. """
+    """ProgressObject type."""
+
     length: int
-    bar: 'Bar'
+    bar: "Bar"
     percents: int

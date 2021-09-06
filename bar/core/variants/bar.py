@@ -21,12 +21,7 @@ import typing
 from bar.sectors import SectorBase
 
 
-__all__: typing.Sequence[str] = (
-    'Bar',
-)
+__all__: typing.Sequence[str] = ("Bar",)
 
 
-Bar = typing.Union[
-    typing.Deque[SectorBase],
-    typing.List[SectorBase]
-]
+Bar = typing.Union[typing.Deque[SectorBase], typing.List[SectorBase]]

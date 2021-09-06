@@ -24,14 +24,14 @@ from bar.core.variants import Info
 
 
 __all__: typing.Sequence[str] = (
-    '__version__',
-    'Version',
-    'LibraryInfo',
+    "__version__",
+    "Version",
+    "LibraryInfo",
 )
 
 
 class Version(typing.NamedTuple):
-    """ Library version.
+    """Library version.
 
     # Also used in the version_info() function in `.__init__.py`
 
@@ -49,21 +49,23 @@ class Version(typing.NamedTuple):
     release_stage: :class:`Literal['alpha', 'beta', 'final']`
         Library's current release level.
     """
+
     major: int
     minor: int
     micro: int
-    release_stage: typing.Literal['pre-alpha', 'alpha', 'beta', 'candidate', 'final']
+    release_stage: typing.Literal["pre-alpha", "alpha", "beta", "candidate", "final"]
 
 
-__title__: Info[str] = Info('python-progress')
-__author__: Info[str] = Info('DenyS')
-__license__: Info[str] = Info('Apache v2.0')
-__copyright__: Info[str] = Info('Copyright [2021] [DenyS]')
-__discord__: Info[str] = Info('DenyS#1469')
-__discord_server__: Info[str] = Info('discord.gg/KKUFRZCt4f')
-__release_date__: Info[str] = Info('')
-__version__: Info[Version] = Info(Version(major=2, minor=0, micro=0, release_stage='pre-alpha'))
-__information__: Info[str] = Info("""
+__title__: Info[str] = Info("python-progress")
+__author__: Info[str] = Info("DenyS")
+__license__: Info[str] = Info("Apache v2.0")
+__copyright__: Info[str] = Info("Copyright [2021] [DenyS]")
+__discord__: Info[str] = Info("DenyS#1469")
+__discord_server__: Info[str] = Info("discord.gg/KKUFRZCt4f")
+__release_date__: Info[str] = Info("")
+__version__: Info[Version] = Info(Version(major=2, minor=0, micro=0, release_stage="pre-alpha"))
+__information__: Info[str] = Info(
+    """
 Information:
 ------------
 
@@ -102,11 +104,12 @@ end_of_line = lf
 charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
-""")
+"""
+)
 
 
 def _prune_param(param_name: str, /) -> str:
-    """ ``|function|``
+    """``|function|``
 
     The function with which dunders are trimmed.
 
@@ -119,11 +122,11 @@ def _prune_param(param_name: str, /) -> str:
     --------
     :class:`str`
     """
-    return param_name.split('__')[1]
+    return param_name.split("__")[1]
 
 
 class LibraryInfo:
-    """ ``|class|``
+    """``|class|``
 
     Class with information about the library.
 
@@ -132,6 +135,7 @@ class LibraryInfo:
     __str__: :class:`str`
         All attr=value from this class.
     """
+
     if typing.TYPE_CHECKING:
         author: Info[str]
         title: Info[str]
@@ -144,7 +148,7 @@ class LibraryInfo:
 
     def __init__(self) -> None:
         valuesgl = dict(globals())
-        for name, value in valuesgl['__annotations__'].items():
+        for name, value in valuesgl["__annotations__"].items():
             _origin: type = typing.cast(type, typing.get_origin(value))  # for mypy "arg-type"
             if Info in inspect.getmro(_origin):
                 setattr(self, _prune_param(name), valuesgl.get(name))

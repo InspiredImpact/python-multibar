@@ -25,9 +25,7 @@ from bar.discord.embed import ProgressEmbed
 from bar.discord.HTTP import DiscordHTTP, Route
 
 
-__all__: typing.Sequence[str] = (
-    'send',
-)
+__all__: typing.Sequence[str] = ("send",)
 
 
 async def send(
@@ -43,7 +41,7 @@ async def send(
     allowed_mentions: AllowedMentions = AllowedMentions.all(),
     embeds: typing.Optional[typing.List[ProgressEmbed]] = None,
 ) -> typing.Any:
-    """ ``|coro|``
+    """``|coro|``
 
     Main method for sending messages in discord.
 
@@ -95,36 +93,36 @@ async def send(
     :class:`errors.MissingRequiredArgument`
         If `channel_id` is None and `context.channel_id` is None.
     """
-    data: typing.Dict[str, typing.Any] = {'embeds': []}
+    data: typing.Dict[str, typing.Any] = {"embeds": []}
     if embeds:
         for embed in embeds:
-            data['embeds'].append(await embed._source_())
+            data["embeds"].append(await embed._source_())
 
-    data['tts'] = tts
+    data["tts"] = tts
     if content:
         if len(content) > 2000:
-            raise errors.DiscordError('Length of content cannot be more than 2000 characters.')
+            raise errors.DiscordError("Length of content cannot be more than 2000 characters.")
         else:
-            data['content'] = content
+            data["content"] = content
 
-    data['allowed_mentions'] = AllowedMentions.as_dict(allowed_mentions)
+    data["allowed_mentions"] = AllowedMentions.as_dict(allowed_mentions)
     if reply and context is not None:
-        data['message_reference'] = {
-            'guild_id': context.guild_id,
-            'channel_id': context.channel_id,
-            'message_id': context.message_id,
+        data["message_reference"] = {
+            "guild_id": context.guild_id,
+            "channel_id": context.channel_id,
+            "message_id": context.message_id,
         }
 
     loop = asyncio.get_event_loop() if loop is None else loop
 
     route = Route(
-        'POST',
-        '/channels/{channel_id}/messages',
+        "POST",
+        "/channels/{channel_id}/messages",
         json=data,
         channel_id=(ch_id := context.channel_id if context else channel_id),
     )
     if ch_id is None:
-        raise errors.MissingRequiredArgument('channel_id :class:`int`')
+        raise errors.MissingRequiredArgument("channel_id :class:`int`")
 
     async with DiscordHTTP(route, token, loop=loop) as resp:
         if return_response:

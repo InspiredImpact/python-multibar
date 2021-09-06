@@ -21,7 +21,7 @@ import importlib.util
 
 
 def exists(pkg_name: str) -> bool:
-    """ ``|function|``
+    """``|function|``
 
     Function to check if a package is explicit.
 
@@ -38,7 +38,7 @@ def exists(pkg_name: str) -> bool:
 
 
 if __name__ == "__main__":
-    """ ``|cli parser|``
+    """``|cli parser|``
 
     Available flags:
     ----------------
@@ -54,7 +54,7 @@ if __name__ == "__main__":
     """
     sphinx_parser = argparse.ArgumentParser(
         prog="ProgressBar",
-        usage="Available flags:\n" "--mypy",
+        usage="Available flags:\n--mypy\n--flake8",
         description="Some description",
         epilog="Source code: https://github.com/Animatea/python-multibar",
         formatter_class=argparse.RawTextHelpFormatter,
@@ -63,13 +63,23 @@ if __name__ == "__main__":
         "--mypy",
         required=False,
         help="Some help for this arg",
-        action='store_true',
+        action="store_true",
+    )
+    sphinx_parser.add_argument(
+        "--flake8",
+        required=False,
+        help="Some help for this arg2",
+        action="store_true",
     )
     namespace = sphinx_parser.parse_args()
-    if namespace.mypy is not None:
+    if namespace.mypy:
         if not exists("mypy"):
             warnings.warn("Mypy is not installed!")
         else:
-            os.system(
-                "mypy --config-file pyproject.toml bar"
-            )
+            os.system("mypy --config-file pyproject.toml bar")
+    elif namespace.flake8:
+        if not exists("flake8"):
+            warnings.warn("Flake8 is not installed!")
+        else:
+            os.system("flake8 --config=tox.ini bar")
+            print("Flake8 check completed.")

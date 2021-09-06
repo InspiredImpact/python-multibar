@@ -22,15 +22,15 @@ from bar.discord import errors
 
 
 __all__: typing.Sequence[str] = (
-    'BAR',
-    'PERCENTS',
-    'IS_LEFT',
-    'Manipulator',
+    "BAR",
+    "PERCENTS",
+    "IS_LEFT",
+    "Manipulator",
 )
 
 
 class _ManipulatorParamBase:
-    """ ``|class|``
+    """``|class|``
 
     Base class with `format` method.
 
@@ -43,15 +43,13 @@ class _ManipulatorParamBase:
         Base suffix for customizing progress output.
     """
 
-    prefix: typing.Optional[str] = '['
-    suffix: typing.Optional[str] = ']'
+    prefix: typing.Optional[str] = "["
+    suffix: typing.Optional[str] = "]"
 
     def format(
-        self,
-        prefix: typing.Optional[str] = '[',
-        suffix: typing.Optional[str] = ']'
+        self, prefix: typing.Optional[str] = "[", suffix: typing.Optional[str] = "]"
     ) -> _ManipulatorParamBase:
-        """ ``|method|``
+        """``|method|``
 
         Method for formatting the output of a specific parameter.
 
@@ -74,7 +72,7 @@ class _ManipulatorParamBase:
 
 
 class _Bar(_ManipulatorParamBase):
-    """ ``|class|``
+    """``|class|``
 
     Progress element responsible for the progress bar.
 
@@ -95,8 +93,8 @@ class _Bar(_ManipulatorParamBase):
     ```
     """
 
-    def format(self, prefix: typing.Optional[str] = '', suffix: typing.Optional[str] = '') -> _Bar:
-        """ ``|method|``
+    def format(self, prefix: typing.Optional[str] = "", suffix: typing.Optional[str] = "") -> _Bar:
+        """``|method|``
 
         !!! note
             Changed the default value of `prefix` and `suffix`.
@@ -120,7 +118,7 @@ class _Bar(_ManipulatorParamBase):
         return self
 
     def reverse(self) -> _Bar:
-        """ ``|method|``
+        """``|method|``
 
         If True, then it will swap the `name` and `value` in the field.
 
@@ -129,20 +127,20 @@ class _Bar(_ManipulatorParamBase):
         self: :class:`_Bar`
             Class instance to allow for fluent-style chaining.
         """
-        setattr(self, '_reverse', True)
+        setattr(self, "_reverse", True)
         return self
 
 
 class _Percents(_ManipulatorParamBase):
-    """ The class that is responsible for output of `percents` parameter. """
+    """The class that is responsible for output of `percents` parameter."""
 
 
 class _IsLeft(_ManipulatorParamBase):
-    """ The class that is responsible for output of `is_left` parameter. """
+    """The class that is responsible for output of `is_left` parameter."""
 
 
 class Manipulator:
-    """ ``|class|``
+    """``|class|``
 
     Main manipulator class.
 
@@ -163,7 +161,7 @@ class Manipulator:
 
     def __init__(self, setup: typing.Iterable[typing.Any]) -> None:
         if not any(i is not None for i in setup):
-            raise errors.MissingRequiredArgument('<BAR | PERCENTS | IS_LEFT> for manipulator')
+            raise errors.MissingRequiredArgument("<BAR | PERCENTS | IS_LEFT> for manipulator")
 
         for idx, parameter in enumerate(setup):
             if parameter is not None:

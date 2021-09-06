@@ -18,10 +18,10 @@ import typing
 
 
 __all__: typing.Sequence[str] = (
-    'CharsDefault',
-    'CharsAdvanced',
-    'CharsSnowflake',
-    'MusicChars',
+    "CharsDefault",
+    "CharsAdvanced",
+    "CharsSnowflake",
+    "MusicChars",
 )
 
 

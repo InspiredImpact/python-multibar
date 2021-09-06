@@ -21,13 +21,13 @@ import typing
 
 
 __all__: typing.Sequence[str] = (
-    'Sector',
-    'SectorFactoryABC',
+    "Sector",
+    "SectorFactoryABC",
 )
 
 
 class SectorFactoryABC(abc.ABC):
-    """ ``|ABC class|``
+    """``|ABC class|``
 
     Abstract class, currently used in:
 
@@ -47,7 +47,7 @@ class SectorFactoryABC(abc.ABC):
 
 @typing.runtime_checkable
 class Sector(typing.Protocol):
-    """ ``|runtime protocol|``
+    """``|runtime protocol|``
 
     Protocol class for runtime checks. ("ABC")
 
@@ -67,6 +67,7 @@ class Sector(typing.Protocol):
     ...
     ```
     """
+
     __slots__ = ()
 
     @property

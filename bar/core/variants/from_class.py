@@ -24,17 +24,17 @@ if typing.TYPE_CHECKING:
 
 
 __all__: typing.Sequence[str] = (
-    'FromClassInstance',
-    'NowParam',
-    'NeededParam',
-    'LengthParam',
-    'DequeParam',
-    'CharsParam',
-    'FromClassBase',
+    "FromClassInstance",
+    "NowParam",
+    "NeededParam",
+    "LengthParam",
+    "DequeParam",
+    "CharsParam",
+    "FromClassBase",
 )
 
 
-IT = typing.TypeVar('IT')  # Instance type
+IT = typing.TypeVar("IT")  # Instance type
 
 
 @dataclasses.dataclass()
@@ -59,7 +59,7 @@ class DequeParam:
 
 @dataclasses.dataclass()
 class CharsParam:
-    value: 'CharsSnowflake'
+    value: "CharsSnowflake"
 
 
 @dataclasses.dataclass()
@@ -72,26 +72,22 @@ class FromClassInstance:
 
 
 class _Chars:
-
     def __init__(*args: typing.Any, **kwargs: typing.Any) -> None:
         ...
 
     @classmethod
-    def from_dict(
-        cls,
-        instance: IT,
-        chars: CharsSnowflake
-    ) -> typing.Any:
+    def from_dict(cls, instance: IT, chars: CharsSnowflake) -> typing.Any:
         ...
 
 
-@dataclasses.dataclass()
+@dataclasses.dataclass(init=False)
 class FromClassBase:
-    """ ``|dataclass|``
+    """``|dataclass|``
 
     Hint for comfortable working with the from_class
     decorator and preventing various errors from mypy.
     """
+
     chars: _Chars
 
     def now(self, instance: IT, num: int) -> None:

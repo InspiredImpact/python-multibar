@@ -17,13 +17,11 @@ limitations under the License.
 import typing
 
 
-__all__: typing.Sequence[str] = (
-    'is_empty_field',
-)
+__all__: typing.Sequence[str] = ("is_empty_field",)
 
 
 def is_empty_field(obj: str, /) -> bool:
-    """ ``|inspection|``
+    """``|inspection|``
 
     Checks if an object is empty.
 

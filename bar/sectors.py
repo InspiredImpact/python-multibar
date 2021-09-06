@@ -24,21 +24,22 @@ from bar import abstract
 
 
 __all__: typing.Sequence[str] = (
-    'FillSectorFactory',
-    'LineSectorFactory',
-    'FillSector',
-    'EmptySector',
-    'SectorBase',
+    "FillSectorFactory",
+    "LineSectorFactory",
+    "FillSector",
+    "EmptySector",
+    "SectorBase",
 )
 
 
 class FillSectorFactory(abstract.SectorFactoryABC):
-    """ ``|class|``
+    """``|class|``
 
     The factory that creates objects of the :class:`FillSector`.
     """
+
     def create_sector(self, emoji: str, position: int) -> FillSector:
-        """ ``|function|``
+        """``|function|``
 
         Method that creates an object of the class :class:`FillSector`.
 
@@ -58,12 +59,13 @@ class FillSectorFactory(abstract.SectorFactoryABC):
 
 
 class LineSectorFactory(abstract.SectorFactoryABC):
-    """ ``|class|``
+    """``|class|``
 
     The factory that creates objects of the :class:`EmptySector`.
     """
+
     def create_sector(self, emoji: str, position: int) -> EmptySector:
-        """ ``|function|``
+        """``|function|``
 
         Method that creates an object of the class :class:`EmptySector`
 
@@ -83,7 +85,7 @@ class LineSectorFactory(abstract.SectorFactoryABC):
 
 
 class SectorBase:
-    """ ``|class|``
+    """``|class|``
 
     Base class with a set of basic methods for further work with sectors.
 
@@ -137,7 +139,7 @@ class SectorBase:
     def __repr__(self) -> str:
         return (
             f'<Sector.{re.split(r"(?=[A-Z])", self.__class__.__name__)[1]}'
-            f'(emoji={self.emoji_name}, position={self.position})>'
+            f"(emoji={self.emoji_name}, position={self.position})>"
         )
 
     def __call__(self, *args: typing.Any, **kwargs: typing.Any) -> SectorBase:
@@ -165,7 +167,7 @@ class SectorBase:
 
 
 class FillSector(SectorBase):
-    """ ``|class|``
+    """``|class|``
 
     Class of the filled sector of the progress bar.
 
@@ -180,7 +182,7 @@ class FillSector(SectorBase):
 
 
 class EmptySector(SectorBase):
-    """ ``|class|``
+    """``|class|``
 
     Empty sector of the progress bar.
 

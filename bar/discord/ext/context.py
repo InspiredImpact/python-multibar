@@ -20,14 +20,12 @@ import dataclasses
 from bar.discord.variants import SnowFlake
 
 
-__all__: typing.Sequence[str] = (
-    'Context',
-)
+__all__: typing.Sequence[str] = ("Context",)
 
 
 @dataclasses.dataclass()
 class Context:
-    """ ``|dataclass|``
+    """``|dataclass|``
 
     Current context.
 
@@ -45,6 +43,7 @@ class Context:
     guild_id: :class:`typing.Optional[SnowFlake]` = None
         Guild id from context.
     """
+
     channel_id: typing.Optional[SnowFlake] = None
     author_id: typing.Optional[SnowFlake] = None
     message_id: typing.Optional[SnowFlake] = None

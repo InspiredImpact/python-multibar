@@ -18,21 +18,26 @@ import typing
 
 from .blanks import *
 from .core import *
+from .inheritance import *
 from .__about__ import *
+from .tools import *
+from .enums import *
 
 
 __all__: typing.Sequence[str] = (
-    'ProgressBar',
-    'ProgressObject',
-    'ProgressBlanks',
-    'DiscordBlanks',
-    'MusicBar',
-    'version_info',
-    '__version__',
-    'LibraryInfo',
+    "ProgressBar",
+    "ProgressObject",
+    "ProgressBlanks",
+    "DiscordBlanks",
+    "MusicBar",
+    "version_info",
+    "__version__",
+    "LibraryInfo",
+    "Progress",
+    "ProgressTools",
+    "CallbackAs",
 )
 
 
 def version_info() -> str:
-    return '.'.join((str(getattr(__version__.value, i)) for i in Version._fields))
-
+    return ".".join((str(getattr(__version__.value, i)) for i in Version._fields))

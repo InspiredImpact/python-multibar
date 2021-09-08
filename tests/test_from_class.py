@@ -2,10 +2,10 @@ import asyncio
 import unittest
 import collections
 
-from bar import ProgressObject, abstract
-from bar.utils import PackArgs
-from bar.core.ext import from_class
-from bar.core.variants import FromClassBase
+from multibar import ProgressObject, abstract
+from multibar.utils import PackArgs
+from multibar.core.ext import from_class
+from multibar.core.variants import FromClassBase
 
 
 @from_class(save_callback=True, return_as=2)

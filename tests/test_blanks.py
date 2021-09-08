@@ -1,6 +1,6 @@
 import unittest
 
-from bar import ProgressBlanks
+from multibar import ProgressBlanks
 
 
 class BlanksTest(unittest.TestCase):

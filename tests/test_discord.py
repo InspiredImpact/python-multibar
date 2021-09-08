@@ -1,7 +1,7 @@
 import unittest
 
-from bar import discord, ProgressBar, ProgressBlanks
-from bar.discord.ext import Context, BAR, PERCENTS, IS_LEFT
+from multibar import discord, ProgressBar, ProgressBlanks
+from multibar.discord.ext import Context, BAR, PERCENTS, IS_LEFT
 
 
 class DiscordTests(unittest.TestCase):

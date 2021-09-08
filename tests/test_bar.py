@@ -2,7 +2,7 @@ import asyncio
 import unittest
 import collections
 
-from bar import abstract, ProgressObject, ProgressBar, ProgressBlanks
+from multibar import abstract, ProgressObject, ProgressBar, ProgressBlanks
 
 
 class BarTest(unittest.TestCase):

@@ -2,8 +2,8 @@ import asyncio
 import unittest
 import collections
 
-from bar.utils import PackArgs, ignored
-from bar import Progress, ProgressTools, ProgressObject
+from multibar.utils import PackArgs, ignored
+from multibar import Progress, ProgressTools, ProgressObject
 
 
 class _TestDefault(Progress):

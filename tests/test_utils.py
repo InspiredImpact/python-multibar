@@ -1,7 +1,7 @@
 import asyncio
 import unittest
 
-from bar.utils import deprecated, find, to_async
+from multibar.utils import deprecated, find, to_async
 
 
 def deprecated_function() -> str:

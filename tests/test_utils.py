@@ -1,7 +1,6 @@
 import asyncio
 import unittest
 
-# user
 from bar.utils import deprecated, find, to_async
 
 

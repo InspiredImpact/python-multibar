@@ -20,7 +20,7 @@ import typing
 import contextlib
 
 if typing.TYPE_CHECKING:
-    from bar.core.variants import CharsDefault, CharsAdvanced
+    from multibar.core.variants import CharsDefault, CharsAdvanced
 
 
 __all__: typing.Sequence[str] = (

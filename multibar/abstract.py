@@ -55,8 +55,8 @@ class Sector(typing.Protocol):
     -----------------
     ```py
 
-    from bar.abstract import Sector
-    from bar import ProgressBar, ProgressBlanks
+    from multibar.abstract import Sector
+    from multibar import ProgressBar, ProgressBlanks
 
     progress_bar = ProgressBar(10, 100)
     progress = progress_bar.write_progress(**ProgressBlanks.ADVANCED)

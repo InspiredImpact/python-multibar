@@ -1,6 +1,5 @@
 import unittest
 
-# user
 from bar import discord, ProgressBar, ProgressBlanks
 from bar.discord.ext import Context, BAR, PERCENTS, IS_LEFT
 

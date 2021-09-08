@@ -2,11 +2,8 @@ import asyncio
 import unittest
 import collections
 
-# tests
 from bar import ProgressObject, abstract
 from bar.utils import PackArgs
-
-# user
 from bar.core.ext import from_class
 from bar.core.variants import FromClassBase
 

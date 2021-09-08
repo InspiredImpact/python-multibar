@@ -2,13 +2,8 @@ import asyncio
 import unittest
 import collections
 
-# tests
-from bar import ProgressObject
-from bar.utils import PackArgs
-
-# user
-from bar.utils import ignored
-from bar import Progress, ProgressTools
+from bar.utils import PackArgs, ignored
+from bar import Progress, ProgressTools, ProgressObject
 
 
 class _TestDefault(Progress):

@@ -20,9 +20,9 @@ import typing
 import asyncio
 import collections.abc
 
-from bar.utils import ignored
-from bar.core import errors
-from bar.core.variants import CharsSnowflake
+from multibar.utils import ignored
+from multibar.core import errors
+from multibar.core.variants import CharsSnowflake
 
 
 __all__: typing.Sequence[str] = ("ProgressTools",)
@@ -54,7 +54,7 @@ class ProgressTools:
         Example of usage:
         -----------------
         ```py
-        from bar.tools import ProgressTools
+        from multibar.tools import ProgressTools
 
         class Bars(Progress, ProgressTools, return_as=2):
 
@@ -104,7 +104,7 @@ class ProgressTools:
         Example of usage:
         -----------------
         ```py
-        from bar.tools import ProgressTools
+        from multibar.tools import ProgressTools
 
         class Bars(Progress, ProgressTools, return_as=2):
 

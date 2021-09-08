@@ -8,11 +8,11 @@ warn_no_return = false
 no_implicit_optional = false
 
 [[tool.mypy.overrides]]
-module = 'bar.discord.embed'
+module = 'multibar.discord.embed'
 strict_optional = false
 
 [[tool.mypy.overrides]]
-module = 'bar.inheritance'
+module = 'multibar.inheritance'
 disallow_untyped_defs = false
 
 
@@ -20,3 +20,11 @@ disallow_untyped_defs = false
 line-length = 110
 target-version = ['py38']
 include = '\.pyi?$'
+
+
+[build-system]
+requires = [
+    "setuptools>=42",
+    "wheel"
+]
+build-backend = "setuptools.build_meta"

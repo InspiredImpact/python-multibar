@@ -22,14 +22,14 @@ import asyncio
 import itertools
 import functools
 
-from bar.core import errors
-from bar.enums import CallbackAs
-from bar.blanks import ProgressBlanks
-from bar.core import ProgressBar, ProgressObject
-from bar.utils import to_async, PackArgs, AsCallable
+from multibar.core import errors
+from multibar.enums import CallbackAs
+from multibar.blanks import ProgressBlanks
+from multibar.core import ProgressBar, ProgressObject
+from multibar.utils import to_async, PackArgs, AsCallable
 
 if typing.TYPE_CHECKING:
-    from bar.core.variants import CharsSnowflake, FromClassInstance, ReturnAs
+    from multibar.core.variants import CharsSnowflake, FromClassInstance, ReturnAs
 
 
 __all__: typing.Sequence[str] = (

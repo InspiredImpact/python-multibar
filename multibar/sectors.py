@@ -20,7 +20,7 @@ import re
 import abc
 import typing
 
-from bar import abstract
+from multibar import abstract
 
 
 __all__: typing.Sequence[str] = (

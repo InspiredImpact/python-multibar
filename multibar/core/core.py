@@ -22,14 +22,14 @@ import functools
 import collections
 import dataclasses
 
-from bar import abstract
-from bar.utils import PackArgs
-from bar.bases import ProgressBase
-from bar.flags import FillFlag, MusicBarFlag
-from bar.sectors import FillSectorFactory, LineSectorFactory, SectorBase
+from multibar import abstract
+from multibar.utils import PackArgs
+from multibar.bases import ProgressBase
+from multibar.flags import FillFlag, MusicBarFlag
+from multibar.sectors import FillSectorFactory, LineSectorFactory, SectorBase
 
 if typing.TYPE_CHECKING:
-    from bar.core.variants import Bar, CharsSnowflake, MusicChars
+    from multibar.core.variants import Bar, CharsSnowflake, MusicChars
 
 
 __all__: typing.Sequence[str] = (

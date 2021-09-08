@@ -16,15 +16,28 @@ limitations under the License.
 
 import typing
 
-from bar.discord import ext
-from bar.discord.mentions import *
-from bar.discord.main import *
-from bar.discord.embed import *
+from .blanks import *
+from .core import *
+from .inheritance import *
+from ._about import *
+from .tools import *
+from .enums import *
 
 
 __all__: typing.Sequence[str] = (
-    "ProgressEmbed",
-    "AllowedMentions",
-    "send",
-    "ext",
+    "ProgressBar",
+    "ProgressObject",
+    "ProgressBlanks",
+    "DiscordBlanks",
+    "MusicBar",
+    "version_info",
+    "__version__",
+    "LibraryInfo",
+    "Progress",
+    "ProgressTools",
+    "CallbackAs",
 )
+
+
+def version_info() -> str:
+    return ".".join((str(getattr(__version__.value, i)) for i in Version._fields))

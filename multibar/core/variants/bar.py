@@ -14,15 +14,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
+from __future__ import annotations
+
 import typing
 
-from bar.enums import CallbackAs
+from multibar.sectors import SectorBase
 
 
-__all__: typing.Sequence[str] = ("ReturnAs",)
+__all__: typing.Sequence[str] = ("Bar",)
 
 
-ReturnAs = typing.Union[
-    typing.Literal[CallbackAs.default, CallbackAs.callable, CallbackAs.awaitable],
-    typing.Literal[1, 2, 3],
-]
+Bar = typing.Union[typing.Deque[SectorBase], typing.List[SectorBase]]

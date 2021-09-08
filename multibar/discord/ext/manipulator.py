@@ -18,7 +18,7 @@ from __future__ import annotations
 
 import typing
 
-from bar.discord import errors
+from multibar.discord import errors
 
 
 __all__: typing.Sequence[str] = (

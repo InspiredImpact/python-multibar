@@ -1,9 +1,6 @@
 language: 'python'
 python: '3.8+'
 
-services:
-  - docker
-
 install:
   - pip install -U -r requirements/requirements.txt
   - pip install -U -r requirements/requirements-dev.txt

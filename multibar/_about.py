@@ -20,7 +20,7 @@ limitations under the License.
 import typing
 import inspect
 
-from bar.core.variants import Info
+from multibar.core.variants import Info
 
 
 __all__: typing.Sequence[str] = (
@@ -56,7 +56,7 @@ class Version(typing.NamedTuple):
     release_stage: typing.Literal["pre-alpha", "alpha", "beta", "candidate", "final"]
 
 
-__title__: Info[str] = Info("python-progress")
+__title__: Info[str] = Info("python-multibar")
 __author__: Info[str] = Info("DenyS")
 __license__: Info[str] = Info("Apache v2.0")
 __copyright__: Info[str] = Info("Copyright [2021] [DenyS]")

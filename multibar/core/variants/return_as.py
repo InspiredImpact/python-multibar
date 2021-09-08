@@ -16,28 +16,13 @@ limitations under the License.
 
 import typing
 
-from .blanks import *
-from .core import *
-from .inheritance import *
-from .__about__ import *
-from .tools import *
-from .enums import *
+from multibar.enums import CallbackAs
 
 
-__all__: typing.Sequence[str] = (
-    "ProgressBar",
-    "ProgressObject",
-    "ProgressBlanks",
-    "DiscordBlanks",
-    "MusicBar",
-    "version_info",
-    "__version__",
-    "LibraryInfo",
-    "Progress",
-    "ProgressTools",
-    "CallbackAs",
-)
+__all__: typing.Sequence[str] = ("ReturnAs",)
 
 
-def version_info() -> str:
-    return ".".join((str(getattr(__version__.value, i)) for i in Version._fields))
+ReturnAs = typing.Union[
+    typing.Literal[CallbackAs.default, CallbackAs.callable, CallbackAs.awaitable],
+    typing.Literal[1, 2, 3],
+]

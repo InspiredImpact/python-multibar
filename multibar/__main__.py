@@ -50,7 +50,7 @@ if __name__ == "__main__":
     -----------------
     # ../progress
 
-    * python -m bar --mypy
+    * python -m multibar --mypy
     """
     sphinx_parser = argparse.ArgumentParser(
         prog="ProgressBar",
@@ -76,10 +76,10 @@ if __name__ == "__main__":
         if not exists("mypy"):
             warnings.warn("Mypy is not installed!")
         else:
-            os.system("mypy --config-file pyproject.toml bar")
+            os.system("mypy --config-file pyproject.toml multibar")
     elif namespace.flake8:
         if not exists("flake8"):
             warnings.warn("Flake8 is not installed!")
         else:
-            os.system("flake8 --config=tox.ini bar")
+            os.system("flake8 --config=tox.ini multibar")
             print("Flake8 check completed.")

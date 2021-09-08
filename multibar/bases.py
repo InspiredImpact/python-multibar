@@ -19,7 +19,7 @@ from __future__ import annotations
 import types
 import typing
 
-from bar.core import errors
+from multibar.core import errors
 
 
 __all__: typing.Sequence[str] = ("ProgressBase",)

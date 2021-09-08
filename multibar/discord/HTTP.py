@@ -24,11 +24,11 @@ import aiohttp
 import warnings
 import dataclasses
 
-from bar import version_info
-from bar.discord import errors
+from multibar import version_info
+from multibar.discord import errors
 
 if typing.TYPE_CHECKING:
-    from bar.discord.variants import SnowFlake
+    from multibar.discord.variants import SnowFlake
 
 
 T = typing.TypeVar("T")

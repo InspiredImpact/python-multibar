@@ -17,7 +17,7 @@ limitations under the License.
 import typing
 import dataclasses
 
-from bar.discord.variants import SnowFlake
+from multibar.discord.variants import SnowFlake
 
 
 __all__: typing.Sequence[str] = ("Context",)

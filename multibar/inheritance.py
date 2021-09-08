@@ -21,11 +21,11 @@ import inspect
 import asyncio
 import itertools
 
-import bar.blanks as blanks
-from bar.enums import CallbackAs
-from bar.core.variants import CharsSnowflake
-from bar.utils import ignored, to_async, AsCallable
-from bar.core import ProgressBar, errors, ProgressObject
+from multibar import blanks
+from multibar.enums import CallbackAs
+from multibar.core.variants import CharsSnowflake
+from multibar.utils import ignored, to_async, AsCallable
+from multibar.core import ProgressBar, errors, ProgressObject
 
 if typing.TYPE_CHECKING:
     T_co = typing.TypeVar("T_co", covariant=True)
@@ -34,7 +34,7 @@ if typing.TYPE_CHECKING:
         def __iadd__(self, other: typing.Any) -> typing.Any:
             ...
 
-    from bar.core.variants import ReturnAs
+    from multibar.core.variants import ReturnAs
 
 
 __all__: typing.Sequence[str] = ("Progress",)
@@ -147,7 +147,7 @@ class Progress:
     Example of usage:
     -----------------
     ```py
-    from bar.utils import ignored
+    from multibar.utils import ignored
 
     class TestCase(Progress, save_callback=True):
 

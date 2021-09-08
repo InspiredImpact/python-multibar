@@ -19,10 +19,10 @@ from __future__ import annotations
 import typing
 import asyncio
 
-from bar.discord import errors, AllowedMentions
-from bar.discord.ext.context import Context
-from bar.discord.embed import ProgressEmbed
-from bar.discord.HTTP import DiscordHTTP, Route
+from multibar.discord import errors, AllowedMentions
+from multibar.discord.ext.context import Context
+from multibar.discord.embed import ProgressEmbed
+from multibar.discord.HTTP import DiscordHTTP, Route
 
 
 __all__: typing.Sequence[str] = ("send",)

@@ -23,13 +23,13 @@ import datetime
 import contextlib
 import collections
 
-from bar import ProgressObject
-from bar.discord import errors, inspections
-from bar.discord.abstract import EmbedABC
-from bar.discord.ext.manipulator import Manipulator
+from multibar import ProgressObject
+from multibar.discord import errors, inspections
+from multibar.discord.abstract import EmbedABC
+from multibar.discord.ext.manipulator import Manipulator
 
 if typing.TYPE_CHECKING:
-    from bar.discord.ext.manipulator import _Bar, _Percents, _IsLeft
+    from multibar.discord.ext.manipulator import _Bar, _Percents, _IsLeft
 
     _AnyValueT = typing.TypeVar("_AnyValueT")
     MaybeNone = typing.Union[_AnyValueT, None]
@@ -120,6 +120,7 @@ def field_converter(_: typing.Any, fields: typing.Iterable[typing.Any]) -> typin
         Converted fields.
     """
     results: typing.List[typing.Any] = []
+    converter: typing.Optional[typing.Callable[..., typing.Any]]
     for field in fields:
         if field.converter is not None:
             # Converter is already set.

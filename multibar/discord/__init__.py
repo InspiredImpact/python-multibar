@@ -14,14 +14,17 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
-from __future__ import annotations
-
 import typing
 
-from bar.sectors import SectorBase
+from multibar.discord import ext
+from multibar.discord.mentions import *
+from multibar.discord.main import *
+from multibar.discord.embed import *
 
 
-__all__: typing.Sequence[str] = ("Bar",)
-
-
-Bar = typing.Union[typing.Deque[SectorBase], typing.List[SectorBase]]
+__all__: typing.Sequence[str] = (
+    "ProgressEmbed",
+    "AllowedMentions",
+    "send",
+    "ext",
+)

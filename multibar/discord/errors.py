@@ -18,7 +18,7 @@ from __future__ import annotations
 
 import typing
 
-from bar.core.errors import ProgressError
+from multibar.core.errors import ProgressError
 
 if typing.TYPE_CHECKING:
     from aiohttp import ClientResponse

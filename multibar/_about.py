@@ -63,7 +63,7 @@ __copyright__: Info[str] = Info("Copyright [2021] [DenyS]")
 __discord__: Info[str] = Info("DenyS#1469")
 __discord_server__: Info[str] = Info("discord.gg/KKUFRZCt4f")
 __release_date__: Info[str] = Info("")
-__version__: Info[Version] = Info(Version(major=2, minor=0, micro=0, release_stage="pre-alpha"))
+__version__: Info[Version] = Info(Version(major=2, minor=0, micro=3, release_stage="pre-alpha"))
 __information__: Info[str] = Info(
     """
 Information:

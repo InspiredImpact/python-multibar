@@ -41,8 +41,6 @@ __all__: typing.Sequence[str] = (
 
 T = typing.TypeVar("T")
 VT = typing.TypeVar("VT")  # Value type
-AT = typing.TypeVar("AT", bound=typing.Iterable[typing.Any])  # Args type
-KWT = typing.TypeVar("KWT", bound=typing.Dict[str, typing.Any])  # Kwargs type
 
 
 @dataclasses.dataclass(eq=False)
@@ -93,7 +91,7 @@ class ProgressObject:
     def __iadd__(self, other: typing.Any) -> PackArgs:
         return PackArgs(progress=self, callback=other)
 
-    def __call__(self, *args: AT, **kwargs: KWT) -> ProgressObject:
+    def __call__(self, *args: typing.Any, **kwargs: typing.Any) -> ProgressObject:
         return self
 
     def __len__(self) -> int:

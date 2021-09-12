@@ -88,7 +88,7 @@ class _Bar(_ManipulatorParamBase):
     ).add_field(
         name='field',
         value='field value',
-        progress=bar.ProgressBar(10, 100).write_progress(**bar.ProgressBlanks.ADVANCED)
+        progress=bar.ProgressBar(10, 100).write_progress(**bar.ProgressTemplates.ADVANCED)
     )
     ```
     """

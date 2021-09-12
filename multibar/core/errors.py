@@ -51,7 +51,7 @@ class ProgressError(Exception):
 class MissingRequiredArguments(ProgressError):
     """``|exception|``
 
-    Called when no required arguments are specified.
+    Raised when no required arguments are specified.
 
     Parameters:
     -----------
@@ -82,7 +82,7 @@ class ProgressInvokeError(ProgressError):
 class CannotFindReference(ProgressError):
     """``|exception|``
 
-    Called when a reference to a specific object is not found .
+    Raised when a reference to a specific object is not found.
 
     Parameters:
     -----------

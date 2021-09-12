@@ -24,14 +24,14 @@ if typing.TYPE_CHECKING:
 
 
 __all__: typing.Sequence[str] = (
-    "ProgressBlanks",
-    "DiscordBlanks",
+    "ProgressTemplates",
+    "DiscordTemplates",
 )
 
 
 # There were too many errors with paths when opening the json file, I decided not to risk it.
-_blanks: typing.Dict[str, typing.Any] = {
-    "ProgressBlanks": {
+_templates: typing.Dict[str, typing.Any] = {
+    "ProgressTemplates": {
         "ADVANCED": {
             "fill": "█",
             "line": "●",
@@ -41,32 +41,47 @@ _blanks: typing.Dict[str, typing.Any] = {
             "unfilled_end": "▷",
         },
         "DEFAULT": {"fill": "█", "line": "●"},
+    },
+    "DiscordTemplates": {
+        "ADVANCED": {
+            "fill": ":orange_circle:",
+            "line": ":white_large_square:",
+            "start": ":small_orange_diamond:",
+            "end": ":small_orange_diamond:",
+            "unfilled_start": ":white_medium_small_square:",
+            "unfilled_end": ":white_medium_small_square:",
+        },
+        "DEFAULT": {
+            "fill": ":red_square:",
+            "line": ":black_large_square:",
+        }
     }
 }
 
 
-class BlanksMeta(type):
+class TemplatesMeta(type):
     """``|metaclass|``
 
     The metaclass with which templates are set.
     """
 
     def __new__(
-        mcs: typing.Type[BlanksMeta],
+        mcs: typing.Type[TemplatesMeta],
         name: str,
         bases: typing.Tuple[type, ...],
         attrs: typing.Dict[str, typing.Any],
-    ) -> BlanksMeta:
+    ) -> TemplatesMeta:
         with contextlib.suppress(KeyError):
             for attr in attrs["__annotations__"]:
-                attrs[attr] = _blanks[name][attr]
+                attrs[attr] = _templates[name][attr]
         return super().__new__(mcs, name, bases, attrs)
 
 
-class ProgressBlanks(metaclass=BlanksMeta):
+class ProgressTemplates(metaclass=TemplatesMeta):
     ADVANCED: CharsAdvanced
     DEFAULT: CharsDefault
 
 
-class DiscordBlanks(metaclass=BlanksMeta):
-    ...
+class DiscordTemplates(metaclass=TemplatesMeta):
+    ADVANCED: CharsAdvanced
+    DEFAULT: CharsDefault

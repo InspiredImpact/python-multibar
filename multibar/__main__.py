@@ -38,37 +38,23 @@ def exists(pkg_name: str) -> bool:
 
 
 if __name__ == "__main__":
-    """``|cli parser|``
-
-    Available flags:
-    ----------------
-    --mypy:
-        If specified, the entire project will be checked
-        in accordance with the mypy.ini config file.
-
-    Example of usage:
-    -----------------
-    # ../progress
-
-    * python -m multibar --mypy
-    """
     sphinx_parser = argparse.ArgumentParser(
         prog="ProgressBar",
         usage="Available flags:\n--mypy\n--flake8",
-        description="Some description",
+        description="Small cli parser for source code checks",
         epilog="Source code: https://github.com/Animatea/python-multibar",
         formatter_class=argparse.RawTextHelpFormatter,
     )
     sphinx_parser.add_argument(
         "--mypy",
         required=False,
-        help="Some help for this arg",
+        help="Checking source code with mypy --strict",
         action="store_true",
     )
     sphinx_parser.add_argument(
         "--flake8",
         required=False,
-        help="Some help for this arg2",
+        help="Checking source code for PEP8 with flake8",
         action="store_true",
     )
     namespace = sphinx_parser.parse_args()

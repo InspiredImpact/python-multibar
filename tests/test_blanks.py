@@ -1,18 +1,18 @@
 import unittest
 
-from multibar import ProgressBlanks
+from multibar import ProgressTemplates
 
 
 class BlanksTest(unittest.TestCase):
     def test_default_blanks(self) -> None:
         self.assertEqual(
-            ProgressBlanks.DEFAULT,
+            ProgressTemplates.DEFAULT,
             {"fill": "█", "line": "●"},
         )
 
     def test_advanced_blanks(self) -> None:
         self.assertEqual(
-            ProgressBlanks.ADVANCED,
+            ProgressTemplates.ADVANCED,
             {
                 "fill": "█",
                 "line": "●",

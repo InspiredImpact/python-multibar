@@ -24,7 +24,7 @@ import functools
 
 from multibar.core import errors
 from multibar.enums import CallbackAs
-from multibar.blanks import ProgressBlanks
+from multibar.templates import ProgressTemplates
 from multibar.core import ProgressBar, ProgressObject
 from multibar.utils import to_async, PackArgs, AsCallable
 
@@ -40,8 +40,6 @@ __all__: typing.Sequence[str] = (
 
 T = typing.TypeVar("T")
 T_co = typing.TypeVar("T_co", covariant=True)  # covariant
-AT = typing.TypeVar("AT", bound=typing.Sequence[typing.Any])  # Args type
-KWT = typing.TypeVar("KWT", bound=typing.Dict[str, typing.Any])  # Kwargs type
 
 
 class ParamBase(typing.Generic[T_co]):
@@ -237,7 +235,7 @@ class FromClass:
         else:
             self.__loop = loop
 
-    def invoke_and_hook_all(self, *args: AT, **kwargs: KWT) -> FromClassInstance:
+    def invoke_and_hook_all(self, *args: typing.Any, **kwargs: typing.Any) -> FromClassInstance:
         """``|method|``
 
         The main method where all methods are called and their values are set.
@@ -309,7 +307,7 @@ class FromClass:
             deque=False if not hasattr(length, "value") else deque.value,
         )
         progress = await bar.async_write_progress(
-            ProgressBlanks.ADVANCED if not hasattr(chars, "value") else chars.value
+            ProgressTemplates.ADVANCED if not hasattr(chars, "value") else chars.value
         )
         if self.__save_callback:
             return PackArgs(callback=callback, progress=progress)
@@ -339,7 +337,7 @@ def from_class(
 
     def inner(cls: typing.Callable[..., typing.Any]) -> typing.Callable[..., typing.Any]:
         @functools.wraps(cls)
-        def wrapper(*args: AT, **kwargs: KWT) -> FromClassInstance:
+        def wrapper(*args: typing.Any, **kwargs: typing.Any) -> FromClassInstance:
             cfg = {
                 "cls": cls(*args, **kwargs),
                 "save_callback": save_callback,

@@ -2,7 +2,7 @@ import asyncio
 import unittest
 import collections
 
-from multibar import abstract, ProgressObject, ProgressBar, ProgressBlanks
+from multibar import abstract, ProgressObject, ProgressBar, ProgressTemplates
 
 
 class BarTest(unittest.TestCase):
@@ -12,7 +12,7 @@ class BarTest(unittest.TestCase):
         self.assertIsInstance(bar.percents, int)
         self.assertIsInstance(bar.needed, int)
         self.assertIsInstance(bar.now, int)
-        progress = bar.write_progress(**ProgressBlanks.DEFAULT)
+        progress = bar.write_progress(**ProgressTemplates.DEFAULT)
         self.assertIsInstance(progress, ProgressObject)
         self.assertIsInstance(progress.bar, list)
         self.assertIsInstance(progress.bar[0], abstract.Sector)
@@ -21,7 +21,7 @@ class BarTest(unittest.TestCase):
         bar = ProgressBar(10, 100, length=15, deque=True)
         progress = asyncio.run(
             bar.async_write_progress(
-                ProgressBlanks.ADVANCED,
+                ProgressTemplates.ADVANCED,
             )
         )
         self.assertIsInstance(progress.bar, collections.deque)

@@ -56,10 +56,10 @@ class Sector(typing.Protocol):
     ```py
 
     from multibar.abstract import Sector
-    from multibar import ProgressBar, ProgressBlanks
+    from multibar import ProgressBar, ProgressTemplates
 
     progress_bar = ProgressBar(10, 100)
-    progress = progress_bar.write_progress(**ProgressBlanks.ADVANCED)
+    progress = progress_bar.write_progress(**ProgressTemplates.ADVANCED)
     for i in progress.bar:
         print(isinstance(i, Sector))
 

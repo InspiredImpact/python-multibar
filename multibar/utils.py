@@ -34,8 +34,6 @@ __all__: typing.Sequence[str] = (
 
 
 T = typing.TypeVar("T")
-AT = typing.TypeVar("AT", bound=typing.Sequence[typing.Any])  # Args type
-KWT = typing.TypeVar("KWT", bound=typing.Dict[str, typing.Any])  # Kwargs type
 FT = typing.TypeVar("FT", bound=typing.Callable[..., bool])  # Function type
 
 
@@ -167,7 +165,7 @@ def to_async(
 
     def inner(func: typing.Callable[..., asyncio.Future[T]]) -> typing.Callable[..., asyncio.Future[T]]:
         @functools.wraps(func)
-        def wrapper(*args: T, **kwargs: T) -> asyncio.Future[T]:
+        def wrapper(*args: typing.Any, **kwargs: typing.Any) -> asyncio.Future[T]:
             if loop is None:
                 loop_ = asyncio.new_event_loop()
                 asyncio.set_event_loop(loop_)
@@ -217,7 +215,7 @@ class PackArgs:
         for k, v in kwargs.items():
             self[str(k)] = v
 
-    def __call__(self, *args: AT, **kwargs: KWT) -> typing.List[typing.Any]:
+    def __call__(self, *args: typing.Any, **kwargs: typing.Any) -> typing.List[typing.Any]:
         return [getattr(self, i) for i in self]
 
     def __setitem__(self, key: str, value: typing.Any) -> None:
@@ -262,7 +260,7 @@ class AsCallable:
     def __init__(self, result: typing.Any) -> None:
         self.result = result
 
-    def __call__(self, *args: AT, **kwargs: KWT) -> typing.Any:
+    def __call__(self, *args: typing.Any, **kwargs: typing.Any) -> typing.Any:
         return self.result
 
     def __repr__(self) -> str:

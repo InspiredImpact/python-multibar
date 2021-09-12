@@ -1,6 +1,6 @@
 import unittest
 
-from multibar import discord, ProgressBar, ProgressBlanks
+from multibar import discord, ProgressBar, ProgressTemplates
 from multibar.discord.ext import Context, BAR, PERCENTS, IS_LEFT
 
 
@@ -25,7 +25,7 @@ class DiscordTests(unittest.TestCase):
         embed.add_field(
             name="name",
             value="value",
-            progress=bar.write_progress(**ProgressBlanks.ADVANCED),
+            progress=bar.write_progress(**ProgressTemplates.ADVANCED),
         )
         self.assertTrue(embed.fields)
 

@@ -16,7 +16,7 @@ limitations under the License.
 
 import typing
 
-from .blanks import *
+from .templates import *
 from .core import *
 from .inheritance import *
 from ._about import *
@@ -27,8 +27,8 @@ from .enums import *
 __all__: typing.Sequence[str] = (
     "ProgressBar",
     "ProgressObject",
-    "ProgressBlanks",
-    "DiscordBlanks",
+    "ProgressTemplates",
+    "DiscordTemplates",
     "MusicBar",
     "version_info",
     "__version__",

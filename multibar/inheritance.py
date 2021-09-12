@@ -21,7 +21,7 @@ import inspect
 import asyncio
 import itertools
 
-from multibar import blanks
+from multibar import templates
 from multibar.enums import CallbackAs
 from multibar.core.variants import CharsSnowflake
 from multibar.utils import ignored, to_async, AsCallable
@@ -41,7 +41,6 @@ __all__: typing.Sequence[str] = ("Progress",)
 
 
 T = typing.TypeVar("T")
-C = typing.TypeVar("C", bound=typing.Callable[..., typing.Any])  # Callable
 
 
 class _ParametersInterface:
@@ -79,7 +78,7 @@ class _ParametersInterface:
         The deque parameter, if True - then instead of a list with sectors,
         it will return a deque object with sectors.
 
-    chars_param: :class:`CharsSnowflake` = ProgressBlanks.ADVANCED
+    chars_param: :class:`CharsSnowflake` = ProgressTemplates.ADVANCED
         Parameter that affects the progress bar emoji.
 
     unique: :class:`str`
@@ -112,7 +111,7 @@ class _ParametersInterface:
     def chars_param(self) -> CharsSnowflake:
         return typing.cast(
             CharsSnowflake,
-            getattr(self.__c_instance, f"__chars_param__{self.__unique}", blanks.ProgressBlanks.ADVANCED),
+            getattr(self.__c_instance, f"__chars_param__{self.__unique}", templates.ProgressTemplates.ADVANCED),
         )
 
     @property

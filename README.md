@@ -1,5 +1,5 @@
 <div align="center">
-    <a><img src="https://media.giphy.com/media/Inc6xnOHET6BNOeCfk/giphy.gif?cid=790b761165e4f51105f552cf120a6046e5a4037f28a994ef&rid=giphy.gif&ct=g" alt=""/></a>
+    <a href="https://media.giphy.com/media/Inc6xnOHET6BNOeCfk/giphy.gif?cid=790b761165e4f51105f552cf120a6046e5a4037f28a994ef&rid=giphy.gif&ct=g"><img height="120" width="1920" alt="" src="https://media.giphy.com/media/Inc6xnOHET6BNOeCfk/giphy.gif?cid=790b761165e4f51105f552cf120a6046e5a4037f28a994ef&rid=giphy.gif&ct=g"></a>
 
 ![Pypi](https://img.shields.io/pypi/v/python-multibar)
 ![Versions](https://img.shields.io/pypi/pyversions/python-multibar)

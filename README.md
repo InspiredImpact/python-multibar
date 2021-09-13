@@ -13,7 +13,7 @@
 </div>
 
 # 👋 Content
-- <a href="#installation">Installation</a>
+- [Installation](#Installation)
     - [Using github](#using-github)
     - [Using pypi](#using-pypi)
 - [Quickstart](#quickstart)
@@ -25,7 +25,7 @@
 - [TODO](#todo)
 - [Contributing](#contributing)
 
--------------------------------------------
+----------------------------------------
 
 ## ⚙️ Installation
 #### ● Using github

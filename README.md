@@ -16,14 +16,14 @@
 - [Installation](#navigateinstallation)
     - [Using github](#-using-github)
     - [Using pypi](#-using-pypi)
-- [Quickstart](#-quickstart)
-- [Flags](#flags)
-- [Useful links](#useful-links)
-  - [Documentation](#documentation)
-  - [Pypi](#pypi)
-  - [Changelog](#changelog)
-- [TODO](#todo)
-- [Contributing](#contributing)
+- [Quickstart](#navigatequickstart)
+- [Flags](#navigateflags)
+- [Useful links](#navigateuseful-links)
+  - [Documentation](#-documentation)
+  - [Pypi](#-pypi)
+  - [Changelog](#-changelog)
+- [TODO](#navigatetodo)
+- [Contributing](#navigatecontributing)
 
 ----------------------------------------
 
@@ -40,6 +40,7 @@ $ pip3 install -U git+https://github.com/Animatea/python-multibar.git#master
 $ pip3 install -U python-multibar
 ```
 
+###### navigate>quickstart
 ## ⚡️ Quickstart
 ```py
 import random
@@ -55,6 +56,7 @@ progress = bar.write_progress(**ProgressTemplates.DEFAULT)
 print(f"Your progress: {progress}")
 ```
 
+###### navigate>flags
 ## 🏳️ Flags
 > In our project flags are used to validate and format code.
 
@@ -64,6 +66,7 @@ Flag   | Description  | Usage  |
 `--flake8` | Checking a project for pep8 using a config file. | `python3 -m multibar --flake8` |
 `--black` | Code formatting using config file. | `python3 -m multibar --black`
 
+###### navigate>useful links
 ## 🔗 Useful links
 #### 📚 documentation
 > [click here](https://app.gitbook.com/@denys111/s/python-multibar/)
@@ -72,9 +75,11 @@ Flag   | Description  | Usage  |
 #### 📂 changelog
 > [click here](https://github.com/Animatea/python-multibar/blob/master/CHANGELOG.md)
 
+###### navigate>todo
 ## ✅ TODO
 - [ ] CLI support
 
+###### navigate>contributing
 ## 📈 Contributing
 To get more familiar with the project, you should start by reading the documentation [docs](https://app.gitbook.com/@denys111/s/python-multibar/). If you are already familiar with the project, then you should start by cloning our repository:
 ```bash

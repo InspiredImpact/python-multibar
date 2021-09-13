@@ -14,16 +14,18 @@
 
 # 👋 Content
 - [Installation](#installation)
-    - [using github](#using-github)
-    - [using pypi](#using-pypi)
+    - [Using github](#using-github)
+    - [Using pypi](#using-pypi)
 - [Quickstart](#quickstart)
 - [Flags](#flags)
 - [Useful links](#useful-links)
-  - [documentation](#documentation)
-  - [pypi](#pypi)
-  - [changelog](#changelog)
+  - [Documentation](#documentation)
+  - [Pypi](#pypi)
+  - [Changelog](#changelog)
 - [TODO](#todo)
 - [Contributing](#contributing)
+
+-------------------------------------------
 
 ## ⚙️ Installation
 #### ● Using github

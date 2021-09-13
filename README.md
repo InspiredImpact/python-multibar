@@ -4,6 +4,7 @@
 ![Pypi](https://img.shields.io/pypi/v/python-multibar)
 ![Versions](https://img.shields.io/pypi/pyversions/python-multibar)
 ![Mypy](http://www.mypy-lang.org/static/mypy_badge.svg)
+[![PEP8](https://img.shields.io/badge/flake8-checked-blue.svg)](https://www.python.org/dev/peps/pep-0008/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 ![TOTAL LINES](https://img.shields.io/tokei/lines/github/Animatea/python-multibar)
 </div>
@@ -12,17 +13,17 @@
 </div>
 
 # 👋 Content
-* [Installation](https://github.com/Animatea/python-multibar#installation)
-    * [using github](https://github.com/Animatea/python-multibar#using-github)
-    * [using pypi](https://github.com/Animatea/python-multibar#using-pypi)
-* [Quickstart](https://github.com/Animatea/python-multibar#quickstart)
-* [Flags](https://github.com/Animatea/python-multibar#flags)
-* [Useful links](https://github.com/Animatea/python-multibar#useful-links)
-  * [documentation](https://github.com/Animatea/python-multibar#documentation)
-  * [pypi](https://github.com/Animatea/python-multibar#pypi)
-  * [changelog](https://github.com/Animatea/python-multibar#changelog)
-* [TODO](https://github.com/Animatea/python-multibar#todo)
-* [Contributing](https://github.com/Animatea/python-multibar#contributing)
+* [Installation](#installation)
+    * [using github](#using-github)
+    * [using pypi](#using-pypi)
+* [Quickstart](#quickstart)
+* [Flags](#flags)
+* [Useful links](#useful-links)
+  * [documentation](#documentation)
+  * [pypi](#pypi)
+  * [changelog](#changelog)
+* [TODO](#todo)
+* [Contributing](#contributing)
 
 ## ⚙️ Installation
 #### ● Using github

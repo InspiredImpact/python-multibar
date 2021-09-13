@@ -11,30 +11,30 @@
     <a href="https://discord.com/invite/KKUFRZCt4f"><img src="https://discordapp.com/api/guilds/744099317836677161/widget.png?style=banner2" alt="" /></a>
 </div>
 
-# Content
-* Installation
-    * using github
-    * using pypi
-* Quickstart
-* Flags
-* Useful links
-  * documentation
-  * pypi
-  * changelog
-* TODO
-* Contributing
+# 👋 Content
+* [Installation](https://github.com/Animatea/python-multibar#installation)
+    * [using github](https://github.com/Animatea/python-multibar#using-github)
+    * [using pypi](https://github.com/Animatea/python-multibar#using-pypi)
+* [Quickstart](https://github.com/Animatea/python-multibar#quickstart)
+* [Flags](https://github.com/Animatea/python-multibar#flags)
+* [Useful links](https://github.com/Animatea/python-multibar#useful-links)
+  * [documentation](https://github.com/Animatea/python-multibar#documentation)
+  * [pypi](https://github.com/Animatea/python-multibar#pypi)
+  * [changelog](https://github.com/Animatea/python-multibar#changelog)
+* [TODO](https://github.com/Animatea/python-multibar#todo)
+* [Contributing](https://github.com/Animatea/python-multibar#contributing)
 
-## Installation
-#### Using github
+## ⚙️ Installation
+#### ● Using github
 ```bash
 $ pip3 install -U git+https://github.com/Animatea/python-multibar.git#master
 ```
-#### Using pypi
+#### ● Using pypi
 ```bash
 $ pip3 install -U python-multibar
 ```
 
-## Quickstart
+## ⚡️ Quickstart
 ```py
 import random
 
@@ -48,9 +48,8 @@ bar = ProgressBar(
 progress = bar.write_progress(**ProgressTemplates.DEFAULT)
 print(f"Your progress: {progress}")
 ```
-asset1
 
-## Flags
+## 🏳️ Flags
 > In our project flags are used to validate and format code.
 
 Flag   | Description  | Usage  |
@@ -59,18 +58,18 @@ Flag   | Description  | Usage  |
 `--flake8` | Checking a project for pep8 using a config file. | `python3 -m multibar --flake8` |
 `--black` | Code formatting using config file. | `python3 -m multibar --black`
 
-## Useful links
-#### documentation
+## 🔗 Useful links
+#### 📚 documentation
 > [click here](https://app.gitbook.com/@denys111/s/python-multibar/)
-#### pypi
+#### 📦 pypi
 > [click here](https://pypi.org/project/python-multibar/)
-#### changelog
+#### 📂 changelog
 > [click here](https://github.com/Animatea/python-multibar/blob/master/CHANGELOG.md)
 
-## TODO
+## ✅ TODO
 - [ ] CLI support
 
-## Contributing
+## 📈 Contributing
 To get more familiar with the project, you should start by reading the documentation [docs](https://app.gitbook.com/@denys111/s/python-multibar/). If you are already familiar with the project, then you should start by cloning our repository:
 ```bash
 $ git clone https://github.com/Animatea/python-multibar.git

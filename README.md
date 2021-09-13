@@ -13,7 +13,7 @@
 </div>
 
 # 👋 Content
-- [Installation](#Installation)
+- [Installation](##installation)
     - [Using github](#using-github)
     - [Using pypi](#using-pypi)
 - [Quickstart](#quickstart)

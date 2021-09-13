@@ -10,3 +10,73 @@
 <div align="center">
     <a href="https://discord.com/invite/KKUFRZCt4f"><img src="https://discordapp.com/api/guilds/744099317836677161/widget.png?style=banner2" alt="" /></a>
 </div>
+
+# Content
+* Installation
+    * using github
+    * using pypi
+* Quickstart
+* Flags
+* Useful links
+  * documentation
+  * pypi
+  * changelog
+* TODO
+* Contributing
+
+## Installation
+#### Using github
+```bash
+$ pip3 install -U git+https://github.com/Animatea/python-multibar.git#master
+```
+#### Using pypi
+```bash
+$ pip3 install -U python-multibar
+```
+
+## Quickstart
+```py
+import random
+
+from multibar import ProgressBar, ProgressTemplates
+
+
+bar = ProgressBar(
+    random.randint(10, 50),  # Current progress
+    random.randint(50, 100),  # Needed progress
+)
+progress = bar.write_progress(**ProgressTemplates.DEFAULT)
+print(f"Your progress: {progress}")
+```
+asset1
+
+## Flags
+> In our project flags are used to validate and format code.
+
+Flag   | Description  | Usage  |
+------ | ------------ | ------ |
+`--mypy` | Checking a project for type-hints using a config file. | `python3 -m multibar --mypy` |
+`--flake8` | Checking a project for pep8 using a config file. | `python3 -m multibar --flake8` |
+`--black` | Code formatting using config file. | `python3 -m multibar --black`
+
+## Useful links
+#### documentation
+> [click here](https://app.gitbook.com/@denys111/s/python-multibar/)
+#### pypi
+> [click here](https://pypi.org/project/python-multibar/)
+#### changelog
+> [click here](https://github.com/Animatea/python-multibar/blob/master/CHANGELOG.md)
+
+## TODO
+- [ ] CLI support
+
+## Contributing
+To get more familiar with the project, you should start by reading the documentation [docs](https://app.gitbook.com/@denys111/s/python-multibar/). If you are already familiar with the project, then you should start by cloning our repository:
+```bash
+$ git clone https://github.com/Animatea/python-multibar.git
+```
+Then you create a virtual environment into which you can install any dependencies (`pip3 install -r requirements.txt` | `pip3 install -r dev-requirements.txt`).
+Where to begin? See open [issues](https://github.com/Animatea/python-multibar/issues), thanks for your contribution to the project!
+
+**!!! Note:**
+We try to write as clear and beautiful code as possible, so before submitting requests, format your code with black and check with mypy, flake8 (using [flags](link_to_flags)).

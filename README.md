@@ -13,9 +13,9 @@
 </div>
 
 # 👋 Content
-- [Installation](##installation)
-    - [Using github](#using-github)
-    - [Using pypi](#using-pypi)
+- [Installation](##-⚙️-installation)
+    - [Using github](####-●-using-github)
+    - [Using pypi](####-●-using-pypi)
 - [Quickstart](#quickstart)
 - [Flags](#flags)
 - [Useful links](#useful-links)

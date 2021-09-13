@@ -18,7 +18,7 @@
     - [Using pypi](#-using-pypi)
 - [Quickstart](#navigatequickstart)
 - [Flags](#navigateflags)
-- [Useful links](#navigateuseful-links)
+- [Useful links](#-useful-links)
   - [Documentation](#-documentation)
   - [Pypi](#-pypi)
   - [Changelog](#-changelog)
@@ -29,12 +29,10 @@
 
 ###### navigate>installation
 ## ⚙️ Installation
-###### navigate>using github
 #### ● Using github
 ```bash
 $ pip3 install -U git+https://github.com/Animatea/python-multibar.git#master
 ```
-###### navigate>using pypi
 #### ● Using pypi
 ```bash
 $ pip3 install -U python-multibar

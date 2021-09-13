@@ -13,7 +13,7 @@
 </div>
 
 # 👋 Content
-- [Installation](##-⚙️-installation)
+- [Installation](#installation)
     - [Using github](####-●-using-github)
     - [Using pypi](####-●-using-pypi)
 - [Quickstart](#quickstart)
@@ -27,7 +27,7 @@
 
 ----------------------------------------
 
-## ⚙️ Installation
+## Installation
 #### ● Using github
 ```bash
 $ pip3 install -U git+https://github.com/Animatea/python-multibar.git#master

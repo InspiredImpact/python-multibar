@@ -164,11 +164,11 @@ class ProgressBar(ProgressBase):
         self.now = now
         self.needed = needed
         self.length = length
+        self.deque = deque
 
         self._check_locals(**locals())
 
         self.percents: int = int((now / needed) * 100)  # type: ignore[operator] #mypy doesn't see logic of check_locals
-        self.__bar: Bar = [] if not deque else collections.deque()
         self.__fill_factory: abstract.SectorFactoryABC = FillSectorFactory()
         self.__empty_factory: abstract.SectorFactoryABC = LineSectorFactory()
 
@@ -210,35 +210,36 @@ class ProgressBar(ProgressBase):
         --------
         :class:`ProgressObject`
         """
+        bar: Bar = [] if not self.deque else collections.deque()
         # We fill first with `fill` characters.
         for i in range(rest := (round(self.percents / (100 / self.length)))):
-            self.__bar.append(self.__fill_factory.create_sector(emoji=fill, position=i))
+            bar.append(self.__fill_factory.create_sector(emoji=fill, position=i))
 
         for i in range(self.length - rest):
-            self.__bar.append(self.__empty_factory.create_sector(emoji=line, position=i + rest))
+            bar.append(self.__empty_factory.create_sector(emoji=line, position=i + rest))
 
         # Add `unfilled_start` if it is specified and none of the sectors is yet filled.
         if unfilled_start is not None and self.percents < FillFlag.FIRST:
-            self.__bar[0].emoji_name = unfilled_start
+            bar[0].emoji_name = unfilled_start
 
         # Otherwise, if `start` is specified, it will be added to the beginning.
         elif self.percents >= FillFlag.FIRST and start is not None:
-            self.__bar[0].emoji_name = start
+            bar[0].emoji_name = start
 
         # If `unfilled_end` is specified and the last sector is not filled, then the
         # corresponding character will be added to the end of the progress bar.
         if unfilled_end is not None and self.percents < FillFlag.LAST:
-            self.__bar[-1].emoji_name = unfilled_end
+            bar[-1].emoji_name = unfilled_end
 
         # Otherwise, if end is specified, the character corresponding to the
         # given argument will be appended to the end of the progressbar.
         elif self.percents >= FillFlag.LAST and end is not None:
-            self.__bar[-1].emoji_name = end
+            bar[-1].emoji_name = end
 
         return ProgressObject(
             length=self.length,
             percents=self.percents,
-            bar=self.__bar,
+            bar=bar,
             now=self.now,
             needed=self.needed,
         )
@@ -310,11 +311,11 @@ class MusicBar(ProgressBase):
         self.now = now
         self.needed = needed
         self.length = length
+        self.deque = deque
 
         self._check_locals(**locals())
 
         self.percents: int = int((now / needed) * 100)
-        self.__bar: Bar = [] if not deque else collections.deque()
         self.__line_factory = LineSectorFactory()
         self.__fill_factory = FillSectorFactory()
 
@@ -340,22 +341,23 @@ class MusicBar(ProgressBase):
         --------
         :class:`ProgressObject`
         """
+        bar: Bar = [] if not self.deque else collections.deque()
         for i in range(rest := (round(self.percents / (100 / self.length)))):
-            self.__bar.append(self.__line_factory.create_sector(emoji=line, position=i))
+            bar.append(self.__line_factory.create_sector(emoji=line, position=i))
 
         if rest == self.length:
-            self.__bar[-1] = self.__fill_factory.create_sector(emoji=current, position=rest)
+            bar[-1] = self.__fill_factory.create_sector(emoji=current, position=rest)
         else:
-            self.__bar.append(self.__fill_factory.create_sector(emoji=current, position=rest))
+            bar.append(self.__fill_factory.create_sector(emoji=current, position=rest))
 
-        for i in range(self.length - len(self.__bar)):
-            self.__bar.append(
+        for i in range(self.length - len(bar)):
+            bar.append(
                 self.__line_factory.create_sector(emoji=line, position=i + rest + MusicBarFlag.CORRECT_START)
             )
         return ProgressObject(
             length=self.length,
             percents=self.percents,
-            bar=self.__bar,
+            bar=bar,
             now=self.now,
             needed=self.needed,
         )

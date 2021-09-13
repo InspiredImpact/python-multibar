@@ -13,17 +13,17 @@
 </div>
 
 # 👋 Content
-* [Installation](#installation)
-    * [using github](#using-github)
-    * [using pypi](#using-pypi)
-* [Quickstart](#quickstart)
-* [Flags](#flags)
-* [Useful links](#useful-links)
-  * [documentation](#documentation)
-  * [pypi](#pypi)
-  * [changelog](#changelog)
-* [TODO](#todo)
-* [Contributing](#contributing)
+- [Installation](#installation)
+    - [using github](#using-github)
+    - [using pypi](#using-pypi)
+- [Quickstart](#quickstart)
+- [Flags](#flags)
+- [Useful links](#useful-links)
+  - [documentation](#documentation)
+  - [pypi](#pypi)
+  - [changelog](#changelog)
+- [TODO](#todo)
+- [Contributing](#contributing)
 
 ## ⚙️ Installation
 #### ● Using github

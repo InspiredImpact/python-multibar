@@ -50,13 +50,20 @@ class _TestWithTools(Progress, ProgressTools, return_as=3):
 
 
 class InheritanceTest(unittest.TestCase):
+    """``|test case|``
+
+    All tests related to the inheritance in our module.
+    """
+
     def test_inheritance_default(self) -> None:
+        """Testing default usage of inheritance"""
         default = _TestDefault()
         self.assertIsInstance(default.foo, ProgressObject)
         self.assertIsInstance(default.baz, ProgressObject)
         self.assertIsInstance(default.baz.bar, collections.deque)
 
     def test_inheritance_advanced(self) -> None:
+        """Testing advanced usage of inheritance"""
         advanced = _TestAdvanced()
         self.assertTrue(callable(advanced.foo))
         self.assertIsInstance(advanced.foo(), PackArgs)
@@ -64,6 +71,7 @@ class InheritanceTest(unittest.TestCase):
         self.assertEqual(advanced.baz(1, 2), 3)
 
     def test_inheritance_with_tools(self) -> None:
+        """Testing inheritance with tools"""
         with_tools = _TestWithTools()
         self.assertTrue(with_tools.can_run("foo"))
         self.assertIsInstance(with_tools.foo(), asyncio.Future)

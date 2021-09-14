@@ -36,6 +36,7 @@ __all__: typing.Sequence[str] = (
     "Progress",
     "ProgressTools",
     "CallbackAs",
+    "MusicTemplates",
 )
 
 

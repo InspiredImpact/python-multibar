@@ -77,6 +77,13 @@ class ParamProxy(typing.Generic[PT_invariant]):
             raise TypeError("Proxy cannot be inherited.")
         return super().__new__(cls, *args)
 
+    @property
+    def origin(self):
+        if len(self.__parameters) == 1:
+            return self.__parameters[0]
+        else:
+            return self.__parameters
+
 
 """ ``|const|``
 All attributes available to the embed.
@@ -799,6 +806,19 @@ class ProgressEmbed(EmbedABC):
             Image attribute value.
         """
         return ParamProxy(getattr(self, "_image", None))
+
+    @property
+    def has_manipulator(self) -> bool:
+        """``|property|``
+
+        Returns bool (is the manipulator already installed).
+
+        Returns:
+        --------
+        bool: :class:`bool`
+            True if manipulator is set.
+        """
+        return hasattr(self, "_has_manipulator")
 
     def set_footer(
         self,

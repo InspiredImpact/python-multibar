@@ -111,7 +111,9 @@ class _ParametersInterface:
     def chars_param(self) -> CharsSnowflake:
         return typing.cast(
             CharsSnowflake,
-            getattr(self.__c_instance, f"__chars_param__{self.__unique}", templates.ProgressTemplates.ADVANCED),
+            getattr(
+                self.__c_instance, f"__chars_param__{self.__unique}", templates.ProgressTemplates.ADVANCED
+            ),
         )
 
     @property

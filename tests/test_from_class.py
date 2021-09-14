@@ -33,7 +33,13 @@ class MypyClear(FromClassBase):
 
 
 class FromClassTest(unittest.TestCase):
+    """``|test case|``
+
+    All tests related to the @from_class decorator.
+    """
+
     def test_default(self) -> None:
+        """Testing default usage of @from_class"""
         default = Default()
         invoke = default.foo()
         self.assertTrue(callable(default.foo))
@@ -42,6 +48,7 @@ class FromClassTest(unittest.TestCase):
         self.assertIsInstance(invoke.progress.bar[0], abstract.Sector)
 
     def test_mypy_clear_variable(self) -> None:
+        """Testing mypy clear variable of @from_class"""
         mypy_clear = MypyClear()
         invoke = mypy_clear.foo()
         result = invoke.result()

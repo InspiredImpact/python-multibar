@@ -26,16 +26,46 @@ __all__: typing.Sequence[str] = (
 
 
 class MusicChars(typing.TypedDict):
+    """``typed dict``
+
+    line: :class:`str`
+        Line emoji of music bar.
+
+    current: :class:`str`
+        Emoji that will be set to the current progress position.
+    """
     line: str
     current: str
 
 
 class CharsDefault(typing.TypedDict):
+    """``typed dict``
+
+    fill :class:`str`
+        Fill emoji of progress bar.
+
+    line: :class:`str`
+        Line emoji of progress bar.
+    """
     fill: str
     line: str
 
 
 class CharsAdvanced(CharsDefault, total=False):
+    """``typed dict``
+
+    start: :class:`str`
+        Start emoji of progress bar.
+
+    unfilled_start: :class:`str`
+        Unfilled_start emoji of progress bar.
+
+    end: :class:`str`
+        End emoji of progress bar.
+
+    unfilled_end: :class:`str`
+        Unfilled_end emoji of progress bar.
+    """
     start: str
     unfilled_start: str
     end: str

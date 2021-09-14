@@ -20,12 +20,13 @@ import typing
 import contextlib
 
 if typing.TYPE_CHECKING:
-    from multibar.core.variants import CharsDefault, CharsAdvanced
+    from multibar.core.variants import CharsDefault, CharsAdvanced, MusicChars
 
 
 __all__: typing.Sequence[str] = (
     "ProgressTemplates",
     "DiscordTemplates",
+    "MusicTemplates",
 )
 
 
@@ -54,8 +55,14 @@ _templates: typing.Dict[str, typing.Any] = {
         "DEFAULT": {
             "fill": ":red_square:",
             "line": ":black_large_square:",
-        }
-    }
+        },
+    },
+    "MusicTemplates": {
+        "CHARS": {
+            "current": "o",
+            "line": "-",
+        },
+    },
 }
 
 
@@ -78,10 +85,37 @@ class TemplatesMeta(type):
 
 
 class ProgressTemplates(metaclass=TemplatesMeta):
+    """``templates``
+
+    ADVANCED: :class:`CharsAdvanced`
+        Template with advanced progress chars.
+
+    DEFAULT: :class:`CharsDefault`
+        Template with default progress chars.
+    """
+
     ADVANCED: CharsAdvanced
     DEFAULT: CharsDefault
 
 
 class DiscordTemplates(metaclass=TemplatesMeta):
+    """``templates``
+
+    ADVANCED: :class:`CharsAdvanced`
+        Template with advanced discord emojis.
+
+    DEFAULT: :class:`CharsDefault`
+        Template with default discord emojis.
+    """
+
     ADVANCED: CharsAdvanced
     DEFAULT: CharsDefault
+
+
+class MusicTemplates(metaclass=TemplatesMeta):
+    """``templates``
+
+    CHARS: :class:`MusicChars`
+        Template with default music chars.
+    """
+    CHARS: MusicChars

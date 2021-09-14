@@ -47,7 +47,7 @@ metadata: typing.Dict[str, str] = parse_metadata()
 
 setuptools.setup(
     name=metadata["title"],
-    version="2.0.5",
+    version="2.0.6",
     keywords=keywords,
     author=metadata["author"],
     description="Basic wrapper for static writing progress bars.",

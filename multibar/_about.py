@@ -62,8 +62,8 @@ __license__: Info[str] = Info("Apache v2.0")
 __copyright__: Info[str] = Info("Copyright [2021] [DenyS]")
 __discord__: Info[str] = Info("DenyS#1469")
 __discord_server__: Info[str] = Info("discord.gg/KKUFRZCt4f")
-__release_date__: Info[str] = Info("")
-__version__: Info[Version] = Info(Version(major=2, minor=0, micro=6, release_stage="pre-alpha"))
+__release_date__: Info[str] = Info("16-09-2021")
+__version__: Info[Version] = Info(Version(major=2, minor=0, micro=8, release_stage="alpha"))
 __information__: Info[str] = Info(
     """
 Information:

@@ -25,6 +25,8 @@
   - [Changelog](#-changelog)
 - [TODO](#-todo)
 - [Contributing](#-contributing)
+- [FAQ](#-faq)
+    - [Bar structure](#-bar-structure)
 
 ----------------------------------------
 
@@ -84,3 +86,7 @@ Where to begin? See open [issues](https://github.com/Animatea/python-multibar/is
 
 **!!! Note:**
 We try to write as clear and beautiful code as possible, so before submitting requests, format your code with black and check with mypy, flake8 (using [flags](#-flags)).
+
+## ❓ FAQ
+#### ● Bar structure
+![Bar image](https://github.com/Animatea/python-multibar/blob/master/assets/images/faq-progressbar-structure.png)

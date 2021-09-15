@@ -78,7 +78,7 @@ class ParamProxy(typing.Generic[PT_invariant]):
         return super().__new__(cls, *args)
 
     @property
-    def origin(self):
+    def origin(self) -> typing.Any:
         if len(self.__parameters) == 1:
             return self.__parameters[0]
         else:

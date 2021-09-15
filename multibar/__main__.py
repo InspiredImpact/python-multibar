@@ -40,7 +40,8 @@ def exists(pkg_name: str) -> bool:
 if __name__ == "__main__":
     sphinx_parser = argparse.ArgumentParser(
         prog="ProgressBar",
-        usage="Available flags:\n--mypy\n--flake8",
+        usage="\npython -m multibar --mypy\npython -m multibar --flake8"
+        "\npython -m multibar --black\npython -m multibar --unittest",
         description="Small cli parser for source code checks",
         epilog="Source code: https://github.com/Animatea/python-multibar",
         formatter_class=argparse.RawTextHelpFormatter,
@@ -57,6 +58,18 @@ if __name__ == "__main__":
         help="Checking source code for PEP8 with flake8",
         action="store_true",
     )
+    sphinx_parser.add_argument(
+        "--black",
+        required=False,
+        help="Code formatting using config file",
+        action="store_true",
+    )
+    sphinx_parser.add_argument(
+        "--unittest",
+        required=False,
+        help="Starts checking all tests",
+        action="store_true",
+    )
     namespace = sphinx_parser.parse_args()
     if namespace.mypy:
         if not exists("mypy"):
@@ -69,3 +82,10 @@ if __name__ == "__main__":
         else:
             os.system("flake8 --config=tox.ini multibar")
             print("Flake8 check completed.")
+    elif namespace.black:
+        if not exists("black"):
+            warnings.warn("Black is not installed!")
+        else:
+            os.system("black multibar --config=pyproject.toml")
+    elif namespace.unittest:
+        os.system('python -m unittest discover -s tests -p "*_test.py"')

@@ -37,6 +37,13 @@ T = typing.TypeVar("T")
 FT = typing.TypeVar("FT", bound=typing.Callable[..., bool])  # Function type
 
 
+def get_percentage(now: int, needed: int, /, *, save_float: bool = False) -> typing.Union[int, float]:
+    if not save_float:
+        return int((now / needed) * 100)
+    else:
+        return (now / needed) * 100
+
+
 def ignored(method: typing.Callable[..., typing.Any], /) -> typing.Callable[..., typing.Any]:
     """``|decorator|``
 

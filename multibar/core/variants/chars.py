@@ -34,6 +34,7 @@ class MusicChars(typing.TypedDict):
     current: :class:`str`
         Emoji that will be set to the current progress position.
     """
+
     line: str
     current: str
 
@@ -47,6 +48,7 @@ class CharsDefault(typing.TypedDict):
     line: :class:`str`
         Line emoji of progress bar.
     """
+
     fill: str
     line: str
 
@@ -66,6 +68,7 @@ class CharsAdvanced(CharsDefault, total=False):
     unfilled_end: :class:`str`
         Unfilled_end emoji of progress bar.
     """
+
     start: str
     unfilled_start: str
     end: str

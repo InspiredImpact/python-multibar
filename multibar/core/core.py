@@ -267,7 +267,10 @@ class ProgressBar(ProgressBase):
         --------
         :class:`ProgressObject`
         """
-        loop = loop or asyncio.get_event_loop()
+        if loop is None:
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+
         return await loop.run_in_executor(None, functools.partial(self.write_progress, **chars))
 
 
@@ -385,5 +388,8 @@ class MusicBar(ProgressBase):
         --------
         :class:`ProgressObject`
         """
-        loop = loop or asyncio.get_event_loop()
+        if loop is None:
+            loop = asyncio.new_event_loop()
+            asyncio.set_event_loop(loop)
+
         return await loop.run_in_executor(None, functools.partial(self.write_progress, **chars))

@@ -118,4 +118,5 @@ class MusicTemplates(metaclass=TemplatesMeta):
     CHARS: :class:`MusicChars`
         Template with default music chars.
     """
+
     CHARS: MusicChars

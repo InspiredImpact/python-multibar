@@ -1,7 +1,7 @@
 import asyncio
 import unittest
 
-from multibar.utils import deprecated, find, to_async
+from multibar.utils import deprecated, find, to_async, get_percentage
 
 
 def test_function() -> str:
@@ -30,6 +30,13 @@ class UtilsTest(unittest.TestCase):
         from_async = to_async(loop=loop)(test_function)()
         self.assertIsInstance(from_async, asyncio.Future)
         self.assertEqual(loop.run_until_complete(from_async), "test")
+
+    def test_get_percentage(self) -> None:
+        # Testing get_percentage() function.
+        int_percentage = get_percentage(10, 100)
+        self.assertIsInstance(int_percentage, int)
+        float_percentage = get_percentage(10, 100, save_float=True)
+        self.assertIsInstance(float_percentage, float)
 
 
 if __name__ == "__main__":

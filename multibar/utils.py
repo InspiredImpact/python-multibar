@@ -38,6 +38,26 @@ FT = typing.TypeVar("FT", bound=typing.Callable[..., bool])  # Function type
 
 
 def get_percentage(now: int, needed: int, /, *, save_float: bool = False) -> typing.Union[int, float]:
+    """``function``
+
+    Method for getting the current percentage of progress.
+
+    Parameters:
+    -----------
+    now: :class:`int` [Positional only]
+        Current progress parameter.
+
+    needed: :class:`int` [Positional only]
+        Needed progress parameter.
+
+    save_float: :class:`bool` = False [Keyword only]
+        If True, fill return :class:`float` percentage.
+
+    Returns:
+    --------
+    percentage: :class:`typing.Union[int, float]`
+        Percentage of progress.
+    """
     if not save_float:
         return int((now / needed) * 100)
     else:

@@ -44,7 +44,6 @@ VT = typing.TypeVar("VT")  # Value type
 
 
 @dataclasses.dataclass(eq=False)
-@functools.total_ordering
 class ProgressObject:
     """``|dataclass|``
 
@@ -100,8 +99,23 @@ class ProgressObject:
     def __eq__(self, other: int) -> bool:  # type: ignore[override]
         return self.percents == other
 
+    def __hash__(self) -> int:
+        return hash(self.percents)
+
     def __lt__(self, other: int) -> bool:
         return self.percents < other
+
+    def __le__(self, other: int) -> bool:
+        return self.percents <= other
+
+    def __ne__(self, other: int) -> bool:
+        return self.percents != other
+
+    def __gt__(self, other: int) -> bool:
+        return self.percents > other
+
+    def __ge__(self, other: int) -> bool:
+        return self.percents >= other
 
     def __iter__(self) -> typing.Iterator[str]:
         attrs = dict(self.__dict__)

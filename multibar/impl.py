@@ -54,36 +54,6 @@ class ProgressBar(Generic[_SectorT_co, _ContainerT_co]):
             sector_type=cast(Type[_SectorT_co], Sector if self.sector_cls is None else self.sector_cls)
         )
 
-    @overload
-    def write_progress(
-        self,
-        fill: str,
-        line: str,
-    ) -> ProgressbarContainer[_SectorT_co]:
-        ...
-
-    @overload
-    def write_progress(
-        self,
-        *args: Any,
-        fill: str,
-        line: str,
-        **kwargs: Any,
-    ) -> ProgressbarContainer[_SectorT_co]:
-        ...
-
-    @overload
-    def write_progress(
-        self,
-        fill: str,
-        line: str,
-        start: str,
-        unfilled_start: str,
-        end: str,
-        unfilled_end: str,
-    ) -> ProgressbarContainer[_SectorT_co]:
-        ...
-
     def write_progress(
         self,
         *args: Any,
@@ -137,33 +107,6 @@ class ProgressBar(Generic[_SectorT_co, _ContainerT_co]):
                 length=self.length,
                 progress=progress,
             )
-
-    @overload
-    async def async_write_progress(
-        self,
-        fill: str,
-        line: str,
-    ) -> Coroutine[ProgressbarContainer[_SectorT_co], None, None]:
-        ...
-
-    @overload
-    async def async_write_progress(
-        self,
-        fill: str,
-        line: str,
-        loop: asyncio.AbstractEventLoop,
-    ) -> Coroutine[ProgressbarContainer[_SectorT_co], None, None]:
-        ...
-
-    @overload
-    async def async_write_progress(
-        self,
-        *args: Any,
-        fill: str,
-        line: str,
-        **kwargs: Any,
-    ) -> Coroutine[ProgressbarContainer[_SectorT_co], None, None]:
-        ...
 
     async def async_write_progress(
         self,

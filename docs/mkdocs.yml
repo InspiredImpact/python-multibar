@@ -1,0 +1,67 @@
+site_name: python-multibar
+site_url: https://github.com/Animatea/python-multibar
+nav:
+    - Home: index.md
+    - ProgressBar: multibar.impl.md
+    - Hooks: hooks.md
+    - Abstract: abc.md
+    - 'Crate objects': crate.md
+
+theme:
+  name: material
+  language: en
+  palette:
+    - scheme: default
+      primary: teal
+      accent: teal
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+    - scheme: slate
+      accent: teal
+      primary: teal
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - navigation.instant
+    - navigation.expand
+    - toc.integrate
+    - navigation.top
+    - search.suggest
+    - search.highlight
+    - header.autohide
+
+edit_uri: https://github.com/Animatea/python-multibar
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/Animatea/python-multibar
+
+copyright: Copyright &copy; 2021 DenyS
+repo_url: https://github.com/Animatea/python-multibar
+repo_name: Animatea/python-multibar
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      use_pygments: true
+
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+  - attr_list
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences
+  - md_in_html

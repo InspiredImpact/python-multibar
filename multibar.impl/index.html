@@ -365,6 +365,21 @@
   
 
     
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cli/" class="md-nav__link">
+        CLI
+      </a>
+    </li>
+  
+
+    
   </ul>
 </nav>
                   </div>
@@ -377,7 +392,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-<a href="https://github.com/Animatea/python-multibar/multibar.impl.md" title="Edit this page" class="md-content__button md-icon">
+<a href="https://github.com/Animatea/python-multibar/docs/docs/multibar.impl.md" title="Edit this page" class="md-content__button md-icon">
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
 </a>
 
@@ -396,190 +411,328 @@
 <details class="abstract">
 <summary>Expand source code</summary>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nd">@dataclass</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">class</span> <span class="nc">ProgressBar</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">_SectorT_co</span><span class="p">,</span> <span class="n">_ContainerT_co</span><span class="p">]):</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">current</span><span class="p">:</span> <span class="nb">int</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="n">total</span><span class="p">:</span> <span class="nb">int</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">sector_cls</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">_SectorT_co</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="n">container_cls</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">_ContainerT_co</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">container_cls</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">container_cls</span> <span class="o">=</span> <span class="n">cast</span><span class="p">(</span>
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>                <span class="n">Type</span><span class="p">[</span><span class="n">_ContainerT_co</span><span class="p">],</span>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>                <span class="n">SectorContainer</span><span class="p">,</span>
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>            <span class="p">)</span>
-<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>
-<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="p">:</span> <span class="n">SphinxSectorFactory</span><span class="p">[</span><span class="n">_SectorT_co</span><span class="p">]</span> <span class="o">=</span> <span class="n">SphinxSectorFactory</span><span class="o">.</span><span class="n">from_bind</span><span class="p">(</span>
-<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>            <span class="n">sector_type</span><span class="o">=</span><span class="n">cast</span><span class="p">(</span><span class="n">Type</span><span class="p">[</span><span class="n">_SectorT_co</span><span class="p">],</span> <span class="n">Sector</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sector_cls</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">sector_cls</span><span class="p">)</span>
-<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>        <span class="p">)</span>
-<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a>
-<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>    <span class="nd">@overload</span>
-<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>    <span class="k">def</span> <span class="nf">write_progress</span><span class="p">(</span>
-<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a>        <span class="bp">self</span><span class="p">,</span>
-<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>        <span class="o">*</span><span class="p">,</span>
-<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a>        <span class="n">fill</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a>        <span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ProgressbarContainer</span><span class="p">[</span><span class="n">_SectorT_co</span><span class="p">]:</span>
-<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>        <span class="o">...</span>
-<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a>
-<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a>    <span class="nd">@overload</span>
-<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>    <span class="k">def</span> <span class="nf">write_progress</span><span class="p">(</span>
-<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a>        <span class="bp">self</span><span class="p">,</span>
-<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a>        <span class="o">*</span><span class="p">,</span>
-<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>        <span class="n">fill</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a>        <span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a>        <span class="n">start</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>        <span class="n">unfilled_start</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a>        <span class="n">end</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a>        <span class="n">unfilled_end</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ProgressbarContainer</span><span class="p">[</span><span class="n">_SectorT_co</span><span class="p">]:</span>
-<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a>        <span class="o">...</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">class</span> <span class="nc">ProgressBar</span><span class="p">(</span><span class="n">Generic</span><span class="p">[</span><span class="n">_AbcSectorT_co</span><span class="p">,</span> <span class="n">_AbcContainerT_co</span><span class="p">]):</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="sd">&quot;&quot;&quot;``dataclass``</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="sd">    Class that creates progress bars.</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="sd">    Raises:</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="sd">    -------</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="sd">    :class:`AssertionError`:</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="sd">        1) If :current: parameter more that :total:.</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="sd">        2) If :current: parameter less than 0.</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="sd">    Parameters:</span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="sd">    -----------</span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="sd">    current: :class:`int`</span>
+<a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="sd">        Current progress value.</span>
+<a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>
+<a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a><span class="sd">        !!! Note:</span>
+<a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="sd">            Current progress value cannot be less than 0,</span>
+<a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="sd">            otherwise AssertionError will be raised.</span>
+<a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>
+<a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="sd">    total: :class:`int`</span>
+<a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="sd">        Needed progress value.</span>
+<a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a>
+<a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="sd">        !!! Note:</span>
+<a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="sd">            Current progress value cannot be less than :current:,</span>
+<a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a><span class="sd">            otherwise AssertionError will be raised.</span>
+<a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>
+<a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="sd">    length: :class:`int` = 20</span>
+<a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="sd">        Length of progress bar.</span>
+<a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a>
+<a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="sd">    sector_cls: :class:`Optional[Type[AbstractSectorMixin]]` = None</span>
+<a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="sd">        Custom Sector implementation.</span>
+<a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a>
+<a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="sd">        For more information and examples see:</span>
+<a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="sd">            https://animatea.github.io/python-multibar/abc/?h=abstractsectormixin</span>
+<a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a>
+<a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="sd">    container_cls: :class:`Optional[</span>
+<a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="sd">        Type[AbstractSeqBasedContainerMixin[AbstractSectorMixin]]</span>
+<a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="sd">    ] = None`</span>
+<a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="sd">        Custom container implementation.</span>
 <a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a>
-<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a>    <span class="k">def</span> <span class="nf">write_progress</span><span class="p">(</span>
-<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a>        <span class="bp">self</span><span class="p">,</span>
-<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a>        <span class="o">*</span><span class="p">,</span>
-<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>        <span class="n">fill</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>        <span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>        <span class="n">start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>        <span class="n">unfilled_start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>        <span class="n">end</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>        <span class="n">unfilled_end</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ProgressbarContainer</span><span class="p">[</span><span class="n">AbstractSectorMixin</span><span class="p">]:</span>
-<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>        <span class="n">progress</span> <span class="o">=</span> <span class="n">ProgressContainer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">total</span><span class="p">)</span>
-<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>        <span class="n">percents</span> <span class="o">=</span> <span class="n">progress</span><span class="o">.</span><span class="n">percents</span><span class="p">(</span><span class="n">allow_float</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">container_cls</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="sd">        For more information and examples see:</span>
+<a id="__codelineno-1-43" name="__codelineno-1-43" href="#__codelineno-1-43"></a><span class="sd">            https://animatea.github.io/python-multibar/abc/?h=abstractseqbasedcontainermixin</span>
+<a id="__codelineno-1-44" name="__codelineno-1-44" href="#__codelineno-1-44"></a><span class="sd">    &quot;&quot;&quot;</span>
+<a id="__codelineno-1-45" name="__codelineno-1-45" href="#__codelineno-1-45"></a>
+<a id="__codelineno-1-46" name="__codelineno-1-46" href="#__codelineno-1-46"></a>    <span class="n">current</span><span class="p">:</span> <span class="nb">int</span>
+<a id="__codelineno-1-47" name="__codelineno-1-47" href="#__codelineno-1-47"></a>    <span class="n">total</span><span class="p">:</span> <span class="nb">int</span>
+<a id="__codelineno-1-48" name="__codelineno-1-48" href="#__codelineno-1-48"></a>    <span class="n">length</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">20</span>
+<a id="__codelineno-1-49" name="__codelineno-1-49" href="#__codelineno-1-49"></a>    <span class="n">sector_cls</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">_AbcSectorT_co</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-1-50" name="__codelineno-1-50" href="#__codelineno-1-50"></a>    <span class="n">container_cls</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Type</span><span class="p">[</span><span class="n">_AbcContainerT_co</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+<a id="__codelineno-1-51" name="__codelineno-1-51" href="#__codelineno-1-51"></a>
+<a id="__codelineno-1-52" name="__codelineno-1-52" href="#__codelineno-1-52"></a>    <span class="k">def</span> <span class="nf">__post_init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-1-53" name="__codelineno-1-53" href="#__codelineno-1-53"></a>        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Current progress cannot be less than 0.&quot;</span>
+<a id="__codelineno-1-54" name="__codelineno-1-54" href="#__codelineno-1-54"></a>        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">current</span> <span class="o">&lt;=</span> <span class="bp">self</span><span class="o">.</span><span class="n">total</span><span class="p">,</span> <span class="s2">&quot;Current progress cannot be more than total progress.&quot;</span>
 <a id="__codelineno-1-55" name="__codelineno-1-55" href="#__codelineno-1-55"></a>
-<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">container_cls</span><span class="p">()</span> <span class="k">as</span> <span class="n">container</span><span class="p">:</span>
-<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rest</span> <span class="o">:=</span> <span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">percents</span> <span class="o">/</span> <span class="p">(</span><span class="mi">100</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">)))):</span>
-<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>                <span class="n">container</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">create_product</span><span class="p">(</span><span class="n">fill</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">empty</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>
-<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">-</span> <span class="n">rest</span><span class="p">):</span>
-<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>                <span class="n">container</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">create_product</span><span class="p">(</span><span class="n">line</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="n">rest</span><span class="p">,</span> <span class="n">empty</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>
-<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>            <span class="c1"># Add `unfilled_start` if it is specified and none of the sectors is yet filled.</span>
-<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>            <span class="k">if</span> <span class="n">unfilled_start</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">percents</span> <span class="o">&lt;</span> <span class="n">FillFlag</span><span class="o">.</span><span class="n">FIRST</span><span class="p">:</span>
-<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>                <span class="n">container</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">unfilled_start</span>
-<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>
-<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>            <span class="c1"># Otherwise, if `start` is specified, it will be added to the beginning.</span>
-<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>            <span class="k">elif</span> <span class="n">percents</span> <span class="o">&gt;=</span> <span class="n">FillFlag</span><span class="o">.</span><span class="n">FIRST</span> <span class="ow">and</span> <span class="n">start</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>                <span class="n">container</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">start</span>
-<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>
-<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>            <span class="c1"># If `unfilled_end` is specified and the last sector is not filled, then the</span>
-<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>            <span class="c1"># corresponding character will be added to the end of the progress bar.</span>
-<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>            <span class="k">if</span> <span class="n">unfilled_end</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">percents</span> <span class="o">&lt;</span> <span class="n">FillFlag</span><span class="o">.</span><span class="n">LAST</span><span class="p">:</span>
-<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>                <span class="n">container</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">unfilled_end</span>
-<a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>
-<a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>            <span class="c1"># Otherwise, if end is specified, the character corresponding to the</span>
-<a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>            <span class="c1"># given argument will be appended to the end of the progressbar.</span>
-<a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>            <span class="k">elif</span> <span class="n">percents</span> <span class="o">&gt;=</span> <span class="n">FillFlag</span><span class="o">.</span><span class="n">LAST</span> <span class="ow">and</span> <span class="n">end</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a>                <span class="n">container</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">end</span>
+<a id="__codelineno-1-56" name="__codelineno-1-56" href="#__codelineno-1-56"></a>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">container_cls</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-1-57" name="__codelineno-1-57" href="#__codelineno-1-57"></a>            <span class="bp">self</span><span class="o">.</span><span class="n">container_cls</span> <span class="o">=</span> <span class="n">SectorContainer</span>  <span class="c1"># type: ignore[assignment]</span>
+<a id="__codelineno-1-58" name="__codelineno-1-58" href="#__codelineno-1-58"></a>
+<a id="__codelineno-1-59" name="__codelineno-1-59" href="#__codelineno-1-59"></a>        <span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="p">:</span> <span class="n">SphinxSectorFactory</span><span class="p">[</span><span class="n">AbstractSectorMixin</span><span class="p">]</span> <span class="o">=</span> <span class="n">SphinxSectorFactory</span><span class="o">.</span><span class="n">from_bind</span><span class="p">(</span>
+<a id="__codelineno-1-60" name="__codelineno-1-60" href="#__codelineno-1-60"></a>            <span class="n">sector_type</span><span class="o">=</span><span class="n">cast</span><span class="p">(</span>
+<a id="__codelineno-1-61" name="__codelineno-1-61" href="#__codelineno-1-61"></a>                <span class="n">Type</span><span class="p">[</span><span class="n">AbstractSectorMixin</span><span class="p">],</span> <span class="n">Sector</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sector_cls</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="bp">self</span><span class="o">.</span><span class="n">sector_cls</span>
+<a id="__codelineno-1-62" name="__codelineno-1-62" href="#__codelineno-1-62"></a>            <span class="p">)</span>
+<a id="__codelineno-1-63" name="__codelineno-1-63" href="#__codelineno-1-63"></a>        <span class="p">)</span>
+<a id="__codelineno-1-64" name="__codelineno-1-64" href="#__codelineno-1-64"></a>
+<a id="__codelineno-1-65" name="__codelineno-1-65" href="#__codelineno-1-65"></a>    <span class="k">def</span> <span class="nf">write_progress</span><span class="p">(</span>
+<a id="__codelineno-1-66" name="__codelineno-1-66" href="#__codelineno-1-66"></a>        <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-1-67" name="__codelineno-1-67" href="#__codelineno-1-67"></a>        <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<a id="__codelineno-1-68" name="__codelineno-1-68" href="#__codelineno-1-68"></a>        <span class="n">fill</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-1-69" name="__codelineno-1-69" href="#__codelineno-1-69"></a>        <span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-1-70" name="__codelineno-1-70" href="#__codelineno-1-70"></a>        <span class="n">start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-1-71" name="__codelineno-1-71" href="#__codelineno-1-71"></a>        <span class="n">unfilled_start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-1-72" name="__codelineno-1-72" href="#__codelineno-1-72"></a>        <span class="n">end</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-1-73" name="__codelineno-1-73" href="#__codelineno-1-73"></a>        <span class="n">unfilled_end</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-1-74" name="__codelineno-1-74" href="#__codelineno-1-74"></a>        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<a id="__codelineno-1-75" name="__codelineno-1-75" href="#__codelineno-1-75"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ProgressbarContainer</span><span class="p">[</span><span class="n">_AbcSectorT_co</span><span class="p">]:</span>
+<a id="__codelineno-1-76" name="__codelineno-1-76" href="#__codelineno-1-76"></a>        <span class="c1"># TODO: Maybe adapter?</span>
+<a id="__codelineno-1-77" name="__codelineno-1-77" href="#__codelineno-1-77"></a>        <span class="c1">#  Somehow the method signature with *args and **kwargs does not look very good...</span>
+<a id="__codelineno-1-78" name="__codelineno-1-78" href="#__codelineno-1-78"></a>        <span class="sd">&quot;&quot;&quot;``sync method``</span>
+<a id="__codelineno-1-79" name="__codelineno-1-79" href="#__codelineno-1-79"></a><span class="sd">        Method that generates synchronously progress bar.</span>
 <a id="__codelineno-1-80" name="__codelineno-1-80" href="#__codelineno-1-80"></a>
-<a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a>            <span class="k">return</span> <span class="n">ProgressbarContainer</span><span class="p">(</span>
-<a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a>                <span class="n">bar</span><span class="o">=</span><span class="n">container</span><span class="p">,</span>
-<a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a>                <span class="n">length</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">,</span>
-<a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a>                <span class="n">progress</span><span class="o">=</span><span class="n">progress</span><span class="p">,</span>
-<a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a>            <span class="p">)</span>
+<a id="__codelineno-1-81" name="__codelineno-1-81" href="#__codelineno-1-81"></a><span class="sd">        *args: :class:`Any`</span>
+<a id="__codelineno-1-82" name="__codelineno-1-82" href="#__codelineno-1-82"></a><span class="sd">            Args that will be passed in custom Sector implementation.</span>
+<a id="__codelineno-1-83" name="__codelineno-1-83" href="#__codelineno-1-83"></a>
+<a id="__codelineno-1-84" name="__codelineno-1-84" href="#__codelineno-1-84"></a><span class="sd">            For more information and examples see:</span>
+<a id="__codelineno-1-85" name="__codelineno-1-85" href="#__codelineno-1-85"></a><span class="sd">                https://animatea.github.io/python-multibar/abc/?h=abstractsectormixin</span>
 <a id="__codelineno-1-86" name="__codelineno-1-86" href="#__codelineno-1-86"></a>
-<a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a>    <span class="nd">@overload</span>
-<a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">async_write_progress</span><span class="p">(</span>
-<a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a>        <span class="bp">self</span><span class="p">,</span>
-<a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a>        <span class="o">*</span><span class="p">,</span>
-<a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a>        <span class="n">fill</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a>        <span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Coroutine</span><span class="p">[</span><span class="n">ProgressbarContainer</span><span class="p">[</span><span class="n">_SectorT_co</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
-<a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a>        <span class="o">...</span>
+<a id="__codelineno-1-87" name="__codelineno-1-87" href="#__codelineno-1-87"></a><span class="sd">        fill: :class:`str`</span>
+<a id="__codelineno-1-88" name="__codelineno-1-88" href="#__codelineno-1-88"></a><span class="sd">            Fill character of progress bar.</span>
+<a id="__codelineno-1-89" name="__codelineno-1-89" href="#__codelineno-1-89"></a>
+<a id="__codelineno-1-90" name="__codelineno-1-90" href="#__codelineno-1-90"></a><span class="sd">            !!! Abstract:</span>
+<a id="__codelineno-1-91" name="__codelineno-1-91" href="#__codelineno-1-91"></a><span class="sd">                This symbol is used on first fill (depending on progress).</span>
+<a id="__codelineno-1-92" name="__codelineno-1-92" href="#__codelineno-1-92"></a>
+<a id="__codelineno-1-93" name="__codelineno-1-93" href="#__codelineno-1-93"></a><span class="sd">        line: :class:`str`</span>
+<a id="__codelineno-1-94" name="__codelineno-1-94" href="#__codelineno-1-94"></a><span class="sd">            Fill character of progress bar.</span>
 <a id="__codelineno-1-95" name="__codelineno-1-95" href="#__codelineno-1-95"></a>
-<a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a>    <span class="nd">@overload</span>
-<a id="__codelineno-1-97" name="__codelineno-1-97" href="#__codelineno-1-97"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">async_write_progress</span><span class="p">(</span>
-<a id="__codelineno-1-98" name="__codelineno-1-98" href="#__codelineno-1-98"></a>        <span class="bp">self</span><span class="p">,</span>
-<a id="__codelineno-1-99" name="__codelineno-1-99" href="#__codelineno-1-99"></a>        <span class="o">*</span><span class="p">,</span>
-<a id="__codelineno-1-100" name="__codelineno-1-100" href="#__codelineno-1-100"></a>        <span class="n">fill</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<a id="__codelineno-1-101" name="__codelineno-1-101" href="#__codelineno-1-101"></a>        <span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<a id="__codelineno-1-102" name="__codelineno-1-102" href="#__codelineno-1-102"></a>        <span class="n">loop</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">AbstractEventLoop</span><span class="p">,</span>
-<a id="__codelineno-1-103" name="__codelineno-1-103" href="#__codelineno-1-103"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Coroutine</span><span class="p">[</span><span class="n">ProgressbarContainer</span><span class="p">[</span><span class="n">_SectorT_co</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
-<a id="__codelineno-1-104" name="__codelineno-1-104" href="#__codelineno-1-104"></a>        <span class="o">...</span>
-<a id="__codelineno-1-105" name="__codelineno-1-105" href="#__codelineno-1-105"></a>
-<a id="__codelineno-1-106" name="__codelineno-1-106" href="#__codelineno-1-106"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">async_write_progress</span><span class="p">(</span>
-<a id="__codelineno-1-107" name="__codelineno-1-107" href="#__codelineno-1-107"></a>        <span class="bp">self</span><span class="p">,</span>
-<a id="__codelineno-1-108" name="__codelineno-1-108" href="#__codelineno-1-108"></a>        <span class="o">*</span><span class="p">,</span>
-<a id="__codelineno-1-109" name="__codelineno-1-109" href="#__codelineno-1-109"></a>        <span class="n">fill</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<a id="__codelineno-1-110" name="__codelineno-1-110" href="#__codelineno-1-110"></a>        <span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
-<a id="__codelineno-1-111" name="__codelineno-1-111" href="#__codelineno-1-111"></a>        <span class="n">start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-1-112" name="__codelineno-1-112" href="#__codelineno-1-112"></a>        <span class="n">unfilled_start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-1-113" name="__codelineno-1-113" href="#__codelineno-1-113"></a>        <span class="n">end</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-1-114" name="__codelineno-1-114" href="#__codelineno-1-114"></a>        <span class="n">unfilled_end</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-1-115" name="__codelineno-1-115" href="#__codelineno-1-115"></a>        <span class="n">loop</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">asyncio</span><span class="o">.</span><span class="n">AbstractEventLoop</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-1-116" name="__codelineno-1-116" href="#__codelineno-1-116"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Coroutine</span><span class="p">[</span><span class="n">ProgressbarContainer</span><span class="p">[</span><span class="n">_SectorT_co</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
-<a id="__codelineno-1-117" name="__codelineno-1-117" href="#__codelineno-1-117"></a>        <span class="k">if</span> <span class="n">loop</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-1-118" name="__codelineno-1-118" href="#__codelineno-1-118"></a>            <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span>
-<a id="__codelineno-1-119" name="__codelineno-1-119" href="#__codelineno-1-119"></a>
-<a id="__codelineno-1-120" name="__codelineno-1-120" href="#__codelineno-1-120"></a>        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
-<a id="__codelineno-1-121" name="__codelineno-1-121" href="#__codelineno-1-121"></a>            <span class="n">Coroutine</span><span class="p">[</span><span class="n">ProgressbarContainer</span><span class="p">[</span><span class="n">_SectorT_co</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
-<a id="__codelineno-1-122" name="__codelineno-1-122" href="#__codelineno-1-122"></a>            <span class="k">await</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span>
-<a id="__codelineno-1-123" name="__codelineno-1-123" href="#__codelineno-1-123"></a>                <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-1-124" name="__codelineno-1-124" href="#__codelineno-1-124"></a>                <span class="n">partial</span><span class="p">(</span>
-<a id="__codelineno-1-125" name="__codelineno-1-125" href="#__codelineno-1-125"></a>                    <span class="bp">self</span><span class="o">.</span><span class="n">write_progress</span><span class="p">,</span>
-<a id="__codelineno-1-126" name="__codelineno-1-126" href="#__codelineno-1-126"></a>                    <span class="n">fill</span><span class="o">=</span><span class="n">fill</span><span class="p">,</span>
-<a id="__codelineno-1-127" name="__codelineno-1-127" href="#__codelineno-1-127"></a>                    <span class="n">line</span><span class="o">=</span><span class="n">line</span><span class="p">,</span>
-<a id="__codelineno-1-128" name="__codelineno-1-128" href="#__codelineno-1-128"></a>                    <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span>
-<a id="__codelineno-1-129" name="__codelineno-1-129" href="#__codelineno-1-129"></a>                    <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span>
-<a id="__codelineno-1-130" name="__codelineno-1-130" href="#__codelineno-1-130"></a>                    <span class="n">unfilled_start</span><span class="o">=</span><span class="n">unfilled_start</span><span class="p">,</span>
-<a id="__codelineno-1-131" name="__codelineno-1-131" href="#__codelineno-1-131"></a>                    <span class="n">unfilled_end</span><span class="o">=</span><span class="n">unfilled_end</span><span class="p">,</span>
-<a id="__codelineno-1-132" name="__codelineno-1-132" href="#__codelineno-1-132"></a>                <span class="p">),</span>
-<a id="__codelineno-1-133" name="__codelineno-1-133" href="#__codelineno-1-133"></a>            <span class="p">),</span>
-<a id="__codelineno-1-134" name="__codelineno-1-134" href="#__codelineno-1-134"></a>        <span class="p">)</span>
-<a id="__codelineno-1-135" name="__codelineno-1-135" href="#__codelineno-1-135"></a>
-<a id="__codelineno-1-136" name="__codelineno-1-136" href="#__codelineno-1-136"></a><span class="k">def</span> <span class="nf">write_from_customer</span><span class="p">(</span>
-<a id="__codelineno-1-137" name="__codelineno-1-137" href="#__codelineno-1-137"></a>    <span class="bp">self</span><span class="p">,</span>
-<a id="__codelineno-1-138" name="__codelineno-1-138" href="#__codelineno-1-138"></a>    <span class="o">*</span><span class="p">,</span>
-<a id="__codelineno-1-139" name="__codelineno-1-139" href="#__codelineno-1-139"></a>    <span class="n">customer</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">AbstractCustomerMixin</span><span class="p">],</span>
-<a id="__codelineno-1-140" name="__codelineno-1-140" href="#__codelineno-1-140"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ProgressbarContainer</span><span class="p">[</span><span class="n">_SectorT_co</span><span class="p">]:</span>
-<a id="__codelineno-1-141" name="__codelineno-1-141" href="#__codelineno-1-141"></a>    <span class="n">ctx</span> <span class="o">=</span> <span class="n">ProgressContainer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">total</span><span class="p">)</span>
-<a id="__codelineno-1-142" name="__codelineno-1-142" href="#__codelineno-1-142"></a>    <span class="n">kwargs</span> <span class="o">=</span> <span class="p">{}</span>
-<a id="__codelineno-1-143" name="__codelineno-1-143" href="#__codelineno-1-143"></a>    <span class="k">for</span> <span class="n">as_str</span> <span class="ow">in</span> <span class="n">AbstractCustomerMixin</span><span class="o">.</span><span class="n">__abstractmethods__</span><span class="p">:</span>
-<a id="__codelineno-1-144" name="__codelineno-1-144" href="#__codelineno-1-144"></a>        <span class="n">progress_char</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">customer</span><span class="p">,</span> <span class="n">as_str</span><span class="p">)(</span><span class="n">customer</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
-<a id="__codelineno-1-145" name="__codelineno-1-145" href="#__codelineno-1-145"></a>        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">progress_char</span><span class="p">,</span> <span class="p">(</span><span class="n">NotImplementedType</span><span class="p">,</span> <span class="n">NoneType</span><span class="p">)):</span>
-<a id="__codelineno-1-146" name="__codelineno-1-146" href="#__codelineno-1-146"></a>            <span class="n">kwargs</span><span class="p">[</span><span class="n">as_str</span><span class="p">]</span> <span class="o">=</span> <span class="n">progress_char</span>
+<a id="__codelineno-1-96" name="__codelineno-1-96" href="#__codelineno-1-96"></a><span class="sd">            !!! Abstract:</span>
+<a id="__codelineno-1-97" name="__codelineno-1-97" href="#__codelineno-1-97"></a><span class="sd">                This symbol is used on last (second) fill (depending on progress).</span>
+<a id="__codelineno-1-98" name="__codelineno-1-98" href="#__codelineno-1-98"></a>
+<a id="__codelineno-1-99" name="__codelineno-1-99" href="#__codelineno-1-99"></a><span class="sd">        start: :class:`Optional[str]` = None</span>
+<a id="__codelineno-1-100" name="__codelineno-1-100" href="#__codelineno-1-100"></a><span class="sd">            If passed, will replace first FILLED emoji of progress bar (depending on progress).</span>
+<a id="__codelineno-1-101" name="__codelineno-1-101" href="#__codelineno-1-101"></a>
+<a id="__codelineno-1-102" name="__codelineno-1-102" href="#__codelineno-1-102"></a><span class="sd">        unfilled_start: :class:`Optional[str]` = None</span>
+<a id="__codelineno-1-103" name="__codelineno-1-103" href="#__codelineno-1-103"></a><span class="sd">            If passed, will replace first EMPTY emoji of progress bar (depending on progress).</span>
+<a id="__codelineno-1-104" name="__codelineno-1-104" href="#__codelineno-1-104"></a>
+<a id="__codelineno-1-105" name="__codelineno-1-105" href="#__codelineno-1-105"></a><span class="sd">        end: :class:`Optional[str]` = None</span>
+<a id="__codelineno-1-106" name="__codelineno-1-106" href="#__codelineno-1-106"></a><span class="sd">            If passed, will replace last FILLED emoji of progress bar (depending on progress).</span>
+<a id="__codelineno-1-107" name="__codelineno-1-107" href="#__codelineno-1-107"></a>
+<a id="__codelineno-1-108" name="__codelineno-1-108" href="#__codelineno-1-108"></a><span class="sd">        unfilled_end: :class:`Optional[str]` = None</span>
+<a id="__codelineno-1-109" name="__codelineno-1-109" href="#__codelineno-1-109"></a><span class="sd">            If passed, will replace last EMPTY emoji of progress bar (depending on progress).</span>
+<a id="__codelineno-1-110" name="__codelineno-1-110" href="#__codelineno-1-110"></a>
+<a id="__codelineno-1-111" name="__codelineno-1-111" href="#__codelineno-1-111"></a><span class="sd">        **kwargs: :class:`Any`</span>
+<a id="__codelineno-1-112" name="__codelineno-1-112" href="#__codelineno-1-112"></a><span class="sd">            Kwargs that will be passed in custom Container implementation.</span>
+<a id="__codelineno-1-113" name="__codelineno-1-113" href="#__codelineno-1-113"></a>
+<a id="__codelineno-1-114" name="__codelineno-1-114" href="#__codelineno-1-114"></a><span class="sd">            For more information and examples see:</span>
+<a id="__codelineno-1-115" name="__codelineno-1-115" href="#__codelineno-1-115"></a><span class="sd">                https://animatea.github.io/python-multibar/abc/?h=abstractseqbasedcontainermixin</span>
+<a id="__codelineno-1-116" name="__codelineno-1-116" href="#__codelineno-1-116"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-1-117" name="__codelineno-1-117" href="#__codelineno-1-117"></a>        <span class="n">progress</span> <span class="o">=</span> <span class="n">ProgressContainer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">total</span><span class="p">)</span>
+<a id="__codelineno-1-118" name="__codelineno-1-118" href="#__codelineno-1-118"></a>        <span class="n">percents</span> <span class="o">=</span> <span class="n">progress</span><span class="o">.</span><span class="n">percents</span><span class="p">(</span><span class="n">allow_float</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a id="__codelineno-1-119" name="__codelineno-1-119" href="#__codelineno-1-119"></a>        <span class="k">assert</span> <span class="bp">self</span><span class="o">.</span><span class="n">container_cls</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span>
+<a id="__codelineno-1-120" name="__codelineno-1-120" href="#__codelineno-1-120"></a>
+<a id="__codelineno-1-121" name="__codelineno-1-121" href="#__codelineno-1-121"></a>        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">container_cls</span><span class="p">()</span> <span class="k">as</span> <span class="n">container</span><span class="p">:</span>
+<a id="__codelineno-1-122" name="__codelineno-1-122" href="#__codelineno-1-122"></a>            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rest</span> <span class="o">:=</span> <span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="n">percents</span> <span class="o">/</span> <span class="p">(</span><span class="mi">100</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">)))):</span>
+<a id="__codelineno-1-123" name="__codelineno-1-123" href="#__codelineno-1-123"></a>                <span class="n">container</span><span class="o">.</span><span class="n">put</span><span class="p">(</span>
+<a id="__codelineno-1-124" name="__codelineno-1-124" href="#__codelineno-1-124"></a>                    <span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">create_product</span><span class="p">(</span>
+<a id="__codelineno-1-125" name="__codelineno-1-125" href="#__codelineno-1-125"></a>                        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+<a id="__codelineno-1-126" name="__codelineno-1-126" href="#__codelineno-1-126"></a>                        <span class="n">name</span><span class="o">=</span><span class="n">fill</span><span class="p">,</span>
+<a id="__codelineno-1-127" name="__codelineno-1-127" href="#__codelineno-1-127"></a>                        <span class="n">position</span><span class="o">=</span><span class="n">i</span><span class="p">,</span>
+<a id="__codelineno-1-128" name="__codelineno-1-128" href="#__codelineno-1-128"></a>                        <span class="n">empty</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<a id="__codelineno-1-129" name="__codelineno-1-129" href="#__codelineno-1-129"></a>                        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<a id="__codelineno-1-130" name="__codelineno-1-130" href="#__codelineno-1-130"></a>                    <span class="p">)</span>
+<a id="__codelineno-1-131" name="__codelineno-1-131" href="#__codelineno-1-131"></a>                <span class="p">)</span>
+<a id="__codelineno-1-132" name="__codelineno-1-132" href="#__codelineno-1-132"></a>
+<a id="__codelineno-1-133" name="__codelineno-1-133" href="#__codelineno-1-133"></a>            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">-</span> <span class="n">rest</span><span class="p">):</span>
+<a id="__codelineno-1-134" name="__codelineno-1-134" href="#__codelineno-1-134"></a>                <span class="n">container</span><span class="o">.</span><span class="n">put</span><span class="p">(</span>
+<a id="__codelineno-1-135" name="__codelineno-1-135" href="#__codelineno-1-135"></a>                    <span class="bp">self</span><span class="o">.</span><span class="n">factory</span><span class="o">.</span><span class="n">create_product</span><span class="p">(</span>
+<a id="__codelineno-1-136" name="__codelineno-1-136" href="#__codelineno-1-136"></a>                        <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+<a id="__codelineno-1-137" name="__codelineno-1-137" href="#__codelineno-1-137"></a>                        <span class="n">name</span><span class="o">=</span><span class="n">line</span><span class="p">,</span>
+<a id="__codelineno-1-138" name="__codelineno-1-138" href="#__codelineno-1-138"></a>                        <span class="n">position</span><span class="o">=</span><span class="n">i</span> <span class="o">+</span> <span class="n">rest</span><span class="p">,</span>
+<a id="__codelineno-1-139" name="__codelineno-1-139" href="#__codelineno-1-139"></a>                        <span class="n">empty</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<a id="__codelineno-1-140" name="__codelineno-1-140" href="#__codelineno-1-140"></a>                        <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<a id="__codelineno-1-141" name="__codelineno-1-141" href="#__codelineno-1-141"></a>                    <span class="p">)</span>
+<a id="__codelineno-1-142" name="__codelineno-1-142" href="#__codelineno-1-142"></a>                <span class="p">)</span>
+<a id="__codelineno-1-143" name="__codelineno-1-143" href="#__codelineno-1-143"></a>
+<a id="__codelineno-1-144" name="__codelineno-1-144" href="#__codelineno-1-144"></a>            <span class="c1"># Add `unfilled_start` if it is specified and none of the sectors is yet filled.</span>
+<a id="__codelineno-1-145" name="__codelineno-1-145" href="#__codelineno-1-145"></a>            <span class="k">if</span> <span class="n">unfilled_start</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">percents</span> <span class="o">&lt;</span> <span class="n">FillFlag</span><span class="o">.</span><span class="n">FIRST</span><span class="p">:</span>
+<a id="__codelineno-1-146" name="__codelineno-1-146" href="#__codelineno-1-146"></a>                <span class="n">container</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">unfilled_start</span>
 <a id="__codelineno-1-147" name="__codelineno-1-147" href="#__codelineno-1-147"></a>
-<a id="__codelineno-1-148" name="__codelineno-1-148" href="#__codelineno-1-148"></a>    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_progress</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-<a id="__codelineno-1-149" name="__codelineno-1-149" href="#__codelineno-1-149"></a>
-<a id="__codelineno-1-150" name="__codelineno-1-150" href="#__codelineno-1-150"></a>    <span class="nd">@overload</span>
-<a id="__codelineno-1-151" name="__codelineno-1-151" href="#__codelineno-1-151"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">async_write_from_customer</span><span class="p">(</span>
-<a id="__codelineno-1-152" name="__codelineno-1-152" href="#__codelineno-1-152"></a>        <span class="bp">self</span><span class="p">,</span>
-<a id="__codelineno-1-153" name="__codelineno-1-153" href="#__codelineno-1-153"></a>        <span class="o">*</span><span class="p">,</span>
-<a id="__codelineno-1-154" name="__codelineno-1-154" href="#__codelineno-1-154"></a>        <span class="n">customer</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">AbstractCustomerMixin</span><span class="p">],</span>
-<a id="__codelineno-1-155" name="__codelineno-1-155" href="#__codelineno-1-155"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Coroutine</span><span class="p">[</span><span class="n">ProgressbarContainer</span><span class="p">[</span><span class="n">AbstractSectorMixin</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
-<a id="__codelineno-1-156" name="__codelineno-1-156" href="#__codelineno-1-156"></a>        <span class="o">...</span>
-<a id="__codelineno-1-157" name="__codelineno-1-157" href="#__codelineno-1-157"></a>
-<a id="__codelineno-1-158" name="__codelineno-1-158" href="#__codelineno-1-158"></a>    <span class="nd">@overload</span>
-<a id="__codelineno-1-159" name="__codelineno-1-159" href="#__codelineno-1-159"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">async_write_from_customer</span><span class="p">(</span>
-<a id="__codelineno-1-160" name="__codelineno-1-160" href="#__codelineno-1-160"></a>        <span class="bp">self</span><span class="p">,</span>
-<a id="__codelineno-1-161" name="__codelineno-1-161" href="#__codelineno-1-161"></a>        <span class="o">*</span><span class="p">,</span>
-<a id="__codelineno-1-162" name="__codelineno-1-162" href="#__codelineno-1-162"></a>        <span class="n">customer</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">AbstractCustomerMixin</span><span class="p">],</span>
-<a id="__codelineno-1-163" name="__codelineno-1-163" href="#__codelineno-1-163"></a>        <span class="n">loop</span><span class="p">:</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">AbstractEventLoop</span><span class="p">,</span>
-<a id="__codelineno-1-164" name="__codelineno-1-164" href="#__codelineno-1-164"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Coroutine</span><span class="p">[</span><span class="n">ProgressbarContainer</span><span class="p">[</span><span class="n">AbstractSectorMixin</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
-<a id="__codelineno-1-165" name="__codelineno-1-165" href="#__codelineno-1-165"></a>        <span class="o">...</span>
-<a id="__codelineno-1-166" name="__codelineno-1-166" href="#__codelineno-1-166"></a>
-<a id="__codelineno-1-167" name="__codelineno-1-167" href="#__codelineno-1-167"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">async_write_from_customer</span><span class="p">(</span>
-<a id="__codelineno-1-168" name="__codelineno-1-168" href="#__codelineno-1-168"></a>        <span class="bp">self</span><span class="p">,</span>
-<a id="__codelineno-1-169" name="__codelineno-1-169" href="#__codelineno-1-169"></a>        <span class="o">*</span><span class="p">,</span>
-<a id="__codelineno-1-170" name="__codelineno-1-170" href="#__codelineno-1-170"></a>        <span class="n">customer</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">AbstractCustomerMixin</span><span class="p">],</span>
-<a id="__codelineno-1-171" name="__codelineno-1-171" href="#__codelineno-1-171"></a>        <span class="n">loop</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">asyncio</span><span class="o">.</span><span class="n">AbstractEventLoop</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-1-172" name="__codelineno-1-172" href="#__codelineno-1-172"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Coroutine</span><span class="p">[</span><span class="n">ProgressbarContainer</span><span class="p">[</span><span class="n">AbstractSectorMixin</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
-<a id="__codelineno-1-173" name="__codelineno-1-173" href="#__codelineno-1-173"></a>        <span class="k">if</span> <span class="n">loop</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-<a id="__codelineno-1-174" name="__codelineno-1-174" href="#__codelineno-1-174"></a>            <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span>
-<a id="__codelineno-1-175" name="__codelineno-1-175" href="#__codelineno-1-175"></a>
-<a id="__codelineno-1-176" name="__codelineno-1-176" href="#__codelineno-1-176"></a>        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
-<a id="__codelineno-1-177" name="__codelineno-1-177" href="#__codelineno-1-177"></a>            <span class="n">Coroutine</span><span class="p">[</span><span class="n">ProgressbarContainer</span><span class="p">[</span><span class="n">AbstractSectorMixin</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
-<a id="__codelineno-1-178" name="__codelineno-1-178" href="#__codelineno-1-178"></a>            <span class="k">await</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span>
-<a id="__codelineno-1-179" name="__codelineno-1-179" href="#__codelineno-1-179"></a>                <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-1-180" name="__codelineno-1-180" href="#__codelineno-1-180"></a>                <span class="n">partial</span><span class="p">(</span>
-<a id="__codelineno-1-181" name="__codelineno-1-181" href="#__codelineno-1-181"></a>                    <span class="bp">self</span><span class="o">.</span><span class="n">write_from_customer</span><span class="p">,</span>
-<a id="__codelineno-1-182" name="__codelineno-1-182" href="#__codelineno-1-182"></a>                    <span class="n">customer</span><span class="o">=</span><span class="n">customer</span><span class="p">,</span>
-<a id="__codelineno-1-183" name="__codelineno-1-183" href="#__codelineno-1-183"></a>                <span class="p">),</span>
-<a id="__codelineno-1-184" name="__codelineno-1-184" href="#__codelineno-1-184"></a>            <span class="p">),</span>
-<a id="__codelineno-1-185" name="__codelineno-1-185" href="#__codelineno-1-185"></a>        <span class="p">)</span>
+<a id="__codelineno-1-148" name="__codelineno-1-148" href="#__codelineno-1-148"></a>            <span class="c1"># Otherwise, if `start` is specified, it will be added to the beginning.</span>
+<a id="__codelineno-1-149" name="__codelineno-1-149" href="#__codelineno-1-149"></a>            <span class="k">elif</span> <span class="n">percents</span> <span class="o">&gt;=</span> <span class="n">FillFlag</span><span class="o">.</span><span class="n">FIRST</span> <span class="ow">and</span> <span class="n">start</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-1-150" name="__codelineno-1-150" href="#__codelineno-1-150"></a>                <span class="n">container</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">start</span>
+<a id="__codelineno-1-151" name="__codelineno-1-151" href="#__codelineno-1-151"></a>
+<a id="__codelineno-1-152" name="__codelineno-1-152" href="#__codelineno-1-152"></a>            <span class="c1"># If `unfilled_end` is specified and the last sector is not filled, then the</span>
+<a id="__codelineno-1-153" name="__codelineno-1-153" href="#__codelineno-1-153"></a>            <span class="c1"># corresponding character will be added to the end of the progress bar.</span>
+<a id="__codelineno-1-154" name="__codelineno-1-154" href="#__codelineno-1-154"></a>            <span class="k">if</span> <span class="n">unfilled_end</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">percents</span> <span class="o">&lt;</span> <span class="n">FillFlag</span><span class="o">.</span><span class="n">LAST</span><span class="p">:</span>
+<a id="__codelineno-1-155" name="__codelineno-1-155" href="#__codelineno-1-155"></a>                <span class="n">container</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">unfilled_end</span>
+<a id="__codelineno-1-156" name="__codelineno-1-156" href="#__codelineno-1-156"></a>
+<a id="__codelineno-1-157" name="__codelineno-1-157" href="#__codelineno-1-157"></a>            <span class="c1"># Otherwise, if end is specified, the character corresponding to the</span>
+<a id="__codelineno-1-158" name="__codelineno-1-158" href="#__codelineno-1-158"></a>            <span class="c1"># given argument will be appended to the end of the progressbar.</span>
+<a id="__codelineno-1-159" name="__codelineno-1-159" href="#__codelineno-1-159"></a>            <span class="k">elif</span> <span class="n">percents</span> <span class="o">&gt;=</span> <span class="n">FillFlag</span><span class="o">.</span><span class="n">LAST</span> <span class="ow">and</span> <span class="n">end</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-1-160" name="__codelineno-1-160" href="#__codelineno-1-160"></a>                <span class="n">container</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">end</span>
+<a id="__codelineno-1-161" name="__codelineno-1-161" href="#__codelineno-1-161"></a>
+<a id="__codelineno-1-162" name="__codelineno-1-162" href="#__codelineno-1-162"></a>            <span class="k">return</span> <span class="n">ProgressbarContainer</span><span class="p">(</span>
+<a id="__codelineno-1-163" name="__codelineno-1-163" href="#__codelineno-1-163"></a>                <span class="n">bar</span><span class="o">=</span><span class="n">container</span><span class="p">,</span>
+<a id="__codelineno-1-164" name="__codelineno-1-164" href="#__codelineno-1-164"></a>                <span class="n">length</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">length</span><span class="p">,</span>
+<a id="__codelineno-1-165" name="__codelineno-1-165" href="#__codelineno-1-165"></a>                <span class="n">state</span><span class="o">=</span><span class="n">progress</span><span class="p">,</span>
+<a id="__codelineno-1-166" name="__codelineno-1-166" href="#__codelineno-1-166"></a>            <span class="p">)</span>
+<a id="__codelineno-1-167" name="__codelineno-1-167" href="#__codelineno-1-167"></a>
+<a id="__codelineno-1-168" name="__codelineno-1-168" href="#__codelineno-1-168"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">async_write_progress</span><span class="p">(</span>
+<a id="__codelineno-1-169" name="__codelineno-1-169" href="#__codelineno-1-169"></a>        <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-1-170" name="__codelineno-1-170" href="#__codelineno-1-170"></a>        <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<a id="__codelineno-1-171" name="__codelineno-1-171" href="#__codelineno-1-171"></a>        <span class="n">fill</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-1-172" name="__codelineno-1-172" href="#__codelineno-1-172"></a>        <span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+<a id="__codelineno-1-173" name="__codelineno-1-173" href="#__codelineno-1-173"></a>        <span class="n">start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-1-174" name="__codelineno-1-174" href="#__codelineno-1-174"></a>        <span class="n">unfilled_start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-1-175" name="__codelineno-1-175" href="#__codelineno-1-175"></a>        <span class="n">end</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-1-176" name="__codelineno-1-176" href="#__codelineno-1-176"></a>        <span class="n">unfilled_end</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-1-177" name="__codelineno-1-177" href="#__codelineno-1-177"></a>        <span class="n">loop</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">asyncio</span><span class="o">.</span><span class="n">AbstractEventLoop</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-1-178" name="__codelineno-1-178" href="#__codelineno-1-178"></a>        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<a id="__codelineno-1-179" name="__codelineno-1-179" href="#__codelineno-1-179"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Coroutine</span><span class="p">[</span><span class="n">ProgressbarContainer</span><span class="p">[</span><span class="n">_AbcSectorT_co</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<a id="__codelineno-1-180" name="__codelineno-1-180" href="#__codelineno-1-180"></a>        <span class="sd">&quot;&quot;&quot;``sync method``</span>
+<a id="__codelineno-1-181" name="__codelineno-1-181" href="#__codelineno-1-181"></a><span class="sd">        Method that generates synchronously progress bar.</span>
+<a id="__codelineno-1-182" name="__codelineno-1-182" href="#__codelineno-1-182"></a>
+<a id="__codelineno-1-183" name="__codelineno-1-183" href="#__codelineno-1-183"></a><span class="sd">        *args: :class:`Any`</span>
+<a id="__codelineno-1-184" name="__codelineno-1-184" href="#__codelineno-1-184"></a><span class="sd">            Args that will be passed in custom Sector implementation.</span>
+<a id="__codelineno-1-185" name="__codelineno-1-185" href="#__codelineno-1-185"></a>
+<a id="__codelineno-1-186" name="__codelineno-1-186" href="#__codelineno-1-186"></a><span class="sd">            For more information and examples see:</span>
+<a id="__codelineno-1-187" name="__codelineno-1-187" href="#__codelineno-1-187"></a><span class="sd">                https://animatea.github.io/python-multibar/abc/?h=abstractsectormixin</span>
+<a id="__codelineno-1-188" name="__codelineno-1-188" href="#__codelineno-1-188"></a>
+<a id="__codelineno-1-189" name="__codelineno-1-189" href="#__codelineno-1-189"></a><span class="sd">        fill: :class:`str`</span>
+<a id="__codelineno-1-190" name="__codelineno-1-190" href="#__codelineno-1-190"></a><span class="sd">            Fill character of progress bar.</span>
+<a id="__codelineno-1-191" name="__codelineno-1-191" href="#__codelineno-1-191"></a>
+<a id="__codelineno-1-192" name="__codelineno-1-192" href="#__codelineno-1-192"></a><span class="sd">            !!! Abstract:</span>
+<a id="__codelineno-1-193" name="__codelineno-1-193" href="#__codelineno-1-193"></a><span class="sd">                This symbol is used on first fill (depending on progress).</span>
+<a id="__codelineno-1-194" name="__codelineno-1-194" href="#__codelineno-1-194"></a>
+<a id="__codelineno-1-195" name="__codelineno-1-195" href="#__codelineno-1-195"></a><span class="sd">        line: :class:`str`</span>
+<a id="__codelineno-1-196" name="__codelineno-1-196" href="#__codelineno-1-196"></a><span class="sd">            Fill character of progress bar.</span>
+<a id="__codelineno-1-197" name="__codelineno-1-197" href="#__codelineno-1-197"></a>
+<a id="__codelineno-1-198" name="__codelineno-1-198" href="#__codelineno-1-198"></a><span class="sd">            !!! Abstract:</span>
+<a id="__codelineno-1-199" name="__codelineno-1-199" href="#__codelineno-1-199"></a><span class="sd">                This symbol is used on last (second) fill (depending on progress).</span>
+<a id="__codelineno-1-200" name="__codelineno-1-200" href="#__codelineno-1-200"></a>
+<a id="__codelineno-1-201" name="__codelineno-1-201" href="#__codelineno-1-201"></a><span class="sd">        start: :class:`Optional[str]` = None</span>
+<a id="__codelineno-1-202" name="__codelineno-1-202" href="#__codelineno-1-202"></a><span class="sd">            If passed, will replace first FILLED emoji of progress bar (depending on progress).</span>
+<a id="__codelineno-1-203" name="__codelineno-1-203" href="#__codelineno-1-203"></a>
+<a id="__codelineno-1-204" name="__codelineno-1-204" href="#__codelineno-1-204"></a><span class="sd">        unfilled_start: :class:`Optional[str]` = None</span>
+<a id="__codelineno-1-205" name="__codelineno-1-205" href="#__codelineno-1-205"></a><span class="sd">            If passed, will replace first EMPTY emoji of progress bar (depending on progress).</span>
+<a id="__codelineno-1-206" name="__codelineno-1-206" href="#__codelineno-1-206"></a>
+<a id="__codelineno-1-207" name="__codelineno-1-207" href="#__codelineno-1-207"></a><span class="sd">        end: :class:`Optional[str]` = None</span>
+<a id="__codelineno-1-208" name="__codelineno-1-208" href="#__codelineno-1-208"></a><span class="sd">            If passed, will replace last FILLED emoji of progress bar (depending on progress).</span>
+<a id="__codelineno-1-209" name="__codelineno-1-209" href="#__codelineno-1-209"></a>
+<a id="__codelineno-1-210" name="__codelineno-1-210" href="#__codelineno-1-210"></a><span class="sd">        unfilled_end: :class:`Optional[str]` = None</span>
+<a id="__codelineno-1-211" name="__codelineno-1-211" href="#__codelineno-1-211"></a><span class="sd">            If passed, will replace last EMPTY emoji of progress bar (depending on progress).</span>
+<a id="__codelineno-1-212" name="__codelineno-1-212" href="#__codelineno-1-212"></a>
+<a id="__codelineno-1-213" name="__codelineno-1-213" href="#__codelineno-1-213"></a><span class="sd">        loop: :class:`Optional[asyncio.AbstractEventLoop]` = None</span>
+<a id="__codelineno-1-214" name="__codelineno-1-214" href="#__codelineno-1-214"></a><span class="sd">            Event loop that used for creating awaitable object and further run in executor.</span>
+<a id="__codelineno-1-215" name="__codelineno-1-215" href="#__codelineno-1-215"></a>
+<a id="__codelineno-1-216" name="__codelineno-1-216" href="#__codelineno-1-216"></a><span class="sd">        **kwargs: :class:`Any`</span>
+<a id="__codelineno-1-217" name="__codelineno-1-217" href="#__codelineno-1-217"></a><span class="sd">            Kwargs that will be passed in custom Container implementation.</span>
+<a id="__codelineno-1-218" name="__codelineno-1-218" href="#__codelineno-1-218"></a>
+<a id="__codelineno-1-219" name="__codelineno-1-219" href="#__codelineno-1-219"></a><span class="sd">            For more information and examples see:</span>
+<a id="__codelineno-1-220" name="__codelineno-1-220" href="#__codelineno-1-220"></a><span class="sd">                https://animatea.github.io/python-multibar/abc/?h=abstractseqbasedcontainermixin</span>
+<a id="__codelineno-1-221" name="__codelineno-1-221" href="#__codelineno-1-221"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-1-222" name="__codelineno-1-222" href="#__codelineno-1-222"></a>        <span class="k">if</span> <span class="n">loop</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-1-223" name="__codelineno-1-223" href="#__codelineno-1-223"></a>            <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span>
+<a id="__codelineno-1-224" name="__codelineno-1-224" href="#__codelineno-1-224"></a>
+<a id="__codelineno-1-225" name="__codelineno-1-225" href="#__codelineno-1-225"></a>        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
+<a id="__codelineno-1-226" name="__codelineno-1-226" href="#__codelineno-1-226"></a>            <span class="n">Coroutine</span><span class="p">[</span><span class="n">ProgressbarContainer</span><span class="p">[</span><span class="n">_AbcSectorT_co</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
+<a id="__codelineno-1-227" name="__codelineno-1-227" href="#__codelineno-1-227"></a>            <span class="k">await</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span>
+<a id="__codelineno-1-228" name="__codelineno-1-228" href="#__codelineno-1-228"></a>                <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-1-229" name="__codelineno-1-229" href="#__codelineno-1-229"></a>                <span class="n">partial</span><span class="p">(</span>
+<a id="__codelineno-1-230" name="__codelineno-1-230" href="#__codelineno-1-230"></a>                    <span class="bp">self</span><span class="o">.</span><span class="n">write_progress</span><span class="p">,</span>
+<a id="__codelineno-1-231" name="__codelineno-1-231" href="#__codelineno-1-231"></a>                    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+<a id="__codelineno-1-232" name="__codelineno-1-232" href="#__codelineno-1-232"></a>                    <span class="n">fill</span><span class="o">=</span><span class="n">fill</span><span class="p">,</span>
+<a id="__codelineno-1-233" name="__codelineno-1-233" href="#__codelineno-1-233"></a>                    <span class="n">line</span><span class="o">=</span><span class="n">line</span><span class="p">,</span>
+<a id="__codelineno-1-234" name="__codelineno-1-234" href="#__codelineno-1-234"></a>                    <span class="n">end</span><span class="o">=</span><span class="n">end</span><span class="p">,</span>
+<a id="__codelineno-1-235" name="__codelineno-1-235" href="#__codelineno-1-235"></a>                    <span class="n">start</span><span class="o">=</span><span class="n">start</span><span class="p">,</span>
+<a id="__codelineno-1-236" name="__codelineno-1-236" href="#__codelineno-1-236"></a>                    <span class="n">unfilled_start</span><span class="o">=</span><span class="n">unfilled_start</span><span class="p">,</span>
+<a id="__codelineno-1-237" name="__codelineno-1-237" href="#__codelineno-1-237"></a>                    <span class="n">unfilled_end</span><span class="o">=</span><span class="n">unfilled_end</span><span class="p">,</span>
+<a id="__codelineno-1-238" name="__codelineno-1-238" href="#__codelineno-1-238"></a>                    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<a id="__codelineno-1-239" name="__codelineno-1-239" href="#__codelineno-1-239"></a>                <span class="p">),</span>
+<a id="__codelineno-1-240" name="__codelineno-1-240" href="#__codelineno-1-240"></a>            <span class="p">),</span>
+<a id="__codelineno-1-241" name="__codelineno-1-241" href="#__codelineno-1-241"></a>        <span class="p">)</span>
+<a id="__codelineno-1-242" name="__codelineno-1-242" href="#__codelineno-1-242"></a>
+<a id="__codelineno-1-243" name="__codelineno-1-243" href="#__codelineno-1-243"></a>    <span class="k">def</span> <span class="nf">write_from_customer</span><span class="p">(</span>
+<a id="__codelineno-1-244" name="__codelineno-1-244" href="#__codelineno-1-244"></a>        <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-1-245" name="__codelineno-1-245" href="#__codelineno-1-245"></a>        <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<a id="__codelineno-1-246" name="__codelineno-1-246" href="#__codelineno-1-246"></a>        <span class="n">customer</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">AbstractCustomerMixin</span><span class="p">],</span>
+<a id="__codelineno-1-247" name="__codelineno-1-247" href="#__codelineno-1-247"></a>        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<a id="__codelineno-1-248" name="__codelineno-1-248" href="#__codelineno-1-248"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ProgressbarContainer</span><span class="p">[</span><span class="n">_AbcSectorT_co</span><span class="p">]:</span>
+<a id="__codelineno-1-249" name="__codelineno-1-249" href="#__codelineno-1-249"></a>        <span class="sd">&quot;&quot;&quot;``sync method``</span>
+<a id="__codelineno-1-250" name="__codelineno-1-250" href="#__codelineno-1-250"></a><span class="sd">        Method that generates synchronously progress bar from Customer classes.</span>
+<a id="__codelineno-1-251" name="__codelineno-1-251" href="#__codelineno-1-251"></a>
+<a id="__codelineno-1-252" name="__codelineno-1-252" href="#__codelineno-1-252"></a><span class="sd">        Parameters:</span>
+<a id="__codelineno-1-253" name="__codelineno-1-253" href="#__codelineno-1-253"></a><span class="sd">        -----------</span>
+<a id="__codelineno-1-254" name="__codelineno-1-254" href="#__codelineno-1-254"></a><span class="sd">        *args: :class:`Any`</span>
+<a id="__codelineno-1-255" name="__codelineno-1-255" href="#__codelineno-1-255"></a><span class="sd">            Args that will be passed in custom Sector implementation.</span>
+<a id="__codelineno-1-256" name="__codelineno-1-256" href="#__codelineno-1-256"></a>
+<a id="__codelineno-1-257" name="__codelineno-1-257" href="#__codelineno-1-257"></a><span class="sd">            For more information and examples see:</span>
+<a id="__codelineno-1-258" name="__codelineno-1-258" href="#__codelineno-1-258"></a><span class="sd">                https://animatea.github.io/python-multibar/abc/?h=abstractsectormixin</span>
+<a id="__codelineno-1-259" name="__codelineno-1-259" href="#__codelineno-1-259"></a>
+<a id="__codelineno-1-260" name="__codelineno-1-260" href="#__codelineno-1-260"></a><span class="sd">        customer: :class:`Type[AbstractCustomerMixin]`</span>
+<a id="__codelineno-1-261" name="__codelineno-1-261" href="#__codelineno-1-261"></a><span class="sd">            Customer implementation class.</span>
+<a id="__codelineno-1-262" name="__codelineno-1-262" href="#__codelineno-1-262"></a>
+<a id="__codelineno-1-263" name="__codelineno-1-263" href="#__codelineno-1-263"></a><span class="sd">        **kwargs: :class:`Any`</span>
+<a id="__codelineno-1-264" name="__codelineno-1-264" href="#__codelineno-1-264"></a><span class="sd">            Kwargs that will be passed in custom Container implementation.</span>
+<a id="__codelineno-1-265" name="__codelineno-1-265" href="#__codelineno-1-265"></a>
+<a id="__codelineno-1-266" name="__codelineno-1-266" href="#__codelineno-1-266"></a><span class="sd">            For more information and examples see:</span>
+<a id="__codelineno-1-267" name="__codelineno-1-267" href="#__codelineno-1-267"></a><span class="sd">                https://animatea.github.io/python-multibar/abc/?h=abstractseqbasedcontainermixin</span>
+<a id="__codelineno-1-268" name="__codelineno-1-268" href="#__codelineno-1-268"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-1-269" name="__codelineno-1-269" href="#__codelineno-1-269"></a>        <span class="n">ctx</span> <span class="o">=</span> <span class="n">ProgressContainer</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">current</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">total</span><span class="p">)</span>
+<a id="__codelineno-1-270" name="__codelineno-1-270" href="#__codelineno-1-270"></a>        <span class="n">kwargs_new</span> <span class="o">=</span> <span class="p">{}</span>
+<a id="__codelineno-1-271" name="__codelineno-1-271" href="#__codelineno-1-271"></a>        <span class="k">for</span> <span class="n">as_str</span> <span class="ow">in</span> <span class="n">AbstractCustomerMixin</span><span class="o">.</span><span class="n">__abstractmethods__</span><span class="p">:</span>
+<a id="__codelineno-1-272" name="__codelineno-1-272" href="#__codelineno-1-272"></a>            <span class="n">progress_char</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">customer</span><span class="p">,</span> <span class="n">as_str</span><span class="p">)(</span><span class="n">customer</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+<a id="__codelineno-1-273" name="__codelineno-1-273" href="#__codelineno-1-273"></a>            <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">progress_char</span><span class="p">,</span> <span class="p">(</span><span class="n">NotImplementedType</span><span class="p">,</span> <span class="n">NoneType</span><span class="p">)):</span>
+<a id="__codelineno-1-274" name="__codelineno-1-274" href="#__codelineno-1-274"></a>                <span class="n">kwargs_new</span><span class="p">[</span><span class="n">as_str</span><span class="p">]</span> <span class="o">=</span> <span class="n">progress_char</span>
+<a id="__codelineno-1-275" name="__codelineno-1-275" href="#__codelineno-1-275"></a>
+<a id="__codelineno-1-276" name="__codelineno-1-276" href="#__codelineno-1-276"></a>        <span class="n">kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs_new</span><span class="p">)</span>
+<a id="__codelineno-1-277" name="__codelineno-1-277" href="#__codelineno-1-277"></a>        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">write_progress</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+<a id="__codelineno-1-278" name="__codelineno-1-278" href="#__codelineno-1-278"></a>
+<a id="__codelineno-1-279" name="__codelineno-1-279" href="#__codelineno-1-279"></a>    <span class="k">async</span> <span class="k">def</span> <span class="nf">async_write_from_customer</span><span class="p">(</span>
+<a id="__codelineno-1-280" name="__codelineno-1-280" href="#__codelineno-1-280"></a>        <span class="bp">self</span><span class="p">,</span>
+<a id="__codelineno-1-281" name="__codelineno-1-281" href="#__codelineno-1-281"></a>        <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<a id="__codelineno-1-282" name="__codelineno-1-282" href="#__codelineno-1-282"></a>        <span class="n">customer</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">AbstractCustomerMixin</span><span class="p">],</span>
+<a id="__codelineno-1-283" name="__codelineno-1-283" href="#__codelineno-1-283"></a>        <span class="n">loop</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">asyncio</span><span class="o">.</span><span class="n">AbstractEventLoop</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-1-284" name="__codelineno-1-284" href="#__codelineno-1-284"></a>        <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<a id="__codelineno-1-285" name="__codelineno-1-285" href="#__codelineno-1-285"></a>    <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Coroutine</span><span class="p">[</span><span class="n">ProgressbarContainer</span><span class="p">[</span><span class="n">_AbcSectorT_co</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<a id="__codelineno-1-286" name="__codelineno-1-286" href="#__codelineno-1-286"></a>        <span class="sd">&quot;&quot;&quot;``sync method``</span>
+<a id="__codelineno-1-287" name="__codelineno-1-287" href="#__codelineno-1-287"></a><span class="sd">        Method that generates synchronously progress bar from Customer classes.</span>
+<a id="__codelineno-1-288" name="__codelineno-1-288" href="#__codelineno-1-288"></a>
+<a id="__codelineno-1-289" name="__codelineno-1-289" href="#__codelineno-1-289"></a><span class="sd">        Parameters:</span>
+<a id="__codelineno-1-290" name="__codelineno-1-290" href="#__codelineno-1-290"></a><span class="sd">        -----------</span>
+<a id="__codelineno-1-291" name="__codelineno-1-291" href="#__codelineno-1-291"></a><span class="sd">        *args: :class:`Any`</span>
+<a id="__codelineno-1-292" name="__codelineno-1-292" href="#__codelineno-1-292"></a><span class="sd">            Args that will be passed in custom Sector implementation.</span>
+<a id="__codelineno-1-293" name="__codelineno-1-293" href="#__codelineno-1-293"></a>
+<a id="__codelineno-1-294" name="__codelineno-1-294" href="#__codelineno-1-294"></a><span class="sd">            For more information and examples see:</span>
+<a id="__codelineno-1-295" name="__codelineno-1-295" href="#__codelineno-1-295"></a><span class="sd">                https://animatea.github.io/python-multibar/abc/?h=abstractsectormixin</span>
+<a id="__codelineno-1-296" name="__codelineno-1-296" href="#__codelineno-1-296"></a>
+<a id="__codelineno-1-297" name="__codelineno-1-297" href="#__codelineno-1-297"></a><span class="sd">        customer: :class:`Type[AbstractCustomerMixin]`</span>
+<a id="__codelineno-1-298" name="__codelineno-1-298" href="#__codelineno-1-298"></a><span class="sd">            Customer implementation class.</span>
+<a id="__codelineno-1-299" name="__codelineno-1-299" href="#__codelineno-1-299"></a>
+<a id="__codelineno-1-300" name="__codelineno-1-300" href="#__codelineno-1-300"></a><span class="sd">        loop: :class:`Optional[asyncio.AbstractEventLoop]` = None</span>
+<a id="__codelineno-1-301" name="__codelineno-1-301" href="#__codelineno-1-301"></a><span class="sd">            Event loop that used for creating awaitable object and further run in executor.</span>
+<a id="__codelineno-1-302" name="__codelineno-1-302" href="#__codelineno-1-302"></a>
+<a id="__codelineno-1-303" name="__codelineno-1-303" href="#__codelineno-1-303"></a><span class="sd">        **kwargs: :class:`Any`</span>
+<a id="__codelineno-1-304" name="__codelineno-1-304" href="#__codelineno-1-304"></a><span class="sd">            Kwargs that will be passed in custom Container implementation.</span>
+<a id="__codelineno-1-305" name="__codelineno-1-305" href="#__codelineno-1-305"></a>
+<a id="__codelineno-1-306" name="__codelineno-1-306" href="#__codelineno-1-306"></a><span class="sd">            For more information and examples see:</span>
+<a id="__codelineno-1-307" name="__codelineno-1-307" href="#__codelineno-1-307"></a><span class="sd">                https://animatea.github.io/python-multibar/abc/?h=abstractseqbasedcontainermixin</span>
+<a id="__codelineno-1-308" name="__codelineno-1-308" href="#__codelineno-1-308"></a><span class="sd">        &quot;&quot;&quot;</span>
+<a id="__codelineno-1-309" name="__codelineno-1-309" href="#__codelineno-1-309"></a>        <span class="k">if</span> <span class="n">loop</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<a id="__codelineno-1-310" name="__codelineno-1-310" href="#__codelineno-1-310"></a>            <span class="n">loop</span> <span class="o">=</span> <span class="n">asyncio</span><span class="o">.</span><span class="n">get_event_loop</span><span class="p">()</span>
+<a id="__codelineno-1-311" name="__codelineno-1-311" href="#__codelineno-1-311"></a>
+<a id="__codelineno-1-312" name="__codelineno-1-312" href="#__codelineno-1-312"></a>        <span class="k">return</span> <span class="n">cast</span><span class="p">(</span>
+<a id="__codelineno-1-313" name="__codelineno-1-313" href="#__codelineno-1-313"></a>            <span class="n">Coroutine</span><span class="p">[</span><span class="n">ProgressbarContainer</span><span class="p">[</span><span class="n">_AbcSectorT_co</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">],</span>
+<a id="__codelineno-1-314" name="__codelineno-1-314" href="#__codelineno-1-314"></a>            <span class="k">await</span> <span class="n">loop</span><span class="o">.</span><span class="n">run_in_executor</span><span class="p">(</span>
+<a id="__codelineno-1-315" name="__codelineno-1-315" href="#__codelineno-1-315"></a>                <span class="kc">None</span><span class="p">,</span>
+<a id="__codelineno-1-316" name="__codelineno-1-316" href="#__codelineno-1-316"></a>                <span class="n">partial</span><span class="p">(</span>
+<a id="__codelineno-1-317" name="__codelineno-1-317" href="#__codelineno-1-317"></a>                    <span class="bp">self</span><span class="o">.</span><span class="n">write_from_customer</span><span class="p">,</span>
+<a id="__codelineno-1-318" name="__codelineno-1-318" href="#__codelineno-1-318"></a>                    <span class="o">*</span><span class="n">args</span><span class="p">,</span>
+<a id="__codelineno-1-319" name="__codelineno-1-319" href="#__codelineno-1-319"></a>                    <span class="n">customer</span><span class="o">=</span><span class="n">customer</span><span class="p">,</span>
+<a id="__codelineno-1-320" name="__codelineno-1-320" href="#__codelineno-1-320"></a>                    <span class="o">**</span><span class="n">kwargs</span><span class="p">,</span>
+<a id="__codelineno-1-321" name="__codelineno-1-321" href="#__codelineno-1-321"></a>                <span class="p">),</span>
+<a id="__codelineno-1-322" name="__codelineno-1-322" href="#__codelineno-1-322"></a>            <span class="p">),</span>
+<a id="__codelineno-1-323" name="__codelineno-1-323" href="#__codelineno-1-323"></a>        <span class="p">)</span>
 </code></pre></div>
 </details>
 <details class="note">
@@ -647,14 +800,15 @@
 </ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">def</span> <span class="nf">write_progress</span><span class="p">(</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="bp">self</span><span class="p">,</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    <span class="n">fill</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
 <a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>    <span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
 <a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    <span class="n">start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>    <span class="n">unfilled_start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">end</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="n">unfilled_end</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ProgressbarContainer</span><span class="p">[</span><span class="n">AbstractSectorMixin</span><span class="p">]:</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ProgressbarContainer</span><span class="p">[</span><span class="n">AbstractSectorMixin</span><span class="p">]:</span>
 </code></pre></div>
 <h4 id="def-write_progress"><code>def</code> write_progress</h4>
 <div class="admonition info">
@@ -662,16 +816,18 @@
 <p>Function that writes progressbar from certain characters.</p>
 </div>
 <ul>
+<li><strong> *args </strong> (Any) - Args that will be passed in custom Sector implementation.</li>
 <li><strong>fill</strong> (str) - Fill character that uses for non empty sectors.</li>
 <li><strong>line</strong> (str) - Line character for empty sectors.</li>
 <li><strong>start</strong> (Optional[str]) - First progressbar character, default: None.</li>
 <li><strong>unfilled_start</strong> (Optional[str]) - Unfilled first progressbar character, default: None.</li>
 <li><strong>end</strong> (Optional[str]) - Last progressbar character, default: None</li>
 <li><strong>unfilled_end</strong> (Optional[str]) - Unfilled last progressbar character, default: None.</li>
+<li><strong> <code>**kwargs</code> </strong> (Any) - Kwargs that will be passed in custom Container implementation.</li>
 </ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">async_write_progress</span><span class="p">(</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="bp">self</span><span class="p">,</span>
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="n">fill</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
 <a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="n">line</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
 <a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>    <span class="n">start</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
@@ -679,7 +835,8 @@
 <a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="n">end</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="n">unfilled_end</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="n">loop</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">asyncio</span><span class="o">.</span><span class="n">AbstractEventLoop</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Coroutine</span><span class="p">[</span><span class="n">ProgressbarContainer</span><span class="p">[</span><span class="n">_SectorT_co</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Coroutine</span><span class="p">[</span><span class="n">ProgressbarContainer</span><span class="p">[</span><span class="n">_SectorT_co</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
 </code></pre></div>
 <h4 id="async-async_write_progress"><code>async</code> async_write_progress</h4>
 <div class="admonition info">
@@ -687,6 +844,7 @@
 <p>Function that asynchronously writes progressbar from certain characters.</p>
 </div>
 <ul>
+<li><strong> *args </strong> (Any) - Args that will be passed in custom Sector implementation.</li>
 <li><strong>fill</strong> (str) - Fill character that uses for non empty sectors.</li>
 <li><strong>line</strong> (str) - Line character for empty sectors.</li>
 <li><strong>start</strong> (Optional[str]) - First progressbar character, default: None.</li>
@@ -694,12 +852,14 @@
 <li><strong>end</strong> (Optional[str]) - Last progressbar character, default: None</li>
 <li><strong>unfilled_end</strong> (Optional[str]) - Unfilled last progressbar character, default: None.</li>
 <li><strong>loop</strong> (Optional[asyncio.AbstractEventLoop]) - Event loop for making awaitable future from sync.</li>
+<li><strong> <code>**kwargs</code> </strong> (Any) - Kwargs that will be passed in custom Container implementation.</li>
 </ul>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">def</span> <span class="nf">write_from_customer</span><span class="p">(</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    <span class="bp">self</span><span class="p">,</span>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="n">customer</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">AbstractCustomerMixin</span><span class="p">],</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ProgressbarContainer</span><span class="p">[</span><span class="n">_SectorT_co</span><span class="p">]:</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ProgressbarContainer</span><span class="p">[</span><span class="n">_SectorT_co</span><span class="p">]:</span>
 </code></pre></div>
 <h4 id="def-write_from_customer"><code>def</code> write_from_customer</h4>
 <div class="admonition info">
@@ -707,7 +867,9 @@
 <p>Function that writes progressbar from customer class.</p>
 </div>
 <ul>
+<li><strong> *args </strong> (Any) - Args that will be passed in custom Sector implementation.</li>
 <li><strong>customer</strong> (Type[AbstractCustomerMixin]) - Subclass of AbstractCustomerMixin.</li>
+<li><strong> <code>**kwargs</code> </strong> (Any) - Kwargs that will be passed in custom Container implementation.</li>
 </ul>
 <details class="example">
 <summary>Expand example</summary>
@@ -758,10 +920,11 @@
 </details>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">async</span> <span class="k">def</span> <span class="nf">async_write_from_customer</span><span class="p">(</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    <span class="bp">self</span><span class="p">,</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="o">*</span><span class="p">,</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
 <a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>    <span class="n">customer</span><span class="p">:</span> <span class="n">Type</span><span class="p">[</span><span class="n">AbstractCustomerMixin</span><span class="p">],</span>
 <a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="n">loop</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">asyncio</span><span class="o">.</span><span class="n">AbstractEventLoop</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Coroutine</span><span class="p">[</span><span class="n">ProgressbarContainer</span><span class="p">[</span><span class="n">AbstractSectorMixin</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>    <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Coroutine</span><span class="p">[</span><span class="n">ProgressbarContainer</span><span class="p">[</span><span class="n">AbstractSectorMixin</span><span class="p">],</span> <span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
 </code></pre></div>
 <h4 id="async-async_write_from_customer"><code>async</code> async_write_from_customer</h4>
 <div class="admonition info">
@@ -769,8 +932,10 @@
 <p>Function that asynchronously writes progressbar from customer class.</p>
 </div>
 <ul>
+<li><strong> *args </strong> (Any) - Args that will be passed in custom Sector implementation.</li>
 <li><strong>customer</strong> (Type[AbstractCustomerMixin]) - Subclass of AbstractCustomerMixin.</li>
 <li><strong>loop</strong> (Optional[asyncio.AbstractEventLoop]) - Event loop for making awaitable future from sync.</li>
+<li><strong> <code>**kwargs</code> </strong> (Any) - Kwargs that will be passed in custom Container implementation.</li>
 </ul>
 
               

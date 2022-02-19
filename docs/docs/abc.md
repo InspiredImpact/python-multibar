@@ -8,7 +8,7 @@ class AbstractSectorMixin(
     class AbstractSectorMixin(Comparable, Representable, abc.ABC):
         __slots__ = ("name", "position", "empty")
 
-        def __init__(self, name: str, position: int, empty: bool) -> None:
+        def __init__(self, *, name: str, position: int, empty: bool) -> None:
             self.name = name
             self.position = position
             self.empty = empty
@@ -72,15 +72,28 @@ class AbstractSeqBasedContainerMixin()
 
 ??? abstract "Expand source code"
     ```py
-    class AbstractSeqBasedContainerMixin(Representable, Sized, abc.ABC, Generic[T_co]):
+    class AbstractSeqBasedContainerMixin(Representable, Sized, abc.ABC, Generic[T]):
+        """``abc mixin``
+        Class that is abstract mixin for subclassing
+        (creating custom Container implementations).
+        """
+
+        @overload
+        def __getitem__(self, item: int) -> T:
+            ...
+
+        @overload
+        def __getitem__(self, item: slice) -> Iterable[T]:
+            ...
+
         @abc.abstractmethod
         def __getitem__(
             self,
             item: Union[int, slice],
-        ) -> Union[Iterable[T_co], T_co]:
+        ) -> Union[Iterable[T], T]:
             ...
 
-        def __enter__(self) -> AbstractSeqBasedContainerMixin[T_co]:
+        def __enter__(self) -> AbstractSeqBasedContainerMixin[T]:
             return self
 
         @overload
@@ -105,16 +118,27 @@ class AbstractSeqBasedContainerMixin()
             self.finalize()
 
         def finalize(self) -> None:
-            ...
+            """``sync method``
+            Called in `__exit__` method.
+            """
 
         @abc.abstractmethod
-        def put(self, item: T_co) -> None:
-            ...
+        def put(self, item: T) -> None:
+            """``abc method``
+            Puts item to storage.
+
+            Parameters:
+            -----------
+            item: :class:`~T`
+                Any item to storage.
+            """
 
         @property
         @abc.abstractmethod
-        def view(self) -> Iterable[T_co]:
-            ...
+        def view(self) -> Iterable[T]:
+            """``abc method``
+            Returns iterator over :class:`~T`
+            """
     ```
 
 !!! info

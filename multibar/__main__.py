@@ -75,5 +75,4 @@ def parse_results(namespace: Any) -> str:
 
 if __name__ == "__main__":
     result = parse_results(create_parser().parse_args())
-    stdout = sys.stdout
-    stdout.write(result + "\n")
+    sys.stdout.write(result + "\n")

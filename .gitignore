@@ -6,6 +6,8 @@ __pycache__/
 # C extensions
 *.so
 
+docs/site/
+
 # Testing files
 __test__.py
 *.in_testing

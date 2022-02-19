@@ -20,18 +20,31 @@ from multibar.interfaces.collections import Representable
 if TYPE_CHECKING:
     from types import TracebackType
 
-T_co = TypeVar("T_co", covariant=True)
+T = TypeVar("T")
 
 
-class AbstractSeqBasedContainerMixin(Representable, Sized, abc.ABC, Generic[T_co]):
+class AbstractSeqBasedContainerMixin(Representable, Sized, abc.ABC, Generic[T]):
+    """``abc mixin``
+    Class that is abstract mixin for subclassing
+    (creating custom Container implementations).
+    """
+
+    @overload
+    def __getitem__(self, item: int) -> T:
+        ...
+
+    @overload
+    def __getitem__(self, item: slice) -> Iterable[T]:
+        ...
+
     @abc.abstractmethod
     def __getitem__(
         self,
         item: Union[int, slice],
-    ) -> Union[Iterable[T_co], T_co]:
+    ) -> Union[Iterable[T], T]:
         ...
 
-    def __enter__(self) -> AbstractSeqBasedContainerMixin[T_co]:
+    def __enter__(self) -> AbstractSeqBasedContainerMixin[T]:
         return self
 
     @overload
@@ -56,13 +69,24 @@ class AbstractSeqBasedContainerMixin(Representable, Sized, abc.ABC, Generic[T_co
         self.finalize()
 
     def finalize(self) -> None:
-        ...
+        """``sync method``
+        Called in `__exit__` method.
+        """
 
     @abc.abstractmethod
-    def put(self, item: T_co) -> None:
-        ...
+    def put(self, item: T) -> None:
+        """``abc method``
+        Puts item to storage.
+
+        Parameters:
+        -----------
+        item: :class:`~T`
+            Any item to storage.
+        """
 
     @property
     @abc.abstractmethod
-    def view(self) -> Iterable[T_co]:
-        ...
+    def view(self) -> Iterable[T]:
+        """``abc method``
+        Returns iterator over :class:`~T`
+        """

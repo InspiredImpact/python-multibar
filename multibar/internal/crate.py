@@ -6,24 +6,45 @@ from collections.abc import Sized
 from dataclasses import dataclass, field
 from typing import Any, Generic, Iterable, List, Literal, TypeVar, Union, cast, overload
 
+from multibar.interfaces.collections import Comparable
 from multibar.interfaces.containers import AbstractSeqBasedContainerMixin
 from multibar.interfaces.product import AbstractSectorMixin
 
 
 @dataclass(frozen=True)
 class ProgressContainer:
+    """``dataclass``
+    Class that represents current progress state.
+
+    Parameters:
+    -----------
+    current: :class:`int`
+        Current progress value.
+
+    total: :class:`int`
+        Needed progress value.
+    """
+
     current: int
     total: int
 
     @overload
     def percents(self, *, allow_float: Literal[False]) -> int:
-        ...
+        """If :allow_float: False, will return :class:`int`"""
 
     @overload
     def percents(self, *, allow_float: Literal[True]) -> float:
-        ...
+        """If :allow_float: True, will return :class:`float`"""
 
     def percents(self, *, allow_float: bool = False) -> Union[int, float]:
+        """``sync method``
+        Returns percentage of current progress.
+
+        Parameters:
+        -----------
+        allow_float: :class:`bool`
+            If True, will return :class:`float`, otherwise - :class:`int`.
+        """
         initial = (self.current / self.total) * 100
         if allow_float:
             return initial
@@ -35,19 +56,34 @@ _AbcSectorT_co = TypeVar("_AbcSectorT_co", bound=AbstractSectorMixin, covariant=
 
 
 @dataclass(frozen=True, order=True)
-class ProgressbarContainer(Sized, Generic[_AbcSectorT_co]):
+class ProgressbarContainer(Comparable, Sized, Generic[_AbcSectorT_co]):
+    """``dataclass``
+    Class that represents progressbar state.
+
+    Parameters:
+    -----------
+    length: :class:`int`
+        Length of progress bar.
+
+    state: :class:`ProgressContainer`
+        Progress state.
+
+    bar: :class:`AbstractSeqBasedContainerMixin[_AbcSectorT_co]`
+        Progress bar container.
+    """
+
     length: int
-    progress: ProgressContainer
+    state: ProgressContainer
     bar: AbstractSeqBasedContainerMixin[_AbcSectorT_co] = field(repr=False)
 
     def __eq__(self, other: Any) -> bool:
         if isinstance(other, ProgressbarContainer):
-            return (
-                self.progress.current == other.progress.current
-                and self.progress.total == other.progress.total
-            )
+            return self.state.current == other.state.current and self.state.total == other.state.total
 
         return NotImplemented
+
+    def __hash__(self) -> int:
+        return hash((self.state.current, self.state.total))
 
     def __len__(self) -> int:
         return len(self.bar)
@@ -75,6 +111,10 @@ class ProgressbarContainer(Sized, Generic[_AbcSectorT_co]):
 
 @dataclass
 class SectorContainer(AbstractSeqBasedContainerMixin[_AbcSectorT_co]):
+    """``dataclass``
+    Simple implementation of sequence-based Sector container.
+    """
+
     def __post_init__(self) -> None:
         self._storage: List[_AbcSectorT_co] = []
 

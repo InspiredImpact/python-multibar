@@ -11,7 +11,7 @@ def long_description() -> str:
 
 setuptools.setup(
     name="python-multibar",
-    version="2.1.0",
+    version="3.0.0",
     keywords=[
         "PYTHON",
         "PYTHON3",

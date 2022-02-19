@@ -6,6 +6,7 @@ nav:
     - Hooks: hooks.md
     - Abstract: abc.md
     - 'Crate objects': crate.md
+    - CLI: cli.md
 
 theme:
   name: material
@@ -36,7 +37,7 @@ theme:
     - search.highlight
     - header.autohide
 
-edit_uri: https://github.com/Animatea/python-multibar
+edit_uri: https://github.com/Animatea/python-multibar/docs/docs
 
 extra:
   social:

@@ -7,7 +7,8 @@
 [![PEP8](https://img.shields.io/badge/flake8-checked-blue.svg)](https://www.python.org/dev/peps/pep-0008/)
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 ![TOTAL LINES](https://img.shields.io/tokei/lines/github/Animatea/python-multibar)
-![Build](https://app.travis-ci.com/Animatea/python-multibar.svg?branch=master)
+
+
 </div>
 <div align="center">
     <a href="https://discord.com/invite/KKUFRZCt4f"><img src="https://discordapp.com/api/guilds/744099317836677161/widget.png?style=banner2" alt="" /></a>

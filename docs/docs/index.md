@@ -9,7 +9,7 @@ pip3 install python-multibar
 ```
 
 ```bash title="Install with GitHub"
-pip3 install -U git+https://github.com/Animatea/python-multibar.git#master
+pip3 install -U git+https://github.com/Animatea/python-multibar.git#main
 ```
 
 ## What python-multibar do?

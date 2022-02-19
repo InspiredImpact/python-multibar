@@ -5,6 +5,7 @@
 <a href="https://github.com/psf/black"><img height="20" alt="Black" src="https://img.shields.io/badge/code%20style-black-000000.svg"></a>
 <a href="https://pycqa.github.io/isort/"><img height="20" alt="Isort" src="https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&labelColor=ef8336"></a>
 <a href="https://pypi.org/project/python-multibar/"><img height="20" alt="Pypi" src="https://img.shields.io/pypi/v/python-multibar"></a>
+<a href="https://circleci.com/gh/Animatea/python-multibar/tree/main"><img height="20" alt="Circle CI" src="https://circleci.com/gh/Animatea/python-multibar/tree/main.svg?style=svg"></a>
 <br>
 <a href="https://pypi.org/project/python-multibar/"><img height="20" alt="Flake8" src="https://img.shields.io/badge/flake8-checked-blue.svg"></a>
 <a href="https://pypi.org/project/mypy/"><img height="20" alt="Mypy badge" src="http://www.mypy-lang.org/static/mypy_badge.svg"></a>

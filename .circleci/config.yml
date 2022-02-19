@@ -18,7 +18,7 @@ jobs:
           name: run tests
           command: |
             . venv/bin/activate
-            pytest test_basics
+            pytest
       # Saving test results.
       - run:
           name: Creating Dummy Artifacts

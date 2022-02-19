@@ -20,15 +20,10 @@
     - [Using github](#-using-github)
     - [Using pypi](#-using-pypi)
 - [Quickstart](#-quickstart)
-- [Flags](#-flags)
 - [Useful links](#-useful-links)
   - [Documentation](#-documentation)
   - [Pypi](#-pypi)
   - [Changelog](#-changelog)
-- [TODO](#-todo)
-- [Contributing](#-contributing)
-- [FAQ](#-faq)
-    - [Bar structure](#-bar-structure)
 
 ----------------------------------------
 

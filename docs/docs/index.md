@@ -14,7 +14,6 @@ pip3 install -U git+https://github.com/Animatea/python-multibar.git#main
 
 ## What python-multibar do?
 !!! info
-
     - [x] Flexible generating static bars.
     - [x] Generating static bars in CLI.
     - [x] The ability to customize.

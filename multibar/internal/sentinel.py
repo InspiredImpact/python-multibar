@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-__all__ = ["sentinel", "MISSING", "MissingOr"]
+__all__ = ["Sentinel", "MISSING", "MissingOr"]
 
 from typing import (
     TYPE_CHECKING,

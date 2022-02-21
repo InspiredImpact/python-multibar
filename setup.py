@@ -11,7 +11,7 @@ def long_description() -> str:
 
 setuptools.setup(
     name="python-multibar",
-    version="3.0.0",
+    version="3.0.1",
     keywords=[
         "PYTHON",
         "PYTHON3",
@@ -33,8 +33,7 @@ setuptools.setup(
     url="https://github.com/Animatea/python-multibar",
     download_url="https://github.com/Animatea/python-multibar/archive/refs/heads/master.zip",
     project_urls={
-        "Documentation": "https://app.gitbook.com/@denys111/s/python-multibar/",
-        "Examples": "https://github.com/Animatea/python-multibar/tree/master/examples",
+        "Documentation": "https://animatea.github.io/python-multibar/",
         "Bug Tracker": "https://github.com/Animatea/python-multibar/issues",
     },
     classifiers=[

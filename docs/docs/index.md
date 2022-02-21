@@ -5,7 +5,7 @@
 
 ## Installation
 ```bash title="Install with PyPi"
-pip3 install python-multibar
+pip3 install -U python-multibar
 ```
 
 ```bash title="Install with GitHub"

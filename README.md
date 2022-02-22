@@ -21,6 +21,7 @@
     - [Using github](#-using-github)
     - [Using pypi](#-using-pypi)
 - [Quickstart](#-quickstart)
+- [Plugins](#-plugins)
 - [Useful links](#-useful-links)
   - [Documentation](#-documentation)
   - [Pypi](#-pypi)
@@ -49,6 +50,14 @@ $ pip3 install -U python-multibar
 >>> progress.bar[0].position
 0
 ```
+
+## ⚙️ Plugins
+The following plugins are currently UNDER DEVELOPMENT:
+- https://github.com/Animatea/multibar-http
+- https://github.com/Animatea/multibar-discord
+
+Note:
+If you want to add your plugin and its implementation will comply with the basic code standards, then you can open https://github.com/Animatea/multibar-discord/issues
 
 ## 🔗 Useful links
 #### 📚 documentation

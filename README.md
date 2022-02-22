@@ -57,7 +57,7 @@ The following plugins are currently UNDER DEVELOPMENT:
 - https://github.com/Animatea/multibar-discord
 
 Note:
-If you want to add your plugin and its implementation will comply with the basic code standards, then you can open https://github.com/Animatea/multibar-discord/issues
+If you want to add your plugin and its implementation will comply with the basic code standards, then you can open https://github.com/Animatea/python-multibar/issues
 
 ## 🔗 Useful links
 #### 📚 documentation

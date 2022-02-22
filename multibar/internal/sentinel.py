@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-__all__ = ["Sentinel", "MISSING", "MissingOr"]
+__all__ = ["Sentinel", "MISSING", "MissingOr", "MissingNoneOr"]
 
 from typing import (
     TYPE_CHECKING,
@@ -62,3 +62,4 @@ MISSING = Sentinel.new("MISSING")
 
 T = TypeVar("T")
 MissingOr = Union[T, Sentinel]
+MissingNoneOr = Union[MissingOr[T], None]

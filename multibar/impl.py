@@ -11,14 +11,13 @@ from multibar.flags import FillFlag
 from multibar.interfaces.containers import AbstractSeqBasedContainerMixin
 from multibar.interfaces.customer import AbstractCustomerMixin
 from multibar.interfaces.product import AbstractSectorMixin
-from multibar.internal.crate import (
-    ProgressbarContainer,
-    ProgressContainer,
-    SectorContainer,
-)
+from multibar.internal.crate import ProgressbarContainer
+from multibar.internal.crate import ProgressContainer
+from multibar.internal.crate import SectorContainer
 from multibar.internal.factories import SphinxSectorFactory
 from multibar.internal.product import Sector
 from multibar.pytypes import NoneType, NotImplementedType
+from multibar.internal.sentinel import MissingOr, MISSING, Sentinel
 
 _AbcSectorT_co = TypeVar("_AbcSectorT_co", bound=AbstractSectorMixin, covariant=True)
 _AbcContainerT_co = TypeVar("_AbcContainerT_co", bound=AbstractSeqBasedContainerMixin[Any], covariant=True)
@@ -54,15 +53,15 @@ class ProgressBar(Generic[_AbcSectorT_co, _AbcContainerT_co]):
     length: :class:`int` = 20
         Length of progress bar.
 
-    sector_cls: :class:`Optional[Type[AbstractSectorMixin]]` = None
+    sector_cls: :class:`MissingOr[Type[AbstractSectorMixin]]` = MISSING
         Custom Sector implementation.
 
         For more information and examples see:
             https://animatea.github.io/python-multibar/abc/?h=abstractsectormixin
 
-    container_cls: :class:`Optional[
+    container_cls: :class:`MissingOr[
         Type[AbstractSeqBasedContainerMixin[AbstractSectorMixin]]
-    ] = None`
+    ] = MISSING`
         Custom container implementation.
 
         For more information and examples see:
@@ -72,19 +71,19 @@ class ProgressBar(Generic[_AbcSectorT_co, _AbcContainerT_co]):
     current: int
     total: int
     length: int = 20
-    sector_cls: Optional[Type[_AbcSectorT_co]] = None
-    container_cls: Optional[Type[_AbcContainerT_co]] = None
+    sector_cls: MissingOr[Type[_AbcSectorT_co]] = MISSING
+    container_cls: MissingOr[Type[_AbcContainerT_co]] = MISSING
 
     def __post_init__(self) -> None:
         assert self.current >= 0, "Current progress cannot be less than 0."
         assert self.current <= self.total, "Current progress cannot be more than total progress."
 
-        if self.container_cls is None:
+        if self.container_cls is MISSING:
             self.container_cls = SectorContainer  # type: ignore[assignment]
 
         self.factory: SphinxSectorFactory[AbstractSectorMixin] = SphinxSectorFactory.from_bind(
             sector_type=cast(
-                Type[AbstractSectorMixin], Sector if self.sector_cls is None else self.sector_cls
+                Type[AbstractSectorMixin], Sector if self.sector_cls is MISSING else self.sector_cls
             )
         )
 
@@ -93,10 +92,10 @@ class ProgressBar(Generic[_AbcSectorT_co, _AbcContainerT_co]):
         *args: Any,
         fill: str,
         line: str,
-        start: Optional[str] = None,
-        unfilled_start: Optional[str] = None,
-        end: Optional[str] = None,
-        unfilled_end: Optional[str] = None,
+        start: MissingOr[str] = MISSING,
+        unfilled_start: MissingOr[str] = MISSING,
+        end: MissingOr[str] = MISSING,
+        unfilled_end: MissingOr[str] = MISSING,
         **kwargs: Any,
     ) -> ProgressbarContainer[_AbcSectorT_co]:
         # TODO: Maybe adapter?
@@ -122,16 +121,16 @@ class ProgressBar(Generic[_AbcSectorT_co, _AbcContainerT_co]):
             !!! Abstract:
                 This symbol is used on last (second) fill (depending on progress).
 
-        start: :class:`Optional[str]` = None
+        start: :class:`MissingOr[str]` = MISSING
             If passed, will replace first FILLED emoji of progress bar (depending on progress).
 
-        unfilled_start: :class:`Optional[str]` = None
+        unfilled_start: :class:`MissingOr[str]` = MISSING
             If passed, will replace first EMPTY emoji of progress bar (depending on progress).
 
-        end: :class:`Optional[str]` = None
+        end: :class:`MissingOr[str]` = MISSING
             If passed, will replace last FILLED emoji of progress bar (depending on progress).
 
-        unfilled_end: :class:`Optional[str]` = None
+        unfilled_end: :class:`MissingOr[str]` = MISSING
             If passed, will replace last EMPTY emoji of progress bar (depending on progress).
 
         **kwargs: :class:`Any`
@@ -142,7 +141,7 @@ class ProgressBar(Generic[_AbcSectorT_co, _AbcContainerT_co]):
         """
         progress = ProgressContainer(self.current, self.total)
         percents = progress.percents(allow_float=False)
-        assert self.container_cls is not None
+        assert self.container_cls is not MISSING
 
         with self.container_cls() as container:
             for i in range(rest := (round(percents / (100 / self.length)))):
@@ -168,21 +167,21 @@ class ProgressBar(Generic[_AbcSectorT_co, _AbcContainerT_co]):
                 )
 
             # Add `unfilled_start` if it is specified and none of the sectors is yet filled.
-            if unfilled_start is not None and percents < FillFlag.FIRST:
+            if unfilled_start is not MISSING and percents < FillFlag.FIRST:
                 container[0].name = unfilled_start
 
             # Otherwise, if `start` is specified, it will be added to the beginning.
-            elif percents >= FillFlag.FIRST and start is not None:
+            elif percents >= FillFlag.FIRST and start is not MISSING:
                 container[0].name = start
 
             # If `unfilled_end` is specified and the last sector is not filled, then the
             # corresponding character will be added to the end of the progress bar.
-            if unfilled_end is not None and percents < FillFlag.LAST:
+            if unfilled_end is not MISSING and percents < FillFlag.LAST:
                 container[-1].name = unfilled_end
 
             # Otherwise, if end is specified, the character corresponding to the
             # given argument will be appended to the end of the progressbar.
-            elif percents >= FillFlag.LAST and end is not None:
+            elif percents >= FillFlag.LAST and end is not MISSING:
                 container[-1].name = end
 
             return ProgressbarContainer(
@@ -196,11 +195,11 @@ class ProgressBar(Generic[_AbcSectorT_co, _AbcContainerT_co]):
         *args: Any,
         fill: str,
         line: str,
-        start: Optional[str] = None,
-        unfilled_start: Optional[str] = None,
-        end: Optional[str] = None,
-        unfilled_end: Optional[str] = None,
-        loop: Optional[asyncio.AbstractEventLoop] = None,
+        start: Optional[str] = MISSING,
+        unfilled_start: Optional[str] = MISSING,
+        end: Optional[str] = MISSING,
+        unfilled_end: Optional[str] = MISSING,
+        loop: Optional[asyncio.AbstractEventLoop] = MISSING,
         **kwargs: Any,
     ) -> Coroutine[ProgressbarContainer[_AbcSectorT_co], None, None]:
         """``sync method``
@@ -224,19 +223,19 @@ class ProgressBar(Generic[_AbcSectorT_co, _AbcContainerT_co]):
             !!! Abstract:
                 This symbol is used on last (second) fill (depending on progress).
 
-        start: :class:`Optional[str]` = None
+        start: :class:`MissingOr[str]` = MISSING
             If passed, will replace first FILLED emoji of progress bar (depending on progress).
 
-        unfilled_start: :class:`Optional[str]` = None
+        unfilled_start: :class:`MissingOr[str]` = MISSING
             If passed, will replace first EMPTY emoji of progress bar (depending on progress).
 
-        end: :class:`Optional[str]` = None
+        end: :class:`MissingOr[str]` = MISSING
             If passed, will replace last FILLED emoji of progress bar (depending on progress).
 
-        unfilled_end: :class:`Optional[str]` = None
+        unfilled_end: :class:`MissingOr[str]` = MISSING
             If passed, will replace last EMPTY emoji of progress bar (depending on progress).
 
-        loop: :class:`Optional[asyncio.AbstractEventLoop]` = None
+        loop: :class:`MissingOr[asyncio.AbstractEventLoop]` = MISSING
             Event loop that used for creating awaitable object and further run in executor.
 
         **kwargs: :class:`Any`
@@ -245,7 +244,7 @@ class ProgressBar(Generic[_AbcSectorT_co, _AbcContainerT_co]):
             For more information and examples see:
                 https://animatea.github.io/python-multibar/abc/?h=abstractseqbasedcontainermixin
         """
-        if loop is None:
+        if loop is MISSING:
             loop = asyncio.get_event_loop()
 
         return cast(
@@ -296,7 +295,7 @@ class ProgressBar(Generic[_AbcSectorT_co, _AbcContainerT_co]):
         kwargs_new = {}
         for as_str in AbstractCustomerMixin.__abstractmethods__:
             progress_char = getattr(customer, as_str)(customer, ctx)
-            if not isinstance(progress_char, (NotImplementedType, NoneType)):
+            if not isinstance(progress_char, (Sentinel, NotImplementedType, NoneType)):
                 kwargs_new[as_str] = progress_char
 
         kwargs.update(kwargs_new)
@@ -306,7 +305,7 @@ class ProgressBar(Generic[_AbcSectorT_co, _AbcContainerT_co]):
         self,
         *args: Any,
         customer: Type[AbstractCustomerMixin],
-        loop: Optional[asyncio.AbstractEventLoop] = None,
+        loop: MissingOr[asyncio.AbstractEventLoop] = MISSING,
         **kwargs: Any,
     ) -> Coroutine[ProgressbarContainer[_AbcSectorT_co], None, None]:
         """``sync method``
@@ -323,7 +322,7 @@ class ProgressBar(Generic[_AbcSectorT_co, _AbcContainerT_co]):
         customer: :class:`Type[AbstractCustomerMixin]`
             Customer implementation class.
 
-        loop: :class:`Optional[asyncio.AbstractEventLoop]` = None
+        loop: :class:`MissingOr[asyncio.AbstractEventLoop]` = MISSING
             Event loop that used for creating awaitable object and further run in executor.
 
         **kwargs: :class:`Any`
@@ -332,7 +331,7 @@ class ProgressBar(Generic[_AbcSectorT_co, _AbcContainerT_co]):
             For more information and examples see:
                 https://animatea.github.io/python-multibar/abc/?h=abstractseqbasedcontainermixin
         """
-        if loop is None:
+        if loop is MISSING:
             loop = asyncio.get_event_loop()
 
         return cast(

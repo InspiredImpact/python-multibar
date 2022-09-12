@@ -1,87 +1,28 @@
 from __future__ import annotations
-import abc
+
+__all__ = ("Hooks", "WRITER_HOOKS",)
+
 import typing
 
-from . import types as progress_types
+from multibar import types as progress_types
+from multibar.api import hooks
 
 if typing.TYPE_CHECKING:
-    from . import writers
-
-    HookSignatureType: typing.TypeAlias = typing.Callable[..., typing.Optional[bool]]
-
-
-class UnboundError(Exception):
-    pass
+    from multibar.api import clients
+    from multibar.api.hooks import HookSignatureType
 
 
-class HooksAware(abc.ABC):
-    __slots__ = ()
-
-    def __or__(self, other: typing.Any) -> typing.Any:
-        if not isinstance(other, HooksAware):
-            return NotImplemented
-
-        self.on_error_hooks.extend(other.on_error_hooks)
-        self.post_execution_hooks.extend(other.post_execution_hooks)
-        self.pre_execution_hooks.extend(other.pre_execution_hooks)
-
-        return self
-
-    @abc.abstractmethod
-    def add_to_writer(self, writer: writers.ProgressbarWriterAware, /) -> HooksAware:
-        ...
-
-    @abc.abstractmethod
-    def add_pre_execution(self, callback: HookSignatureType, /) -> HooksAware:
-        ...
-
-    @abc.abstractmethod
-    def add_post_execution(self, callback: HookSignatureType, /) -> HooksAware:
-        ...
-
-    @abc.abstractmethod
-    def add_on_error(self, callback: HookSignatureType, /) -> HooksAware:
-        ...
-
-    @abc.abstractmethod
-    def trigger_post_execution(self, *args: typing.Any, **kwargs: typing.Any) -> None:
-        ...
-
-    @abc.abstractmethod
-    def trigger_pre_execution(self, *args: typing.Any, **kwargs: typing.Any) -> None:
-        ...
-
-    @abc.abstractmethod
-    def trigger_on_error(self, *args: typing.Any, **kwargs: typing.Any) -> None:
-        ...
-
-    @property
-    @abc.abstractmethod
-    def pre_execution_hooks(self) -> list[HookSignatureType]:
-        ...
-
-    @property
-    @abc.abstractmethod
-    def post_execution_hooks(self) -> list[HookSignatureType]:
-        ...
-
-    @property
-    @abc.abstractmethod
-    def on_error_hooks(self) -> list[HookSignatureType]:
-        ...
-
-
-class Hooks(HooksAware):
+class Hooks(hooks.HooksAware):
     def __init__(self) -> None:
         self._on_error_hooks: list[HookSignatureType] = []
         self._pre_execution_hooks: list[HookSignatureType] = []
         self._post_execution_hooks: list[HookSignatureType] = []
 
-    def add_to_writer(self, writer: writers.HookedProgressbarWriterAware, /) -> Hooks:
-        if writer.hooks is None:
-            writer.set_hooks(self)
+    def add_to_client(self, client: clients.ProgressbarClientAware, /) -> Hooks:
+        if client.hooks is None:
+            client.set_hooks(self)
         else:
-            writer.update_hooks(self)
+            client.update_hooks(self)
 
         return self
 

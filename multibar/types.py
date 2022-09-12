@@ -2,9 +2,9 @@ from __future__ import annotations
 import typing
 
 if typing.TYPE_CHECKING:
-    from . import progressbars
-    from . import signatures
-    from . import calculation_service
+    from multibar.api import progressbars
+    from multibar.api import calculation_service
+    from multibar.api import signatures
 
 
 class ProgressMetadataType(typing.TypedDict, total=False):

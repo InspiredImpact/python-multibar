@@ -31,12 +31,16 @@ if typing.TYPE_CHECKING:
     HeadingLevelThreeType: typing.TypeAlias = typing.Literal[3]
 
     OutputTypes: typing.TypeAlias = typing.Union[
-        ErrorType, WarningType, SuccessType,
+        ErrorType,
+        WarningType,
+        SuccessType,
     ]
     ColorsType: typing.TypeAlias = typing.Literal["red", "green", "yellow"]
 
     HeadingLevelsType: typing.TypeAlias = typing.Union[
-        HeadingLevelOneType, HeadingLevelTwoType, HeadingLevelThreeType,
+        HeadingLevelOneType,
+        HeadingLevelTwoType,
+        HeadingLevelThreeType,
     ]
 
 _PRINTER_KEY: typing.Final[typing.Literal["PRINTER"]] = "PRINTER"
@@ -123,7 +127,10 @@ class Output:
         newline: bool = True,
     ) -> None:
         self.printer.print(
-            text, bold=bold, color=color, newline=newline,
+            text,
+            bold=bold,
+            color=color,
+            newline=newline,
         )
 
     @impure

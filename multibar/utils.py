@@ -9,16 +9,12 @@ FunctionT = typing.TypeVar("FunctionT", bound=types.FunctionType)
 
 
 @typing.overload
-def none_or(
-    alternative: _AlternativeT, actual: typing.Literal[None], /
-) -> _AlternativeT:
+def none_or(alternative: _AlternativeT, actual: typing.Literal[None], /) -> _AlternativeT:
     ...
 
 
 @typing.overload
-def none_or(
-    alternative: _AlternativeT, actual: _ActualT, /
-) -> _ActualT:
+def none_or(alternative: _AlternativeT, actual: _ActualT, /) -> _ActualT:
     ...
 
 
@@ -35,7 +31,9 @@ class cached_property:
         self.func = func
 
     def __get__(
-        self, instance: object, owner: typing.Optional[typing.Type[typing.Any]] = None,
+        self,
+        instance: object,
+        owner: typing.Optional[typing.Type[typing.Any]] = None,
     ) -> typing.Any:
         if not hasattr(instance, "__dict__"):
             # For correct execution of cls.update_cache_for

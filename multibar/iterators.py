@@ -22,13 +22,19 @@ class AbstractIterator(typing.Generic[T_co], abc.ABC):
 
     @typing.overload
     def indexes(
-        self, *, start: int, conversion: typing.Optional[typing.Callable[[T_co], typing.Any]],
+        self,
+        *,
+        start: int,
+        conversion: typing.Optional[typing.Callable[[T_co], typing.Any]],
     ) -> AbstractIterator[int]:
         ...
 
     @typing.final
     def indexes(
-        self, *, start: int = 0, conversion: typing.Optional[typing.Callable[[T_co], typing.Any]] = None,
+        self,
+        *,
+        start: int = 0,
+        conversion: typing.Optional[typing.Callable[[T_co], typing.Any]] = None,
     ) -> AbstractIterator[int]:
         return _ConvertableIndexIterator(self, start=start, conversion=conversion)
 

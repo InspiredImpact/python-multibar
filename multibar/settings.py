@@ -24,7 +24,9 @@ class Settings:
         return self.copy()
 
     def __deepcopy__(
-        self, memodict: typing.Optional[typing.MutableMapping[typing.Hashable, typing.Any]] = None, /,
+        self,
+        memodict: typing.Optional[typing.MutableMapping[typing.Hashable, typing.Any]] = None,
+        /,
     ) -> Settings:
         return self.deepcopy(memodict)
 

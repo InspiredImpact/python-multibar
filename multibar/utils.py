@@ -1,4 +1,4 @@
-__all__ = ["none_or"]
+__all__ = ["none_or", "cached_property"]
 
 import typing
 
@@ -33,15 +33,9 @@ class cached_property:
         instance: object,
         owner: typing.Optional[typing.Type[typing.Any]] = None,
     ) -> typing.Any:
-        if not hasattr(instance, "__dict__"):
-            # For correct execution of cls.update_cache_for
-            return self.func
         result = instance.__dict__[self.func.__name__] = self.func(instance)
         return result
 
     @classmethod
-    def update_cache_for(cls, state: object, prop_name: str) -> None:
-        state_type = type(state)
-        origin = getattr(state_type, prop_name)
-        delattr(state, prop_name)
-        setattr(state_type, prop_name, cls(origin))
+    def update_cache_for(cls, state: object, prop_name: str, /) -> None:
+        del state.__dict__[prop_name]

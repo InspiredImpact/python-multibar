@@ -10,7 +10,6 @@ import typing
 from returns.io import IO
 
 from multibar import errors, output
-from multibar import types as progress_types
 from multibar.api import contracts
 
 

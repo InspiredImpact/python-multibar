@@ -8,7 +8,7 @@ from .signatures import *
 from .writers import *
 
 __all__ = (
-    "CalculationServiceAware",
+    "AbstractCalculationService",
     "ProgressbarClientAware",
     "ContractAware",
     "ContractCheck",
@@ -16,7 +16,7 @@ __all__ = (
     "HookSignatureType",
     "HooksAware",
     "ProgressbarAware",
-    "SectorAware",
+    "AbstractSector",
     "SignatureSegmentProtocol",
     "ProgressbarSignatureProtocol",
     "ProgressbarWriterAware",

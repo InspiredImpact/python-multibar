@@ -6,11 +6,7 @@ if typing.TYPE_CHECKING:
     from multibar.api import calculation_service, progressbars, sectors, signatures
 
 
-class ContractMetadata(typing.TypedDict, total=False):
-    pass
-
-
-class ProgressMetadataType(ContractMetadata, total=False):
+class ProgressMetadataType(typing.TypedDict, total=False):
     start_value: int
     end_value: int
     length: int

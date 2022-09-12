@@ -10,22 +10,17 @@ if typing.TYPE_CHECKING:
     from multibar.api import progressbars
 
 
-class Sector(sectors.SectorAware):
-    def __init__(self, name: typing.AnyStr, is_filled: bool, position: int) -> None:
-        self._name = name
-        self._is_filled = is_filled
-        self._position = position
-
+class Sector(sectors.AbstractSector):
     def add_to_progressbar(self: Sector, progressbar: progressbars.ProgressbarAware[Sector], /) -> Sector:
         progressbar.add_sector(self)
         return self
 
-    def change_name(self, value: str, /) -> Sector:
+    def change_name(self, value: typing.Union[str, bytes], /) -> Sector:
         self._name = value
         return self
 
     @property
-    def name(self) -> typing.AnyStr:
+    def name(self) -> typing.Union[str, bytes]:
         return self._name
 
     @property

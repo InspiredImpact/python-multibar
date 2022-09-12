@@ -1,11 +1,9 @@
 __all__ = ["none_or"]
 
-import types
 import typing
 
 _ActualT = typing.TypeVar("_ActualT")
 _AlternativeT = typing.TypeVar("_AlternativeT")
-FunctionT = typing.TypeVar("FunctionT", bound=types.FunctionType)
 
 
 @typing.overload
@@ -27,7 +25,7 @@ def none_or(
 
 
 class cached_property:
-    def __init__(self, func: FunctionT, /) -> None:
+    def __init__(self, func: typing.Callable[..., typing.Any], /) -> None:
         self.func = func
 
     def __get__(

@@ -4,19 +4,19 @@ __all__ = ("ProgressbarClient",)
 
 import typing
 
-from multibar import utils
 from multibar import types as progress_types
+from multibar import utils
 from multibar.api import clients
+from multibar.api import sectors as abc_sectors
+from multibar.impl import contracts
 from multibar.impl import hooks as hooks_
 from multibar.impl import writers
-from multibar.impl import contracts
 
 if typing.TYPE_CHECKING:
-    from multibar.api import hooks as abc_hooks
-    from multibar.api import writers as abc_writers
     from multibar.api import contracts as abc_contracts
+    from multibar.api import hooks as abc_hooks
     from multibar.api import progressbars as abc_progressbars
-    from multibar.api import sectors as abc_sectors
+    from multibar.api import writers as abc_writers
 
 
 class ProgressbarClient(clients.ProgressbarClientAware):
@@ -24,7 +24,9 @@ class ProgressbarClient(clients.ProgressbarClientAware):
         self,
         *,
         hooks: typing.Optional[abc_hooks.HooksAware] = None,
-        progress_writer: typing.Optional[abc_writers.ProgressbarWriterAware] = None,
+        progress_writer: typing.Optional[
+            abc_writers.ProgressbarWriterAware[abc_sectors.AbstractSector]
+        ] = None,
         contract_manager: typing.Optional[abc_contracts.ContractManagerAware] = None,
     ) -> None:
         self._hooks = utils.none_or(hooks_.Hooks(), hooks)
@@ -38,7 +40,7 @@ class ProgressbarClient(clients.ProgressbarClientAware):
 
     def _validate_contracts(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         try:
-            self._contract_manager.trigger_contracts(*args, **kwargs)
+            self._contract_manager.check_contracts(*args, **kwargs)
         except Exception as exc:
             self._hooks.trigger_on_error(*args, exc, **kwargs)
 
@@ -49,7 +51,7 @@ class ProgressbarClient(clients.ProgressbarClientAware):
         /,
         *,
         length: int = 20,
-    ) -> typing.Optional[abc_progressbars.ProgressbarAware[abc_sectors.SectorAware]]:
+    ) -> typing.Optional[abc_progressbars.ProgressbarAware[abc_sectors.AbstractSector]]:
         writer = self._writer
         call_metadata: progress_types.ProgressMetadataType = {
             "calculation_service_cls": writer.calculation_cls,
@@ -74,7 +76,7 @@ class ProgressbarClient(clients.ProgressbarClientAware):
         return self
 
     def update_hooks(self, hooks: abc_hooks.HooksAware) -> ProgressbarClient:
-        self._hooks = self._hooks | hooks
+        self._hooks.update(hooks)
         return self
 
     @property

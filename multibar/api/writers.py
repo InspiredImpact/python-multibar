@@ -5,12 +5,10 @@ __all__ = ("ProgressbarWriterAware",)
 import abc
 import typing
 
-from . import signatures
-from . import progressbars
-from . import sectors
 from . import calculation_service as math_operations
+from . import progressbars, sectors, signatures
 
-SectorT = typing.TypeVar("SectorT", bound=sectors.SectorAware)
+SectorT = typing.TypeVar("SectorT", bound=sectors.AbstractSector)
 
 
 class ProgressbarWriterAware(abc.ABC, typing.Generic[SectorT]):
@@ -28,7 +26,7 @@ class ProgressbarWriterAware(abc.ABC, typing.Generic[SectorT]):
         start_value: int,
         end_value: int,
         /,
-    ) -> typing.Optional[progressbars.ProgressbarAware[SectorT]]:
+    ) -> progressbars.ProgressbarAware[SectorT]:
         ...
 
     @typing.overload
@@ -40,7 +38,7 @@ class ProgressbarWriterAware(abc.ABC, typing.Generic[SectorT]):
         /,
         *,
         length: int,
-    ) -> typing.Optional[progressbars.ProgressbarAware[SectorT]]:
+    ) -> progressbars.ProgressbarAware[SectorT]:
         ...
 
     @abc.abstractmethod
@@ -51,7 +49,7 @@ class ProgressbarWriterAware(abc.ABC, typing.Generic[SectorT]):
         /,
         *,
         length: int = 20,
-    ) -> typing.Optional[progressbars.ProgressbarAware[SectorT]]:
+    ) -> progressbars.ProgressbarAware[SectorT]:
         ...
 
     @abc.abstractmethod
@@ -72,10 +70,10 @@ class ProgressbarWriterAware(abc.ABC, typing.Generic[SectorT]):
 
     @property
     @abc.abstractmethod
-    def progressbar_cls(self) -> typing.Type[progressbars.ProgressbarAware]:
+    def progressbar_cls(self) -> typing.Type[progressbars.ProgressbarAware[SectorT]]:
         ...
 
     @property
     @abc.abstractmethod
-    def calculation_cls(self) -> typing.Type[math_operations.CalculationServiceAware]:
+    def calculation_cls(self) -> typing.Type[math_operations.AbstractCalculationService]:
         ...

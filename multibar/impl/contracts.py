@@ -1,13 +1,15 @@
 from __future__ import annotations
 
-__all__ = ("ContractManager", "WriteProgressContract",)
+__all__ = (
+    "ContractManager",
+    "WriteProgressContract",
+)
 
 import typing
 
-from returns.io import impure
+from returns.io import IO
 
-from multibar import errors
-from multibar import output
+from multibar import errors, output
 from multibar import types as progress_types
 from multibar.api import contracts
 
@@ -23,11 +25,11 @@ class ContractManager(contracts.ContractManagerAware):
     def set_raise_errors(self, value: bool, /) -> None:
         self._raise_errors = value
 
-    def trigger_contracts(self, *args: typing.Any, **kwargs: typing.Any) -> None:
+    def check_contracts(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         for contract in self._contracts:
-            self.trigger_contract(contract, *args, **kwargs)
+            self.check_contract(contract, *args, **kwargs)
 
-    def trigger_contract(
+    def check_contract(
         self,
         contract: contracts.ContractAware,
         *args: typing.Any,
@@ -61,7 +63,9 @@ class ContractManager(contracts.ContractManagerAware):
 
 class WriteProgressContract(contracts.ContractAware):
     def check(self, *args: typing.Any, **kwargs: typing.Any) -> contracts.ContractCheck:
-        call_metadata = meta = typing.cast(progress_types.ProgressMetadataType, kwargs.pop("metadata", {}))
+        call_metadata = meta = typing.cast(
+            typing.MutableMapping[typing.Any, typing.Any], kwargs.pop("metadata", {})
+        )
         if not call_metadata:
             return contracts.ContractCheck.terminated(
                 errors=["Needs metadata argument."],
@@ -85,8 +89,9 @@ class WriteProgressContract(contracts.ContractAware):
             metadata=call_metadata,
         )
 
-    @impure
-    def render_terminated_contract(self, check: contracts.ContractCheck, /, *, raise_errors: bool) -> None:
+    def render_terminated_contract(
+        self, check: contracts.ContractCheck, /, *, raise_errors: bool
+    ) -> IO[None]:
         if raise_errors:
             raise errors.TerminatedContractError(check=check)
 
@@ -101,3 +106,5 @@ class WriteProgressContract(contracts.ContractAware):
 
         for error in check.errors:
             output.print_error(error)
+
+        return IO(None)

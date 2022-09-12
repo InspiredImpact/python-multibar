@@ -9,8 +9,7 @@ from . import contracts
 from . import hooks as hooks_
 
 if typing.TYPE_CHECKING:
-    from multibar.api import progressbars
-    from multibar.api import sectors
+    from multibar.api import progressbars, sectors
 
 
 class ProgressbarClientAware(abc.ABC):
@@ -21,7 +20,7 @@ class ProgressbarClientAware(abc.ABC):
         start_value: int,
         end_value: int,
         /,
-    ) -> typing.Optional[progressbars.ProgressbarAware[sectors.SectorAware]]:
+    ) -> typing.Optional[progressbars.ProgressbarAware[sectors.AbstractSector]]:
         ...
 
     @abc.abstractmethod
@@ -33,7 +32,7 @@ class ProgressbarClientAware(abc.ABC):
         /,
         *,
         length: int,
-    ) -> typing.Optional[progressbars.ProgressbarAware[sectors.SectorAware]]:
+    ) -> typing.Optional[progressbars.ProgressbarAware[sectors.AbstractSector]]:
         ...
 
     @abc.abstractmethod
@@ -44,7 +43,7 @@ class ProgressbarClientAware(abc.ABC):
         /,
         *,
         length: int = 20,
-    ) -> typing.Optional[progressbars.ProgressbarAware[sectors.SectorAware]]:
+    ) -> typing.Optional[progressbars.ProgressbarAware[sectors.AbstractSector]]:
         ...
 
     @abc.abstractmethod

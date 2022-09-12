@@ -1,4 +1,7 @@
-__all__ = ("SignatureSegmentProtocol", "ProgressbarSignatureProtocol",)
+__all__ = (
+    "SignatureSegmentProtocol",
+    "ProgressbarSignatureProtocol",
+)
 
 import typing
 
@@ -6,11 +9,12 @@ import typing
 @typing.runtime_checkable
 class SignatureSegmentProtocol(typing.Protocol):
     @property
-    def on_filled(self) -> typing.AnyStr:
+    def on_filled(self) -> typing.Union[str, bytes]:
+        # TODO: mypy has some problems with typing.AnyStr
         raise NotImplementedError
 
     @property
-    def on_unfilled(self) -> typing.AnyStr:
+    def on_unfilled(self) -> typing.Union[str, bytes]:
         raise NotImplementedError
 
 

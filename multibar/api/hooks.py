@@ -1,31 +1,34 @@
 from __future__ import annotations
 
-__all__ = ("HookSignatureType", "HooksAware",)
+__all__ = (
+    "HookSignatureType",
+    "HooksAware",
+)
 
 import abc
 import typing
 
+import typing_extensions
+
 if typing.TYPE_CHECKING:
     from . import clients
 
-HookSignatureType: typing.TypeAlias = typing.Callable[..., typing.Optional[bool]]
+HookSignatureType: typing_extensions.TypeAlias = typing.Callable[..., typing.Optional[bool]]
 
 
 class HooksAware(abc.ABC):
     __slots__ = ()
 
-    def __or__(self, other: typing.Any) -> typing.Any:
-        if not isinstance(other, HooksAware):
-            return NotImplemented
-
-        self.on_error_hooks.extend(other.on_error_hooks)
-        self.post_execution_hooks.extend(other.post_execution_hooks)
-        self.pre_execution_hooks.extend(other.pre_execution_hooks)
-
-        return self
+    @abc.abstractmethod
+    def __bool__(self) -> bool:
+        ...
 
     @abc.abstractmethod
     def add_to_client(self, writer: clients.ProgressbarClientAware, /) -> HooksAware:
+        ...
+
+    @abc.abstractmethod
+    def update(self, other: HooksAware, /) -> HooksAware:
         ...
 
     @abc.abstractmethod

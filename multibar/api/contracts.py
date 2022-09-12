@@ -1,32 +1,39 @@
 from __future__ import annotations
 
-__all__ = ("ContractAware", "ContractCheck", "ContractManagerAware",)
+__all__ = (
+    "ContractAware",
+    "ContractCheck",
+    "ContractManagerAware",
+)
 
 import abc
-import typing
 import dataclasses
+import typing
 
-from .. import utils
+from returns.io import IO
+
+from multibar import utils
 
 
 @dataclasses.dataclass
 class ContractCheck:
     kept: bool
-    metadata: dict[str, typing.Any] = dataclasses.field(default_factory=dict)
+    metadata: typing.MutableMapping[typing.Any, typing.Any] = dataclasses.field(default_factory=dict)
     warnings: list[str] = dataclasses.field(default_factory=list)
     errors: list[str] = dataclasses.field(default_factory=list)
 
     @classmethod
     def done(
         cls,
-        metadata: typing.Optional[dict[str, typing.Any]] = None,
+        metadata: typing.Optional[typing.MutableMapping[typing.Any, typing.Any]] = None,
     ) -> ContractCheck:
         return cls(kept=True, metadata=utils.none_or({}, metadata))
 
     @classmethod
+    @typing.no_type_check
     def terminated(
         cls,
-        metadata: typing.Optional[dict[str, typing.Any]] = None,
+        metadata: typing.Optional[typing.MutableMapping[typing.Any, typing.Any]] = None,
         warnings: typing.Optional[list[str]] = None,
         errors: typing.Optional[list[str]] = None,
     ) -> ContractCheck:
@@ -46,7 +53,7 @@ class ContractAware(abc.ABC):
         ...
 
     @abc.abstractmethod
-    def render_terminated_contract(self, check: ContractCheck, /, *, raise_errors: bool) -> None:
+    def render_terminated_contract(self, check: ContractCheck, /, *, raise_errors: bool) -> IO[None]:
         ...
 
 
@@ -54,7 +61,7 @@ class ContractManagerAware(abc.ABC):
     __slots__ = ()
 
     @abc.abstractmethod
-    def trigger_contract(
+    def check_contract(
         self,
         contract: ContractAware,
         *args: typing.Any,
@@ -63,7 +70,7 @@ class ContractManagerAware(abc.ABC):
         ...
 
     @abc.abstractmethod
-    def trigger_contracts(self, *args: typing.Any, **kwargs: typing.Any) -> None:
+    def check_contracts(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         ...
 
     @abc.abstractmethod

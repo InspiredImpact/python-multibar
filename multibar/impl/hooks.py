@@ -1,6 +1,9 @@
 from __future__ import annotations
 
-__all__ = ("Hooks", "WRITER_HOOKS",)
+__all__ = (
+    "Hooks",
+    "WRITER_HOOKS",
+)
 
 import typing
 
@@ -18,12 +21,21 @@ class Hooks(hooks.HooksAware):
         self._pre_execution_hooks: list[HookSignatureType] = []
         self._post_execution_hooks: list[HookSignatureType] = []
 
+    def __bool__(self) -> bool:
+        return bool(self._on_error_hooks or self._pre_execution_hooks or self._post_execution_hooks)
+
     def add_to_client(self, client: clients.ProgressbarClientAware, /) -> Hooks:
-        if client.hooks is None:
+        if not client.hooks:
             client.set_hooks(self)
         else:
             client.update_hooks(self)
 
+        return self
+
+    def update(self, other: hooks.HooksAware, /) -> Hooks:
+        self._on_error_hooks.extend(other.on_error_hooks)
+        self._post_execution_hooks.extend(other.post_execution_hooks)
+        self._pre_execution_hooks.extend(other.pre_execution_hooks)
         return self
 
     def add_pre_execution(self, callback: HookSignatureType, /) -> Hooks:
@@ -78,6 +90,7 @@ def _progress_writer_hook(*_: typing.Any, **kwargs: typing.Any) -> None:
     progressbar = metadata["progressbar"]
     sig = metadata["sig"]
 
+    assert progressbar is not None
     # Add `unfilled_start` if none of the sectors is yet filled.
     if process_percentage < FIRST_FILL:
         progressbar.replace_visual(0, sig.start.on_unfilled)

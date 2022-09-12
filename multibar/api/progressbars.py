@@ -7,7 +7,7 @@ import typing
 
 from . import sectors
 
-SectorT = typing.TypeVar("SectorT", bound=sectors.SectorAware)
+SectorT = typing.TypeVar("SectorT", bound=sectors.AbstractSector)
 
 
 class ProgressbarAware(abc.ABC, typing.Generic[SectorT]):
@@ -16,7 +16,9 @@ class ProgressbarAware(abc.ABC, typing.Generic[SectorT]):
         ...
 
     @abc.abstractmethod
-    def replace_visual(self, sector_pos: int, new_visual: str, /) -> ProgressbarAware[SectorT]:
+    def replace_visual(
+        self, sector_pos: int, new_visual: typing.Union[str, bytes], /
+    ) -> ProgressbarAware[SectorT]:
         ...
 
     @property

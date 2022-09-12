@@ -24,8 +24,16 @@ class AbstractIterator(typing.Generic[T_co], abc.ABC):
     def indexes(
         self,
         *,
+        conversion: typing.Optional[typing.Callable[[int], typing.Any]],
+    ) -> AbstractIterator[int]:
+        ...
+
+    @typing.overload
+    def indexes(
+        self,
+        *,
         start: int,
-        conversion: typing.Optional[typing.Callable[[T_co], typing.Any]],
+        conversion: typing.Optional[typing.Callable[[int], typing.Any]],
     ) -> AbstractIterator[int]:
         ...
 
@@ -34,7 +42,7 @@ class AbstractIterator(typing.Generic[T_co], abc.ABC):
         self,
         *,
         start: int = 0,
-        conversion: typing.Optional[typing.Callable[[T_co], typing.Any]] = None,
+        conversion: typing.Optional[typing.Callable[[int], typing.Any]] = None,
     ) -> AbstractIterator[int]:
         return _ConvertableIndexIterator(self, start=start, conversion=conversion)
 
@@ -60,7 +68,7 @@ class _ConvertableIndexIterator(typing.Generic[T_co], AbstractIterator[int]):
         iterator: AbstractIterator[T_co],
         *,
         start: int,
-        conversion: typing.Optional[typing.Callable[[T_co], typing.Any]],
+        conversion: typing.Optional[typing.Callable[[int], typing.Any]],
     ) -> None:
         self._iterator = iterator
         self._iteration_n = start

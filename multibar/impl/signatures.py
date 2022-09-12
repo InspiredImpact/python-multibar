@@ -1,4 +1,7 @@
-__all__ = ("Signature", "SignatureSegment",)
+__all__ = (
+    "Signature",
+    "SignatureSegment",
+)
 
 import dataclasses
 import typing
@@ -6,8 +9,8 @@ import typing
 
 @dataclasses.dataclass
 class SignatureSegment:
-    on_filled: typing.AnyStr
-    on_unfilled: typing.AnyStr
+    on_filled: typing.Union[str, bytes]
+    on_unfilled: typing.Union[str, bytes]
 
 
 @dataclasses.dataclass

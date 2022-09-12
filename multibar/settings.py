@@ -1,11 +1,22 @@
 from __future__ import annotations
-import copy
+
 import collections.abc
+import copy
 import typing
+
+SelfT = typing.TypeVar("SelfT", bound="Settings")
+
+
+def _config_get_function(self: SelfT, key: str) -> typing.Any:
+    if key[:2] != "__":
+        return self._config[key]
+    return self.__dict__[key]
 
 
 class Settings:
     __slots__ = ("_config",)
+
+    __getattr__ = __getitem__ = _config_get_function
 
     def __init__(self) -> None:
         self._config: dict[str, typing.Any] = {}
@@ -15,17 +26,12 @@ class Settings:
             return item in self._config.values()
         return item in self._config
 
-    def __getattr__(self, name: str) -> typing.Any:
-        if name[:2] != "__":
-            return self._config[name]
-        return self.__dict__[name]
-
     def __copy__(self) -> Settings:
         return self.copy()
 
     def __deepcopy__(
         self,
-        memodict: typing.Optional[typing.MutableMapping[typing.Hashable, typing.Any]] = None,
+        memodict: typing.Optional[dict[int, typing.Any]] = None,
         /,
     ) -> Settings:
         return self.deepcopy(memodict)
@@ -35,9 +41,7 @@ class Settings:
         new_instance.configure(**self._config)
         return new_instance
 
-    def deepcopy(
-        self, memodict: typing.Optional[typing.MutableMapping[typing.Hashable, typing.Any]] = None, /
-    ) -> Settings:
+    def deepcopy(self, memodict: typing.Optional[dict[int, typing.Any]] = None, /) -> Settings:
         if memodict is None:
             memodict = {}
 

@@ -16,28 +16,28 @@ import abc
 import typing
 
 import termcolor
+import typing_extensions
 from returns.io import IO, impure
 
-from . import utils
-from . import settings
+from . import settings, utils
 
 if typing.TYPE_CHECKING:
-    ErrorType: typing.TypeAlias = typing.Literal["error"]
-    WarningType: typing.TypeAlias = typing.Literal["warning"]
-    SuccessType: typing.TypeAlias = typing.Literal["success"]
+    ErrorType: typing_extensions.TypeAlias = typing.Literal["error"]
+    WarningType: typing_extensions.TypeAlias = typing.Literal["warning"]
+    SuccessType: typing_extensions.TypeAlias = typing.Literal["success"]
 
-    HeadingLevelOneType: typing.TypeAlias = typing.Literal[1]
-    HeadingLevelTwoType: typing.TypeAlias = typing.Literal[2]
-    HeadingLevelThreeType: typing.TypeAlias = typing.Literal[3]
+    HeadingLevelOneType: typing_extensions.TypeAlias = typing.Literal[1]
+    HeadingLevelTwoType: typing_extensions.TypeAlias = typing.Literal[2]
+    HeadingLevelThreeType: typing_extensions.TypeAlias = typing.Literal[3]
 
-    OutputTypes: typing.TypeAlias = typing.Union[
+    OutputTypes: typing_extensions.TypeAlias = typing.Union[
         ErrorType,
         WarningType,
         SuccessType,
     ]
-    ColorsType: typing.TypeAlias = typing.Literal["red", "green", "yellow"]
+    ColorsType: typing_extensions.TypeAlias = typing.Literal["red", "green", "yellow"]
 
-    HeadingLevelsType: typing.TypeAlias = typing.Union[
+    HeadingLevelsType: typing_extensions.TypeAlias = typing.Union[
         HeadingLevelOneType,
         HeadingLevelTwoType,
         HeadingLevelThreeType,
@@ -98,24 +98,6 @@ _PRINTER_STATE: typing.Final[PrinterAware] = TermcolorPrinter()
 
 
 class Output:
-    @impure
-    @typing.overload
-    def print(self) -> None:
-        ...
-
-    @impure
-    @typing.overload
-    def print(
-        self,
-        text: str,
-        /,
-        *,
-        bold: bool,
-        color: typing.Optional[str],
-        newline: bool,
-    ) -> None:
-        ...
-
     @impure
     def print(
         self,

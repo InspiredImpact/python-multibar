@@ -6,17 +6,7 @@ from multibar import iterators
 from multibar.api import calculation_service
 
 
-class ProgressbarCalculationService(calculation_service.CalculationServiceAware):
-    def __init__(
-        self,
-        start_value: typing.Union[int, float],
-        end_value: typing.Union[int, float],
-        length: int,
-    ) -> None:
-        self._start_value = start_value
-        self._end_value = end_value
-        self._length = length
-
+class ProgressbarCalculationService(calculation_service.AbstractCalculationService):
     def calculate_filled_indexes(self) -> iterators.AbstractIterator[int]:
         filled_range = range(round(self.progress_percents / (100 / self._length)))
         return iterators.Iterator(iter(filled_range)).indexes()
@@ -43,5 +33,5 @@ class ProgressbarCalculationService(calculation_service.CalculationServiceAware)
         return self._end_value
 
     @staticmethod
-    def get_progress_percentage(start: int, end: int, /) -> float:
+    def get_progress_percentage(start: typing.Union[int, float], end: typing.Union[int, float], /) -> float:
         return (start / end) * 100

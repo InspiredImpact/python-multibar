@@ -1,13 +1,26 @@
-__all__ = ("CalculationServiceAware",)
+from __future__ import annotations
+
+__all__ = ("AbstractCalculationService",)
 
 import abc
 import typing
 
-from .. import iterators
+if typing.TYPE_CHECKING:
+    from multibar import iterators
 
 
-class CalculationServiceAware(abc.ABC):
-    __slots__ = ()
+class AbstractCalculationService(abc.ABC):
+    __slots__ = ("_start_value", "_end_value", "_length")
+
+    def __init__(
+        self,
+        start_value: typing.Union[int, float],
+        end_value: typing.Union[int, float],
+        length: int,
+    ) -> None:
+        self._start_value = start_value
+        self._end_value = end_value
+        self._length = length
 
     @abc.abstractmethod
     def calculate_filled_indexes(self) -> iterators.AbstractIterator[int]:
@@ -27,17 +40,19 @@ class CalculationServiceAware(abc.ABC):
     def progress_percents(self) -> float:
         ...
 
-    @property
-    @abc.abstractmethod
-    def start_value(self) -> typing.Union[int, float]:
-        ...
-
-    @property
-    @abc.abstractmethod
-    def end_value(self) -> typing.Union[int, float]:
-        ...
-
     @staticmethod
     @abc.abstractmethod
-    def get_progress_percentage(start: int, end: int, /) -> float:
+    def get_progress_percentage(start: typing.Union[int, float], end: typing.Union[int, float], /) -> float:
         ...
+
+    @property
+    def start_value(self) -> typing.Union[int, float]:
+        return self._start_value
+
+    @property
+    def end_value(self) -> typing.Union[int, float]:
+        return self._end_value
+
+    @property
+    def length_value(self) -> int:
+        return self._length

@@ -2,7 +2,6 @@ from __future__ import annotations
 
 __all__ = ("Progressbar",)
 
-import collections
 import typing
 
 from multibar.api import progressbars, sectors
@@ -10,7 +9,12 @@ from multibar.api import progressbars, sectors
 
 class Progressbar(progressbars.ProgressbarAware[sectors.AbstractSector]):
     def __init__(self) -> None:
-        self._storage: collections.deque[sectors.AbstractSector] = collections.deque()
+        self._storage: list[sectors.AbstractSector] = []
+
+    def __getitem__(self, item: typing.Any) -> typing.Any:
+        if not isinstance(item, (int, slice)):
+            return NotImplemented
+        return self._storage[item]
 
     def __reversed__(self) -> typing.Iterator[sectors.AbstractSector]:
         self._storage.reverse()
@@ -20,13 +24,13 @@ class Progressbar(progressbars.ProgressbarAware[sectors.AbstractSector]):
         yield from self._storage
 
     def __repr__(self) -> str:
-        return "".join((s.name.decode() if isinstance(s.name, bytes) else s.name) for s in self._storage)
+        return "".join(s.name for s in self._storage)
 
     def add_sector(self, sector: sectors.AbstractSector, /) -> Progressbar:
         self._storage.append(sector)
         return self
 
-    def replace_visual(self, sector_pos: int, new_visual: typing.Union[str, bytes], /) -> Progressbar:
+    def replace_visual(self, sector_pos: int, new_visual: str, /) -> Progressbar:
         self._storage[sector_pos].change_name(new_visual)
         return self
 

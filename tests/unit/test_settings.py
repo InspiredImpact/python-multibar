@@ -1,6 +1,6 @@
 import copy
 
-from hamcrest import assert_that, is_in, instance_of, equal_to, calling, raises, not_
+from hamcrest import assert_that, calling, equal_to, instance_of, is_in, not_, raises
 
 from multibar.settings import settings
 

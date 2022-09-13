@@ -82,10 +82,19 @@ class ContractManagerAware(abc.ABC):
         ...
 
     @abc.abstractmethod
+    def terminate_all(self) -> None:
+        ...
+
+    @abc.abstractmethod
     def set_raise_errors(self, value: bool, /) -> None:
         ...
 
     @property
     @abc.abstractmethod
     def contracts(self) -> list[ContractAware]:
+        ...
+
+    @property
+    @abc.abstractmethod
+    def raise_errors(self) -> bool:
         ...

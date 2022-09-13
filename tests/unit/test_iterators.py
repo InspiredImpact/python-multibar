@@ -1,7 +1,7 @@
 import collections.abc
 
 import pytest
-from hamcrest import assert_that, instance_of, is_in, equal_to
+from hamcrest import assert_that, equal_to, instance_of, is_in
 
 from multibar import iterators
 from tests.pyhamcrest import subclass_of

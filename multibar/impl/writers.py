@@ -49,7 +49,7 @@ class ProgressbarWriter(abc_writers.ProgressbarWriterAware[abc_sectors.AbstractS
             typing.Type[abc_math_operations.AbstractCalculationService]
         ] = None,
     ) -> None:
-        self._signature = utils.none_or(signatures.Signature(), signature)
+        self._signature = utils.none_or(signatures.SimpleSignature(), signature)
         self._sector_cls = utils.none_or(sectors.Sector, sector_cls)
         self._progressbar_cls = typing.cast(
             typing.Type[ProgressbarT_co],
@@ -61,7 +61,12 @@ class ProgressbarWriter(abc_writers.ProgressbarWriterAware[abc_sectors.AbstractS
 
     @classmethod
     def from_signature(cls, signature: abc_signatures.ProgressbarSignatureProtocol, /) -> ProgressbarWriter:
-        ...
+        return cls(
+            sector_cls=None,
+            progressbar_cls=None,
+            signature=signature,
+            calculation_service=None,
+        )
 
     @typing.final
     def write(

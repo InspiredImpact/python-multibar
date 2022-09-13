@@ -12,11 +12,12 @@ __all__ = (
     "ProgressbarClient",
     "ContractManager",
     "WriteProgressContract",
+    "WRITE_PROGRESS_CONTRACT",
     "Hooks",
     "WRITER_HOOKS",
     "Progressbar",
     "Sector",
-    "Signature",
+    "SimpleSignature",
     "SignatureSegment",
     "ProgressbarWriter",
 )

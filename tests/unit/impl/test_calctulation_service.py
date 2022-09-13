@@ -1,6 +1,7 @@
-from hamcrest import assert_that, equal_to, has_properties, instance_of, has_length
+from hamcrest import assert_that, equal_to, has_length, has_properties, instance_of
 
 from multibar import iterators
+from multibar.api.calculation_service import AbstractCalculationService
 from multibar.impl.calculation_service import ProgressbarCalculationService
 
 
@@ -11,6 +12,7 @@ def test_percentage() -> None:
 
 def test_calculation_service() -> None:
     calc_service = ProgressbarCalculationService(50, 100, 20)
+    assert_that(calc_service, instance_of(AbstractCalculationService))
 
     assert_that(
         calc_service,
@@ -21,7 +23,7 @@ def test_calculation_service() -> None:
                 "length_value": equal_to(20),
                 "progress_percents": equal_to(50.0),
             }
-        )
+        ),
     )
 
     first_part = calc_service.calculate_filled_indexes()

@@ -15,12 +15,12 @@ class Sector(sectors.AbstractSector):
         progressbar.add_sector(self)
         return self
 
-    def change_name(self, value: typing.Union[str, bytes], /) -> Sector:
+    def change_name(self, value: str, /) -> Sector:
         self._name = value
         return self
 
     @property
-    def name(self) -> typing.Union[str, bytes]:
+    def name(self) -> str:
         return self._name
 
     @property

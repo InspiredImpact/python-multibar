@@ -36,6 +36,6 @@ class cached_property:
         result = instance.__dict__[self.func.__name__] = self.func(instance)
         return result
 
-    @classmethod
-    def update_cache_for(cls, state: object, prop_name: str, /) -> None:
+    @staticmethod
+    def update_cache_for(state: object, prop_name: str, /) -> None:
         del state.__dict__[prop_name]

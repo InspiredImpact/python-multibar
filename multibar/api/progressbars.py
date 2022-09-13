@@ -11,13 +11,27 @@ SectorT = typing.TypeVar("SectorT", bound=sectors.AbstractSector)
 
 
 class ProgressbarAware(abc.ABC, typing.Generic[SectorT]):
+    @typing.overload
+    @abc.abstractmethod
+    def __getitem__(self, item: slice) -> typing.Sequence[SectorT]:
+        ...
+
+    @typing.overload
+    @abc.abstractmethod
+    def __getitem__(self, item: int) -> SectorT:
+        ...
+
+    @abc.abstractmethod
+    def __getitem__(self, item: typing.Any) -> typing.Any:
+        ...
+
     @abc.abstractmethod
     def add_sector(self, sector: SectorT, /) -> ProgressbarAware[SectorT]:
         ...
 
     @abc.abstractmethod
     def replace_visual(
-        self, sector_pos: int, new_visual: typing.Union[str, bytes], /
+        self, sector_pos: int, new_visual: str, /
     ) -> ProgressbarAware[SectorT]:
         ...
 

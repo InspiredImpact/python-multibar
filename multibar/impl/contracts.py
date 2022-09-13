@@ -3,6 +3,7 @@ from __future__ import annotations
 __all__ = (
     "ContractManager",
     "WriteProgressContract",
+    "WRITE_PROGRESS_CONTRACT",
 )
 
 import typing
@@ -14,7 +15,7 @@ from multibar.api import contracts
 
 
 class ContractManager(contracts.ContractManagerAware):
-    def __init__(self, *, raise_errors: bool = False) -> None:
+    def __init__(self, *, raise_errors: bool = True) -> None:
         self._contracts: list[contracts.ContractAware] = []
         self._raise_errors = raise_errors
 
@@ -50,9 +51,16 @@ class ContractManager(contracts.ContractManagerAware):
     def terminate(self, contract: contracts.ContractAware, /) -> None:
         self._contracts.remove(contract)
 
+    def terminate_all(self) -> None:
+        self._contracts.clear()
+
     @property
     def contracts(self) -> list[contracts.ContractAware]:
         return self._contracts
+
+    @property
+    def raise_errors(self) -> bool:
+        return self._raise_errors
 
 
 ####################
@@ -92,7 +100,7 @@ class WriteProgressContract(contracts.ContractAware):
         self, check: contracts.ContractCheck, /, *, raise_errors: bool
     ) -> IO[None]:
         if raise_errors:
-            raise errors.TerminatedContractError(check=check)
+            raise errors.TerminatedContractError(check)
 
         self_module = self.__module__ + "." + "WriteProgressContract"
         output.print_heading(f"{self_module} was broken", level=1, indent=False)
@@ -107,3 +115,6 @@ class WriteProgressContract(contracts.ContractAware):
             output.print_error(error)
 
         return IO(None)
+
+
+WRITE_PROGRESS_CONTRACT = WriteProgressContract()

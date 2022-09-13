@@ -1,4 +1,4 @@
-from hamcrest import assert_that, not_, is_in, equal_to
+from hamcrest import assert_that, equal_to, is_in, not_
 
 from multibar.utils import cached_property, none_or
 
@@ -9,7 +9,7 @@ class MockClass:
 
     @cached_property
     def mock_property(self) -> int:
-        return self.state_attr ** 1_000
+        return self.state_attr**1_000
 
 
 class TestCachedProperty:

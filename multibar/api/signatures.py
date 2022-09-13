@@ -9,12 +9,11 @@ import typing
 @typing.runtime_checkable
 class SignatureSegmentProtocol(typing.Protocol):
     @property
-    def on_filled(self) -> typing.Union[str, bytes]:
-        # TODO: mypy has some problems with typing.AnyStr
+    def on_filled(self) -> str:
         raise NotImplementedError
 
     @property
-    def on_unfilled(self) -> typing.Union[str, bytes]:
+    def on_unfilled(self) -> str:
         raise NotImplementedError
 
 

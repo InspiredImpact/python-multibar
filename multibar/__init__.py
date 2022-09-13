@@ -2,7 +2,7 @@ from .api import *
 from .impl import *
 
 __all__ = (
-    "CalculationServiceAware",
+    "AbstractCalculationService",
     "ProgressbarClientAware",
     "ContractAware",
     "ContractCheck",
@@ -10,7 +10,7 @@ __all__ = (
     "HookSignatureType",
     "HooksAware",
     "ProgressbarAware",
-    "SectorAware",
+    "AbstractSector",
     "SignatureSegmentProtocol",
     "ProgressbarSignatureProtocol",
     "ProgressbarWriterAware",
@@ -18,11 +18,12 @@ __all__ = (
     "ProgressbarClient",
     "ContractManager",
     "WriteProgressContract",
+    "WRITE_PROGRESS_CONTRACT",
     "Hooks",
     "WRITER_HOOKS",
     "Progressbar",
     "Sector",
-    "Signature",
+    "SimpleSignature",
     "SignatureSegment",
     "ProgressbarWriter",
 )

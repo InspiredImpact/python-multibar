@@ -20,7 +20,7 @@ class HooksAware(abc.ABC):
     __slots__ = ()
 
     @abc.abstractmethod
-    def __bool__(self) -> bool:
+    def __len__(self) -> int:
         ...
 
     @abc.abstractmethod

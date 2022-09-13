@@ -51,7 +51,7 @@ class ProgressbarClient(clients.ProgressbarClientAware):
         /,
         *,
         length: int = 20,
-    ) -> typing.Optional[abc_progressbars.ProgressbarAware[abc_sectors.AbstractSector]]:
+    ) -> abc_progressbars.ProgressbarAware[abc_sectors.AbstractSector]:
         writer = self._writer
         call_metadata: progress_types.ProgressMetadataType = {
             "calculation_service_cls": writer.calculation_cls,
@@ -86,3 +86,7 @@ class ProgressbarClient(clients.ProgressbarClientAware):
     @property
     def contract_manager(self) -> abc_contracts.ContractManagerAware:
         return self._contract_manager
+
+    @property
+    def writer(self) -> abc_writers.ProgressbarWriterAware[abc_sectors.AbstractSector]:
+        return self._writer

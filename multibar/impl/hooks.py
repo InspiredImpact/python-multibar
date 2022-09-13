@@ -21,8 +21,8 @@ class Hooks(hooks.HooksAware):
         self._pre_execution_hooks: list[HookSignatureType] = []
         self._post_execution_hooks: list[HookSignatureType] = []
 
-    def __bool__(self) -> bool:
-        return bool(self._on_error_hooks or self._pre_execution_hooks or self._post_execution_hooks)
+    def __len__(self) -> int:
+        return len(self._on_error_hooks + self._pre_execution_hooks + self._post_execution_hooks)
 
     def add_to_client(self, client: clients.ProgressbarClientAware, /) -> Hooks:
         if not client.hooks:

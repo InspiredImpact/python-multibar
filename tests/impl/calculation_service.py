@@ -1,17 +1,17 @@
+import collections.abc
 import typing
 
 __all__ = ("FakeCalculationService",)
 
-from multibar import iterators
 from multibar.api import calculation_service
 
 
 class FakeCalculationService(calculation_service.AbstractCalculationService):
-    def calculate_filled_indexes(self) -> iterators.AbstractIterator[int]:
-        return iterators.Iterator(iter(()))
+    def calculate_filled_indexes(self) -> collections.abc.Iterator[int]:
+        return iter(())
 
-    def calculate_unfilled_indexes(self) -> iterators.AbstractIterator[int]:
-        return iterators.Iterator(iter(()))
+    def calculate_unfilled_indexes(self) -> collections.abc.Iterator[int]:
+        return iter(())
 
     @property
     def progressbar_length(self) -> int:

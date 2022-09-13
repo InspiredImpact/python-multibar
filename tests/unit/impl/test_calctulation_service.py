@@ -1,6 +1,7 @@
+import collections.abc
+
 from hamcrest import assert_that, equal_to, has_length, has_properties, instance_of
 
-from multibar import iterators
 from multibar.api.calculation_service import AbstractCalculationService
 from multibar.impl.calculation_service import ProgressbarCalculationService
 
@@ -29,8 +30,8 @@ def test_calculation_service() -> None:
     first_part = calc_service.calculate_filled_indexes()
     second_part = calc_service.calculate_unfilled_indexes()
 
-    assert_that(first_part, instance_of(iterators.AbstractIterator))
-    assert_that(second_part, instance_of(iterators.AbstractIterator))
+    assert_that(first_part, instance_of(collections.abc.Iterator))
+    assert_that(second_part, instance_of(collections.abc.Iterator))
 
     assert_that(list(first_part), has_length(calc_service.length_value // 2))
     assert_that(list(second_part), has_length(calc_service.length_value // 2))

@@ -26,23 +26,22 @@ class TestProgressbars:
         progressbar_state = Progressbar()
 
         assert_that(Progressbar, subclass_of(ProgressbarAware))
-        assert_that(Progressbar, subclass_of(collections.abc.Iterable))
         assert_that(progressbar_state, instance_of(SupportsGetitem))
 
         assert_that(
             progressbar_state,
             has_properties(
                 {
-                    "storage": instance_of(SupportsIter),
+                    "sectors": instance_of(SupportsIter),
                     "length": instance_of(int),
                 },
             ),
         )
-        assert_that(type(progressbar_state.storage), subclass_of(collections.abc.Sequence))
+        assert_that(type(progressbar_state.sectors), subclass_of(collections.abc.Sequence))
 
     def test_add_sector(self) -> None:
         progressbar = Progressbar()
-        assert_that(progressbar.storage, has_length(0))
+        assert_that(progressbar.sectors, has_length(0))
 
         progressbar.add_sector(Mock())
-        assert_that(progressbar.storage, has_length(1))
+        assert_that(progressbar.sectors, has_length(1))

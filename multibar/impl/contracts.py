@@ -15,6 +15,8 @@ from multibar.api import contracts
 
 
 class ContractManager(contracts.ContractManagerAware):
+    __slots__ = ("_contracts", "_raise_errors")
+
     def __init__(self, *, raise_errors: bool = True) -> None:
         self._contracts: list[contracts.ContractAware] = []
         self._raise_errors = raise_errors
@@ -23,18 +25,22 @@ class ContractManager(contracts.ContractManagerAware):
         return contract in self._contracts
 
     def set_raise_errors(self, value: bool, /) -> None:
+        # << inherited docstring for multibar.api.contracts.ContractManagerAware >>
         self._raise_errors = value
 
     def check_contracts(self, *args: typing.Any, **kwargs: typing.Any) -> None:
+        # << inherited docstring for multibar.api.contracts.ContractManagerAware >>
         for contract in self._contracts:
             self.check_contract(contract, *args, **kwargs)
 
     def check_contract(
         self,
         contract: contracts.ContractAware,
+        /,
         *args: typing.Any,
         **kwargs: typing.Any,
     ) -> None:
+        # << inherited docstring for multibar.api.contracts.ContractManagerAware >>
         if not self._agreed_with_manager(contract):
             raise errors.UnsignedContractError(f"Contract {type(contract).__name__} is unsigned.")
 
@@ -46,20 +52,25 @@ class ContractManager(contracts.ContractManagerAware):
             )
 
     def subscribe(self, contract: contracts.ContractAware, /) -> None:
+        # << inherited docstring for multibar.api.contracts.ContractManagerAware >>
         self._contracts.append(contract)
 
     def terminate(self, contract: contracts.ContractAware, /) -> None:
+        # << inherited docstring for multibar.api.contracts.ContractManagerAware >>
         self._contracts.remove(contract)
 
     def terminate_all(self) -> None:
+        # << inherited docstring for multibar.api.contracts.ContractManagerAware >>
         self._contracts.clear()
 
     @property
     def contracts(self) -> list[contracts.ContractAware]:
+        # << inherited docstring for multibar.api.contracts.ContractManagerAware >>
         return self._contracts
 
     @property
     def raise_errors(self) -> bool:
+        # << inherited docstring for multibar.api.contracts.ContractManagerAware >>
         return self._raise_errors
 
 
@@ -70,6 +81,7 @@ class ContractManager(contracts.ContractManagerAware):
 
 class WriteProgressContract(contracts.ContractAware):
     def check(self, *args: typing.Any, **kwargs: typing.Any) -> contracts.ContractCheck:
+        # << inherited docstring for multibar.api.contracts.ContractAware >>
         call_metadata = meta = typing.cast(
             typing.MutableMapping[typing.Any, typing.Any], kwargs.pop("metadata", {})
         )
@@ -96,9 +108,30 @@ class WriteProgressContract(contracts.ContractAware):
             metadata=call_metadata,
         )
 
+    @typing.overload
     def render_terminated_contract(
-        self, check: contracts.ContractCheck, /, *, raise_errors: bool
+        self, check: contracts.ContractCheck, /, *, raise_errors: typing.Literal[False],
+    ) -> typing.NoReturn:
+        # Will raise any error.
+        ...
+
+    @typing.overload
+    def render_terminated_contract(
+        self, check: contracts.ContractCheck, /, *, raise_errors: typing.Literal[True],
     ) -> IO[None]:
+        # Will print any errors/warnings in console.
+        ...
+
+    @typing.overload
+    def render_terminated_contract(
+        self, check: contracts.ContractCheck, /, *, raise_errors: bool,
+    ) -> IO[None]:
+        ...
+
+    def render_terminated_contract(
+        self, check: contracts.ContractCheck, /, *, raise_errors: bool,
+    ) -> typing.Union[IO[None], typing.NoReturn]:
+        # << inherited docstring for multibar.api.contracts.ContractAware >>
         if raise_errors:
             raise errors.TerminatedContractError(check)
 

@@ -23,7 +23,7 @@ class AbstractCalculationService(abc.ABC):
         """Slotted abstraction, that bounded to the arguments.
 
         Parameters
-        -----------
+        ----------
         start_value : typing.Union[int, float]
             Start value (current progress) for progressbar math operations.
 
@@ -40,6 +40,8 @@ class AbstractCalculationService(abc.ABC):
     @abc.abstractmethod
     def calculate_filled_indexes(self) -> collections.abc.Iterator[int]:
         """Returns iterator over progressbar filled sector indexes.
+        This method is implemented for a more comfortable calculation
+        of the position of the sector in the progress bar.
 
         Returns
         -------
@@ -51,6 +53,8 @@ class AbstractCalculationService(abc.ABC):
     @abc.abstractmethod
     def calculate_unfilled_indexes(self) -> collections.abc.Iterator[int]:
         """Returns iterator over progressbar unfilled sector indexes.
+        This method is implemented for a more comfortable calculation
+        of the position of the sector in the progress bar.
 
         Returns
         -------

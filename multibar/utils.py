@@ -1,4 +1,4 @@
-__all__ = ["none_or", "cached_property"]
+__all__ = ("none_or", "cached_property")
 
 import typing
 

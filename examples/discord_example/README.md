@@ -40,3 +40,8 @@ Rename `data.json.example` to `data.json`
         - [HikariLightbulbLauncher](https://github.com/Animatea/python-multibar/tree/main/examples/discord_example/launcher.py)
         - [DiscordpyLauncher](https://github.com/Animatea/python-multibar/tree/main/examples/discord_example/launcher.py)
         - [DisnakeLauncher](https://github.com/Animatea/python-multibar/tree/main/examples/discord_example/launcher.py)
+
+
+### ● Demonstration:
+<a href=""><img height="270" width="490" alt="" src="../../assets/discord_example.gif"></a>
+

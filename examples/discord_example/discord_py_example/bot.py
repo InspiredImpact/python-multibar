@@ -43,7 +43,7 @@ class DiscordpyBot(commands.Bot):
 DISCORDPY_BOT = DiscordpyBot(
     intents=discord.Intents.default(),
     command_prefix="//",
-    testing_guild_id=744099317836677161,
+    testing_guild_id=Your_Guild_ID,
 )
 
 

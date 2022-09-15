@@ -17,7 +17,7 @@ HIKARI_TANJUN_BOT = hikari.GatewayBot(
 )
 TANJUN_CLIENT = (
     tanjun.Client.from_gateway_bot(
-        HIKARI_TANJUN_BOT, declare_global_commands=744099317836677161,
+        HIKARI_TANJUN_BOT, declare_global_commands=Your_Guild_ID,
     )
     .add_prefix("//")
 )

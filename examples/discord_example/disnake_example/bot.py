@@ -13,7 +13,7 @@ from examples.discord_example.leveling.impl.repository import CachedJSONUserRepo
 from examples.discord_example.leveling.impl.unit_of_work import JSONUserUnitOfWork
 
 DISNAKE_BOT = commands.InteractionBot(
-    test_guilds=[744099317836677161],
+    test_guilds=[Your_Guild_ID],
     prefix="//",
 )
 progressbar_writer = multibar.ProgressbarWriter.from_signature(multibar.SquareEmojiSignature())

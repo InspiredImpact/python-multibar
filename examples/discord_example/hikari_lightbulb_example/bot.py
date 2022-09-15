@@ -16,6 +16,7 @@ HIKARI_LIGHTBULB_BOT = lightbulb.BotApp(
     token="Your Token Here",
     prefix="//",
     banner=None,
+    default_enabled_guilds=Your_Guild_ID,
 )
 progressbar_writer = multibar.ProgressbarWriter.from_signature(multibar.SquareEmojiSignature())
 leveling_manager = UserLevelingManager(

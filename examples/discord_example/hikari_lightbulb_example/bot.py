@@ -13,7 +13,7 @@ from examples.discord_example.leveling.impl.repository import CachedJSONUserRepo
 from examples.discord_example.leveling.impl.unit_of_work import JSONUserUnitOfWork
 
 HIKARI_LIGHTBULB_BOT = lightbulb.BotApp(
-    token="MTAxOTY1OTI0Mjc1MzUwMzI0NA.GB0WPG.Ss2Mdu-CX44CRtA4OwGCvJWsSVWYf9CN8obiG0",
+    token="Your Token Here",
     prefix="//",
     banner=None,
 )

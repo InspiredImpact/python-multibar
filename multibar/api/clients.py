@@ -14,6 +14,7 @@ if typing.TYPE_CHECKING:
 
 class ProgressbarClientAware(abc.ABC):
     """Interface for implementing a progress client that adds new features."""
+
     __slots__ = ()
 
     @abc.abstractmethod

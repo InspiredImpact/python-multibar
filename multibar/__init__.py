@@ -24,6 +24,7 @@ __all__ = (
     "Progressbar",
     "Sector",
     "SimpleSignature",
+    "SquareEmojiSignature",
     "SignatureSegment",
     "ProgressbarWriter",
 )

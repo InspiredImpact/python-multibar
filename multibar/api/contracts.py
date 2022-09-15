@@ -104,7 +104,11 @@ class ContractAware(abc.ABC):
     @typing.overload
     @abc.abstractmethod
     def render_terminated_contract(
-        self, check: ContractCheck, /, *, raise_errors: typing.Literal[False],
+        self,
+        check: ContractCheck,
+        /,
+        *,
+        raise_errors: typing.Literal[False],
     ) -> typing.NoReturn:
         # Will raise any error.
         ...
@@ -112,7 +116,11 @@ class ContractAware(abc.ABC):
     @typing.overload
     @abc.abstractmethod
     def render_terminated_contract(
-        self, check: ContractCheck, /, *, raise_errors: typing.Literal[True],
+        self,
+        check: ContractCheck,
+        /,
+        *,
+        raise_errors: typing.Literal[True],
     ) -> IO[None]:
         # Will print any errors/warnings in console.
         ...
@@ -120,13 +128,21 @@ class ContractAware(abc.ABC):
     @typing.overload
     @abc.abstractmethod
     def render_terminated_contract(
-        self, check: ContractCheck, /, *, raise_errors: bool,
+        self,
+        check: ContractCheck,
+        /,
+        *,
+        raise_errors: bool,
     ) -> typing.Union[IO[None], typing.NoReturn]:
         ...
 
     @abc.abstractmethod
     def render_terminated_contract(
-        self, check: ContractCheck, /, *, raise_errors: bool,
+        self,
+        check: ContractCheck,
+        /,
+        *,
+        raise_errors: bool,
     ) -> typing.Union[IO[None], typing.NoReturn]:
         """Renders broken contract.
         May contain IO operations if raise_errors is False.

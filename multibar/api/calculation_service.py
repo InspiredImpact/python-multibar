@@ -12,6 +12,7 @@ class AbstractCalculationService(abc.ABC):
     Currently, implemented in:
         - multibar.impl.calculation_service.ProgressbarCalculationService
     """
+
     __slots__ = ("_start_value", "_end_value", "_length")
 
     def __init__(

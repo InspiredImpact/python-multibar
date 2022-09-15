@@ -8,7 +8,7 @@ import typing
 
 @typing.runtime_checkable
 class SignatureSegmentProtocol(typing.Protocol):
-    """Abstract signature segment protocol (protocol for one char, that has two states).
+    """Signature segment protocol (protocol for one char, that has two states).
 
     Examples
     --------
@@ -54,7 +54,7 @@ class SignatureSegmentProtocol(typing.Protocol):
 
 @typing.runtime_checkable
 class ProgressbarSignatureProtocol(typing.Protocol):
-    """Abstract signature protocol.
+    """Signature protocol.
 
     Examples
     --------

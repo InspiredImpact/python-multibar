@@ -52,22 +52,22 @@ class ProgressbarWriter(abc_writers.ProgressbarWriterAware[abc_sectors.AbstractS
         ] = None,
     ) -> None:
         """
-        Parameters
-        ----------
-        sector_cls: typing.Optional[typing.Type[abc_sectors.AbstractSector]] = None, *
-            Progressbar sector cls for writer.
+            Parameters
+            ----------
+            sector_cls: typing.Optional[typing.Type[abc_sectors.AbstractSector]] = None, *
+                Progressbar sector cls for writer.
 
-        progressbar_cls: typing.Optional[typing.Type[ProgressbarT_co]] = None, *
-            Progressbar cls for writer.
+            progressbar_cls: typing.Optional[typing.Type[ProgressbarT_co]] = None, *
+                Progressbar cls for writer.
 
-        signature: typing.Optional[abc_signatures.ProgressbarSignatureProtocol] = None, *
-            Progressbar signature for writer.
+            signature: typing.Optional[abc_signatures.ProgressbarSignatureProtocol] = None, *
+                Progressbar signature for writer.
 
-        calculation_service: typing.Optional[
-            typing.Type[abc_math_operations.AbstractCalculationService]
-        ] = None, *
-            Math operations for writer.
-    ) -> None:
+            calculation_service: typing.Optional[
+                typing.Type[abc_math_operations.AbstractCalculationService]
+            ] = None, *
+                Math operations for writer.
+        ) -> None:
         """
         self._signature = utils.none_or(signatures.SimpleSignature(), signature)
         self._sector_cls = utils.none_or(sectors.Sector, sector_cls)

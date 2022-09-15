@@ -16,11 +16,13 @@ if typing.TYPE_CHECKING:
 
 class MultibarError(Exception):
     """Base multibar error."""
+
     pass
 
 
 class ContractError(MultibarError):
     """Base contracts error."""
+
     pass
 
 
@@ -40,9 +42,11 @@ class ContractResponseError(ContractError):
 
 class UnsignedContractError(ContractError):
     """Raises if contract manager is not subscribed for specify contract."""
+
     pass
 
 
 class TerminatedContractError(ContractResponseError):
     """Raises if contract is broken."""
+
     pass

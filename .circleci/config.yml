@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/python:3.10-browsers-legacy
+      - image: circleci/python:3.9-buster-browsers-legacy
     working_directory: ~/src
     steps:
       - checkout
@@ -19,6 +19,7 @@ jobs:
           command: |
             . venv/bin/activate
             pytest
+            behave tests/bdd
       # Saving test results.
       - run:
           name: Creating Dummy Artifacts

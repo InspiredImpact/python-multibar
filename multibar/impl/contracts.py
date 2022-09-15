@@ -110,26 +110,42 @@ class WriteProgressContract(contracts.ContractAware):
 
     @typing.overload
     def render_terminated_contract(
-        self, check: contracts.ContractCheck, /, *, raise_errors: typing.Literal[False],
+        self,
+        check: contracts.ContractCheck,
+        /,
+        *,
+        raise_errors: typing.Literal[False],
     ) -> typing.NoReturn:
         # Will raise any error.
         ...
 
     @typing.overload
     def render_terminated_contract(
-        self, check: contracts.ContractCheck, /, *, raise_errors: typing.Literal[True],
+        self,
+        check: contracts.ContractCheck,
+        /,
+        *,
+        raise_errors: typing.Literal[True],
     ) -> IO[None]:
         # Will print any errors/warnings in console.
         ...
 
     @typing.overload
     def render_terminated_contract(
-        self, check: contracts.ContractCheck, /, *, raise_errors: bool,
+        self,
+        check: contracts.ContractCheck,
+        /,
+        *,
+        raise_errors: bool,
     ) -> IO[None]:
         ...
 
     def render_terminated_contract(
-        self, check: contracts.ContractCheck, /, *, raise_errors: bool,
+        self,
+        check: contracts.ContractCheck,
+        /,
+        *,
+        raise_errors: bool,
     ) -> typing.Union[IO[None], typing.NoReturn]:
         # << inherited docstring for multibar.api.contracts.ContractAware >>
         if raise_errors:

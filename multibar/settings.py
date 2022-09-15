@@ -16,6 +16,7 @@ def _config_get_function(self: SelfT, key: str) -> typing.Any:
 
 class Settings:
     """Multibar global settings."""
+
     __getattr__ = __getitem__ = _config_get_function
 
     def __init__(self) -> None:

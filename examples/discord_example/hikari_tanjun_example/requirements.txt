@@ -1,0 +1,4 @@
+python-multibar==4.0.0
+returns==0.19.0
+hikari-tanjun==2.6.2a1
+hikari==2.0.0.dev110

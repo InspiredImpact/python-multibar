@@ -13,6 +13,8 @@
 <a href="https://github.com/Animatea/python-multibar/tree/main/examples/discord_example/discord_py_example">Discord.py</a>
 </p>
 
+<br/>
+
 # How To Run
 ### ● First clone repository
 ```bash

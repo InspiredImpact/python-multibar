@@ -1,5 +1,5 @@
 <div id="top"></div>
-<img src="assets/python-multibar-logo.jpg" align="left" width="200px"/>
+<img src="../../assets/python-multibar-logo.jpg" align="left" width="200px"/>
 
 <h1 align="center">Python-Multibar Examples</h1>
 <p align="center">
@@ -34,7 +34,7 @@ Rename `data.json.example` to `data.json`
 - Run launcher.py file
     - `NOTE:` You can choose and install any launcher in launcher.py, or even create your own.<br/>
       **Currently implemented:**
-        - [HikariTanjunLauncher](https://github.com/Animatea/python-multibar/tree/main/examples/discord_example/discord_py_example/launcher.py)
-        - [HikariLightbulbLauncher](https://github.com/Animatea/python-multibar/tree/main/examples/discord_example/discord_py_example/launcher.py)
-        - [DiscordpyLauncher](https://github.com/Animatea/python-multibar/tree/main/examples/discord_example/discord_py_example/launcher.py)
-        - [DisnakeLauncher](https://github.com/Animatea/python-multibar/tree/main/examples/discord_example/discord_py_example/launcher.py)
+        - [HikariTanjunLauncher](https://github.com/Animatea/python-multibar/tree/main/examples/discord_example/launcher.py)
+        - [HikariLightbulbLauncher](https://github.com/Animatea/python-multibar/tree/main/examples/discord_example/launcher.py)
+        - [DiscordpyLauncher](https://github.com/Animatea/python-multibar/tree/main/examples/discord_example/launcher.py)
+        - [DisnakeLauncher](https://github.com/Animatea/python-multibar/tree/main/examples/discord_example/launcher.py)

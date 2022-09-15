@@ -25,8 +25,8 @@ $ git clone https://github.com/Animatea/python-multibar.git
 Rename `data.json.example` to `data.json`
 > **Note** that you can quite simply write your own implementations of interfaces
 > (
-> [`leveling.api.repository.UserRepositoryAware`](https://github.com/Animatea/python-multibar/tree/main/examples/discord_example/discord_py_example/leveling/api/repository.py),
-> [`leveling.api.unit_of_work.AbstractUserUnitOfWork`](https://github.com/Animatea/python-multibar/tree/main/examples/discord_example/discord_py_example/leveling/api/unit_of_work.py)
+> [`leveling.api.repository.UserRepositoryAware`](https://github.com/Animatea/python-multibar/tree/main/examples/discord_example/leveling/api/repository.py),
+> [`leveling.api.unit_of_work.AbstractUserUnitOfWork`](https://github.com/Animatea/python-multibar/tree/main/examples/discord_example/leveling/api/unit_of_work.py)
 > )
 > using,
 > for example, MongoDB or PostgreSQL etc.

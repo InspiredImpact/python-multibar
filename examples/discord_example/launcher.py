@@ -34,6 +34,12 @@ class HikariTanjunLauncher(AbstractLauncher):
 
     def run_app(self) -> None:
         # << inherited docstring from AbstractLauncher >>
+
+        # !!! note
+        #     Before using this launcher, you must specify your
+        #     token in hikari_tanjun_example/bot.py
+        #     (instead of "Your Token Here")
+
         hikari_tanjun_example.HIKARI_TANJUN_BOT.run()
 
         _LOGGER.info(
@@ -47,6 +53,12 @@ class HikariLightbulbLauncher(AbstractLauncher):
 
     def run_app(self) -> None:
         # << inherited docstring from AbstractLauncher >>
+
+        # !!! note
+        #     Before using this launcher, you must specify your
+        #     token in hikari_lightbulb_example/bot.py
+        #     (instead of "Your Token Here")
+
         hikari_lightbulb_example.HIKARI_LIGHTBULB_BOT.run()
 
         _LOGGER.info(

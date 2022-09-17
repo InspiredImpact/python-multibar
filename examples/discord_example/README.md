@@ -35,8 +35,9 @@ Rename `data.json.example` to `data.json`
 Replace `Your_Guild_ID` with your guild ID to enable application commands.
 
 ### ● Specify your bot token
-In discord.py/disnake - specify your token in [`launcher.py`](https://github.com/Animatea/python-multibar/tree/main/examples/discord_example/launcher.py)
-In any hikari example - specify your token in [`*example/bot.py`](https://github.com/Animatea/python-multibar/tree/main/examples/discord_example/hikari_tanjun_example/bot.py)
+In `discord.py`/`disnake` - specify your token in [`launcher.py`](https://github.com/Animatea/python-multibar/tree/main/examples/discord_example/launcher.py)
+
+In any `hikari` example - specify your token in [`*example/bot.py`](https://github.com/Animatea/python-multibar/tree/main/examples/discord_example/hikari_tanjun_example/bot.py)
 
 ### ● Then:
 - Go to examples/discord_example dir

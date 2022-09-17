@@ -5,11 +5,10 @@ __all__ = ("ProgressbarClientAware",)
 import abc
 import typing
 
+from multibar.api import progressbars, sectors, writers
+
 from . import contracts
 from . import hooks as hooks_
-
-if typing.TYPE_CHECKING:
-    from multibar.api import progressbars, sectors, writers
 
 
 class ProgressbarClientAware(abc.ABC):
@@ -115,7 +114,7 @@ class ProgressbarClientAware(abc.ABC):
 
     @property
     @abc.abstractmethod
-    def writer(self) -> writers.ProgressbarWriterAware[sectors.AbstractSector]:
+    def writer(self) -> writers.ProgressbarWriterAware:
         """
         Returns
         -------

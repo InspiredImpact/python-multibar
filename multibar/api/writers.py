@@ -8,19 +8,15 @@ import typing
 from . import calculation_service as math_operations
 from . import progressbars, sectors, signatures
 
-SectorT = typing.TypeVar("SectorT", bound=sectors.AbstractSector)
 
-
-class ProgressbarWriterAware(abc.ABC, typing.Generic[SectorT]):
+class ProgressbarWriterAware(abc.ABC):
     """Interface for progressbar writer implementations."""
 
     __slots__ = ()
 
     @classmethod
     @abc.abstractmethod
-    def from_signature(
-        cls, signature: signatures.ProgressbarSignatureProtocol, /
-    ) -> ProgressbarWriterAware[SectorT]:
+    def from_signature(cls, signature: signatures.ProgressbarSignatureProtocol, /) -> ProgressbarWriterAware:
         """Alternative constructor from signature.
 
         Parameters
@@ -30,7 +26,7 @@ class ProgressbarWriterAware(abc.ABC, typing.Generic[SectorT]):
 
         Returns
         -------
-        ProgressbarWriterAware[SectorT]
+        ProgressbarWriterAware[sectors.AbstractSector]
             Instance of progressbar writer.
         """
         ...
@@ -42,7 +38,7 @@ class ProgressbarWriterAware(abc.ABC, typing.Generic[SectorT]):
         start_value: int,
         end_value: int,
         /,
-    ) -> progressbars.ProgressbarAware[SectorT]:
+    ) -> progressbars.ProgressbarAware[sectors.AbstractSector]:
         ...
 
     @typing.overload
@@ -54,7 +50,7 @@ class ProgressbarWriterAware(abc.ABC, typing.Generic[SectorT]):
         /,
         *,
         length: int,
-    ) -> progressbars.ProgressbarAware[SectorT]:
+    ) -> progressbars.ProgressbarAware[sectors.AbstractSector]:
         ...
 
     @abc.abstractmethod
@@ -65,7 +61,7 @@ class ProgressbarWriterAware(abc.ABC, typing.Generic[SectorT]):
         /,
         *,
         length: int = 20,
-    ) -> progressbars.ProgressbarAware[SectorT]:
+    ) -> progressbars.ProgressbarAware[sectors.AbstractSector]:
         """Writes progress without any hooks or checks.
 
         Parameters
@@ -82,9 +78,7 @@ class ProgressbarWriterAware(abc.ABC, typing.Generic[SectorT]):
         ...
 
     @abc.abstractmethod
-    def bind_signature(
-        self, signature: signatures.ProgressbarSignatureProtocol, /
-    ) -> ProgressbarWriterAware[SectorT]:
+    def bind_signature(self, signature: signatures.ProgressbarSignatureProtocol, /) -> ProgressbarWriterAware:
         """Sets new progressbar signature.
 
         Parameters
@@ -112,22 +106,22 @@ class ProgressbarWriterAware(abc.ABC, typing.Generic[SectorT]):
 
     @property
     @abc.abstractmethod
-    def sector_cls(self) -> typing.Type[SectorT]:
+    def sector_cls(self) -> typing.Type[sectors.AbstractSector]:
         """
         Returns
         -------
-        typing.Type[SectorT]
+        typing.Type[sectors.AbstractSector]
             Progressbar sector cls.
         """
         ...
 
     @property
     @abc.abstractmethod
-    def progressbar_cls(self) -> typing.Type[progressbars.ProgressbarAware[SectorT]]:
+    def progressbar_cls(self) -> typing.Type[progressbars.ProgressbarAware[sectors.AbstractSector]]:
         """
         Returns
         -------
-        typing.Type[progressbars.ProgressbarAware[SectorT]]
+        typing.Type[progressbars.ProgressbarAware[sectors.AbstractSector]]
             Progressbar cls.
         """
         ...

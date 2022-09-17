@@ -2,9 +2,9 @@ __all__ = ("DISNAKE_BOT",)
 
 import disnake
 from disnake.ext import commands
-import multibar
 from returns.unsafe import unsafe_perform_io
 
+import multibar
 from examples.discord_example.disnake_example import events
 from examples.discord_example.leveling import users
 from examples.discord_example.leveling.impl.level_manager import UserLevelingManager
@@ -53,7 +53,7 @@ async def on_message_event(message: disnake.Message) -> None:
 @DISNAKE_BOT.event
 async def on_user_level_up_event(event: events.UserLevelUpdateEvent) -> None:
     """Event that dispatches when user level needs to be incremented."""
-    event.user.lvlup()
+    event.user.lvlup()  # For cache
     with leveling_manager.uow as uow:
         await uow.handle_lvlup_for(event.user.id)
 

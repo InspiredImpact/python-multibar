@@ -17,7 +17,6 @@ class TestProgressWriterConfiguration:
         default_writer_state = ProgressbarWriter()
 
         # ProgressWriter base tested on tests/unit/impl/progressbars.py
-        assert_that(default_writer_state.progressbar_cls, subclass_of(Progressbar))
         assert_that(default_writer_state.sector_cls, subclass_of(Sector))
         assert_that(default_writer_state.calculation_cls, subclass_of(ProgressbarCalculationService))
         assert_that(default_writer_state.signature, instance_of(SimpleSignature))

@@ -1,10 +1,10 @@
 __all__ = ("HIKARI_TANJUN_BOT",)
 
 import hikari
-import multibar
 import tanjun
 from returns.unsafe import unsafe_perform_io
 
+import multibar
 from examples.discord_example.hikari_tanjun_example import events
 from examples.discord_example.leveling import users
 from examples.discord_example.leveling.impl.level_manager import UserLevelingManager
@@ -13,14 +13,13 @@ from examples.discord_example.leveling.impl.repository import CachedJSONUserRepo
 from examples.discord_example.leveling.impl.unit_of_work import JSONUserUnitOfWork
 
 HIKARI_TANJUN_BOT = hikari.GatewayBot(
-    token="Your Token Here", banner=None,
+    token="Your Token Here",
+    banner=None,
 )
-TANJUN_CLIENT = (
-    tanjun.Client.from_gateway_bot(
-        HIKARI_TANJUN_BOT, declare_global_commands=Your_Guild_ID,
-    )
-    .add_prefix("//")
-)
+TANJUN_CLIENT = tanjun.Client.from_gateway_bot(
+    HIKARI_TANJUN_BOT,
+    declare_global_commands=Your_Guild_ID,
+).add_prefix("//")
 progressbar_writer = multibar.ProgressbarWriter.from_signature(multibar.SquareEmojiSignature())
 leveling_manager = UserLevelingManager(
     uow=JSONUserUnitOfWork(  # U can switch repo param value to JSONUserRepository, and it will work fine.
@@ -55,7 +54,7 @@ async def on_message_event(event: hikari.MessageCreateEvent) -> None:
 @HIKARI_TANJUN_BOT.listen()
 async def on_user_level_up_event(event: events.UserLevelUpdateEvent) -> None:
     """Event that dispatches when user level needs to be incremented."""
-    event.user.lvlup()
+    event.user.lvlup()  # For cache
     with leveling_manager.uow as uow:
         await uow.handle_lvlup_for(event.user.id)
 

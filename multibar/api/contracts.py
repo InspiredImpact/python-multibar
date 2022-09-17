@@ -11,7 +11,7 @@ import collections.abc
 import dataclasses
 import typing
 
-from returns.io import IO
+from returns.io import IO, impure
 
 from multibar import utils
 
@@ -101,31 +101,7 @@ class ContractAware(abc.ABC):
         """
         ...
 
-    @typing.overload
-    @abc.abstractmethod
-    def render_terminated_contract(
-        self,
-        check: ContractCheck,
-        /,
-        *,
-        raise_errors: typing.Literal[False],
-    ) -> typing.NoReturn:
-        # Will raise any error.
-        ...
-
-    @typing.overload
-    @abc.abstractmethod
-    def render_terminated_contract(
-        self,
-        check: ContractCheck,
-        /,
-        *,
-        raise_errors: typing.Literal[True],
-    ) -> IO[None]:
-        # Will print any errors/warnings in console.
-        ...
-
-    @typing.overload
+    @impure
     @abc.abstractmethod
     def render_terminated_contract(
         self,
@@ -133,20 +109,10 @@ class ContractAware(abc.ABC):
         /,
         *,
         raise_errors: bool,
-    ) -> typing.Union[IO[None], typing.NoReturn]:
-        ...
-
-    @abc.abstractmethod
-    def render_terminated_contract(
-        self,
-        check: ContractCheck,
-        /,
-        *,
-        raise_errors: bool,
-    ) -> typing.Union[IO[None], typing.NoReturn]:
+    ) -> typing.Any:
         """Renders broken contract.
         May contain IO operations if raise_errors is False.
-        Otherwise, it returns nothing, but throws an error
+        Otherwise, it returns nothing, but throws an error.
 
         Parameters
         ----------

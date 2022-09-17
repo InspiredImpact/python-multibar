@@ -5,7 +5,6 @@ __all__ = ("ProgressbarWriter",)
 import typing
 
 from multibar import utils
-from multibar.api import progressbars as abc_progressbars
 from multibar.api import sectors as abc_sectors
 from multibar.api import writers as abc_writers
 
@@ -14,38 +13,20 @@ from . import progressbars, sectors, signatures
 
 if typing.TYPE_CHECKING:
     from multibar.api import calculation_service as abc_math_operations
+    from multibar.api import progressbars as abc_progressbars
     from multibar.api import signatures as abc_signatures
 
-ProgressbarT_co = typing.TypeVar(
-    "ProgressbarT_co",
-    bound=abc_progressbars.ProgressbarAware[abc_sectors.AbstractSector],
-    covariant=True,
-)
 
-
-class ProgressbarWriter(abc_writers.ProgressbarWriterAware[abc_sectors.AbstractSector]):
+class ProgressbarWriter(abc_writers.ProgressbarWriterAware):
     __slots__ = ("_signature", "_sector_cls", "_progressbar_cls", "_calculation_service")
-
-    @typing.overload
-    def __init__(self) -> None:
-        ...
-
-    @typing.overload
-    def __init__(
-        self,
-        *,
-        sector_cls: typing.Optional[typing.Type[abc_sectors.AbstractSector]],
-        progressbar_cls: typing.Optional[typing.Type[ProgressbarT_co]],
-        signature: typing.Optional[abc_signatures.ProgressbarSignatureProtocol],
-        calculation_service: typing.Optional[typing.Type[abc_math_operations.AbstractCalculationService]],
-    ) -> None:
-        ...
 
     def __init__(
         self,
         *,
         sector_cls: typing.Optional[typing.Type[abc_sectors.AbstractSector]] = None,
-        progressbar_cls: typing.Optional[typing.Type[ProgressbarT_co]] = None,
+        progressbar_cls: typing.Optional[
+            typing.Type[abc_progressbars.ProgressbarAware[abc_sectors.AbstractSector]]
+        ] = None,
         signature: typing.Optional[abc_signatures.ProgressbarSignatureProtocol] = None,
         calculation_service: typing.Optional[
             typing.Type[abc_math_operations.AbstractCalculationService]
@@ -71,16 +52,19 @@ class ProgressbarWriter(abc_writers.ProgressbarWriterAware[abc_sectors.AbstractS
         """
         self._signature = utils.none_or(signatures.SimpleSignature(), signature)
         self._sector_cls = utils.none_or(sectors.Sector, sector_cls)
-        self._progressbar_cls = typing.cast(
-            typing.Type[ProgressbarT_co],
-            utils.none_or(progressbars.Progressbar, progressbar_cls),
+        self._progressbar_cls = utils.none_or(
+            progressbars.Progressbar[abc_sectors.AbstractSector], progressbar_cls
         )
         self._calculation_service = utils.none_or(
             math_operations.ProgressbarCalculationService, calculation_service
         )
 
     @classmethod
-    def from_signature(cls, signature: abc_signatures.ProgressbarSignatureProtocol, /) -> ProgressbarWriter:
+    def from_signature(
+        cls,
+        signature: abc_signatures.ProgressbarSignatureProtocol,
+        /,
+    ) -> ProgressbarWriter:
         # << inherited docstring for multibar.api.writers.ProgressbarWriterAware >>
         return cls(
             sector_cls=None,
@@ -97,7 +81,7 @@ class ProgressbarWriter(abc_writers.ProgressbarWriterAware[abc_sectors.AbstractS
         /,
         *,
         length: int = 20,
-    ) -> ProgressbarT_co:
+    ) -> abc_progressbars.ProgressbarAware[abc_sectors.AbstractSector]:
         # << inherited docstring for multibar.api.writers.ProgressbarWriterAware >>
         sig = self._signature
         sector_cls = self._sector_cls
@@ -112,7 +96,11 @@ class ProgressbarWriter(abc_writers.ProgressbarWriterAware[abc_sectors.AbstractS
 
         return progressbar
 
-    def bind_signature(self, signature: abc_signatures.ProgressbarSignatureProtocol, /) -> ProgressbarWriter:
+    def bind_signature(
+        self,
+        signature: abc_signatures.ProgressbarSignatureProtocol,
+        /,
+    ) -> ProgressbarWriter:
         # << inherited docstring for multibar.api.writers.ProgressbarWriterAware >>
         self._signature = signature
         return self

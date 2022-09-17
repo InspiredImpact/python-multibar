@@ -1,8 +1,8 @@
 import dataclasses
 import typing
 
-from hamcrest import assert_that, equal_to, instance_of
 import pytest
+from hamcrest import assert_that, equal_to, instance_of
 from returns.io import IO
 
 from multibar import (

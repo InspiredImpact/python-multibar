@@ -31,6 +31,9 @@ Rename `data.json.example` to `data.json`
 > using,
 > for example, MongoDB or PostgreSQL etc.
 
+### ● And put your guild ID into any of discord implementations in (*example/bot.py)
+Replace `Your_Guild_ID` with your guild ID to enable application commands.
+
 ### ● Then:
 - Go to examples/discord_example dir
 - Run launcher.py file

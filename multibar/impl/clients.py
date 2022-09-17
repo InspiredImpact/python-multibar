@@ -6,8 +6,7 @@ import typing
 
 from multibar import types as progress_types
 from multibar import utils
-from multibar.api import clients
-from multibar.api import sectors as abc_sectors
+from multibar.api import clients as abc_clients
 from multibar.impl import contracts
 from multibar.impl import hooks as hooks_
 from multibar.impl import writers
@@ -16,19 +15,18 @@ if typing.TYPE_CHECKING:
     from multibar.api import contracts as abc_contracts
     from multibar.api import hooks as abc_hooks
     from multibar.api import progressbars as abc_progressbars
+    from multibar.api import sectors as abc_sectors
     from multibar.api import writers as abc_writers
 
 
-class ProgressbarClient(clients.ProgressbarClientAware):
+class ProgressbarClient(abc_clients.ProgressbarClientAware):
     __slots__ = ("_hooks", "_writer", "_contract_manager")
 
     def __init__(
         self,
         *,
         hooks: typing.Optional[abc_hooks.HooksAware] = None,
-        progress_writer: typing.Optional[
-            abc_writers.ProgressbarWriterAware[abc_sectors.AbstractSector]
-        ] = None,
+        progress_writer: typing.Optional[abc_writers.ProgressbarWriterAware] = None,
         contract_manager: typing.Optional[abc_contracts.ContractManagerAware] = None,
     ) -> None:
         """
@@ -49,7 +47,7 @@ class ProgressbarClient(clients.ProgressbarClientAware):
 
         if contract_manager is None:
             contract_manager = contracts.ContractManager()
-            contract_manager.subscribe(contracts.WriteProgressContract())
+            contract_manager.subscribe(contracts.WRITE_PROGRESS_CONTRACT)
 
         self._contract_manager: abc_contracts.ContractManagerAware = contract_manager
 
@@ -100,12 +98,18 @@ class ProgressbarClient(clients.ProgressbarClientAware):
         self._hooks.trigger_post_execution(self, metadata=call_metadata)
         return progressbar
 
-    def set_hooks(self, hooks: abc_hooks.HooksAware) -> ProgressbarClient:
+    def set_hooks(
+        self,
+        hooks: abc_hooks.HooksAware,
+    ) -> ProgressbarClient:
         # << inherited docstring for multibar.api.clients.ProgressbarClientAware >>
         self._hooks = hooks
         return self
 
-    def update_hooks(self, hooks: abc_hooks.HooksAware) -> ProgressbarClient:
+    def update_hooks(
+        self,
+        hooks: abc_hooks.HooksAware,
+    ) -> ProgressbarClient:
         # << inherited docstring for multibar.api.clients.ProgressbarClientAware >>
         self._hooks.update(hooks)
         return self
@@ -121,6 +125,6 @@ class ProgressbarClient(clients.ProgressbarClientAware):
         return self._contract_manager
 
     @property
-    def writer(self) -> abc_writers.ProgressbarWriterAware[abc_sectors.AbstractSector]:
+    def writer(self) -> abc_writers.ProgressbarWriterAware:
         # << inherited docstring for multibar.api.clients.ProgressbarClientAware >>
         return self._writer

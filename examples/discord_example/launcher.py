@@ -21,7 +21,7 @@ _LOGGER = logging.getLogger(__name__)
 
 
 class AbstractLauncher(abc.ABC):
-    """Interface for any discord_example-api-wrapper-library client launch."""
+    """Interface for any discord-api-wrapper-library client launch."""
 
     @abc.abstractmethod
     def run_app(self) -> None:

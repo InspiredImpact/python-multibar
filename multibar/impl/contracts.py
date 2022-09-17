@@ -8,7 +8,7 @@ __all__ = (
 
 import typing
 
-from returns.io import IO
+from returns.io import IO, impure
 
 from multibar import errors, output
 from multibar.api import contracts
@@ -137,16 +137,17 @@ class WriteProgressContract(contracts.ContractAware):
         /,
         *,
         raise_errors: bool,
-    ) -> IO[None]:
+    ) -> typing.Any:
         ...
 
+    @impure
     def render_terminated_contract(
         self,
         check: contracts.ContractCheck,
         /,
         *,
         raise_errors: bool,
-    ) -> typing.Union[IO[None], typing.NoReturn]:
+    ) -> typing.Any:
         # << inherited docstring for multibar.api.contracts.ContractAware >>
         if raise_errors:
             raise errors.TerminatedContractError(check)

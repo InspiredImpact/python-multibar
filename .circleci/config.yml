@@ -13,6 +13,7 @@ jobs:
             python -m venv venv
             . venv/bin/activate
             pip install -r dev-requirements.txt
+            pip install -r requirements.txt
       - run:
           # Running tests with installed dependencies.
           name: run tests

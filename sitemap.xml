@@ -1,33 +1,168 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://github.com/Animatea/python-multibar/</loc>
-         <lastmod>2022-02-19</lastmod>
+         <loc>https://python-multibar.docs/docs/</loc>
+         <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/Animatea/python-multibar/abc/</loc>
-         <lastmod>2022-02-19</lastmod>
+         <loc>https://python-multibar.docs/docs/errors/</loc>
+         <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/Animatea/python-multibar/cli/</loc>
-         <lastmod>2022-02-19</lastmod>
+         <loc>https://python-multibar.docs/docs/faq/</loc>
+         <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/Animatea/python-multibar/crate/</loc>
-         <lastmod>2022-02-19</lastmod>
+         <loc>https://python-multibar.docs/docs/faq.ru/</loc>
+         <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/Animatea/python-multibar/hooks/</loc>
-         <lastmod>2022-02-19</lastmod>
+         <loc>https://python-multibar.docs/docs/faq.uk/</loc>
+         <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://github.com/Animatea/python-multibar/multibar.impl/</loc>
-         <lastmod>2022-02-19</lastmod>
+         <loc>https://python-multibar.docs/docs/howto/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://python-multibar.docs/docs/howto.ru/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://python-multibar.docs/docs/howto.uk/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://python-multibar.docs/docs/index.ru/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://python-multibar.docs/docs/index.uk/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://python-multibar.docs/docs/output/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://python-multibar.docs/docs/quickstart/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://python-multibar.docs/docs/quickstart.ru/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://python-multibar.docs/docs/quickstart.uk/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://python-multibar.docs/docs/settings/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://python-multibar.docs/docs/types/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://python-multibar.docs/docs/utilities/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://python-multibar.docs/docs/api/clients/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://python-multibar.docs/docs/api/contracts/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://python-multibar.docs/docs/api/hooks/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://python-multibar.docs/docs/api/math_operations/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://python-multibar.docs/docs/api/progressbars/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://python-multibar.docs/docs/api/sectors/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://python-multibar.docs/docs/api/signatures/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://python-multibar.docs/docs/api/writers/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://python-multibar.docs/docs/impl/clients/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://python-multibar.docs/docs/impl/contracts/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://python-multibar.docs/docs/impl/hooks/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://python-multibar.docs/docs/impl/math_operations/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://python-multibar.docs/docs/impl/progressbars/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://python-multibar.docs/docs/impl/sectors/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://python-multibar.docs/docs/impl/signatures/</loc>
+         <lastmod>2022-09-20</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://python-multibar.docs/docs/impl/writers/</loc>
+         <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
 </urlset>

@@ -1,0 +1,7 @@
+mkdocs-material
+mkdocs-i18n
+mkdocs-mermaid2-plugin
+pymdown-extensions
+Markdown
+mkdocs-autorefs
+markdown-exec

@@ -1,0 +1,211 @@
+# Site base metadata
+site_name: python-multibar
+site_description: "Flexible wrapper for static progressbar writing."
+site_dir: "site"
+
+# Github metadata
+repo_url: https://github.com/Animatea/python-multibar
+repo_name: Animatea/python-multibar
+edit_uri: https://github.com/Animatea/python-multibar/tree/main/docs
+
+# Theme configuration
+theme:
+  name: material
+  logo: assets/docs-logo.png
+
+  icon:
+    edit: material/file-document-edit-outline
+
+  favicon: assets/docs-icon.png
+  custom_dir: overrides
+
+  palette:
+    - scheme: default
+      primary: teal
+      accent: purple
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to dark mode
+
+    - scheme: slate
+      primary: black
+      accent: lime
+      toggle:
+        icon: material/weather-night
+        name: Switch to light mode
+
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.top
+
+# Navigation menu
+nav:
+  - "Home":
+    # Translated
+    - index.md
+    - index.uk.md
+    - index.ru.md
+
+  - HowTo:
+    # Translated
+    - howto.md
+    - howto.uk.md
+    - howto.ru.md
+
+  - Quickstart:
+    # Translated
+    - quickstart.md
+    - quickstart.uk.md
+    - quickstart.ru.md
+
+  - FAQ:
+    # Translated
+    - faq.md
+    - faq.uk.md
+    - faq.ru.md
+
+  - "Reference":
+      - "api":
+        - api/math_operations.md
+        - api/clients.md
+        - api/contracts.md
+        - api/hooks.md
+        - api/progressbars.md
+        - api/sectors.md
+        - api/signatures.md
+        - api/writers.md
+
+      - "impl":
+        - impl/math_operations.md
+        - impl/clients.md
+        - impl/contracts.md
+        - impl/hooks.md
+        - impl/progressbars.md
+        - impl/sectors.md
+        - impl/signatures.md
+        - impl/writers.md
+
+      - Errors: errors.md
+      - Console: output.md
+      - Settings: settings.md
+      - Types: types.md
+      - Utilities: utilities.md
+
+plugins:
+  - search
+
+  # Plugin for diagrams
+  - mermaid2:
+      arguments:
+        theme: "dark"
+
+  # Code auto reference plugin
+  - mkdocstrings:
+      default_handler: python
+
+      handlers:
+        python:
+
+          selection:
+            docstring_style: numpy  # <--- In our project we use `numpy` docstring style.
+            inherited_members: true
+
+          rendering:
+            docstring_section_style: spacy
+            show_if_no_docstring: true
+            merge_init_into_class: false
+            show_signature_annotations: false
+            show_source: true
+            show_submodules: false
+            show_root_heading: true
+            separate_signature: false
+
+          import:
+            # For argument types "footnotes".
+            - https://docs.python.org/3.9/objects.inv
+
+      watch:
+        # Observe for updates
+        - multibar
+
+  # i18n plugin configuration
+  - i18n:
+      languages:
+        uk: "Українська"
+        ru: "Русский"
+        en: "English"
+
+      default_language: "en"
+
+      translate_nav:
+        uk:
+          section title: "Розділ"
+          subsection: "Підрозділ"
+          page title: "Сторінка з перекладеним заголовком"
+
+        en:
+          section title: "Section"
+          subsection: "Subsection"
+          page title: "Page with title translated"
+
+        ru:
+          section title: "Раздел"
+          subsection: "Подраздел"
+          page title: "Страница с переведенным заголовком"
+
+# Documentation Extensions
+markdown_extensions:
+  - markdown.extensions.attr_list
+  - pymdownx.progressbar
+  - pymdownx.superfences
+  - pymdownx.details
+  - admonition
+  - attr_list
+  - md_in_html
+  - footnotes
+  - tables
+
+  - toc:
+      permalink: "¤"
+
+# Additional css
+extra_css:
+  - css/material.css
+  - css/mkdocs.css
+  - css/progressbar.css
+
+# Additional javascript
+extra_javascript:
+  - js/mermaid.js
+  - js/tabs.js
+
+# Extra metadata
+extra:
+  alternate:
+    # For i18n
+    - name: English
+      link: ""
+      lang: en
+
+    - name: Ukrainian
+      link: index.uk/
+      lang: uk  # <--- "uk" by ISO 639-1, not "ua".
+
+    - name: Russian
+      link: index.ru/
+      lang: ru
+
+  # Footer icons
+  social:
+    - icon: fontawesome/brands/python  # Pypi
+      link: https://pypi.org/project/python-multibar/
+
+    - icon: fontawesome/brands/discord  # Discord server
+      link: discord.gg/KKUFRZCt4f
+
+copyright: >
+  Copyright &copy; 2022 DenyS

@@ -19,6 +19,64 @@ warn_unused_configs = true
 warn_unused_ignores = true
 
 [tool.black]
-line-length = 110
+line-length = 120
 target-version = ['py39']
 include = '\.pyi?$'
+
+[tool.poetry]
+name = "python-multibar"
+version = "4.0.0"
+description = "Flexible wrapper for static progressbar writing."
+authors = ["DenyS <animatea.programming@gmail.com>"]
+readme = "PYPI_README.md"
+license = "Apache-2.0"
+homepage = "https://github.com/Animatea/python-multibar"
+repository = "https://github.com/Animatea/python-multibar"
+documentation = "https://animatea.github.io/python-multibar/"
+include = [
+    "LICENSE", "assets", "i18n",
+]
+keywords = [
+    "progressbar", "progress", "multibar", "python-multibar", "python", "python3", "progress bar", "utility"
+]
+classifiers = [
+        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Intended Audience :: Developers",
+        "Topic :: Software Development :: Libraries :: Python Modules",
+        "Topic :: Software Development :: Libraries",
+        "Programming Language :: Python :: Implementation :: CPython",
+        "License :: OSI Approved :: Apache Software License",
+        "Typing :: Typed",
+        "Natural Language :: English",
+        "Operating System :: OS Independent",
+        "Topic :: Utilities",
+]
+packages = [
+    { include = "multibar" },
+]
+
+[tool.poetry.urls]
+"Bug Tracker" = "https://github.com/Animatea/python-multibar/issues"
+"Documentation" = "https://animatea.github.io/python-multibar/"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+returns = "0.19.0"
+termcolor = "2.0.0"
+
+[tool.poetry.dev-dependencies]
+flake8 = "5.0.4"
+isort = "5.10.1"
+pylint = "2.15.2"
+black = "22.8.0"
+mypy = "0.971"
+pytest = "7.1.3"
+behave = "1.2.6"
+PyHamcrest = "2.0.4"
+nox = "2022.8.7"
+
+[build-system]
+requires = ["poetry>=1.0"]
+build-backend = "poetry.core.masonry.api"

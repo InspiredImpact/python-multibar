@@ -32,14 +32,13 @@ class ProgressbarClient(abc_clients.ProgressbarClientAware):
         """
         Parameters
         ----------
-        hooks : typing.Optional[abc_hooks.HooksAware] = None, *
+        hooks : typing.Optional[HooksAware] = None
             Progressbar client hooks.
-
-        progress_writer : typing.Optional[
-            abc_writers.ProgressbarWriterAware[abc_sectors.AbstractSector]] = None, *
+        hooks : HooksAware, optional, default=None
+            Progressbar client hooks.
+        progress_writer : typing.Optional[ProgressbarWriterAware[AbstractSector]] = None
             Writer for progressbar generation.
-
-        contract_manager : typing.Optional[abc_contracts.ContractManagerAware] = None, *
+        contract_manager : typing.Optional[ContractManagerAware] = None
             Contract manager for any progress checks.
         """
         self._hooks = utils.none_or(hooks_.Hooks(), hooks)

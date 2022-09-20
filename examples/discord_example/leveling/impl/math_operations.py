@@ -33,6 +33,6 @@ class MathOperations(math_operations.MathOperationsAware):
         return current_xp >= self.get_needed_experience_for(current_lvl)
 
     @property
-    def factor(self) -> float:
+    def factor(self) -> typing.Union[int, float]:
         # << inherited docstring from math_operations.MathOperationsAware >>
         return self._factor

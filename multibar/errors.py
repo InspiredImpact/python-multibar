@@ -1,4 +1,5 @@
 from __future__ import annotations
+"""Module with Python-Multibar errors."""
 
 __all__ = (
     "MultibarError",
@@ -15,19 +16,25 @@ if typing.TYPE_CHECKING:
 
 
 class MultibarError(Exception):
-    """Base multibar error."""
-
+    """Base multibar error.
+    You can use this error to catch any error from Python-Multibar.
+    """
     pass
 
 
 class ContractError(MultibarError):
     """Base contracts error."""
-
     pass
 
 
 class ContractResponseError(ContractError):
-    """Error that parses contract response."""
+    """Error that parses contract response.
+
+    Parameters
+    ----------
+    check : ContractCheck
+        Check.
+    """
 
     __slots__ = ("contract_check",)
 
@@ -42,11 +49,9 @@ class ContractResponseError(ContractError):
 
 class UnsignedContractError(ContractError):
     """Raises if contract manager is not subscribed for specify contract."""
-
     pass
 
 
 class TerminatedContractError(ContractResponseError):
     """Raises if contract is broken."""
-
     pass

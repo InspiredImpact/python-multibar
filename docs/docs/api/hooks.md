@@ -1,2 +1,0 @@
-::: multibar.api.hooks
-

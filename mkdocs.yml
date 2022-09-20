@@ -68,6 +68,12 @@ nav:
     - faq.uk.md
     - faq.ru.md
 
+  - About:
+    # Translated
+    - about.md
+    - about.uk.md
+    - about.ru.md
+
   - "Reference":
       - "api":
         - api/math_operations.md
@@ -181,6 +187,7 @@ extra_css:
   - css/mkdocs.css
   - css/progressbar.css
   - css/critic.css
+  - css/navmenu.css
 
 # Additional javascript
 extra_javascript:

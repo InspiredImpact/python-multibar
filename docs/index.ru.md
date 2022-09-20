@@ -24,11 +24,14 @@ Typing: Typed
     ·
     <a href="https://github.com/Animatea/python-multibar/issues">Предложить идею</a>
 
-!!! tldr "TL;DR"
-  - [**Как читать документацию**](howto.ru.md)
-  - [**Ответы на потенциальные вопросы**](faq.ru.md)
-  - [**С чего начать**](quickstart.ru.md)
-  - [**Перейти к документации**](errors.md)
+!!! pied-piper "Навигационное меню"
+[**Как читать документацию**](howto.ru.md){ .md-button }
+[**Ответы на потенциальные вопросы**](faq.ru.md){ .md-button }
+[**С чего начать**](quickstart.ru.md){ .md-button }
+[**Python-Multibar**](about.ru.md){ .md-button }
+[**Перейти к документации**](errors.md){ .md-button }
+
+# ОБЯЗАТЕЛЬНО ТЕКСТ ТУТ ДЛЯ КРАСОТЫ ))))
 
 <h1 align="center">Мини-карта Python-Multibar</h1>
 

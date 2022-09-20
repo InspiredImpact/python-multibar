@@ -1,167 +1,167 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
-         <loc>https://python-multibar.docs/docs/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/errors/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/faq/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/faq.ru/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/faq.uk/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/howto/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/howto.ru/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/howto.uk/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/index.ru/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/index.uk/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/output/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/quickstart/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/quickstart.ru/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/quickstart.uk/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/settings/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/types/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/utilities/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/api/clients/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/api/contracts/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/api/hooks/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/api/math_operations/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/api/progressbars/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/api/sectors/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/api/signatures/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/api/writers/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/impl/clients/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/impl/contracts/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/impl/hooks/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/impl/math_operations/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/impl/progressbars/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/impl/sectors/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/impl/signatures/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://python-multibar.docs/docs/impl/writers/</loc>
+         <loc>None</loc>
          <lastmod>2022-09-20</lastmod>
          <changefreq>daily</changefreq>
     </url>

@@ -13,7 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" """
+"""Implementation of progressbar sector interfaces."""
 from __future__ import annotations
 
 __all__ = ("Sector",)
@@ -27,27 +27,71 @@ if typing.TYPE_CHECKING:
 
 
 class Sector(sectors.AbstractSector):
+    """Implementation of sectors.AbstractSector.
+
+    !!! note
+        Documentation duplicated for mkdocs auto-reference
+        plugin.
+    """
+
     def add_to_progressbar(self: Sector, progressbar: progressbars.ProgressbarAware[Sector], /) -> Sector:
-        # << inherited docstring for multibar.api.sectors.AbstractSector >>
+        """Adds sector self to progressbar.
+
+        Parameters
+        ----------
+        progressbar : progressbars.ProgressbarAware[SelfT], /
+            Progressbar to add self for.
+
+        Returns
+        -------
+        Self
+            The sector object to allow fluent-style.
+        """
         progressbar.add_sector(self)
         return self
 
     def change_name(self, new_display_name: str, /) -> Sector:
-        # << inherited docstring for multibar.api.sectors.AbstractSector >>
+        """Changes sector display name.
+
+        Parameters
+        ----------
+        new_display_name : str, /
+            New display name to set.
+
+        Returns
+        -------
+        Self
+            The sector object to allow fluent-style.
+        """
         self._name = new_display_name
         return self
 
     @property
     def name(self) -> str:
-        # << inherited docstring for multibar.api.sectors.AbstractSector >>
+        """
+        Returns
+        -------
+        str
+            Sector display name.
+        """
         return self._name
 
     @property
     def is_filled(self) -> bool:
-        # << inherited docstring for multibar.api.sectors.AbstractSector >>
+        """
+        Returns
+        -------
+        str
+            Sector filled value.
+        """
         return self._is_filled
 
     @property
     def position(self) -> int:
-        # << inherited docstring for multibar.api.sectors.AbstractSector >>
+        """
+        Returns
+        -------
+        str
+            Sector position in the progressbar.
+        """
         return self._position

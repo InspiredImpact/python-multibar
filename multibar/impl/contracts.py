@@ -13,7 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" """
+"""Implementation of progressbar contracts."""
 from __future__ import annotations
 
 __all__ = (
@@ -31,9 +31,22 @@ from multibar.api import contracts
 
 
 class ContractManager(contracts.ContractManagerAware):
+    """Implementation of contracts.ContractManagerAware.
+
+    !!! note
+        Documentation duplicated for mkdocs auto-reference
+        plugin.
+    """
+
     __slots__ = ("_contracts", "_raise_errors")
 
     def __init__(self, *, raise_errors: bool = True) -> None:
+        """
+        Parameters
+        ----------
+        raise_errors : bool = True
+            If True, will raise errors when contract is broken.
+        """
         self._contracts: list[contracts.ContractAware] = []
         self._raise_errors = raise_errors
 
@@ -41,11 +54,35 @@ class ContractManager(contracts.ContractManagerAware):
         return contract in self._contracts
 
     def set_raise_errors(self, value: bool, /) -> None:
-        # << inherited docstring for multibar.api.contracts.ContractManagerAware >>
+        """Render broken contract may contain IO operations
+        if raise_errors is False. Otherwise, it returns nothing,
+        but throws an error.
+
+        Parameters
+        ----------
+        value : bool
+            Raise errors boolean value.
+
+        Returns
+        -------
+        None
+        """
         self._raise_errors = value
 
     def check_contracts(self, *args: typing.Any, **kwargs: typing.Any) -> None:
-        # << inherited docstring for multibar.api.contracts.ContractManagerAware >>
+        """Checks all contracts.
+
+        Parameters
+        ----------
+        *args: typing.Any
+            Arguments to contracts check.
+        **kwargs: typing.Any
+            Keyword arguments to contracts check.
+
+        Returns
+        -------
+        None
+        """
         for contract in self._contracts:
             self.check_contract(contract, *args, **kwargs)
 
@@ -56,7 +93,26 @@ class ContractManager(contracts.ContractManagerAware):
         *args: typing.Any,
         **kwargs: typing.Any,
     ) -> None:
-        # << inherited docstring for multibar.api.contracts.ContractManagerAware >>
+        """Checks contract for any errors or warnings.
+
+        Parameters
+        ----------
+        contract : ContractAware
+            Contract to check.
+        *args: typing.Any
+            Arguments to contract check.
+        **kwargs: typing.Any
+            Keyword arguments to contract check.
+
+        Raises
+        ------
+        errors.UnsignedContractError
+            If manager is not subscribed for specify contract.
+
+        Returns
+        -------
+        None
+        """
         if not self._agreed_with_manager(contract):
             raise errors.UnsignedContractError(f"Contract {type(contract).__name__} is unsigned.")
 
@@ -68,25 +124,60 @@ class ContractManager(contracts.ContractManagerAware):
             )
 
     def subscribe(self, contract: contracts.ContractAware, /) -> None:
-        # << inherited docstring for multibar.api.contracts.ContractManagerAware >>
+        """Subscribes for contract.
+
+        Parameters
+        ----------
+        contract : ContractAware
+            Contract to subscribe.
+
+        Returns
+        -------
+        None
+        """
         self._contracts.append(contract)
 
     def terminate(self, contract: contracts.ContractAware, /) -> None:
-        # << inherited docstring for multibar.api.contracts.ContractManagerAware >>
+        """Terminates any contract.
+
+        Parameters
+        ----------
+        contract : ContractAware
+            Contract to terminate.
+
+        Returns
+        -------
+        None
+        """
         self._contracts.remove(contract)
 
     def terminate_all(self) -> None:
-        # << inherited docstring for multibar.api.contracts.ContractManagerAware >>
+        """Terminates all contracts.
+
+        Returns
+        -------
+        None
+        """
         self._contracts.clear()
 
     @property
     def contracts(self) -> list[contracts.ContractAware]:
-        # << inherited docstring for multibar.api.contracts.ContractManagerAware >>
+        """
+        Returns
+        -------
+        collections.abc.Sequence[ContractAware]
+            Sequence of the contracts.
+        """
         return self._contracts
 
     @property
     def raise_errors(self) -> bool:
-        # << inherited docstring for multibar.api.contracts.ContractManagerAware >>
+        """
+        Returns
+        -------
+        bool
+            Raise errors boolean value.
+        """
         return self._raise_errors
 
 
@@ -96,8 +187,28 @@ class ContractManager(contracts.ContractManagerAware):
 
 
 class WriteProgressContract(contracts.ContractAware):
+    """Implementation of contracts.ContractAware.
+
+    !!! note
+        Documentation duplicated for mkdocs auto-reference
+        plugin.
+    """
+
     def check(self, *args: typing.Any, **kwargs: typing.Any) -> contracts.ContractCheck:
-        # << inherited docstring for multibar.api.contracts.ContractAware >>
+        """Checks contract for errors and warnings.
+
+        Parameters
+        ----------
+        *args : typing.Any
+            Arguments to check.
+        **kwargs : typing.Any
+            Keyword arguments to check.
+
+        Returns
+        -------
+        contracts.ContractCheck
+            Contract response.
+        """
         call_metadata = meta = typing.cast(typing.MutableMapping[typing.Any, typing.Any], kwargs.pop("metadata", {}))
         if not call_metadata:
             return contracts.ContractCheck.terminated(
@@ -162,7 +273,27 @@ class WriteProgressContract(contracts.ContractAware):
         *,
         raise_errors: bool,
     ) -> typing.Any:
-        # << inherited docstring for multibar.api.contracts.ContractAware >>
+        """Renders broken contract.
+        May contain IO operations if raise_errors is False.
+        Otherwise, it returns nothing, but throws an error.
+
+        Parameters
+        ----------
+        check : ContractCheck
+            Contract response.
+        raise_errors : bool
+            If True, will raise errors when contract is broken.
+
+        Raises
+        ------
+        errors.TerminatedContractError
+            If `raise_errors` parameter is `True`.
+
+        Returns
+        -------
+        typing.Any
+            Any value depending on context and implementation.
+        """
         if raise_errors:
             raise errors.TerminatedContractError(check)
 
@@ -182,3 +313,10 @@ class WriteProgressContract(contracts.ContractAware):
 
 
 WRITE_PROGRESS_CONTRACT = WriteProgressContract()
+"""Contract that checks if `start_value` is not more than `end_value`
+and if `length` is more that zero.
+
+!!! warning
+    For subscribing or unsubscribing of `WriteProgressContract` its recommended
+    to use this variable, because this methods depends on object `id`.
+"""

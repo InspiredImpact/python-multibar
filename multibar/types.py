@@ -20,8 +20,18 @@ __all__ = ("ProgressMetadataType",)
 
 import typing
 
+import typing_extensions
+
 if typing.TYPE_CHECKING:
     from multibar.api import calculation_service, progressbars, sectors, signatures
+
+
+HookSignatureType: typing_extensions.TypeAlias = typing.Callable[..., typing.Optional[bool]]
+"""Type for hook callable signature.
+
+!!! info
+    By default hook callable accepts `*args` and `**kwargs` parameters.
+"""
 
 
 class ProgressMetadataType(typing.TypedDict, total=False):

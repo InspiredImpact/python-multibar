@@ -13,7 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" """
+"""Implementation of hooks interfaces."""
 from __future__ import annotations
 
 __all__ = (
@@ -23,28 +23,50 @@ __all__ = (
 
 import typing
 
-from multibar import types as progress_types
+from multibar import types as ptypes
 from multibar.api import hooks
 
 if typing.TYPE_CHECKING:
     from multibar.api import clients
-    from multibar.api.hooks import HookSignatureType
 
 
 class Hooks(hooks.HooksAware):
+    """Implementation of hooks.HooksAware.
+
+    !!! note
+        Documentation duplicated for mkdocs auto-reference
+        plugin.
+    """
+
     __slots__ = ("_on_error_hooks", "_pre_execution_hooks", "_post_execution_hooks")
 
     def __init__(self) -> None:
-        self._on_error_hooks: list[HookSignatureType] = []
-        self._pre_execution_hooks: list[HookSignatureType] = []
-        self._post_execution_hooks: list[HookSignatureType] = []
+        self._on_error_hooks: list[ptypes.HookSignatureType] = []
+        self._pre_execution_hooks: list[ptypes.HookSignatureType] = []
+        self._post_execution_hooks: list[ptypes.HookSignatureType] = []
 
     def __len__(self) -> int:
-        # << inherited docstring for multibar.api.hooks.HooksAware >>
+        """
+        Returns
+        -------
+        int
+            Length of all hooks.
+        """
         return len(self._on_error_hooks + self._pre_execution_hooks + self._post_execution_hooks)
 
     def add_to_client(self, client: clients.ProgressbarClientAware, /) -> Hooks:
-        # << inherited docstring for multibar.api.hooks.HooksAware >>
+        """Adds hooks to the client.
+
+        Parameters
+        ----------
+        client : clients.ProgressbarClientAware, /
+            Client to add.
+
+        Returns
+        -------
+        Self
+            The hook object to allow fluent-style.
+        """
         if not client.hooks:
             client.set_hooks(self)
         else:
@@ -53,39 +75,113 @@ class Hooks(hooks.HooksAware):
         return self
 
     def update(self, other: hooks.HooksAware, /) -> Hooks:
-        # << inherited docstring for multibar.api.hooks.HooksAware >>
+        """Updates self hooks from other hooks object.
+
+        Parameters
+        ----------
+        other : HooksAware, /
+            Other hooks object to update.
+
+        Returns
+        -------
+        Self
+            The hook object to allow fluent-style.
+        """
         self._on_error_hooks.extend(other.on_error_hooks)
         self._post_execution_hooks.extend(other.post_execution_hooks)
         self._pre_execution_hooks.extend(other.pre_execution_hooks)
         return self
 
-    def add_pre_execution(self, callback: HookSignatureType, /) -> Hooks:
-        # << inherited docstring for multibar.api.hooks.HooksAware >>
+    def add_pre_execution(self, callback: ptypes.HookSignatureType, /) -> Hooks:
+        """Adds pre-execution callback.
+
+        Parameters
+        ----------
+        callback : ptypes.HookSignatureType, /
+            Pre-execution callback.
+
+        Returns
+        -------
+        Self
+            The hook object to allow fluent-style.
+        """
         self._pre_execution_hooks.append(callback)
         return self
 
-    def add_post_execution(self, callback: HookSignatureType, /) -> Hooks:
-        # << inherited docstring for multibar.api.hooks.HooksAware >>
+    def add_post_execution(self, callback: ptypes.HookSignatureType, /) -> Hooks:
+        """Adds post-execution callback.
+
+        Parameters
+        ----------
+        callback : ptypes.HookSignatureType, /
+            Post-execution callback.
+
+        Returns
+        -------
+        Self
+            The hook object to allow fluent-style.
+        """
         self._post_execution_hooks.append(callback)
         return self
 
-    def add_on_error(self, callback: HookSignatureType, /) -> Hooks:
-        # << inherited docstring for multibar.api.hooks.HooksAware >>
+    def add_on_error(self, callback: ptypes.HookSignatureType, /) -> Hooks:
+        """Adds on-error callback.
+
+        Parameters
+        ----------
+        callback : ptypes.HookSignatureType, /
+            On-error callback.
+
+        Returns
+        -------
+        Self
+            The hook object to allow fluent-style.
+        """
         self._on_error_hooks.append(callback)
         return self
 
     def trigger_post_execution(self, *args: typing.Any, **kwargs: typing.Any) -> None:
-        # << inherited docstring for multibar.api.hooks.HooksAware >>
+        """Triggers all post-execution callbacks.
+
+        *args : typing.Any
+            Arguments to trigger.
+        **kwargs : typing.Any
+            Keyword arguments to trigger.
+
+        Returns
+        -------
+        None
+        """
         for hook in self._post_execution_hooks:
             hook(*args, **kwargs)
 
     def trigger_pre_execution(self, *args: typing.Any, **kwargs: typing.Any) -> None:
-        # << inherited docstring for multibar.api.hooks.HooksAware >>
+        """Triggers all pre-execution callbacks.
+
+        *args : typing.Any
+            Arguments to trigger.
+        **kwargs : typing.Any
+            Keyword arguments to trigger.
+
+        Returns
+        -------
+        None
+        """
         for hook in self._pre_execution_hooks:
             hook(*args, **kwargs)
 
     def trigger_on_error(self, *args: typing.Any, **kwargs: typing.Any) -> None:
-        # << inherited docstring for multibar.api.hooks.HooksAware >>
+        """Triggers all on-error callbacks.
+
+        *args : typing.Any
+            Arguments to trigger.
+        **kwargs : typing.Any
+            Keyword arguments to trigger.
+
+        Returns
+        -------
+        None
+        """
         if not self._on_error_hooks:
             raise
 
@@ -94,18 +190,33 @@ class Hooks(hooks.HooksAware):
                 hook(*args, **kwargs)
 
     @property
-    def pre_execution_hooks(self) -> list[HookSignatureType]:
-        # << inherited docstring for multibar.api.hooks.HooksAware >>
+    def pre_execution_hooks(self) -> list[ptypes.HookSignatureType]:
+        """
+        Returns
+        -------
+        collections.abc.Sequence[ptypes.HookSignatureType]
+            Sequence of pre-execution hooks.
+        """
         return self._pre_execution_hooks
 
     @property
-    def post_execution_hooks(self) -> list[HookSignatureType]:
-        # << inherited docstring for multibar.api.hooks.HooksAware >>
+    def post_execution_hooks(self) -> list[ptypes.HookSignatureType]:
+        """
+        Returns
+        -------
+        collections.abc.Sequence[ptypes.HookSignatureType]
+            Sequence of post-execution hooks.
+        """
         return self._post_execution_hooks
 
     @property
-    def on_error_hooks(self) -> list[HookSignatureType]:
-        # << inherited docstring for multibar.api.hooks.HooksAware >>
+    def on_error_hooks(self) -> list[ptypes.HookSignatureType]:
+        """
+        Returns
+        -------
+        collections.abc.Sequence[ptypes.HookSignatureType]
+            Sequence of on-error hooks.
+        """
         return self._on_error_hooks
 
 
@@ -113,7 +224,7 @@ def _progress_writer_hook(*_: typing.Any, **kwargs: typing.Any) -> None:
     FIRST_FILL: typing.Literal[3] = 3
     LAST_FILL: typing.Literal[97] = 97
 
-    metadata = typing.cast(progress_types.ProgressMetadataType, kwargs["metadata"])
+    metadata = typing.cast(ptypes.ProgressMetadataType, kwargs["metadata"])
     process_percentage = metadata["calculation_service_cls"].get_progress_percentage(
         metadata["start_value"], metadata["end_value"]
     )
@@ -138,4 +249,6 @@ def _progress_writer_hook(*_: typing.Any, **kwargs: typing.Any) -> None:
 
 
 WRITER_HOOKS = Hooks()
+"""Hooks that by default __supports__ in `post-execution` hook
+progressbar `start` & `end` chars."""
 WRITER_HOOKS.add_post_execution(_progress_writer_hook)

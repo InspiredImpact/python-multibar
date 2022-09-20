@@ -41,9 +41,6 @@ class Settings(metaclass=utils.Singleton):
         | ----------- | ---------------|----------------- |
         | `PRINTER`   | PrinterAware   | TermcolorPrinter |
 
-    `PRINTER` : PrinterAware = TermcolorPrinter
-        Class for console output.
-
     ??? example "Expand example of usage"
         ```py hl_lines="12"
         import typing

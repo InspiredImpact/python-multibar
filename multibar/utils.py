@@ -117,7 +117,7 @@ class cached_property:
 
         Parameters
         ----------
-        instance: _InstanceT
+        instance : _InstanceT
             Property instance.
         owner : typing.Optional[typing.Type[typing.Any]] = None
             Property owner.
@@ -172,7 +172,7 @@ class Singleton(type):
         ----------
         *args : typing.Any
             Argument to type call.
-        **kwargs: typing.Any
+        **kwargs : typing.Any
             Keyword arguments to type call.
 
         Returns

@@ -1,3 +1,19 @@
+# -*- coding: utf-8 -*-
+# cython: language_level=3
+# Copyright 2022 Animatea
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+"""Implementations of Python-Multibar clients."""
 from __future__ import annotations
 
 __all__ = ("ProgressbarClient",)
@@ -20,6 +36,13 @@ if typing.TYPE_CHECKING:
 
 
 class ProgressbarClient(abc_clients.ProgressbarClientAware):
+    """Implementation of abc_clients.ProgressbarClientAware.
+
+    !!! note
+        Documentation duplicated for mkdocs auto-reference
+        plugin.
+    """
+
     __slots__ = ("_hooks", "_writer", "_contract_manager")
 
     def __init__(
@@ -31,22 +54,7 @@ class ProgressbarClient(abc_clients.ProgressbarClientAware):
     ) -> None:
         """
         Parameters
-        ----------# -*- coding: utf-8 -*-
-# cython: language_level=3
-# Copyright 2022 Animatea
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-""" """
+        ----------
         hooks : typing.Optional[HooksAware] = None
             Progressbar client hooks.
         progress_writer : typing.Optional[ProgressbarWriterAware[AbstractSector]] = None
@@ -110,18 +118,12 @@ class ProgressbarClient(abc_clients.ProgressbarClientAware):
         self._hooks.trigger_post_execution(self, metadata=call_metadata)
         return progressbar
 
-    def set_hooks(
-        self,
-        hooks: abc_hooks.HooksAware,
-    ) -> ProgressbarClient:
+    def set_hooks(self, hooks: abc_hooks.HooksAware, /) -> ProgressbarClient:
         # << inherited docstring for multibar.api.clients.ProgressbarClientAware >>
         self._hooks = hooks
         return self
 
-    def update_hooks(
-        self,
-        hooks: abc_hooks.HooksAware,
-    ) -> ProgressbarClient:
+    def update_hooks(self, hooks: abc_hooks.HooksAware, /) -> ProgressbarClient:
         # << inherited docstring for multibar.api.clients.ProgressbarClientAware >>
         self._hooks.update(hooks)
         return self

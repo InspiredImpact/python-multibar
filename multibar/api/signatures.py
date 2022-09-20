@@ -13,7 +13,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" """
+"""Interfaces for progressbar signatures."""
+from __future__ import annotations
+
 __all__ = (
     "SignatureSegmentProtocol",
     "ProgressbarSignatureProtocol",
@@ -28,23 +30,26 @@ class SignatureSegmentProtocol(typing.Protocol):
 
     Examples
     --------
-    >>> import dataclasses
-    ...
-    >>> @dataclasses.dataclass
-    ... class SignatureSegment:
-    ...     on_filled: str = dataclasses.field(default="+")
-    ...     on_unfilled: str = dataclasses.field(default="-")
-    ...
-    >>> isinstance(SignatureSegment(), SignatureSegmentProtocol)
-    True
+    ??? example "Expand example of usage"
+        ```py
+        >>> import dataclasses
+        ...
+        >>> @dataclasses.dataclass
+        ... class SignatureSegment:
+        ...     on_filled: str = dataclasses.field(default="+")
+        ...     on_unfilled: str = dataclasses.field(default="-")
+        ...
+        >>> isinstance(SignatureSegment(), SignatureSegmentProtocol)
+        True
 
-    >>> def function_that_accepts_signature_segment(
-    ...     segment: SignatureSegmentProtocol, /
-    ... ) -> tuple[str, str]:
-    ...     return segment.on_filled, segment.on_unfilled
-    ...
-    >>> function_that_accepts_signature_segment(SignatureSegment())  # Mypy happy :)
-    ('+', '-')
+        >>> def function_that_accepts_signature_segment(
+        ...     segment: SignatureSegmentProtocol, /
+        ... ) -> tuple[str, str]:
+        ...     return segment.on_filled, segment.on_unfilled
+        ...
+        >>> function_that_accepts_signature_segment(SignatureSegment())  # Mypy happy :)
+        ('+', '-')
+        ```
     """
 
     @property
@@ -74,22 +79,25 @@ class ProgressbarSignatureProtocol(typing.Protocol):
 
     Examples
     --------
-    >>> import dataclasses
-    >>> from unittest.mock import Mock  # mock for signature segment
-    ...
-    >>> @dataclasses.dataclass
-    ... class Signature:
-    ...     start: SignatureSegmentProtocol = dataclasses.field(default=Mock())
-    ...     middle: SignatureSegmentProtocol = dataclasses.field(default=Mock())
-    ...     end: SignatureSegmentProtocol = dataclasses.field(default=Mock())
-    ...
-    >>> def function_that_checks_signature(
-    ...     signature: ProgressbarSignatureProtocol, /
-    ... ) -> bool:
-    ...     return isinstance(signature, ProgressbarSignatureProtocol)
-    ...
-    >>> function_that_checks_signature(Signature())  # Mypy happy :)
-    True
+    ??? example "Expand example of usage"
+        ```
+        >>> import dataclasses
+        >>> from unittest.mock import Mock  # mock for signature segment
+        ...
+        >>> @dataclasses.dataclass
+        ... class Signature:
+        ...     start: SignatureSegmentProtocol = dataclasses.field(default=Mock())
+        ...     middle: SignatureSegmentProtocol = dataclasses.field(default=Mock())
+        ...     end: SignatureSegmentProtocol = dataclasses.field(default=Mock())
+        ...
+        >>> def function_that_checks_signature(
+        ...     signature: ProgressbarSignatureProtocol, /
+        ... ) -> bool:
+        ...     return isinstance(signature, ProgressbarSignatureProtocol)
+        ...
+        >>> function_that_checks_signature(Signature())  # Mypy happy :)
+        True
+        ```
     """
 
     @property

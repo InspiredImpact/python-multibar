@@ -13,24 +13,19 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" """
+"""Interfaces for progressbar hooks."""
 from __future__ import annotations
 
-__all__ = (
-    "HookSignatureType",
-    "HooksAware",
-)
+__all__ = ("HooksAware",)
 
 import abc
 import collections.abc
 import typing
 
-import typing_extensions
-
 if typing.TYPE_CHECKING:
-    from . import clients
+    from multibar import types
 
-HookSignatureType: typing_extensions.TypeAlias = typing.Callable[..., typing.Optional[bool]]
+    from . import clients
 
 
 class HooksAware(abc.ABC):
@@ -40,7 +35,12 @@ class HooksAware(abc.ABC):
 
     @abc.abstractmethod
     def __len__(self) -> int:
-        """Returns length of all hooks. Used for bool() and len() operations."""
+        """
+        Returns
+        -------
+        int
+            Length of all hooks.
+        """
         ...
 
     @abc.abstractmethod
@@ -76,7 +76,7 @@ class HooksAware(abc.ABC):
         ...
 
     @abc.abstractmethod
-    def add_pre_execution(self, callback: HookSignatureType, /) -> HooksAware:
+    def add_pre_execution(self, callback: types.HookSignatureType, /) -> HooksAware:
         """Adds pre-execution callback.
 
         Parameters
@@ -92,7 +92,7 @@ class HooksAware(abc.ABC):
         ...
 
     @abc.abstractmethod
-    def add_post_execution(self, callback: HookSignatureType, /) -> HooksAware:
+    def add_post_execution(self, callback: types.HookSignatureType, /) -> HooksAware:
         """Adds post-execution callback.
 
         Parameters
@@ -108,7 +108,7 @@ class HooksAware(abc.ABC):
         ...
 
     @abc.abstractmethod
-    def add_on_error(self, callback: HookSignatureType, /) -> HooksAware:
+    def add_on_error(self, callback: types.HookSignatureType, /) -> HooksAware:
         """Adds on-error callback.
 
         Parameters
@@ -129,9 +129,12 @@ class HooksAware(abc.ABC):
 
         *args : typing.Any
             Arguments to trigger.
-
         **kwargs : typing.Any
             Keyword arguments to trigger.
+
+        Returns
+        -------
+        None
         """
         ...
 
@@ -141,9 +144,12 @@ class HooksAware(abc.ABC):
 
         *args : typing.Any
             Arguments to trigger.
-
         **kwargs : typing.Any
             Keyword arguments to trigger.
+
+        Returns
+        -------
+        None
         """
         ...
 
@@ -153,15 +159,18 @@ class HooksAware(abc.ABC):
 
         *args : typing.Any
             Arguments to trigger.
-
         **kwargs : typing.Any
             Keyword arguments to trigger.
+
+        Returns
+        -------
+        None
         """
         ...
 
     @property
     @abc.abstractmethod
-    def pre_execution_hooks(self) -> collections.abc.Sequence[HookSignatureType]:
+    def pre_execution_hooks(self) -> collections.abc.Sequence[types.HookSignatureType]:
         """
         Returns
         -------
@@ -172,7 +181,7 @@ class HooksAware(abc.ABC):
 
     @property
     @abc.abstractmethod
-    def post_execution_hooks(self) -> collections.abc.Sequence[HookSignatureType]:
+    def post_execution_hooks(self) -> collections.abc.Sequence[types.HookSignatureType]:
         """
         Returns
         -------
@@ -183,7 +192,7 @@ class HooksAware(abc.ABC):
 
     @property
     @abc.abstractmethod
-    def on_error_hooks(self) -> collections.abc.Sequence[HookSignatureType]:
+    def on_error_hooks(self) -> collections.abc.Sequence[types.HookSignatureType]:
         """
         Returns
         -------

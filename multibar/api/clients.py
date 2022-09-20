@@ -13,7 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" """
+"""Interfaces for progressbar clients."""
 from __future__ import annotations
 
 __all__ = ("ProgressbarClientAware",)
@@ -70,10 +70,8 @@ class ProgressbarClientAware(abc.ABC):
         ----------
         start_value : int, /
             Start value (current progress) for progressbar math operations.
-
         end_value : int, /
             End value (needed progress) for progressbar math operations.
-
         length : int = 20, *
             Length of progressbar for progressbar math operations.
 
@@ -85,24 +83,34 @@ class ProgressbarClientAware(abc.ABC):
         ...
 
     @abc.abstractmethod
-    def set_hooks(self, hooks: hooks_.HooksAware) -> ProgressbarClientAware:
+    def set_hooks(self, hooks: hooks_.HooksAware, /) -> ProgressbarClientAware:
         """Sets hooks to the client.
 
         Parameters
         ----------
         hooks : hooks_.HooksAware
             Any hooks to set.
+
+        Returns
+        -------
+        Self
+            ProgressbarClient object to allow fluent-style.
         """
         ...
 
     @abc.abstractmethod
-    def update_hooks(self, hooks: hooks_.HooksAware) -> ProgressbarClientAware:
+    def update_hooks(self, hooks: hooks_.HooksAware, /) -> ProgressbarClientAware:
         """Updates hooks for the client.
 
         Parameters
         ----------
         hooks : hooks_.HooksAware
             Any hooks to update.
+
+        Returns
+        -------
+        Self
+            ProgressbarClient object to allow fluent-style.
         """
         ...
 

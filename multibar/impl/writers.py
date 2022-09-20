@@ -13,7 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" """
+"""Implementation of progressbar writer interfaces."""
 from __future__ import annotations
 
 __all__ = ("ProgressbarWriter",)
@@ -34,6 +34,13 @@ if typing.TYPE_CHECKING:
 
 
 class ProgressbarWriter(abc_writers.ProgressbarWriterAware):
+    """Implementation of abc_writers.ProgressbarWriterAware.
+
+    !!! note
+        Documentation duplicated for mkdocs auto-reference
+        plugin.
+    """
+
     __slots__ = ("_signature", "_sector_cls", "_progressbar_cls", "_calculation_service")
 
     def __init__(
@@ -47,22 +54,16 @@ class ProgressbarWriter(abc_writers.ProgressbarWriterAware):
         calculation_service: typing.Optional[typing.Type[abc_math_operations.AbstractCalculationService]] = None,
     ) -> None:
         """
-            Parameters
-            ----------
-            sector_cls: typing.Optional[typing.Type[abc_sectors.AbstractSector]] = None, *
-                Progressbar sector cls for writer.
-
-            progressbar_cls: typing.Optional[typing.Type[ProgressbarT_co]] = None, *
-                Progressbar cls for writer.
-
-            signature: typing.Optional[abc_signatures.ProgressbarSignatureProtocol] = None, *
-                Progressbar signature for writer.
-
-            calculation_service: typing.Optional[
-                typing.Type[abc_math_operations.AbstractCalculationService]
-            ] = None, *
-                Math operations for writer.
-        ) -> None:
+        Parameters
+        ----------
+        sector_cls: typing.Optional[typing.Type[abc_sectors.AbstractSector]] = None
+            Progressbar sector cls for writer.
+        progressbar_cls: typing.Optional[typing.Type[ProgressbarT_co]] = None
+            Progressbar cls for writer.
+        signature: typing.Optional[abc_signatures.ProgressbarSignatureProtocol] = None
+            Progressbar signature for writer.
+        calculation_service: typing.Optional[typing.Type[abc_math_operations.AbstractCalculationService]] = None
+            Math operations for writer.
         """
         self._signature = utils.none_or(signatures.SimpleSignature(), signature)
         self._sector_cls = utils.none_or(sectors.Sector, sector_cls)
@@ -75,7 +76,18 @@ class ProgressbarWriter(abc_writers.ProgressbarWriterAware):
         signature: abc_signatures.ProgressbarSignatureProtocol,
         /,
     ) -> ProgressbarWriter:
-        # << inherited docstring for multibar.api.writers.ProgressbarWriterAware >>
+        """Alternative constructor from signature.
+
+        Parameters
+        ----------
+        signature : abc_signatures.ProgressbarSignatureProtocol, /
+            Signature to init.
+
+        Returns
+        -------
+        ProgressbarWriterAware[sectors.AbstractSector]
+            Instance of progressbar writer.
+        """
         return cls(
             sector_cls=None,
             progressbar_cls=None,
@@ -92,7 +104,22 @@ class ProgressbarWriter(abc_writers.ProgressbarWriterAware):
         *,
         length: int = 20,
     ) -> abc_progressbars.ProgressbarAware[abc_sectors.AbstractSector]:
-        # << inherited docstring for multibar.api.writers.ProgressbarWriterAware >>
+        """Writes progress without any hooks or checks.
+
+        Parameters
+        ----------
+        start_value : int, /
+            Start value (current progress).
+        end_value : int, /
+            End value (needed progress).
+        length : int, *
+            Length of progressbar.
+
+        Returns
+        -------
+        abc_progressbars.ProgressbarAware[sectors.AbstractSector]
+            Progressbar object.
+        """
         sig = self._signature
         sector_cls = self._sector_cls
         progressbar = self._progressbar_cls()
@@ -111,26 +138,57 @@ class ProgressbarWriter(abc_writers.ProgressbarWriterAware):
         signature: abc_signatures.ProgressbarSignatureProtocol,
         /,
     ) -> ProgressbarWriter:
-        # << inherited docstring for multibar.api.writers.ProgressbarWriterAware >>
+        """Sets new progressbar signature.
+
+        Parameters
+        ----------
+        signature : abc_signatures.ProgressbarSignatureProtocol, /
+            New signature to set.
+
+        Returns
+        -------
+        Self
+            Progressbar writer object to allow fluent-style.
+        """
         self._signature = signature
         return self
 
     @property
     def signature(self) -> abc_signatures.ProgressbarSignatureProtocol:
-        # << inherited docstring for multibar.api.writers.ProgressbarWriterAware >>
+        """
+        Returns
+        -------
+        abc_signatures.ProgressbarSignatureProtocol
+            Progressbar signature.
+        """
         return self._signature
 
     @property
     def sector_cls(self) -> typing.Type[abc_sectors.AbstractSector]:
-        # << inherited docstring for multibar.api.writers.ProgressbarWriterAware >>
+        """
+        Returns
+        -------
+        typing.Type[abc_sectors.AbstractSector]
+            Progressbar sector cls.
+        """
         return self._sector_cls
 
     @property
     def progressbar_cls(self) -> typing.Type[abc_progressbars.ProgressbarAware[abc_sectors.AbstractSector]]:
-        # << inherited docstring for multibar.api.writers.ProgressbarWriterAware >>
+        """
+        Returns
+        -------
+        typing.Type[progressbars.ProgressbarAware[abc_progressbars.AbstractSector]]
+            Progressbar cls.
+        """
         return self._progressbar_cls
 
     @property
     def calculation_cls(self) -> typing.Type[abc_math_operations.AbstractCalculationService]:
-        # << inherited docstring for multibar.api.writers.ProgressbarWriterAware >>
+        """
+        Returns
+        -------
+        typing.Type[abc_math_operations.AbstractCalculationService]
+            Calculation cls.
+        """
         return self._calculation_service

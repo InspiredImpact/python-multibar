@@ -13,7 +13,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" """
+"""Interfaces for math operations."""
+from __future__ import annotations
+
 __all__ = ("AbstractCalculationService",)
 
 import abc
@@ -23,11 +25,7 @@ import typing
 
 class AbstractCalculationService(abc.ABC):
     """An abstraction that represents a service for mathematical operations
-     on the progress bar.
-
-    Currently, implemented in:
-        - multibar.impl.calculation_service.ProgressbarCalculationService
-    """
+    on the progress bar."""
 
     __slots__ = ("_start_value", "_end_value", "_length")
 
@@ -37,16 +35,13 @@ class AbstractCalculationService(abc.ABC):
         end_value: typing.Union[int, float],
         length: int,
     ) -> None:
-        """Slotted abstraction, that bounded to the arguments.
-
+        """
         Parameters
         ----------
         start_value : typing.Union[int, float]
             Start value (current progress) for progressbar math operations.
-
         end_value : typing.Union[int, float]
             End value (needed progress) for progressbar math operations.
-
         length : int
             Length of progressbar for progressbar math operations.
         """
@@ -101,7 +96,6 @@ class AbstractCalculationService(abc.ABC):
         -----------
         start : typing.Union[int, float]
             Start value (current progress) for progressbar math operations.
-
         end : typing.Union[int, float]
             End value (needed progress) for progressbar math operations.
         """

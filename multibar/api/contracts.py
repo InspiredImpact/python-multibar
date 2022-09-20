@@ -13,7 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" """
+"""Interfaces for progressbar contracts."""
 from __future__ import annotations
 
 __all__ = (
@@ -27,7 +27,7 @@ import collections.abc
 import dataclasses
 import typing
 
-from returns.io import IO, impure
+from returns.io import impure
 
 from multibar import utils
 
@@ -53,13 +53,17 @@ class ContractCheck:
         cls,
         metadata: typing.Optional[typing.MutableMapping[typing.Any, typing.Any]] = None,
     ) -> ContractCheck:
-        """If contract kept.
-        Alternative constructor.
+        """Alternative constructor that used if contract is kept.
 
         Parameters
         ----------
         metadata : typing.Optional[typing.MutableMapping[typing.Any, typing.Any]] = None
             Contract metadata to return.
+
+        Returns
+        -------
+        ContractCheck
+            Contract response.
         """
         return cls(kept=True, metadata=utils.none_or({}, metadata))
 
@@ -71,19 +75,21 @@ class ContractCheck:
         warnings: typing.Optional[list[str]] = None,
         errors: typing.Optional[list[str]] = None,
     ) -> ContractCheck:
-        """If contract is broken.
-        Alternative constructor.
+        """Alternative constructor that used if contract is broken.
 
         Parameters
         ----------
         metadata : typing.Optional[typing.MutableMapping[typing.Any, typing.Any]] = None
             Contract metadata to return.
-
         warnings : typing.Optional[list[str]] = None
             Warnings to return.
-
         errors : typing.Optional[list[str]] = None
             Errors to return.
+
+        Returns
+        -------
+        ContractCheck
+            Contract response.
         """
         return cls(
             kept=False,
@@ -106,7 +112,6 @@ class ContractAware(abc.ABC):
         ----------
         *args : typing.Any
             Arguments to check.
-
         **kwargs : typing.Any
             Keyword arguments to check.
 
@@ -134,9 +139,13 @@ class ContractAware(abc.ABC):
         ----------
         check : ContractCheck
             Contract response.
-
         raise_errors : bool
             If True, will raise errors when contract is broken.
+
+        Returns
+        -------
+        typing.Any
+            Any value depending on context and implementation.
         """
         ...
 
@@ -158,14 +167,16 @@ class ContractManagerAware(abc.ABC):
 
         Parameters
         ----------
-        contract : ContractAware, /
+        contract : ContractAware
             Contract to check.
-
         *args: typing.Any
             Arguments to contract check.
-
         **kwargs: typing.Any
             Keyword arguments to contract check.
+
+        Returns
+        -------
+        None
         """
         ...
 
@@ -175,9 +186,12 @@ class ContractManagerAware(abc.ABC):
 
         *args: typing.Any
             Arguments to contracts check.
-
         **kwargs: typing.Any
             Keyword arguments to contracts check.
+
+        Returns
+        -------
+        None
         """
         ...
 
@@ -187,8 +201,12 @@ class ContractManagerAware(abc.ABC):
 
         Parameters
         ----------
-        contract : ContractAware, /
+        contract : ContractAware
             Contract to subscribe.
+
+        Returns
+        -------
+        None
         """
         ...
 
@@ -198,14 +216,23 @@ class ContractManagerAware(abc.ABC):
 
         Parameters
         ----------
-        contract : ContractAware, /
+        contract : ContractAware
             Contract to terminate.
+
+        Returns
+        -------
+        None
         """
         ...
 
     @abc.abstractmethod
     def terminate_all(self) -> None:
-        """Terminates all contracts."""
+        """Terminates all contracts.
+
+        Returns
+        -------
+        None
+        """
         ...
 
     @abc.abstractmethod
@@ -216,8 +243,12 @@ class ContractManagerAware(abc.ABC):
 
         Parameters
         ----------
-        value : bool, /
+        value : bool
             Raise errors boolean value.
+
+        Returns
+        -------
+        None
         """
         ...
 

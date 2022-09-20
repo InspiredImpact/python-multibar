@@ -13,7 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" """
+"""Interfaces for progressbar collections."""
 from __future__ import annotations
 
 __all__ = ("ProgressbarAware",)
@@ -29,6 +29,12 @@ from . import sectors
 if typing.TYPE_CHECKING:
 
     class SupportsGetitem(typing.Protocol):
+        """Checks for `__getitem__` method implementation.
+
+        !!! warning
+            Defined in `typing.TYPE_CHECKING` block.
+        """
+
         def __getitem__(self, item: typing.Any) -> typing.Any:
             ...
 
@@ -56,12 +62,23 @@ class ProgressbarAware(abc.ABC, typing.Generic[SectorT]):
     @abc.abstractmethod
     def __getitem__(self, item: typing.Any) -> typing.Any:
         """Returns sector object if item is instance of int,
-        or sequence of sectors if item is instance of slice."""
+        or sequence of sectors if item is instance of slice.
+
+        Returns
+        -------
+        typing.Any
+            Any value depending on context and implementation.
+        """
         ...
 
     @abc.abstractmethod
     def __len__(self) -> int:
-        """Returns sectors count."""
+        """
+        Returns
+        -------
+        int
+            Sectors count.
+        """
         ...
 
     @classmethod
@@ -87,10 +104,13 @@ class ProgressbarAware(abc.ABC, typing.Generic[SectorT]):
             but at the same time they would support the abstract class api.
 
             An example of behavior in pseudocode:
-            >>> progressbar = progresswriter.write(value, value)  # Sectors doesn't have .extend_method()
-            >>> sectors = IterableOverYourExtendedSectors(...)  # Extended sectors with .extend_method()
-            >>> new_progressbar = progressbar.set_new_sectors(sectors)  # Sectors have .extend_method()
-            >>> new_progressbar.sectors[0].extend_method()  # Mypy happy.
+            ??? example "Expand pseudocode example"
+                ```py
+                >>> progressbar = progresswriter.write(value, value)  # Sectors doesn't have .extend_method()
+                >>> sectors = IterableOverYourExtendedSectors(...)  # Extended sectors with .extend_method()
+                >>> new_progressbar = progressbar.set_new_sectors(sectors)  # Sectors have .extend_method()
+                >>> new_progressbar.sectors[0].extend_method()  # Mypy happy.
+                ```
 
             It is worth clarifying that this implementation has not yet been finalized
             and may be changed in future versions (and even without HKT at all).
@@ -132,24 +152,34 @@ class ProgressbarAware(abc.ABC, typing.Generic[SectorT]):
             but at the same time they would support the abstract class api.
 
             An example of behavior in pseudocode:
-            progressbar = progressbarwriter.write(value, value)
-
-            >>> class ExtendedImpl(AbstractSector):  # Your extended implementation
-            >>>     def __init__(self, sector_obj: AbstractSector) -> None:
-            ...         super().__init__(sector_obj.name, sector_obj.is_filled, sector_obj.position)
-            ...         self._origin = sector_obj
-            ...
-            >>>     def extended_method(self) -> None:
-            ...         ...
-            ...
-            ...    # Other abstraction api implementation.
-            ...
-            >>> new_progressbar = progressbar.map(lambda s: ExtendedImpl(s))
-            >>> new_progressbar.sectors[0].extended_method()  # Mypy happy.
+            ??? example "Expand pseudocode example"
+                ```py
+                >>> progressbar = progressbarwriter.write(value, value)
+                ...
+                >>> class ExtendedImpl(AbstractSector):  # Your extended implementation
+                >>>     def __init__(self, sector_obj: AbstractSector) -> None:
+                ...         super().__init__(sector_obj.name, sector_obj.is_filled, sector_obj.position)
+                ...         self._origin = sector_obj
+                ...
+                >>>     def extended_method(self) -> None:
+                ...         ...
+                ...
+                ...    # Other abstraction api implementation.
+                ...
+                >>> new_progressbar = progressbar.map(lambda s: ExtendedImpl(s))
+                >>> new_progressbar.sectors[0].extended_method()  # Mypy happy.
+                ```
 
             It is worth clarifying that this implementation has not yet been finalized
             and may be changed in future versions (and even without HKT at all).
             You can leave your opinion about this in the issues of the project.
+
+        Returns
+        -------
+        Kind1[_InstanceKind, _NewValueType]
+            New instace of progressbar with your sector objects.
+            But it would differ from the usual implementation in
+            that mypy does not throw an error in this case.
         """
         ...
 
@@ -161,6 +191,10 @@ class ProgressbarAware(abc.ABC, typing.Generic[SectorT]):
         ----------
         consumer : typing.Callable[[SectorT], typing.Any], /
             Function to apply for progressbar sectors.
+
+        Returns
+        -------
+        None
         """
         ...
 
@@ -188,7 +222,6 @@ class ProgressbarAware(abc.ABC, typing.Generic[SectorT]):
         ----------
         sector_pos : int, /
             To find sector by index to change.
-
         new_display_name : str, /
             New display name value.
 

@@ -13,7 +13,9 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" """
+"""Python-Multibar signature implementations."""
+from __future__ import annotations
+
 __all__ = (
     "SimpleSignature",
     "SignatureSegment",
@@ -25,25 +27,44 @@ import dataclasses
 
 @dataclasses.dataclass
 class SignatureSegment:
+    """Dataclass that stores segment data."""
+
     on_filled: str
+    """On filled state."""
+
     on_unfilled: str
+    """On unfilled state."""
 
 
 @dataclasses.dataclass
 class SimpleSignature:
+    """Dataclass that stores simple signature data."""
+
     start: SignatureSegment = dataclasses.field(default=SignatureSegment(on_filled="<", on_unfilled="-"))
+    """Progressbar start char."""
+
     end: SignatureSegment = dataclasses.field(default=SignatureSegment(on_filled=">", on_unfilled="-"))
+    """Progressbar end char."""
+
     middle: SignatureSegment = dataclasses.field(default=SignatureSegment(on_filled="+", on_unfilled="-"))
+    """Progressbar middle char (between start and and)."""
 
 
 @dataclasses.dataclass
 class SquareEmojiSignature:
+    """Dataclass that stores square emoji signature data."""
+
     start: SignatureSegment = dataclasses.field(
         default=SignatureSegment(on_filled=":small_orange_diamond:", on_unfilled=":black_large_square:")
     )
+    """Progressbar start char."""
+
     end: SignatureSegment = dataclasses.field(
         default=SignatureSegment(on_filled=":small_orange_diamond:", on_unfilled=":black_large_square:")
     )
+    """Progressbar end char.""" """"""
+
     middle: SignatureSegment = dataclasses.field(
         default=SignatureSegment(on_filled=":orange_square:", on_unfilled=":black_large_square:")
     )
+    """Progressbar middle char (between start and and)."""

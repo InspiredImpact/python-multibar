@@ -13,7 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" """
+"""Interfaces for progressbar sectors."""
 from __future__ import annotations
 
 __all__ = ("AbstractSector",)
@@ -33,16 +33,13 @@ class AbstractSector(abc.ABC):
     __slots__ = ("_name", "_is_filled", "_position")
 
     def __init__(self, name: str, is_filled: bool, position: int) -> None:
-        """Slotted abstraction, that bounded to the arguments.
-
+        """
         Parameters
         ----------
         name : str
             Sector display name.
-
         is_filled : bool
             Sector filled value.
-
         position : int
             Sector position in the progressbar.
         """

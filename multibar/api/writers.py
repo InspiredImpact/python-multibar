@@ -13,7 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" """
+"""Interfaces for progressbar writers."""
 from __future__ import annotations
 
 __all__ = ("ProgressbarWriterAware",)
@@ -84,12 +84,15 @@ class ProgressbarWriterAware(abc.ABC):
         ----------
         start_value : int, /
             Start value (current progress).
-
         end_value : int, /
             End value (needed progress).
-
         length : int, *
             Length of progressbar.
+
+        Returns
+        -------
+        progressbars.ProgressbarAware[sectors.AbstractSector]
+            Progressbar object.
         """
         ...
 

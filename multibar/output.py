@@ -13,7 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
-""" """ """This module implements the prebound method pattern to create a simple api output to the console."""
+"""This module implements the prebound method pattern to create a simple api output to the console."""
 from __future__ import annotations
 
 __all__ = (
@@ -32,7 +32,7 @@ import typing
 
 import termcolor
 import typing_extensions
-from returns.io import IO, impure
+from returns.io import IO
 
 from . import settings, utils
 
@@ -58,22 +58,35 @@ if typing.TYPE_CHECKING:
         HeadingLevelThreeType,
     ]
 
-_PRINTER_KEY: typing.Final[typing.Literal["PRINTER"]] = "PRINTER"
+_PRINTER_KEY: typing.Literal["PRINTER"] = "PRINTER"
 
-ERROR: typing.Final[ErrorType] = "error"
-SUCCESS: typing.Final[SuccessType] = "success"
-WARNING: typing.Final[WarningType] = "warning"
+ERROR: ErrorType = "error"
+"""Error literal identifier."""
+
+SUCCESS: SuccessType = "success"
+"""Success literal identifier."""
+
+WARNING: WarningType = "warning"
+"""Warning literal identifier."""
+
 COLORS: typing.Final[dict[OutputTypes, ColorsType]] = {ERROR: "red", SUCCESS: "green", WARNING: "yellow"}
+"""Constant that stores dict, in which key is print status and value is print color."""
 
-HEADING_LEVEL_ONE: typing.Final[typing.Literal[1]] = 1
-HEADING_LEVEL_TWO: typing.Final[typing.Literal[2]] = 2
-HEADING_LEVEL_THREE: typing.Final[typing.Literal[3]] = 3
+HEADING_LEVEL_ONE: HeadingLevelOneType = 1
+"""First level heading identifier."""
+
+HEADING_LEVEL_TWO: HeadingLevelTwoType = 2
+"""Second level heading identifier."""
+
+HEADING_LEVEL_THREE: HeadingLevelThreeType = 3
+"""Third level heading identifier."""
 
 HEADING_MAP: typing.Final[dict[HeadingLevelsType, tuple[str, bool]]] = {
     HEADING_LEVEL_ONE: ("=", True),
     HEADING_LEVEL_TWO: ("-", True),
     HEADING_LEVEL_THREE: ("-", False),
 }
+"""Constant that stores dict, in which key is heading level and value is header metadata."""
 
 
 class PrinterAware(abc.ABC):
@@ -110,11 +123,30 @@ class PrinterAware(abc.ABC):
         color: typing.Optional[str] = None,
         newline: bool = True,
     ) -> IO[None]:
-        """Prints text in console."""
+        """Prints text in console.
+
+        Parameters
+        ----------
+        text : str = ""
+            Text to print.
+        bold : bool = False
+            If true, will make text bold.
+        color : typing.Optional[str] = None
+            Changes text output color.
+        newline : bool = True
+            If true, will print new line after `text`.
+
+        Returns
+        -------
+        IO[None]
+            Displays text in console.
+        """
         ...
 
 
 class TermcolorPrinter(PrinterAware):
+    """Implementation of printer interface."""
+
     def print(
         self,
         text: str = "",
@@ -123,7 +155,28 @@ class TermcolorPrinter(PrinterAware):
         color: typing.Optional[str] = None,
         newline: bool = True,
     ) -> IO[None]:
-        # << inherited docstring from PrinterAware >>
+        """Prints text in console.
+
+        !!! note
+            Documentation duplicated for mkdocs auto-reference
+            plugin.
+
+        Parameters
+        ----------
+        text : str = ""
+            Text to print.
+        bold : bool = False
+            If true, will make text bold.
+        color : typing.Optional[str] = None
+            Changes text output color.
+        newline : bool = True
+            If true, will print new line after `text`.
+
+        Returns
+        -------
+        IO[None]
+            Displays text in console.
+        """
         termcolor_attrs: list[str] = []
         if bold:
             termcolor_attrs.append("bold")
@@ -137,9 +190,18 @@ _PRINTER_STATE: typing.Final[PrinterAware] = TermcolorPrinter()
 
 
 class Output:
-    """Class that represents console printer."""
+    """Class that represents console printer.
 
-    @impure
+    !!! note
+        `#!py @returns.io.impure` decorator shadows the underlying
+        signature of a function, which makes it difficult to
+        work with the IDE because it's easy to miss out on
+        required arguments when calling a function.
+
+        Therefore, we use an explicit `#!py return IO(None)` to
+        maintain the logic of the project.
+    """
+
     def print(
         self,
         text: str = "",
@@ -148,20 +210,24 @@ class Output:
         bold: bool = False,
         color: typing.Optional[str] = None,
         newline: bool = True,
-    ) -> None:
+    ) -> IO[None]:
         """Prints text in console.
 
-        text : str = "", /
+        Parameters
+        ----------
+        text : str = ""
             Text to print.
+        bold : bool = False
+            If true, will make text bold.
+        color : typing.Optional[str] = None
+            Changes text output color.
+        newline : bool = True
+            If true, will print new line after `text`.
 
-        bold : bool = False, *
-            If True, will print bold text in console.
-
-        color : typing.Optional[str] = None, *
-            If is not None, will make text colored.
-
-        newline : bool = True, *
-            If True, new line will be added to text.
+        Returns
+        -------
+        IO[None]
+            Displays text in console.
         """
         self.printer.print(
             text,
@@ -169,13 +235,19 @@ class Output:
             color=color,
             newline=newline,
         )
+        return IO(None)
 
-    @impure
-    def new_line(self) -> None:
-        """Prints new line."""
+    def new_line(self) -> IO[None]:
+        """Prints new line in console.
+
+        Returns
+        -------
+        IO[None]
+            Displays text in console.
+        """
         self.printer.print()
+        return IO(None)
 
-    @impure
     def print_heading(
         self,
         text: str,
@@ -184,20 +256,24 @@ class Output:
         level: HeadingLevelsType,
         style: typing.Optional[OutputTypes] = None,
         indent: bool = True,
-    ) -> None:
+    ) -> IO[None]:
         """Prints headings in console.
 
-        text : str, /
+        Parameters
+        ----------
+        text : str
             Text to header.
-
-        level : HeadingLevelsType, *
+        level : HeadingLevelsType
             Header level.
-
-        style : typing.Optional[OutputTypes] = None, *
+        style : typing.Optional[OutputTypes] = None
             If is not None, will change header style.
-
-        indent : bool = True, *
+        indent : bool = True
             If True, will print new line after text.
+
+        Returns
+        -------
+        IO[None]
+            Displays text in console.
         """
         color = COLORS[style] if style else None
         line_char, show_line_above = HEADING_MAP[level]
@@ -212,52 +288,75 @@ class Output:
         if indent:
             self.printer.print()
 
-    @impure
-    def print_success(self, text: str, /, *, bold: bool = True) -> None:
+        return IO(None)
+
+    def print_success(self, text: str, /, *, bold: bool = True) -> IO[None]:
         """Prints text as success.
 
         Parameters
         ----------
-        text: str, /
+        text: str
             Text to print.
-
-        bold: bool = True, *
+        bold: bool = True
             If True, will print text as bold.
+
+        Returns
+        -------
+        IO[None]
+            Displays text in console.
         """
         self.printer.print(text, color=COLORS[SUCCESS], bold=bold)
+        return IO(None)
 
-    @impure
-    def print_error(self, text: str, /, *, bold: bool = True) -> None:
+    def print_error(self, text: str, /, *, bold: bool = True) -> IO[None]:
         """Prints text as error.
 
         Parameters
         ----------
-        text: str, /
+        text: str
             Text to print.
-
-        bold: bool = True, *
+        bold: bool = True
             If True, will print text as bold.
+
+        Returns
+        -------
+        IO[None]
+            Displays text in console.
         """
         self.printer.print(text, color=COLORS[ERROR], bold=bold)
+        return IO(None)
 
-    @impure
-    def print_warning(self, text: str, /) -> None:
+    def print_warning(self, text: str, /) -> IO[None]:
         """Prints text as warning.
 
         Parameters
         ----------
-        text: str, /
+        text: str
             Text to print.
+
+        Returns
+        -------
+        IO[None]
+            Displays text in console.
         """
         self.printer.print(text, color=COLORS[WARNING])
+        return IO(None)
 
     def update_printer(self) -> None:
-        """Updates cache for printer cached_property."""
+        """Updates cache for printer cached_property.
+
+        !!! info
+            For example of usage see `cached_property` class.
+
+        Returns
+        -------
+        None
+        """
         utils.cached_property.update_cache_for(self, "printer")
 
     @utils.cached_property
     def printer(self) -> PrinterAware:
-        """Cached property.
+        """Cached property that returns printer implementation.
 
         Returns
         -------
@@ -271,9 +370,38 @@ class Output:
 
 # Implementation of prebound method pattern
 _output = Output()
+
 print = _output.print
+"""Prints text in console.
+
+??? example "Expand example of prebound pattern usage"
+    ```pycon hl_lines="3 4"
+    >>> from multibar import output
+
+    >>> output.print_heading("Testing complete", level=1, indent=False)
+    >>> output.print_success("Checks passed: N.")
+
+    {== ========================= ==}
+    {==                           ==}
+    {== **Testing complete**      ==}
+    {==                           ==}
+    {== ========================= ==}
+
+    {++ Checks passed: N. ++}
+    ```
+"""
+
 new_line = _output.new_line
+"""Prints new line in console."""
+
 print_success = _output.print_success
+"""Prints text as success."""
+
 print_heading = _output.print_heading
+"""Prints headings in console."""
+
 print_error = _output.print_error
+"""Prints text as error."""
+
 print_warning = _output.print_warning
+"""Prints text as warning."""

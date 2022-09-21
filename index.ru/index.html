@@ -18,6 +18,8 @@
 <link href="../css/material.css" rel="stylesheet"/>
 <link href="../css/mkdocs.css" rel="stylesheet"/>
 <link href="../css/progressbar.css" rel="stylesheet"/>
+<link href="../css/critic.css" rel="stylesheet"/>
+<link href="../css/navmenu.css" rel="stylesheet"/>
 <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
 <body data-md-color-accent="purple" data-md-color-primary="teal" data-md-color-scheme="default" dir="ltr">
@@ -154,6 +156,11 @@
       </a>
 </li>
 <li class="md-tabs__item">
+<a class="md-tabs__link" href="../about.ru/">
+        About
+      </a>
+</li>
+<li class="md-tabs__item">
 <a class="md-tabs__link" href="../api/math_operations/">
         Reference
       </a>
@@ -270,23 +277,43 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
 <label class="md-nav__link" for="__nav_5">
+          About
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="About" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../about.ru/">
+        About.ru
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6">
           Reference
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="Reference" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_5">
+<label class="md-nav__title" for="__nav_6">
 <span class="md-nav__icon md-icon"></span>
           Reference
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" id="__nav_5_1" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5_1">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" id="__nav_6_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6_1">
           api
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="api" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_5_1">
+<label class="md-nav__title" for="__nav_6_1">
 <span class="md-nav__icon md-icon"></span>
           api
         </label>
@@ -335,13 +362,13 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" id="__nav_5_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5_2">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" id="__nav_6_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6_2">
           impl
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="impl" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_5_2">
+<label class="md-nav__title" for="__nav_6_2">
 <span class="md-nav__icon md-icon"></span>
           impl
         </label>
@@ -445,7 +472,7 @@
 <br/>
 Лицензия: Apache 2.0
 <br/>
-Описание: Tool for static progress bars writing.
+Описание: Инструмент для статической генерации прогрессбаров.
 <br/>
 ОС: Независим
 <br/>
@@ -461,15 +488,16 @@ Typing: Typed
     ·
     <a href="https://github.com/Animatea/python-multibar/issues">Сообщить о баге</a>
     ·
-    <a href="https://github.com/Animatea/python-multibar/issues">Предложить идею</a></br></p>
-<div class="admonition tldr">
-<p class="admonition-title">TL;DR</p>
+    <a href="https://github.com/Animatea/python-multibar/issues">Предложить идею</a>
+</br></p></br></p>
+<div class="admonition nav-menu">
+<p class="admonition-title">Навигационное меню</p>
 </div>
-<ul>
-<li><a href="../howto.ru/"><strong>Как читать документацию</strong></a></li>
-<li><a href="../faq.ru/"><strong>Ответы на потенциальные вопросы</strong></a></li>
-<li><a href="../quickstart.ru/"><strong>С чего начать</strong></a></li>
-</ul>
+<p><a class="md-button" href="../howto.ru/"><strong>Как читать документацию</strong></a>
+<a class="md-button" href="../faq.ru/"><strong>FAQ</strong></a>
+<a class="md-button" href="../quickstart.ru/"><strong>С чего начать</strong></a>
+<a class="md-button" href="../about.ru/"><strong>Python-Multibar</strong></a>
+<a class="md-button" href="../errors/"><strong>Перейти к документации</strong></a></p>
 <h1 align="center">Мини-карта Python-Multibar</h1>
 <div class="mermaid">
     classDiagram
@@ -490,7 +518,34 @@ Typing: Typed
     ContractManager --o ProgressbarClient : By default
     ProgressbarWriter --o ProgressbarClient : By default
 </div>
-</br></p></article>
+<h1 align="center">Благодарности</h1>
+<p align="center">
+<a href="https://choosealicense.com">Choose an Open Source License</a>
+<br>
+<a href="https://shields.io">Img Shields</a>
+<br>
+<a href="https://pages.github.com">GitHub Pages</a>
+<br>
+<a href="https://www.python.org">Python</a>
+<br>
+<a href="https://www.python.org/community/">Python Community</a>
+<br/>
+<a href="https://www.mkdocs.org">MkDocs</a>
+<br/>
+<a href="https://squidfunk.github.io/mkdocs-material/">MkDocs Material</a>
+<br/>
+<a href="https://gitlab.com/mkdocs-i18n/mkdocs-i18n">MkDocs i18n</a>
+<br/>
+<a href="https://github.com/fralau/mkdocs-mermaid2-plugin">MkDocs mermaid2</a>
+<br/>
+<a href="https://github.com/facelessuser/pymdown-extensions">MkDocs pymdown</a>
+<br/>
+<a href="https://github.com/mkdocstrings/python">MkDocs mkdocstrings</a>
+<br/>
+<a href="https://github.com/facelessuser">Isaac Muse</a>
+<br/>
+</br></br></br></br></p>
+</article>
 </div>
 </div>
 <a class="md-top md-icon" data-md-component="top" hidden="" href="#">

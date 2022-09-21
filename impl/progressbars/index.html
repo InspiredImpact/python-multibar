@@ -18,6 +18,8 @@
 <link href="../../css/material.css" rel="stylesheet"/>
 <link href="../../css/mkdocs.css" rel="stylesheet"/>
 <link href="../../css/progressbar.css" rel="stylesheet"/>
+<link href="../../css/critic.css" rel="stylesheet"/>
+<link href="../../css/navmenu.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
 <body data-md-color-accent="purple" data-md-color-primary="teal" data-md-color-scheme="default" dir="ltr">
@@ -157,6 +159,11 @@
       </a>
 </li>
 <li class="md-tabs__item">
+<a class="md-tabs__link" href="../../about/">
+        About
+      </a>
+</li>
+<li class="md-tabs__item">
 <a class="md-tabs__link md-tabs__link--active" href="../../api/math_operations/">
         Reference
       </a>
@@ -269,26 +276,46 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
 <label class="md-nav__link" for="__nav_5">
+          About
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="About" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../about/">
+        About
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6">
           Reference
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="Reference" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_5">
+<label class="md-nav__title" for="__nav_6">
 <span class="md-nav__icon md-icon"></span>
           Reference
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" id="__nav_5_1" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5_1">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" id="__nav_6_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6_1">
           api
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="api" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_5_1">
+<label class="md-nav__title" for="__nav_6_1">
 <span class="md-nav__icon md-icon"></span>
           api
         </label>
@@ -337,13 +364,13 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" id="__nav_5_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5_2">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" id="__nav_6_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6_2">
           impl
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="impl" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_5_2">
+<label class="md-nav__title" for="__nav_6_2">
 <span class="md-nav__icon md-icon"></span>
           impl
         </label>
@@ -648,6 +675,7 @@
 <code>multibar.impl.progressbars</code>
 <a class="headerlink" href="#multibar.impl.progressbars" title="Permanent link">¤</a></h2>
 <div class="doc doc-contents first">
+<p>Implementation of progressbar interfaces.</p>
 <div class="doc doc-children">
 <div class="doc doc-object doc-attribute">
 <h3 class="doc doc-heading" id="multibar.impl.progressbars.SectorT">
@@ -675,93 +703,265 @@
 <a class="headerlink" href="#multibar.impl.progressbars.Progressbar" title="Permanent link">¤</a></h3>
 <div class="doc doc-contents">
 <p class="doc doc-class-bases">
-        Bases: <code><span title="returns.primitives.hkt.SupportsKind1">SupportsKind1</span>[<span title="Progressbar[typing.Any]">Any]</span>, <a class="autorefs autorefs-internal" title="multibar.impl.progressbars.SectorT" href="#multibar.impl.progressbars.SectorT">SectorT</a>]</code>, <code><a class="autorefs autorefs-internal" title="multibar.api.progressbars" href="../../api/progressbars/#multibar.api.progressbars">abc_progressbars</a>.<a class="autorefs autorefs-internal" title="multibar.api.progressbars.ProgressbarAware" href="../../api/progressbars/#multibar.api.progressbars.ProgressbarAware">ProgressbarAware</a>[<a class="autorefs autorefs-internal" title="multibar.impl.progressbars.SectorT" href="#multibar.impl.progressbars.SectorT">SectorT</a>]</code></p>
+        Bases: <code><a class="autorefs autorefs-external" title="returns.primitives.hkt.SupportsKind1" href="https://returns.readthedocs.io/en/latest/pages/hkt.html#returns.primitives.hkt.SupportsKind1">SupportsKind1</a>[<span title="Progressbar[typing.Any]">Any]</span>, <a class="autorefs autorefs-internal" title="multibar.impl.progressbars.SectorT" href="#multibar.impl.progressbars.SectorT">SectorT</a>]</code>, <code><a class="autorefs autorefs-internal" title="multibar.api.progressbars" href="../../api/progressbars/#multibar.api.progressbars">abc_progressbars</a>.<a class="autorefs autorefs-internal" title="multibar.api.progressbars.ProgressbarAware" href="../../api/progressbars/#multibar.api.progressbars.ProgressbarAware">ProgressbarAware</a>[<a class="autorefs autorefs-internal" title="multibar.impl.progressbars.SectorT" href="#multibar.impl.progressbars.SectorT">SectorT</a>]</code></p>
+<p>Implementation of abc_progressbars.ProgressbarAware[SectorT].</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Documentation duplicated for mkdocs auto-reference
+plugin.</p>
+</div>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\progressbars.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span>
-<span class="normal">73</span>
-<span class="normal">74</span>
-<span class="normal">75</span>
-<span class="normal">76</span>
-<span class="normal">77</span>
-<span class="normal">78</span>
-<span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span>
-<span class="normal">87</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Progressbar</span><span class="p">(</span>
-    <span class="n">SupportsKind1</span><span class="p">[</span><span class="s2">"Progressbar[typing.Any]"</span><span class="p">,</span> <span class="n">SectorT</span><span class="p">],</span> <span class="n">abc_progressbars</span><span class="o">.</span><span class="n">ProgressbarAware</span><span class="p">[</span><span class="n">SectorT</span><span class="p">]</span>
-<span class="p">):</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 33</span>
+<span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Progressbar</span><span class="p">(</span><span class="n">SupportsKind1</span><span class="p">[</span><span class="s2">"Progressbar[typing.Any]"</span><span class="p">,</span> <span class="n">SectorT</span><span class="p">],</span> <span class="n">abc_progressbars</span><span class="o">.</span><span class="n">ProgressbarAware</span><span class="p">[</span><span class="n">SectorT</span><span class="p">]):</span>
+    <span class="sd">"""Implementation of abc_progressbars.ProgressbarAware[SectorT].</span>
+
+<span class="sd">    !!! note</span>
+<span class="sd">        Documentation duplicated for mkdocs auto-reference</span>
+<span class="sd">        plugin.</span>
+<span class="sd">    """</span>
+
     <span class="vm">__slots__</span> <span class="o">=</span> <span class="p">(</span><span class="s2">"_storage"</span><span class="p">,)</span>
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">MutableSequence</span><span class="p">[</span><span class="n">SectorT</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
     <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="c1"># &lt;&lt; inherited docstring for multibar.api.progressbars.ProgressbarAware &gt;&gt;</span>
+        <span class="sd">"""</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        int</span>
+<span class="sd">            Sectors count.</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">:</span>
-        <span class="c1"># &lt;&lt; inherited docstring for multibar.api.progressbars.ProgressbarAware &gt;&gt;</span>
+        <span class="sd">"""Returns sector object if item is instance of int,</span>
+<span class="sd">        or sequence of sectors if item is instance of slice.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        typing.Any</span>
+<span class="sd">            Any value depending on context and implementation.</span>
+<span class="sd">            If item is instance of (int, slice), will return sequence</span>
+<span class="sd">            of sectors or sector object.</span>
+<span class="sd">        """</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">slice</span><span class="p">)):</span>
             <span class="k">return</span> <span class="bp">NotImplemented</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="p">[</span><span class="n">item</span><span class="p">]</span>
@@ -780,7 +980,51 @@
         <span class="n">callback</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">SectorT</span><span class="p">],</span> <span class="n">_NewValueType</span><span class="p">],</span>
         <span class="o">/</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Progressbar</span><span class="p">[</span><span class="n">_NewValueType</span><span class="p">]:</span>
-        <span class="c1"># &lt;&lt; inherited docstring for multibar.api.progressbars.ProgressbarAware &gt;&gt;</span>
+        <span class="sd">"""Applies callback for every sector in progressbar.</span>
+
+<span class="sd">        !!! info</span>
+<span class="sd">            Returns new progressbar object.</span>
+
+<span class="sd">            It is a type-hint safe operation for mypy. That allows you to</span>
+<span class="sd">            pass extended implementations of interfaces or abscractions,</span>
+<span class="sd">            given the support of the underlying api.</span>
+
+<span class="sd">        !!! abstract</span>
+<span class="sd">            You can skip this block, if you don't use type-hints.</span>
+
+<span class="sd">            We use HKT in this case so that you can add new methods to sectors,</span>
+<span class="sd">            but at the same time they would support the abstract class api.</span>
+
+<span class="sd">            An example of behavior in pseudocode:</span>
+<span class="sd">            ??? example "Expand pseudocode example"</span>
+<span class="sd">                ```py</span>
+<span class="sd">                &gt;&gt;&gt; progressbar = progressbarwriter.write(value, value)</span>
+<span class="sd">                ...</span>
+<span class="sd">                &gt;&gt;&gt; class ExtendedImpl(AbstractSector):  # Your extended implementation</span>
+<span class="sd">                &gt;&gt;&gt;     def __init__(self, sector_obj: AbstractSector) -&gt; None:</span>
+<span class="sd">                ...         super().__init__(sector_obj.name, sector_obj.is_filled, sector_obj.position)</span>
+<span class="sd">                ...         self._origin = sector_obj</span>
+<span class="sd">                ...</span>
+<span class="sd">                &gt;&gt;&gt;     def extended_method(self) -&gt; None:</span>
+<span class="sd">                ...         ...</span>
+<span class="sd">                ...</span>
+<span class="sd">                ...    # Other abstraction api implementation.</span>
+<span class="sd">                ...</span>
+<span class="sd">                &gt;&gt;&gt; new_progressbar = progressbar.map(lambda s: ExtendedImpl(s))</span>
+<span class="sd">                &gt;&gt;&gt; new_progressbar.sectors[0].extended_method()  # Mypy happy.</span>
+<span class="sd">                ```</span>
+
+<span class="sd">            It is worth clarifying that this implementation has not yet been finalized</span>
+<span class="sd">            and may be changed in future versions (and even without HKT at all).</span>
+<span class="sd">            You can leave your opinion about this in the issues of the project.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Progressbar[_NewValueType]</span>
+<span class="sd">            New instace of progressbar with your sector objects.</span>
+<span class="sd">            But it would differ from the usual implementation in</span>
+<span class="sd">            that mypy does not throw an error in this case.</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_new_sectors</span><span class="p">(</span><span class="n">callback</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="p">)</span>
 
     <span class="nd">@classmethod</span>
@@ -789,7 +1033,46 @@
         <span class="n">new_value</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="n">_NewValueType</span><span class="p">],</span>
         <span class="o">/</span><span class="p">,</span>
     <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Progressbar</span><span class="p">[</span><span class="n">_NewValueType</span><span class="p">]:</span>
-        <span class="c1"># &lt;&lt; inherited docstring for multibar.api.progressbars.ProgressbarAware &gt;&gt;</span>
+        <span class="sd">"""Sets new sectors in progressbar.</span>
+
+<span class="sd">        !!! info</span>
+<span class="sd">            Returns new progressbar object.</span>
+
+<span class="sd">            It is a type-hint safe operation for mypy. That allows you to</span>
+<span class="sd">            pass extended implementations of interfaces or abscractions,</span>
+<span class="sd">            given the support of the underlying api.</span>
+
+<span class="sd">        !!! abstract</span>
+<span class="sd">            You can skip this block, if you don't use type-hints.</span>
+
+<span class="sd">            We use HKT in this case so that you can add new methods to sectors,</span>
+<span class="sd">            but at the same time they would support the abstract class api.</span>
+
+<span class="sd">            An example of behavior in pseudocode:</span>
+<span class="sd">            ??? example "Expand pseudocode example"</span>
+<span class="sd">                ```py</span>
+<span class="sd">                &gt;&gt;&gt; progressbar = progresswriter.write(value, value)  # Sectors doesn't have .extend_method()</span>
+<span class="sd">                &gt;&gt;&gt; sectors = IterableOverYourExtendedSectors(...)  # Extended sectors with .extend_method()</span>
+<span class="sd">                &gt;&gt;&gt; new_progressbar = progressbar.set_new_sectors(sectors)  # Sectors have .extend_method()</span>
+<span class="sd">                &gt;&gt;&gt; new_progressbar.sectors[0].extend_method()  # Mypy happy.</span>
+<span class="sd">                ```</span>
+
+<span class="sd">            It is worth clarifying that this implementation has not yet been finalized</span>
+<span class="sd">            and may be changed in future versions (and even without HKT at all).</span>
+<span class="sd">            You can leave your opinion about this in the issues of the project.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        new_value : collections.abc.Iterable[_NewValueType], /</span>
+<span class="sd">            Iterable over new sector objects. For example of behavior see `info` block.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Progressbar[_NewValueType]</span>
+<span class="sd">            New instace of progressbar with your sector objects.</span>
+<span class="sd">            But it would differ from the usual implementation in</span>
+<span class="sd">            that mypy does not throw an error in this case.</span>
+<span class="sd">        """</span>
         <span class="c1"># Alternative to cls[_NewValueType](), to avoid mypy "is not indexable" error.</span>
         <span class="n">bar</span> <span class="o">=</span> <span class="n">typing</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">Progressbar</span><span class="p">[</span><span class="n">_NewValueType</span><span class="p">],</span> <span class="bp">cls</span><span class="p">())</span>
         <span class="k">for</span> <span class="n">new_sector</span> <span class="ow">in</span> <span class="n">new_value</span><span class="p">:</span>
@@ -797,27 +1080,72 @@
         <span class="k">return</span> <span class="n">bar</span>
 
     <span class="k">def</span> <span class="nf">for_each</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">consumer</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">SectorT</span><span class="p">],</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">],</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">"""Pass each sector to a given consumer.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        consumer : typing.Callable[[SectorT], typing.Any], /</span>
+<span class="sd">            Function to apply for progressbar sectors.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        None</span>
+<span class="sd">        """</span>
         <span class="k">for</span> <span class="n">sector</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="p">:</span>
             <span class="n">consumer</span><span class="p">(</span><span class="n">sector</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">add_sector</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">_InstanceKind</span><span class="p">,</span> <span class="n">sector</span><span class="p">:</span> <span class="n">abc_sectors</span><span class="o">.</span><span class="n">AbstractSector</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_InstanceKind</span><span class="p">:</span>
-        <span class="c1"># &lt;&lt; inherited docstring for multibar.api.progressbars.ProgressbarAware &gt;&gt;</span>
+        <span class="sd">"""Adds sector to progressbar.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        sector : SectorT, /</span>
+<span class="sd">            Sector to add.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Self</span>
+<span class="sd">            The progressbar object to allow fluent-style.</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sector</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span>
 
     <span class="k">def</span> <span class="nf">replace_display_name_for</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sector_pos</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">new_display_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Progressbar</span><span class="p">[</span><span class="n">SectorT</span><span class="p">]:</span>
-        <span class="c1"># &lt;&lt; inherited docstring for multibar.api.progressbars.ProgressbarAware &gt;&gt;</span>
+        <span class="sd">"""Replaces sector display name.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        sector_pos : int, /</span>
+<span class="sd">            To find sector by index to change.</span>
+<span class="sd">        new_display_name : str, /</span>
+<span class="sd">            New display name value.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Self</span>
+<span class="sd">            The progressbar object to allow fluent-style.</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="p">[</span><span class="n">sector_pos</span><span class="p">]</span><span class="o">.</span><span class="n">change_name</span><span class="p">(</span><span class="n">new_display_name</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">length</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-        <span class="c1"># &lt;&lt; inherited docstring for multibar.api.progressbars.ProgressbarAware &gt;&gt;</span>
+        <span class="sd">"""</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        int</span>
+<span class="sd">            Length of the progressbar.</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="p">)</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">sectors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">MutableSequence</span><span class="p">[</span><span class="n">SectorT</span><span class="p">]:</span>
-        <span class="c1"># &lt;&lt; inherited docstring for multibar.api.progressbars.ProgressbarAware &gt;&gt;</span>
+        <span class="sd">"""</span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        collections.abc.Sequence[SectorT]</span>
+<span class="sd">            Sequence of sectors.</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span>
 </code></pre></div></td></tr></table></div>
 </details>
@@ -837,14 +1165,56 @@
 <code class="highlight language-python"><span class="fm">__getitem__</span><span class="p">(</span><span class="n">item</span><span class="p">)</span></code>
 <a class="headerlink" href="#multibar.impl.progressbars.Progressbar.__getitem__" title="Permanent link">¤</a></h4>
 <div class="doc doc-contents">
+<p>Returns sector object if item is instance of int,
+or sequence of sectors if item is instance of slice.</p>
+<table>
+<thead>
+<tr>
+<th><b>RETURNS</b></th>
+<th><b>DESCRIPTION</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<span class="doc-returns-annotation">
+<code><a class="autorefs autorefs-external" href="https://docs.python.org/3.9/library/typing.html#module-typing">typing</a>.<a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3.9/library/typing.html#typing.Any">Any</a></code>
+</span>
+</td>
+<td class="doc-returns-details">
+<p>Any value depending on context and implementation.
+If item is instance of (int, slice), will return sequence
+of sectors or sector object.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\progressbars.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">:</span>
-    <span class="c1"># &lt;&lt; inherited docstring for multibar.api.progressbars.ProgressbarAware &gt;&gt;</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">:</span>
+    <span class="sd">"""Returns sector object if item is instance of int,</span>
+<span class="sd">    or sequence of sectors if item is instance of slice.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    typing.Any</span>
+<span class="sd">        Any value depending on context and implementation.</span>
+<span class="sd">        If item is instance of (int, slice), will return sequence</span>
+<span class="sd">        of sectors or sector object.</span>
+<span class="sd">    """</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">slice</span><span class="p">)):</span>
         <span class="k">return</span> <span class="bp">NotImplemented</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="p">[</span><span class="n">item</span><span class="p">]</span>
@@ -859,8 +1229,8 @@
 <div class="doc doc-contents">
 <details class="quote">
 <summary>Source code in <code>multibar\impl\progressbars.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">22</span>
-<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">43</span>
+<span class="normal">44</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">MutableSequence</span><span class="p">[</span><span class="n">SectorT</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 </code></pre></div></td></tr></table></div>
 </details>
@@ -871,12 +1241,42 @@
 <code class="highlight language-python"><span class="fm">__len__</span><span class="p">()</span></code>
 <a class="headerlink" href="#multibar.impl.progressbars.Progressbar.__len__" title="Permanent link">¤</a></h4>
 <div class="doc doc-contents">
+<table>
+<thead>
+<tr>
+<th><b>RETURNS</b></th>
+<th><b>DESCRIPTION</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<span class="doc-returns-annotation">
+<code><a class="autorefs autorefs-external" href="https://docs.python.org/3.9/library/functions.html#int">int</a></code>
+</span>
+</td>
+<td class="doc-returns-details">
+<p>Sectors count.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\progressbars.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-    <span class="c1"># &lt;&lt; inherited docstring for multibar.api.progressbars.ProgressbarAware &gt;&gt;</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="sd">"""</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    int</span>
+<span class="sd">        Sectors count.</span>
+<span class="sd">    """</span>
     <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 </details>
@@ -890,9 +1290,9 @@
 <p>Returns string representation of progressbar.</p>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\progressbars.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">"""Returns string representation of progressbar."""</span>
     <span class="k">return</span> <span class="s2">""</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -907,10 +1307,10 @@
 <p>Returns reversed progressbar.</p>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\progressbars.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__reversed__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Iterator</span><span class="p">[</span><span class="n">SectorT</span><span class="p">]:</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__reversed__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Iterator</span><span class="p">[</span><span class="n">SectorT</span><span class="p">]:</span>
     <span class="sd">"""Returns reversed progressbar."""</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span>
     <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="p">)</span>
@@ -923,13 +1323,78 @@
 <code class="highlight language-python"><span class="n">add_sector</span><span class="p">(</span><span class="n">sector</span><span class="p">)</span></code>
 <a class="headerlink" href="#multibar.impl.progressbars.Progressbar.add_sector" title="Permanent link">¤</a></h4>
 <div class="doc doc-contents">
+<p>Adds sector to progressbar.</p>
+<table>
+<thead>
+<tr>
+<th><b>PARAMETER</b></th>
+<th><b>DESCRIPTION</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sector</code></td>
+<td class="doc-param-details">
+<p>Sector to add.</p>
+<p>
+<span class="doc-param-annotation">
+<b>TYPE:</b>
+<code><a class="autorefs autorefs-internal" title="multibar.impl.progressbars.SectorT" href="#multibar.impl.progressbars.SectorT">SectorT</a></code>
+</span>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><b>RETURNS</b></th>
+<th><b>DESCRIPTION</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<span class="doc-returns-annotation">
+<code>Self</code>
+</span>
+</td>
+<td class="doc-returns-details">
+<p>The progressbar object to allow fluent-style.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\progressbars.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">add_sector</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">_InstanceKind</span><span class="p">,</span> <span class="n">sector</span><span class="p">:</span> <span class="n">abc_sectors</span><span class="o">.</span><span class="n">AbstractSector</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_InstanceKind</span><span class="p">:</span>
-    <span class="c1"># &lt;&lt; inherited docstring for multibar.api.progressbars.ProgressbarAware &gt;&gt;</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">add_sector</span><span class="p">(</span><span class="bp">self</span><span class="p">:</span> <span class="n">_InstanceKind</span><span class="p">,</span> <span class="n">sector</span><span class="p">:</span> <span class="n">abc_sectors</span><span class="o">.</span><span class="n">AbstractSector</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">_InstanceKind</span><span class="p">:</span>
+    <span class="sd">"""Adds sector to progressbar.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sector : SectorT, /</span>
+<span class="sd">        Sector to add.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Self</span>
+<span class="sd">        The progressbar object to allow fluent-style.</span>
+<span class="sd">    """</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sector</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span>
 </code></pre></div></td></tr></table></div>
@@ -941,11 +1406,75 @@
 <code class="highlight language-python"><span class="n">for_each</span><span class="p">(</span><span class="n">consumer</span><span class="p">)</span></code>
 <a class="headerlink" href="#multibar.impl.progressbars.Progressbar.for_each" title="Permanent link">¤</a></h4>
 <div class="doc doc-contents">
+<p>Pass each sector to a given consumer.</p>
+<table>
+<thead>
+<tr>
+<th><b>PARAMETER</b></th>
+<th><b>DESCRIPTION</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>consumer</code></td>
+<td class="doc-param-details">
+<p>Function to apply for progressbar sectors.</p>
+<p>
+<span class="doc-param-annotation">
+<b>TYPE:</b>
+<code><a class="autorefs autorefs-external" href="https://docs.python.org/3.9/library/typing.html#module-typing">typing</a>.<a class="autorefs autorefs-external" title="typing.Callable" href="https://docs.python.org/3.9/library/typing.html#typing.Callable">Callable</a>[[<a class="autorefs autorefs-internal" title="multibar.impl.progressbars.SectorT" href="#multibar.impl.progressbars.SectorT">SectorT</a>], <a class="autorefs autorefs-external" href="https://docs.python.org/3.9/library/typing.html#module-typing">typing</a>.<a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3.9/library/typing.html#typing.Any">Any</a>]</code>
+</span>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><b>RETURNS</b></th>
+<th><b>DESCRIPTION</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<span class="doc-returns-annotation">
+<code>None</code>
+</span>
+</td>
+<td class="doc-returns-details">
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\progressbars.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">for_each</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">consumer</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">SectorT</span><span class="p">],</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">],</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">for_each</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">consumer</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">SectorT</span><span class="p">],</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">],</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">"""Pass each sector to a given consumer.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    consumer : typing.Callable[[SectorT], typing.Any], /</span>
+<span class="sd">        Function to apply for progressbar sectors.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    None</span>
+<span class="sd">    """</span>
     <span class="k">for</span> <span class="n">sector</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="p">:</span>
         <span class="n">consumer</span><span class="p">(</span><span class="n">sector</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -960,14 +1489,44 @@
 </span>
 <a class="headerlink" href="#multibar.impl.progressbars.Progressbar.length" title="Permanent link">¤</a></h4>
 <div class="doc doc-contents">
+<table>
+<thead>
+<tr>
+<th><b>RETURNS</b></th>
+<th><b>DESCRIPTION</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<span class="doc-returns-annotation">
+<code><a class="autorefs autorefs-external" href="https://docs.python.org/3.9/library/functions.html#int">int</a></code>
+</span>
+</td>
+<td class="doc-returns-details">
+<p>Length of the progressbar.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\progressbars.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
 <span class="k">def</span> <span class="nf">length</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
-    <span class="c1"># &lt;&lt; inherited docstring for multibar.api.progressbars.ProgressbarAware &gt;&gt;</span>
+    <span class="sd">"""</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    int</span>
+<span class="sd">        Length of the progressbar.</span>
+<span class="sd">    """</span>
     <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 </details>
@@ -978,20 +1537,166 @@
 <code class="highlight language-python"><span class="nb">map</span><span class="p">(</span><span class="n">callback</span><span class="p">)</span></code>
 <a class="headerlink" href="#multibar.impl.progressbars.Progressbar.map" title="Permanent link">¤</a></h4>
 <div class="doc doc-contents">
+<p>Applies callback for every sector in progressbar.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Returns new progressbar object.</p>
+<p>It is a type-hint safe operation for mypy. That allows you to
+pass extended implementations of interfaces or abscractions,
+given the support of the underlying api.</p>
+</div>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>You can skip this block, if you don't use type-hints.</p>
+<p>We use HKT in this case so that you can add new methods to sectors,
+but at the same time they would support the abstract class api.</p>
+<p>An example of behavior in pseudocode:</p>
+<details class="example">
+<summary>Expand pseudocode example</summary>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">progressbar</span> <span class="o">=</span> <span class="n">progressbarwriter</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="k">class</span> <span class="nc">ExtendedImpl</span><span class="p">(</span><span class="n">AbstractSector</span><span class="p">):</span>  <span class="c1"># Your extended implementation</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sector_obj</span><span class="p">:</span> <span class="n">AbstractSector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="o">...</span>         <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">sector_obj</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">sector_obj</span><span class="o">.</span><span class="n">is_filled</span><span class="p">,</span> <span class="n">sector_obj</span><span class="o">.</span><span class="n">position</span><span class="p">)</span>
+<span class="o">...</span>         <span class="bp">self</span><span class="o">.</span><span class="n">_origin</span> <span class="o">=</span> <span class="n">sector_obj</span>
+<span class="o">...</span>
+<span class="o">&gt;&gt;&gt;</span>     <span class="k">def</span> <span class="nf">extended_method</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="o">...</span>         <span class="o">...</span>
+<span class="o">...</span>
+<span class="o">...</span>    <span class="c1"># Other abstraction api implementation.</span>
+<span class="o">...</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">new_progressbar</span> <span class="o">=</span> <span class="n">progressbar</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">ExtendedImpl</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">new_progressbar</span><span class="o">.</span><span class="n">sectors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">extended_method</span><span class="p">()</span>  <span class="c1"># Mypy happy.</span>
+</code></pre></div>
+</details>
+<p>It is worth clarifying that this implementation has not yet been finalized
+and may be changed in future versions (and even without HKT at all).
+You can leave your opinion about this in the issues of the project.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th><b>RETURNS</b></th>
+<th><b>DESCRIPTION</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<span class="doc-returns-annotation">
+<code><a class="autorefs autorefs-internal" title="multibar.impl.progressbars.Progressbar" href="#multibar.impl.progressbars.Progressbar">Progressbar</a>[<span title="multibar.impl.progressbars._NewValueType">_NewValueType</span>]</code>
+</span>
+</td>
+<td class="doc-returns-details">
+<p>New instace of progressbar with your sector objects.
+But it would differ from the usual implementation in
+that mypy does not throw an error in this case.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\progressbars.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">map</span><span class="p">(</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">map</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">:</span> <span class="n">Kind1</span><span class="p">[</span><span class="n">_InstanceKind</span><span class="p">,</span> <span class="n">SectorT</span><span class="p">],</span>
     <span class="n">callback</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[</span><span class="n">SectorT</span><span class="p">],</span> <span class="n">_NewValueType</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Progressbar</span><span class="p">[</span><span class="n">_NewValueType</span><span class="p">]:</span>
-    <span class="c1"># &lt;&lt; inherited docstring for multibar.api.progressbars.ProgressbarAware &gt;&gt;</span>
+    <span class="sd">"""Applies callback for every sector in progressbar.</span>
+
+<span class="sd">    !!! info</span>
+<span class="sd">        Returns new progressbar object.</span>
+
+<span class="sd">        It is a type-hint safe operation for mypy. That allows you to</span>
+<span class="sd">        pass extended implementations of interfaces or abscractions,</span>
+<span class="sd">        given the support of the underlying api.</span>
+
+<span class="sd">    !!! abstract</span>
+<span class="sd">        You can skip this block, if you don't use type-hints.</span>
+
+<span class="sd">        We use HKT in this case so that you can add new methods to sectors,</span>
+<span class="sd">        but at the same time they would support the abstract class api.</span>
+
+<span class="sd">        An example of behavior in pseudocode:</span>
+<span class="sd">        ??? example "Expand pseudocode example"</span>
+<span class="sd">            ```py</span>
+<span class="sd">            &gt;&gt;&gt; progressbar = progressbarwriter.write(value, value)</span>
+<span class="sd">            ...</span>
+<span class="sd">            &gt;&gt;&gt; class ExtendedImpl(AbstractSector):  # Your extended implementation</span>
+<span class="sd">            &gt;&gt;&gt;     def __init__(self, sector_obj: AbstractSector) -&gt; None:</span>
+<span class="sd">            ...         super().__init__(sector_obj.name, sector_obj.is_filled, sector_obj.position)</span>
+<span class="sd">            ...         self._origin = sector_obj</span>
+<span class="sd">            ...</span>
+<span class="sd">            &gt;&gt;&gt;     def extended_method(self) -&gt; None:</span>
+<span class="sd">            ...         ...</span>
+<span class="sd">            ...</span>
+<span class="sd">            ...    # Other abstraction api implementation.</span>
+<span class="sd">            ...</span>
+<span class="sd">            &gt;&gt;&gt; new_progressbar = progressbar.map(lambda s: ExtendedImpl(s))</span>
+<span class="sd">            &gt;&gt;&gt; new_progressbar.sectors[0].extended_method()  # Mypy happy.</span>
+<span class="sd">            ```</span>
+
+<span class="sd">        It is worth clarifying that this implementation has not yet been finalized</span>
+<span class="sd">        and may be changed in future versions (and even without HKT at all).</span>
+<span class="sd">        You can leave your opinion about this in the issues of the project.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Progressbar[_NewValueType]</span>
+<span class="sd">        New instace of progressbar with your sector objects.</span>
+<span class="sd">        But it would differ from the usual implementation in</span>
+<span class="sd">        that mypy does not throw an error in this case.</span>
+<span class="sd">    """</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">set_new_sectors</span><span class="p">(</span><span class="n">callback</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 </details>
@@ -1002,13 +1707,94 @@
 <code class="highlight language-python"><span class="n">replace_display_name_for</span><span class="p">(</span><span class="n">sector_pos</span><span class="p">,</span> <span class="n">new_display_name</span><span class="p">)</span></code>
 <a class="headerlink" href="#multibar.impl.progressbars.Progressbar.replace_display_name_for" title="Permanent link">¤</a></h4>
 <div class="doc doc-contents">
+<p>Replaces sector display name.</p>
+<table>
+<thead>
+<tr>
+<th><b>PARAMETER</b></th>
+<th><b>DESCRIPTION</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>sector_pos</code></td>
+<td class="doc-param-details">
+<p>To find sector by index to change.</p>
+<p>
+<span class="doc-param-annotation">
+<b>TYPE:</b>
+<code><a class="autorefs autorefs-external" href="https://docs.python.org/3.9/library/functions.html#int">int</a></code>
+</span>
+</p>
+</td>
+</tr>
+<tr>
+<td><code>new_display_name</code></td>
+<td class="doc-param-details">
+<p>New display name value.</p>
+<p>
+<span class="doc-param-annotation">
+<b>TYPE:</b>
+<code><a class="autorefs autorefs-external" href="https://docs.python.org/3.9/library/stdtypes.html#str">str</a></code>
+</span>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><b>RETURNS</b></th>
+<th><b>DESCRIPTION</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<span class="doc-returns-annotation">
+<code>Self</code>
+</span>
+</td>
+<td class="doc-returns-details">
+<p>The progressbar object to allow fluent-style.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\progressbars.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">74</span>
-<span class="normal">75</span>
-<span class="normal">76</span>
-<span class="normal">77</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">replace_display_name_for</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sector_pos</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">new_display_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Progressbar</span><span class="p">[</span><span class="n">SectorT</span><span class="p">]:</span>
-    <span class="c1"># &lt;&lt; inherited docstring for multibar.api.progressbars.ProgressbarAware &gt;&gt;</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">replace_display_name_for</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sector_pos</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">new_display_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Progressbar</span><span class="p">[</span><span class="n">SectorT</span><span class="p">]:</span>
+    <span class="sd">"""Replaces sector display name.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    sector_pos : int, /</span>
+<span class="sd">        To find sector by index to change.</span>
+<span class="sd">    new_display_name : str, /</span>
+<span class="sd">        New display name value.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Self</span>
+<span class="sd">        The progressbar object to allow fluent-style.</span>
+<span class="sd">    """</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span><span class="p">[</span><span class="n">sector_pos</span><span class="p">]</span><span class="o">.</span><span class="n">change_name</span><span class="p">(</span><span class="n">new_display_name</span><span class="p">)</span>
     <span class="k">return</span> <span class="bp">self</span>
 </code></pre></div></td></tr></table></div>
@@ -1023,14 +1809,44 @@
 </span>
 <a class="headerlink" href="#multibar.impl.progressbars.Progressbar.sectors" title="Permanent link">¤</a></h4>
 <div class="doc doc-contents">
+<table>
+<thead>
+<tr>
+<th><b>RETURNS</b></th>
+<th><b>DESCRIPTION</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<span class="doc-returns-annotation">
+<code><a class="autorefs autorefs-external" href="https://docs.python.org/3.9/library/collections.html#module-collections">collections</a>.<a class="autorefs autorefs-external" title="collections.abc" href="https://docs.python.org/3.9/library/collections.abc.html#module-collections.abc">abc</a>.<a class="autorefs autorefs-external" title="collections.abc.Sequence" href="https://docs.python.org/3.9/library/collections.abc.html#collections.abc.Sequence">Sequence</a>[<a class="autorefs autorefs-internal" title="multibar.impl.progressbars.SectorT" href="#multibar.impl.progressbars.SectorT">SectorT</a>]</code>
+</span>
+</td>
+<td class="doc-returns-details">
+<p>Sequence of sectors.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\progressbars.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span>
-<span class="normal">87</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
 <span class="k">def</span> <span class="nf">sectors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">MutableSequence</span><span class="p">[</span><span class="n">SectorT</span><span class="p">]:</span>
-    <span class="c1"># &lt;&lt; inherited docstring for multibar.api.progressbars.ProgressbarAware &gt;&gt;</span>
+    <span class="sd">"""</span>
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    collections.abc.Sequence[SectorT]</span>
+<span class="sd">        Sequence of sectors.</span>
+<span class="sd">    """</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_storage</span>
 </code></pre></div></td></tr></table></div>
 </details>
@@ -1044,26 +1860,174 @@
 </span>
 <a class="headerlink" href="#multibar.impl.progressbars.Progressbar.set_new_sectors" title="Permanent link">¤</a></h4>
 <div class="doc doc-contents">
+<p>Sets new sectors in progressbar.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Returns new progressbar object.</p>
+<p>It is a type-hint safe operation for mypy. That allows you to
+pass extended implementations of interfaces or abscractions,
+given the support of the underlying api.</p>
+</div>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>You can skip this block, if you don't use type-hints.</p>
+<p>We use HKT in this case so that you can add new methods to sectors,
+but at the same time they would support the abstract class api.</p>
+<p>An example of behavior in pseudocode:</p>
+<details class="example">
+<summary>Expand pseudocode example</summary>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">progressbar</span> <span class="o">=</span> <span class="n">progresswriter</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>  <span class="c1"># Sectors doesn't have .extend_method()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">sectors</span> <span class="o">=</span> <span class="n">IterableOverYourExtendedSectors</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>  <span class="c1"># Extended sectors with .extend_method()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">new_progressbar</span> <span class="o">=</span> <span class="n">progressbar</span><span class="o">.</span><span class="n">set_new_sectors</span><span class="p">(</span><span class="n">sectors</span><span class="p">)</span>  <span class="c1"># Sectors have .extend_method()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">new_progressbar</span><span class="o">.</span><span class="n">sectors</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">extend_method</span><span class="p">()</span>  <span class="c1"># Mypy happy.</span>
+</code></pre></div>
+</details>
+<p>It is worth clarifying that this implementation has not yet been finalized
+and may be changed in future versions (and even without HKT at all).
+You can leave your opinion about this in the issues of the project.</p>
+</div>
+<table>
+<thead>
+<tr>
+<th><b>PARAMETER</b></th>
+<th><b>DESCRIPTION</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>new_value</code></td>
+<td class="doc-param-details">
+<p>Iterable over new sector objects. For example of behavior see <code>info</code> block.</p>
+<p>
+<span class="doc-param-annotation">
+<b>TYPE:</b>
+<code><a class="autorefs autorefs-external" href="https://docs.python.org/3.9/library/collections.html#module-collections">collections</a>.<a class="autorefs autorefs-external" title="collections.abc" href="https://docs.python.org/3.9/library/collections.abc.html#module-collections.abc">abc</a>.<a class="autorefs autorefs-external" title="collections.abc.Iterable" href="https://docs.python.org/3.9/library/collections.abc.html#collections.abc.Iterable">Iterable</a>[<span title="multibar.impl.progressbars._NewValueType">_NewValueType</span>]</code>
+</span>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th><b>RETURNS</b></th>
+<th><b>DESCRIPTION</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<span class="doc-returns-annotation">
+<code><a class="autorefs autorefs-internal" title="multibar.impl.progressbars.Progressbar" href="#multibar.impl.progressbars.Progressbar">Progressbar</a>[<span title="multibar.impl.progressbars._NewValueType">_NewValueType</span>]</code>
+</span>
+</td>
+<td class="doc-returns-details">
+<p>New instace of progressbar with your sector objects.
+But it would differ from the usual implementation in
+that mypy does not throw an error in this case.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\progressbars.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
 <span class="k">def</span> <span class="nf">set_new_sectors</span><span class="p">(</span>
     <span class="bp">cls</span><span class="p">,</span>
     <span class="n">new_value</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Iterable</span><span class="p">[</span><span class="n">_NewValueType</span><span class="p">],</span>
     <span class="o">/</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Progressbar</span><span class="p">[</span><span class="n">_NewValueType</span><span class="p">]:</span>
-    <span class="c1"># &lt;&lt; inherited docstring for multibar.api.progressbars.ProgressbarAware &gt;&gt;</span>
+    <span class="sd">"""Sets new sectors in progressbar.</span>
+
+<span class="sd">    !!! info</span>
+<span class="sd">        Returns new progressbar object.</span>
+
+<span class="sd">        It is a type-hint safe operation for mypy. That allows you to</span>
+<span class="sd">        pass extended implementations of interfaces or abscractions,</span>
+<span class="sd">        given the support of the underlying api.</span>
+
+<span class="sd">    !!! abstract</span>
+<span class="sd">        You can skip this block, if you don't use type-hints.</span>
+
+<span class="sd">        We use HKT in this case so that you can add new methods to sectors,</span>
+<span class="sd">        but at the same time they would support the abstract class api.</span>
+
+<span class="sd">        An example of behavior in pseudocode:</span>
+<span class="sd">        ??? example "Expand pseudocode example"</span>
+<span class="sd">            ```py</span>
+<span class="sd">            &gt;&gt;&gt; progressbar = progresswriter.write(value, value)  # Sectors doesn't have .extend_method()</span>
+<span class="sd">            &gt;&gt;&gt; sectors = IterableOverYourExtendedSectors(...)  # Extended sectors with .extend_method()</span>
+<span class="sd">            &gt;&gt;&gt; new_progressbar = progressbar.set_new_sectors(sectors)  # Sectors have .extend_method()</span>
+<span class="sd">            &gt;&gt;&gt; new_progressbar.sectors[0].extend_method()  # Mypy happy.</span>
+<span class="sd">            ```</span>
+
+<span class="sd">        It is worth clarifying that this implementation has not yet been finalized</span>
+<span class="sd">        and may be changed in future versions (and even without HKT at all).</span>
+<span class="sd">        You can leave your opinion about this in the issues of the project.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    new_value : collections.abc.Iterable[_NewValueType], /</span>
+<span class="sd">        Iterable over new sector objects. For example of behavior see `info` block.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    Progressbar[_NewValueType]</span>
+<span class="sd">        New instace of progressbar with your sector objects.</span>
+<span class="sd">        But it would differ from the usual implementation in</span>
+<span class="sd">        that mypy does not throw an error in this case.</span>
+<span class="sd">    """</span>
     <span class="c1"># Alternative to cls[_NewValueType](), to avoid mypy "is not indexable" error.</span>
     <span class="n">bar</span> <span class="o">=</span> <span class="n">typing</span><span class="o">.</span><span class="n">cast</span><span class="p">(</span><span class="n">Progressbar</span><span class="p">[</span><span class="n">_NewValueType</span><span class="p">],</span> <span class="bp">cls</span><span class="p">())</span>
     <span class="k">for</span> <span class="n">new_sector</span> <span class="ow">in</span> <span class="n">new_value</span><span class="p">:</span>

@@ -18,6 +18,8 @@
 <link href="../css/material.css" rel="stylesheet"/>
 <link href="../css/mkdocs.css" rel="stylesheet"/>
 <link href="../css/progressbar.css" rel="stylesheet"/>
+<link href="../css/critic.css" rel="stylesheet"/>
+<link href="../css/navmenu.css" rel="stylesheet"/>
 <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
 <body data-md-color-accent="purple" data-md-color-primary="teal" data-md-color-scheme="default" dir="ltr">
@@ -157,6 +159,11 @@
       </a>
 </li>
 <li class="md-tabs__item">
+<a class="md-tabs__link" href="../about/">
+        About
+      </a>
+</li>
+<li class="md-tabs__item">
 <a class="md-tabs__link md-tabs__link--active" href="../api/math_operations/">
         Reference
       </a>
@@ -269,26 +276,46 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
 <label class="md-nav__link" for="__nav_5">
+          About
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="About" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../about/">
+        About
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6">
           Reference
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="Reference" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_5">
+<label class="md-nav__title" for="__nav_6">
 <span class="md-nav__icon md-icon"></span>
           Reference
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" id="__nav_5_1" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5_1">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" id="__nav_6_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6_1">
           api
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="api" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_5_1">
+<label class="md-nav__title" for="__nav_6_1">
 <span class="md-nav__icon md-icon"></span>
           api
         </label>
@@ -337,13 +364,13 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" id="__nav_5_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5_2">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" id="__nav_6_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6_2">
           impl
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="impl" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_5_2">
+<label class="md-nav__title" for="__nav_6_2">
 <span class="md-nav__icon md-icon"></span>
           impl
         </label>
@@ -459,11 +486,6 @@
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#multibar.settings.Settings.__copy__">
-    __copy__()
-  </a>
-</li>
-<li class="md-nav__item">
 <a class="md-nav__link" href="#multibar.settings.Settings.__init__">
     __init__()
   </a>
@@ -471,11 +493,6 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#multibar.settings.Settings.configure">
     configure()
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#multibar.settings.Settings.copy">
-    copy()
   </a>
 </li>
 </ul>
@@ -557,11 +574,6 @@
   </a>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#multibar.settings.Settings.__copy__">
-    __copy__()
-  </a>
-</li>
-<li class="md-nav__item">
 <a class="md-nav__link" href="#multibar.settings.Settings.__init__">
     __init__()
   </a>
@@ -569,11 +581,6 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#multibar.settings.Settings.configure">
     configure()
-  </a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#multibar.settings.Settings.copy">
-    copy()
   </a>
 </li>
 </ul>
@@ -593,30 +600,12 @@
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 12h8v2H8v-2m2 8H6V4h7v5h5v3.1l2-2V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4v-2m-2-2h4.1l.9-.9V16H8v2m12.2-5c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"></path></svg>
 </a>
 <h1>Settings</h1>
-<div class="mermaid">
-    classDiagram
-    PInterface &lt;|-- ProgressbarWriter : Implements
-    SAbstraction &lt;|-- Sector : Implements
-    CInterface &lt;|-- CalculationService : Implements
-    SignatureSegment &lt;-- Signature : Uses by default
-    Signature --&gt; PSProtocol : Matches
-    SignatureSegment --&gt; SSProtocol : Matches
-    Sector --o ProgressbarWriter : By default
-    CalculationService --o ProgressbarWriter : By default
-    Signature --o ProgressbarWriter : By default
-    PCInterface &lt;|-- ProgressbarClient : Implements
-    HInterface &lt;|-- Hooks : Implements
-    CMInterface &lt;|-- ContractManager : Implements
-    CMInterface --&gt; ContractInterface : Interacts with
-    Hooks --o ProgressbarClient : By default
-    ContractManager --o ProgressbarClient : By default
-    ProgressbarWriter --o ProgressbarClient : By default
-</div>
 <div class="doc doc-object doc-module">
 <h2 class="doc doc-heading" id="multibar.settings">
 <code>multibar.settings</code>
 <a class="headerlink" href="#multibar.settings" title="Permanent link">¤</a></h2>
 <div class="doc doc-contents first">
+<p>Python-Multibar project settings.</p>
 <div class="doc doc-children">
 <div class="doc doc-object doc-attribute">
 <h3 class="doc doc-heading" id="multibar.settings.SelfT">
@@ -626,6 +615,7 @@
 </span>
 <a class="headerlink" href="#multibar.settings.SelfT" title="Permanent link">¤</a></h3>
 <div class="doc doc-contents">
+<p>Self Type for Settings instance.</p>
 </div>
 </div>
 <div class="doc doc-object doc-attribute">
@@ -646,6 +636,7 @@
 </span>
 <a class="headerlink" href="#multibar.settings.settings" title="Permanent link">¤</a></h3>
 <div class="doc doc-contents">
+<p>Multibar global settings singleton.</p>
 </div>
 </div>
 <div class="doc doc-object doc-class">
@@ -653,33 +644,113 @@
 <code>Settings</code>
 <a class="headerlink" href="#multibar.settings.Settings" title="Permanent link">¤</a></h3>
 <div class="doc doc-contents">
-<p>Multibar global settings.</p>
+<p>Multibar global settings singleton.</p>
+<div class="admonition tldr">
+<p class="admonition-title">Currently used for</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Type</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PRINTER</code></td>
+<td>PrinterAware</td>
+<td>TermcolorPrinter</td>
+</tr>
+</tbody>
+</table>
+</div>
+<details class="example">
+<summary>Expand example of usage</summary>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span> <span class="nn">typing</span>
+
+<span class="kn">from</span> <span class="nn">returns.io</span> <span class="kn">import</span> <span class="n">IO</span>
+
+<span class="kn">from</span> <span class="nn">multibar</span> <span class="kn">import</span> <span class="n">output</span><span class="p">,</span> <span class="n">settings</span>
+
+<span class="k">class</span> <span class="nc">MyOwnPrinter</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">PrinterAware</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">print</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">IO</span><span class="p">[</span><span class="kc">None</span><span class="p">]:</span>
+        <span class="c1"># Implementation of your [colored] printer.</span>
+        <span class="k">return</span> <span class="n">IO</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+
+<span class="hll"><span class="n">settings</span><span class="o">.</span><span class="n">settings</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">PRINTER</span><span class="o">=</span><span class="n">MyOwnPrinter</span><span class="p">)</span>
+</span></code></pre></div>
+</details>
 <details class="quote">
 <summary>Source code in <code>multibar\settings.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">36</span>
 <span class="normal">37</span>
 <span class="normal">38</span>
-<span class="normal">39</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Settings</span><span class="p">:</span>
-    <span class="sd">"""Multibar global settings."""</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Settings</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">utils</span><span class="o">.</span><span class="n">Singleton</span><span class="p">):</span>
+    <span class="sd">"""Multibar global settings singleton.</span>
+
+<span class="sd">    !!! tldr "Currently used for"</span>
+<span class="sd">        | Option      | Type           | Default          |</span>
+<span class="sd">        | ----------- | ---------------|----------------- |</span>
+<span class="sd">        | `PRINTER`   | PrinterAware   | TermcolorPrinter |</span>
+
+<span class="sd">    ??? example "Expand example of usage"</span>
+<span class="sd">        ```py hl_lines="12"</span>
+<span class="sd">        import typing</span>
+
+<span class="sd">        from returns.io import IO</span>
+
+<span class="sd">        from multibar import output, settings</span>
+
+<span class="sd">        class MyOwnPrinter(output.PrinterAware):</span>
+<span class="sd">            def print(self, *args: typing.Any, **kwargs: typing.Any) -&gt; IO[None]:</span>
+<span class="sd">                # Implementation of your [colored] printer.</span>
+<span class="sd">                return IO(None)</span>
+
+<span class="sd">        settings.settings.configure(PRINTER=MyOwnPrinter)</span>
+<span class="sd">        ```</span>
+<span class="sd">    """</span>
 
     <span class="fm">__getattr__</span> <span class="o">=</span> <span class="fm">__getitem__</span> <span class="o">=</span> <span class="n">_config_get_function</span>
 
@@ -687,19 +758,20 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+        <span class="sd">"""If item is not hashable, checks for config.values(),</span>
+<span class="sd">        otherwise config.keys()."""</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Hashable</span><span class="p">):</span>
             <span class="k">return</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config</span>
 
-    <span class="k">def</span> <span class="nf">__copy__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Settings</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
-
-    <span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Settings</span><span class="p">:</span>
-        <span class="n">new_instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">()</span>
-        <span class="n">new_instance</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">new_instance</span>
-
     <span class="k">def</span> <span class="nf">configure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="sd">"""Updates global settings config.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        **kwargs : typing.Any</span>
+<span class="sd">            Keyword arguments to configure.</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 </details>
@@ -729,29 +801,21 @@
 <code class="highlight language-python"><span class="fm">__contains__</span><span class="p">(</span><span class="n">item</span><span class="p">)</span></code>
 <a class="headerlink" href="#multibar.settings.Settings.__contains__" title="Permanent link">¤</a></h4>
 <div class="doc doc-contents">
+<p>If item is not hashable, checks for config.values(),
+otherwise config.keys().</p>
 <details class="quote">
 <summary>Source code in <code>multibar\settings.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__contains__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="sd">"""If item is not hashable, checks for config.values(),</span>
+<span class="sd">    otherwise config.keys()."""</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">item</span><span class="p">,</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Hashable</span><span class="p">):</span>
         <span class="k">return</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">item</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">_config</span>
-</code></pre></div></td></tr></table></div>
-</details>
-</div>
-</div>
-<div class="doc doc-object doc-function">
-<h4 class="doc doc-heading" id="multibar.settings.Settings.__copy__">
-<code class="highlight language-python"><span class="n">__copy__</span><span class="p">()</span></code>
-<a class="headerlink" href="#multibar.settings.Settings.__copy__" title="Permanent link">¤</a></h4>
-<div class="doc doc-contents">
-<details class="quote">
-<summary>Source code in <code>multibar\settings.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">30</span>
-<span class="normal">31</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">__copy__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Settings</span><span class="p">:</span>
-    <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </code></pre></div></td></tr></table></div>
 </details>
 </div>
@@ -763,8 +827,8 @@
 <div class="doc doc-contents">
 <details class="quote">
 <summary>Source code in <code>multibar\settings.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">22</span>
-<span class="normal">23</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">63</span>
+<span class="normal">64</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
 </code></pre></div></td></tr></table></div>
 </details>
@@ -775,29 +839,52 @@
 <code class="highlight language-python"><span class="n">configure</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span></code>
 <a class="headerlink" href="#multibar.settings.Settings.configure" title="Permanent link">¤</a></h4>
 <div class="doc doc-contents">
+<p>Updates global settings config.</p>
+<table>
+<thead>
+<tr>
+<th><b>PARAMETER</b></th>
+<th><b>DESCRIPTION</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>**kwargs</code></td>
+<td class="doc-param-details">
+<p>Keyword arguments to configure.</p>
+<p>
+<span class="doc-param-annotation">
+<b>TYPE:</b>
+<code><a class="autorefs autorefs-external" href="https://docs.python.org/3.9/library/typing.html#module-typing">typing</a>.<a class="autorefs autorefs-external" title="typing.Any" href="https://docs.python.org/3.9/library/typing.html#typing.Any">Any</a></code>
+</span>
+<span class="doc-param-default">
+<b>DEFAULT:</b>
+<code>{}</code>
+</span>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>multibar\settings.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">38</span>
-<span class="normal">39</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">configure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">configure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="sd">"""Updates global settings config.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    **kwargs : typing.Any</span>
+<span class="sd">        Keyword arguments to configure.</span>
+<span class="sd">    """</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div>
-</details>
-</div>
-</div>
-<div class="doc doc-object doc-function">
-<h4 class="doc doc-heading" id="multibar.settings.Settings.copy">
-<code class="highlight language-python"><span class="n">copy</span><span class="p">()</span></code>
-<a class="headerlink" href="#multibar.settings.Settings.copy" title="Permanent link">¤</a></h4>
-<div class="doc doc-contents">
-<details class="quote">
-<summary>Source code in <code>multibar\settings.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">copy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Settings</span><span class="p">:</span>
-    <span class="n">new_instance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__class__</span><span class="p">()</span>
-    <span class="n">new_instance</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">_config</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">new_instance</span>
 </code></pre></div></td></tr></table></div>
 </details>
 </div>
@@ -878,7 +965,5 @@
 <script src="../assets/javascripts/bundle.d691e9de.min.js"></script>
 <script src="../js/mermaid.js"></script>
 <script src="../js/tabs.js"></script>
-<script>mermaid.initialize({
-    theme: "dark"
-});</script></body>
+</body>
 </html>

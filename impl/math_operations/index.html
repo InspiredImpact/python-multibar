@@ -18,6 +18,8 @@
 <link href="../../css/material.css" rel="stylesheet"/>
 <link href="../../css/mkdocs.css" rel="stylesheet"/>
 <link href="../../css/progressbar.css" rel="stylesheet"/>
+<link href="../../css/critic.css" rel="stylesheet"/>
+<link href="../../css/navmenu.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
 <body data-md-color-accent="purple" data-md-color-primary="teal" data-md-color-scheme="default" dir="ltr">
@@ -157,6 +159,11 @@
       </a>
 </li>
 <li class="md-tabs__item">
+<a class="md-tabs__link" href="../../about/">
+        About
+      </a>
+</li>
+<li class="md-tabs__item">
 <a class="md-tabs__link md-tabs__link--active" href="../../api/math_operations/">
         Reference
       </a>
@@ -269,26 +276,46 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
 <label class="md-nav__link" for="__nav_5">
+          About
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="About" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../about/">
+        About
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6">
           Reference
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="Reference" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_5">
+<label class="md-nav__title" for="__nav_6">
 <span class="md-nav__icon md-icon"></span>
           Reference
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" id="__nav_5_1" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5_1">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" id="__nav_6_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6_1">
           api
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="api" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_5_1">
+<label class="md-nav__title" for="__nav_6_1">
 <span class="md-nav__icon md-icon"></span>
           api
         </label>
@@ -337,13 +364,13 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" id="__nav_5_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5_2">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" id="__nav_6_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6_2">
           impl
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="impl" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_5_2">
+<label class="md-nav__title" for="__nav_6_2">
 <span class="md-nav__icon md-icon"></span>
           impl
         </label>
@@ -548,6 +575,7 @@
 <code>multibar.impl.calculation_service</code>
 <a class="headerlink" href="#multibar.impl.calculation_service" title="Permanent link">¤</a></h2>
 <div class="doc doc-contents first">
+<p>Implementations of Python-Multibar math operations.</p>
 <div class="doc doc-children">
 <div class="doc doc-object doc-attribute">
 <h3 class="doc doc-heading" id="multibar.impl.calculation_service.__all__">
@@ -566,49 +594,129 @@
 <div class="doc doc-contents">
 <p class="doc doc-class-bases">
         Bases: <code><a class="autorefs autorefs-internal" title="multibar.api.calculation_service" href="../../api/math_operations/#multibar.api.calculation_service">calculation_service</a>.<a class="autorefs autorefs-internal" title="multibar.api.calculation_service.AbstractCalculationService" href="../../api/math_operations/#multibar.api.calculation_service.AbstractCalculationService">AbstractCalculationService</a></code></p>
+<p>Implementation of calculation_service.AbstractCalculationService.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Documentation duplicated for mkdocs auto-reference
+plugin.</p>
+</div>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\calculation_service.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">27</span>
 <span class="normal">28</span>
-<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ProgressbarCalculationService</span><span class="p">(</span><span class="n">calculation_service</span><span class="o">.</span><span class="n">AbstractCalculationService</span><span class="p">):</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ProgressbarCalculationService</span><span class="p">(</span><span class="n">calculation_service</span><span class="o">.</span><span class="n">AbstractCalculationService</span><span class="p">):</span>
+    <span class="sd">"""Implementation of calculation_service.AbstractCalculationService.</span>
+
+<span class="sd">    !!! note</span>
+<span class="sd">        Documentation duplicated for mkdocs auto-reference</span>
+<span class="sd">        plugin.</span>
+<span class="sd">    """</span>
+
     <span class="k">def</span> <span class="nf">calculate_filled_indexes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Iterator</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
-        <span class="c1"># &lt;&lt; inherited docstring for multibar.api.calculation_service.AbstractCalculationService &gt;&gt;</span>
+        <span class="sd">"""Returns iterator over progressbar filled sector indexes.</span>
+<span class="sd">        This method is implemented for a more comfortable calculation</span>
+<span class="sd">        of the position of the sector in the progress bar.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        collections.abc.Iterator[int]</span>
+<span class="sd">            Iterator over progressbar filled sector indexes.</span>
+<span class="sd">        """</span>
         <span class="n">filled_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">progress_percents</span> <span class="o">/</span> <span class="p">(</span><span class="mi">100</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_length</span><span class="p">)))</span>
         <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="n">filled_range</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">calculate_unfilled_indexes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Iterator</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
-        <span class="c1"># &lt;&lt; inherited docstring for multibar.api.calculation_service.AbstractCalculationService &gt;&gt;</span>
+        <span class="sd">"""Returns iterator over progressbar unfilled sector indexes.</span>
+<span class="sd">        This method is implemented for a more comfortable calculation</span>
+<span class="sd">        of the position of the sector in the progress bar.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        collections.abc.Iterator[int]</span>
+<span class="sd">            Iterator over progressbar unfilled sector indexes.</span>
+<span class="sd">        """</span>
         <span class="n">filled_range_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calculate_filled_indexes</span><span class="p">()))</span>
         <span class="n">unfilled_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_length</span> <span class="o">-</span> <span class="n">filled_range_len</span><span class="p">)</span>
         <span class="k">return</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">filled_range_len</span><span class="p">,</span> <span class="n">unfilled_range</span><span class="p">)</span>
 
-    <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">progress_percents</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="c1"># &lt;&lt; inherited docstring for multibar.api.calculation_service.AbstractCalculationService &gt;&gt;</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_progress_percentage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_start_value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_end_value</span><span class="p">)</span>
-
     <span class="nd">@staticmethod</span>
     <span class="k">def</span> <span class="nf">get_progress_percentage</span><span class="p">(</span><span class="n">start</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">end</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-        <span class="c1"># &lt;&lt; inherited docstring for multibar.api.calculation_service.AbstractCalculationService &gt;&gt;</span>
+        <span class="sd">"""Alternative staticmethod to get progress percentage.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        -----------</span>
+<span class="sd">        start : typing.Union[int, float]</span>
+<span class="sd">            Start value (current progress) for progressbar math operations.</span>
+<span class="sd">        end : typing.Union[int, float]</span>
+<span class="sd">            End value (needed progress) for progressbar math operations.</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">start</span> <span class="o">/</span> <span class="n">end</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">progress_percents</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+        <span class="sd">"""Returns current progress percentage.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        float</span>
+<span class="sd">            Float progress percentage.</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_progress_percentage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_start_value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_end_value</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 </details>
 <div class="doc doc-children">
@@ -617,13 +725,52 @@
 <code class="highlight language-python"><span class="n">calculate_filled_indexes</span><span class="p">()</span></code>
 <a class="headerlink" href="#multibar.impl.calculation_service.ProgressbarCalculationService.calculate_filled_indexes" title="Permanent link">¤</a></h4>
 <div class="doc doc-contents">
+<p>Returns iterator over progressbar filled sector indexes.
+This method is implemented for a more comfortable calculation
+of the position of the sector in the progress bar.</p>
+<table>
+<thead>
+<tr>
+<th><b>RETURNS</b></th>
+<th><b>DESCRIPTION</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<span class="doc-returns-annotation">
+<code><a class="autorefs autorefs-external" title="collections.abc" href="https://docs.python.org/3.9/library/collections.abc.html#module-collections.abc">collections</a>.<span title="collections.abc.abc">abc</span>.<a class="autorefs autorefs-external" title="collections.abc.Iterator" href="https://docs.python.org/3.9/library/collections.abc.html#collections.abc.Iterator">Iterator</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3.9/library/functions.html#int">int</a>]</code>
+</span>
+</td>
+<td class="doc-returns-details">
+<p>Iterator over progressbar filled sector indexes.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\calculation_service.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">calculate_filled_indexes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Iterator</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
-    <span class="c1"># &lt;&lt; inherited docstring for multibar.api.calculation_service.AbstractCalculationService &gt;&gt;</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">calculate_filled_indexes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Iterator</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+    <span class="sd">"""Returns iterator over progressbar filled sector indexes.</span>
+<span class="sd">    This method is implemented for a more comfortable calculation</span>
+<span class="sd">    of the position of the sector in the progress bar.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    collections.abc.Iterator[int]</span>
+<span class="sd">        Iterator over progressbar filled sector indexes.</span>
+<span class="sd">    """</span>
     <span class="n">filled_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">progress_percents</span> <span class="o">/</span> <span class="p">(</span><span class="mi">100</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">_length</span><span class="p">)))</span>
     <span class="k">return</span> <span class="nb">iter</span><span class="p">(</span><span class="n">filled_range</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
@@ -635,14 +782,53 @@
 <code class="highlight language-python"><span class="n">calculate_unfilled_indexes</span><span class="p">()</span></code>
 <a class="headerlink" href="#multibar.impl.calculation_service.ProgressbarCalculationService.calculate_unfilled_indexes" title="Permanent link">¤</a></h4>
 <div class="doc doc-contents">
+<p>Returns iterator over progressbar unfilled sector indexes.
+This method is implemented for a more comfortable calculation
+of the position of the sector in the progress bar.</p>
+<table>
+<thead>
+<tr>
+<th><b>RETURNS</b></th>
+<th><b>DESCRIPTION</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<span class="doc-returns-annotation">
+<code><a class="autorefs autorefs-external" title="collections.abc" href="https://docs.python.org/3.9/library/collections.abc.html#module-collections.abc">collections</a>.<span title="collections.abc.abc">abc</span>.<a class="autorefs autorefs-external" title="collections.abc.Iterator" href="https://docs.python.org/3.9/library/collections.abc.html#collections.abc.Iterator">Iterator</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3.9/library/functions.html#int">int</a>]</code>
+</span>
+</td>
+<td class="doc-returns-details">
+<p>Iterator over progressbar unfilled sector indexes.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\calculation_service.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">calculate_unfilled_indexes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Iterator</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
-    <span class="c1"># &lt;&lt; inherited docstring for multibar.api.calculation_service.AbstractCalculationService &gt;&gt;</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">calculate_unfilled_indexes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">collections</span><span class="o">.</span><span class="n">abc</span><span class="o">.</span><span class="n">Iterator</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+    <span class="sd">"""Returns iterator over progressbar unfilled sector indexes.</span>
+<span class="sd">    This method is implemented for a more comfortable calculation</span>
+<span class="sd">    of the position of the sector in the progress bar.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    collections.abc.Iterator[int]</span>
+<span class="sd">        Iterator over progressbar unfilled sector indexes.</span>
+<span class="sd">    """</span>
     <span class="n">filled_range_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="nb">tuple</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">calculate_filled_indexes</span><span class="p">()))</span>
     <span class="n">unfilled_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_length</span> <span class="o">-</span> <span class="n">filled_range_len</span><span class="p">)</span>
     <span class="k">return</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">i</span><span class="p">:</span> <span class="n">i</span> <span class="o">+</span> <span class="n">filled_range_len</span><span class="p">,</span> <span class="n">unfilled_range</span><span class="p">)</span>
@@ -658,14 +844,65 @@
 </span>
 <a class="headerlink" href="#multibar.impl.calculation_service.ProgressbarCalculationService.get_progress_percentage" title="Permanent link">¤</a></h4>
 <div class="doc doc-contents">
+<p>Alternative staticmethod to get progress percentage.</p>
+<table>
+<thead>
+<tr>
+<th><b>PARAMETER</b></th>
+<th><b>DESCRIPTION</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>start</code></td>
+<td class="doc-param-details">
+<p>Start value (current progress) for progressbar math operations.</p>
+<p>
+<span class="doc-param-annotation">
+<b>TYPE:</b>
+<code><a class="autorefs autorefs-external" href="https://docs.python.org/3.9/library/typing.html#module-typing">typing</a>.<a class="autorefs autorefs-external" title="typing.Union" href="https://docs.python.org/3.9/library/typing.html#typing.Union">Union</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3.9/library/functions.html#int">int</a>, <a class="autorefs autorefs-external" href="https://docs.python.org/3.9/library/functions.html#float">float</a>]</code>
+</span>
+</p>
+</td>
+</tr>
+<tr>
+<td><code>end</code></td>
+<td class="doc-param-details">
+<p>End value (needed progress) for progressbar math operations.</p>
+<p>
+<span class="doc-param-annotation">
+<b>TYPE:</b>
+<code><a class="autorefs autorefs-external" href="https://docs.python.org/3.9/library/typing.html#module-typing">typing</a>.<a class="autorefs autorefs-external" title="typing.Union" href="https://docs.python.org/3.9/library/typing.html#typing.Union">Union</a>[<a class="autorefs autorefs-external" href="https://docs.python.org/3.9/library/functions.html#int">int</a>, <a class="autorefs autorefs-external" href="https://docs.python.org/3.9/library/functions.html#float">float</a>]</code>
+</span>
+</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\calculation_service.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@staticmethod</span>
 <span class="k">def</span> <span class="nf">get_progress_percentage</span><span class="p">(</span><span class="n">start</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="n">end</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Union</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">],</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-    <span class="c1"># &lt;&lt; inherited docstring for multibar.api.calculation_service.AbstractCalculationService &gt;&gt;</span>
+    <span class="sd">"""Alternative staticmethod to get progress percentage.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    -----------</span>
+<span class="sd">    start : typing.Union[int, float]</span>
+<span class="sd">        Start value (current progress) for progressbar math operations.</span>
+<span class="sd">    end : typing.Union[int, float]</span>
+<span class="sd">        End value (needed progress) for progressbar math operations.</span>
+<span class="sd">    """</span>
     <span class="k">return</span> <span class="p">(</span><span class="n">start</span> <span class="o">/</span> <span class="n">end</span><span class="p">)</span> <span class="o">*</span> <span class="mi">100</span>
 </code></pre></div></td></tr></table></div>
 </details>
@@ -679,14 +916,47 @@
 </span>
 <a class="headerlink" href="#multibar.impl.calculation_service.ProgressbarCalculationService.progress_percents" title="Permanent link">¤</a></h4>
 <div class="doc doc-contents">
+<p>Returns current progress percentage.</p>
+<table>
+<thead>
+<tr>
+<th><b>RETURNS</b></th>
+<th><b>DESCRIPTION</b></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<span class="doc-returns-annotation">
+<code><a class="autorefs autorefs-external" href="https://docs.python.org/3.9/library/functions.html#float">float</a></code>
+</span>
+</td>
+<td class="doc-returns-details">
+<p>Float progress percentage.</p>
+</td>
+</tr>
+</tbody>
+</table>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\calculation_service.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
 <span class="k">def</span> <span class="nf">progress_percents</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
-    <span class="c1"># &lt;&lt; inherited docstring for multibar.api.calculation_service.AbstractCalculationService &gt;&gt;</span>
+    <span class="sd">"""Returns current progress percentage.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    float</span>
+<span class="sd">        Float progress percentage.</span>
+<span class="sd">    """</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_progress_percentage</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_start_value</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_end_value</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
 </details>

@@ -18,6 +18,8 @@
 <link href="../../css/material.css" rel="stylesheet"/>
 <link href="../../css/mkdocs.css" rel="stylesheet"/>
 <link href="../../css/progressbar.css" rel="stylesheet"/>
+<link href="../../css/critic.css" rel="stylesheet"/>
+<link href="../../css/navmenu.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
 <body data-md-color-accent="purple" data-md-color-primary="teal" data-md-color-scheme="default" dir="ltr">
@@ -157,6 +159,11 @@
       </a>
 </li>
 <li class="md-tabs__item">
+<a class="md-tabs__link" href="../../about/">
+        About
+      </a>
+</li>
+<li class="md-tabs__item">
 <a class="md-tabs__link md-tabs__link--active" href="../../api/math_operations/">
         Reference
       </a>
@@ -269,26 +276,46 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
 <label class="md-nav__link" for="__nav_5">
+          About
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="About" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../about/">
+        About
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6">
           Reference
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="Reference" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_5">
+<label class="md-nav__title" for="__nav_6">
 <span class="md-nav__icon md-icon"></span>
           Reference
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" id="__nav_5_1" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5_1">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" id="__nav_6_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6_1">
           api
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="api" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_5_1">
+<label class="md-nav__title" for="__nav_6_1">
 <span class="md-nav__icon md-icon"></span>
           api
         </label>
@@ -337,13 +364,13 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" id="__nav_5_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5_2">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" id="__nav_6_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6_2">
           impl
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="impl" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_5_2">
+<label class="md-nav__title" for="__nav_6_2">
 <span class="md-nav__icon md-icon"></span>
           impl
         </label>
@@ -624,6 +651,7 @@
 <code>multibar.impl.signatures</code>
 <a class="headerlink" href="#multibar.impl.signatures" title="Permanent link">¤</a></h2>
 <div class="doc doc-contents first">
+<p>Python-Multibar signature implementations.</p>
 <div class="doc doc-children">
 <div class="doc doc-object doc-attribute">
 <h3 class="doc doc-heading" id="multibar.impl.signatures.__all__">
@@ -643,15 +671,26 @@
 </span>
 <a class="headerlink" href="#multibar.impl.signatures.SignatureSegment" title="Permanent link">¤</a></h3>
 <div class="doc doc-contents">
+<p>Dataclass that stores segment data.</p>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\signatures.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
 <span class="k">class</span> <span class="nc">SignatureSegment</span><span class="p">:</span>
+    <span class="sd">"""Dataclass that stores segment data."""</span>
+
     <span class="n">on_filled</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">"""On filled state."""</span>
+
     <span class="n">on_unfilled</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="sd">"""On unfilled state."""</span>
 </code></pre></div></td></tr></table></div>
 </details>
 <div class="doc doc-children">
@@ -663,6 +702,7 @@
 </span>
 <a class="headerlink" href="#multibar.impl.signatures.SignatureSegment.on_filled" title="Permanent link">¤</a></h4>
 <div class="doc doc-contents">
+<p>On filled state.</p>
 </div>
 </div>
 <div class="doc doc-object doc-attribute">
@@ -673,6 +713,7 @@
 </span>
 <a class="headerlink" href="#multibar.impl.signatures.SignatureSegment.on_unfilled" title="Permanent link">¤</a></h4>
 <div class="doc doc-contents">
+<p>On unfilled state.</p>
 </div>
 </div>
 </div>
@@ -686,17 +727,32 @@
 </span>
 <a class="headerlink" href="#multibar.impl.signatures.SimpleSignature" title="Permanent link">¤</a></h3>
 <div class="doc doc-contents">
+<p>Dataclass that stores simple signature data.</p>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\signatures.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
 <span class="k">class</span> <span class="nc">SimpleSignature</span><span class="p">:</span>
+    <span class="sd">"""Dataclass that stores simple signature data."""</span>
+
     <span class="n">start</span><span class="p">:</span> <span class="n">SignatureSegment</span> <span class="o">=</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">SignatureSegment</span><span class="p">(</span><span class="n">on_filled</span><span class="o">=</span><span class="s2">"&lt;"</span><span class="p">,</span> <span class="n">on_unfilled</span><span class="o">=</span><span class="s2">"-"</span><span class="p">))</span>
+    <span class="sd">"""Progressbar start char."""</span>
+
     <span class="n">end</span><span class="p">:</span> <span class="n">SignatureSegment</span> <span class="o">=</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">SignatureSegment</span><span class="p">(</span><span class="n">on_filled</span><span class="o">=</span><span class="s2">"&gt;"</span><span class="p">,</span> <span class="n">on_unfilled</span><span class="o">=</span><span class="s2">"-"</span><span class="p">))</span>
+    <span class="sd">"""Progressbar end char."""</span>
+
     <span class="n">middle</span><span class="p">:</span> <span class="n">SignatureSegment</span> <span class="o">=</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">SignatureSegment</span><span class="p">(</span><span class="n">on_filled</span><span class="o">=</span><span class="s2">"+"</span><span class="p">,</span> <span class="n">on_unfilled</span><span class="o">=</span><span class="s2">"-"</span><span class="p">))</span>
+    <span class="sd">"""Progressbar middle char (between start and and)."""</span>
 </code></pre></div></td></tr></table></div>
 </details>
 <div class="doc doc-children">
@@ -708,6 +764,7 @@
 </span>
 <a class="headerlink" href="#multibar.impl.signatures.SimpleSignature.end" title="Permanent link">¤</a></h4>
 <div class="doc doc-contents">
+<p>Progressbar end char.</p>
 </div>
 </div>
 <div class="doc doc-object doc-attribute">
@@ -718,6 +775,7 @@
 </span>
 <a class="headerlink" href="#multibar.impl.signatures.SimpleSignature.middle" title="Permanent link">¤</a></h4>
 <div class="doc doc-contents">
+<p>Progressbar middle char (between start and and).</p>
 </div>
 </div>
 <div class="doc doc-object doc-attribute">
@@ -728,6 +786,7 @@
 </span>
 <a class="headerlink" href="#multibar.impl.signatures.SimpleSignature.start" title="Permanent link">¤</a></h4>
 <div class="doc doc-contents">
+<p>Progressbar start char.</p>
 </div>
 </div>
 </div>
@@ -741,29 +800,44 @@
 </span>
 <a class="headerlink" href="#multibar.impl.signatures.SquareEmojiSignature" title="Permanent link">¤</a></h3>
 <div class="doc doc-contents">
+<p>Dataclass that stores square emoji signature data.</p>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\signatures.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
 <span class="k">class</span> <span class="nc">SquareEmojiSignature</span><span class="p">:</span>
+    <span class="sd">"""Dataclass that stores square emoji signature data."""</span>
+
     <span class="n">start</span><span class="p">:</span> <span class="n">SignatureSegment</span> <span class="o">=</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">field</span><span class="p">(</span>
         <span class="n">default</span><span class="o">=</span><span class="n">SignatureSegment</span><span class="p">(</span><span class="n">on_filled</span><span class="o">=</span><span class="s2">":small_orange_diamond:"</span><span class="p">,</span> <span class="n">on_unfilled</span><span class="o">=</span><span class="s2">":black_large_square:"</span><span class="p">)</span>
     <span class="p">)</span>
+    <span class="sd">"""Progressbar start char."""</span>
+
     <span class="n">end</span><span class="p">:</span> <span class="n">SignatureSegment</span> <span class="o">=</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">field</span><span class="p">(</span>
         <span class="n">default</span><span class="o">=</span><span class="n">SignatureSegment</span><span class="p">(</span><span class="n">on_filled</span><span class="o">=</span><span class="s2">":small_orange_diamond:"</span><span class="p">,</span> <span class="n">on_unfilled</span><span class="o">=</span><span class="s2">":black_large_square:"</span><span class="p">)</span>
     <span class="p">)</span>
+    <span class="sd">"""Progressbar end char."""</span> <span class="s2">""""""</span>
+
     <span class="n">middle</span><span class="p">:</span> <span class="n">SignatureSegment</span> <span class="o">=</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">field</span><span class="p">(</span>
         <span class="n">default</span><span class="o">=</span><span class="n">SignatureSegment</span><span class="p">(</span><span class="n">on_filled</span><span class="o">=</span><span class="s2">":orange_square:"</span><span class="p">,</span> <span class="n">on_unfilled</span><span class="o">=</span><span class="s2">":black_large_square:"</span><span class="p">)</span>
     <span class="p">)</span>
+    <span class="sd">"""Progressbar middle char (between start and and)."""</span>
 </code></pre></div></td></tr></table></div>
 </details>
 <div class="doc doc-children">
@@ -775,6 +849,7 @@
 </span>
 <a class="headerlink" href="#multibar.impl.signatures.SquareEmojiSignature.end" title="Permanent link">¤</a></h4>
 <div class="doc doc-contents">
+<p>Progressbar end char.</p>
 </div>
 </div>
 <div class="doc doc-object doc-attribute">
@@ -785,6 +860,7 @@
 </span>
 <a class="headerlink" href="#multibar.impl.signatures.SquareEmojiSignature.middle" title="Permanent link">¤</a></h4>
 <div class="doc doc-contents">
+<p>Progressbar middle char (between start and and).</p>
 </div>
 </div>
 <div class="doc doc-object doc-attribute">
@@ -795,6 +871,7 @@
 </span>
 <a class="headerlink" href="#multibar.impl.signatures.SquareEmojiSignature.start" title="Permanent link">¤</a></h4>
 <div class="doc doc-contents">
+<p>Progressbar start char.</p>
 </div>
 </div>
 </div>

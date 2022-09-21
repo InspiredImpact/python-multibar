@@ -18,6 +18,8 @@
 <link href="../../css/material.css" rel="stylesheet"/>
 <link href="../../css/mkdocs.css" rel="stylesheet"/>
 <link href="../../css/progressbar.css" rel="stylesheet"/>
+<link href="../../css/critic.css" rel="stylesheet"/>
+<link href="../../css/navmenu.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
 <body data-md-color-accent="purple" data-md-color-primary="teal" data-md-color-scheme="default" dir="ltr">
@@ -157,6 +159,11 @@
       </a>
 </li>
 <li class="md-tabs__item">
+<a class="md-tabs__link" href="../../about/">
+        About
+      </a>
+</li>
+<li class="md-tabs__item">
 <a class="md-tabs__link md-tabs__link--active" href="../math_operations/">
         Reference
       </a>
@@ -269,26 +276,46 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
 <label class="md-nav__link" for="__nav_5">
+          About
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="About" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../about/">
+        About
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6">
           Reference
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="Reference" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_5">
+<label class="md-nav__title" for="__nav_6">
 <span class="md-nav__icon md-icon"></span>
           Reference
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" id="__nav_5_1" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5_1">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" id="__nav_6_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6_1">
           api
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="api" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_5_1">
+<label class="md-nav__title" for="__nav_6_1">
 <span class="md-nav__icon md-icon"></span>
           api
         </label>
@@ -407,13 +434,13 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" id="__nav_5_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5_2">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" id="__nav_6_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6_2">
           impl
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="impl" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_5_2">
+<label class="md-nav__title" for="__nav_6_2">
 <span class="md-nav__icon md-icon"></span>
           impl
         </label>
@@ -576,6 +603,7 @@
 <code>multibar.api.signatures</code>
 <a class="headerlink" href="#multibar.api.signatures" title="Permanent link">¤</a></h2>
 <div class="doc doc-contents first">
+<p>Interfaces for progressbar signatures.</p>
 <div class="doc doc-children">
 <div class="doc doc-object doc-attribute">
 <h3 class="doc doc-heading" id="multibar.api.signatures.__all__">
@@ -596,47 +624,29 @@
         Bases: <code><a class="autorefs autorefs-external" href="https://docs.python.org/3.9/library/typing.html#module-typing">typing</a>.<a class="autorefs autorefs-external" title="typing.Protocol" href="https://docs.python.org/3.9/library/typing.html#typing.Protocol">Protocol</a></code></p>
 <p>Signature protocol.</p>
 <p><strong>Examples:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">dataclasses</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">unittest.mock</span> <span class="kn">import</span> <span class="n">Mock</span>  <span class="c1"># mock for signature segment</span>
-<span class="gp">...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
-<span class="gp">... </span><span class="k">class</span> <span class="nc">Signature</span><span class="p">:</span>
-<span class="gp">... </span>    <span class="n">start</span><span class="p">:</span> <span class="n">SignatureSegmentProtocol</span> <span class="o">=</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">Mock</span><span class="p">())</span>
-<span class="gp">... </span>    <span class="n">middle</span><span class="p">:</span> <span class="n">SignatureSegmentProtocol</span> <span class="o">=</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">Mock</span><span class="p">())</span>
-<span class="gp">... </span>    <span class="n">end</span><span class="p">:</span> <span class="n">SignatureSegmentProtocol</span> <span class="o">=</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="n">Mock</span><span class="p">())</span>
-<span class="gp">...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">function_that_checks_signature</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">signature</span><span class="p">:</span> <span class="n">ProgressbarSignatureProtocol</span><span class="p">,</span> <span class="o">/</span>
-<span class="gp">... </span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="gp">... </span>    <span class="k">return</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">signature</span><span class="p">,</span> <span class="n">ProgressbarSignatureProtocol</span><span class="p">)</span>
-<span class="gp">...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">function_that_checks_signature</span><span class="p">(</span><span class="n">Signature</span><span class="p">())</span>  <span class="c1"># Mypy happy :)</span>
-<span class="go">True</span>
+<details class="example">
+<summary>Expand example of usage</summary>
+<div class="highlight"><pre><span></span><code>&gt;&gt;&gt; import dataclasses
+&gt;&gt;&gt; from unittest.mock import Mock  # mock for signature segment
+...
+&gt;&gt;&gt; @dataclasses.dataclass
+... class Signature:
+...     start: SignatureSegmentProtocol = dataclasses.field(default=Mock())
+...     middle: SignatureSegmentProtocol = dataclasses.field(default=Mock())
+...     end: SignatureSegmentProtocol = dataclasses.field(default=Mock())
+...
+&gt;&gt;&gt; def function_that_checks_signature(
+...     signature: ProgressbarSignatureProtocol, /
+... ) -&gt; bool:
+...     return isinstance(signature, ProgressbarSignatureProtocol)
+...
+&gt;&gt;&gt; function_that_checks_signature(Signature())  # Mypy happy :)
+True
 </code></pre></div>
+</details>
 <details class="quote">
 <summary>Source code in <code>multibar\api\signatures.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 55</span>
-<span class="normal"> 56</span>
-<span class="normal"> 57</span>
-<span class="normal"> 58</span>
-<span class="normal"> 59</span>
-<span class="normal"> 60</span>
-<span class="normal"> 61</span>
-<span class="normal"> 62</span>
-<span class="normal"> 63</span>
-<span class="normal"> 64</span>
-<span class="normal"> 65</span>
-<span class="normal"> 66</span>
-<span class="normal"> 67</span>
-<span class="normal"> 68</span>
-<span class="normal"> 69</span>
-<span class="normal"> 70</span>
-<span class="normal"> 71</span>
-<span class="normal"> 72</span>
-<span class="normal"> 73</span>
-<span class="normal"> 74</span>
-<span class="normal"> 75</span>
-<span class="normal"> 76</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 76</span>
 <span class="normal"> 77</span>
 <span class="normal"> 78</span>
 <span class="normal"> 79</span>
@@ -667,28 +677,55 @@
 <span class="normal">104</span>
 <span class="normal">105</span>
 <span class="normal">106</span>
-<span class="normal">107</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@typing</span><span class="o">.</span><span class="n">runtime_checkable</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@typing</span><span class="o">.</span><span class="n">runtime_checkable</span>
 <span class="k">class</span> <span class="nc">ProgressbarSignatureProtocol</span><span class="p">(</span><span class="n">typing</span><span class="o">.</span><span class="n">Protocol</span><span class="p">):</span>
     <span class="sd">"""Signature protocol.</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; import dataclasses</span>
-<span class="sd">    &gt;&gt;&gt; from unittest.mock import Mock  # mock for signature segment</span>
-<span class="sd">    ...</span>
-<span class="sd">    &gt;&gt;&gt; @dataclasses.dataclass</span>
-<span class="sd">    ... class Signature:</span>
-<span class="sd">    ...     start: SignatureSegmentProtocol = dataclasses.field(default=Mock())</span>
-<span class="sd">    ...     middle: SignatureSegmentProtocol = dataclasses.field(default=Mock())</span>
-<span class="sd">    ...     end: SignatureSegmentProtocol = dataclasses.field(default=Mock())</span>
-<span class="sd">    ...</span>
-<span class="sd">    &gt;&gt;&gt; def function_that_checks_signature(</span>
-<span class="sd">    ...     signature: ProgressbarSignatureProtocol, /</span>
-<span class="sd">    ... ) -&gt; bool:</span>
-<span class="sd">    ...     return isinstance(signature, ProgressbarSignatureProtocol)</span>
-<span class="sd">    ...</span>
-<span class="sd">    &gt;&gt;&gt; function_that_checks_signature(Signature())  # Mypy happy :)</span>
-<span class="sd">    True</span>
+<span class="sd">    ??? example "Expand example of usage"</span>
+<span class="sd">        ```</span>
+<span class="sd">        &gt;&gt;&gt; import dataclasses</span>
+<span class="sd">        &gt;&gt;&gt; from unittest.mock import Mock  # mock for signature segment</span>
+<span class="sd">        ...</span>
+<span class="sd">        &gt;&gt;&gt; @dataclasses.dataclass</span>
+<span class="sd">        ... class Signature:</span>
+<span class="sd">        ...     start: SignatureSegmentProtocol = dataclasses.field(default=Mock())</span>
+<span class="sd">        ...     middle: SignatureSegmentProtocol = dataclasses.field(default=Mock())</span>
+<span class="sd">        ...     end: SignatureSegmentProtocol = dataclasses.field(default=Mock())</span>
+<span class="sd">        ...</span>
+<span class="sd">        &gt;&gt;&gt; def function_that_checks_signature(</span>
+<span class="sd">        ...     signature: ProgressbarSignatureProtocol, /</span>
+<span class="sd">        ... ) -&gt; bool:</span>
+<span class="sd">        ...     return isinstance(signature, ProgressbarSignatureProtocol)</span>
+<span class="sd">        ...</span>
+<span class="sd">        &gt;&gt;&gt; function_that_checks_signature(Signature())  # Mypy happy :)</span>
+<span class="sd">        True</span>
+<span class="sd">        ```</span>
 <span class="sd">    """</span>
 
     <span class="nd">@property</span>
@@ -753,15 +790,15 @@
 </table>
 <details class="quote">
 <summary>Source code in <code>multibar\api\signatures.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">89</span>
-<span class="normal">90</span>
-<span class="normal">91</span>
-<span class="normal">92</span>
-<span class="normal">93</span>
-<span class="normal">94</span>
-<span class="normal">95</span>
-<span class="normal">96</span>
-<span class="normal">97</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
 <span class="k">def</span> <span class="nf">end</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SignatureSegmentProtocol</span><span class="p">:</span>
     <span class="sd">"""</span>
 <span class="sd">    Returns</span>
@@ -804,15 +841,15 @@
 </table>
 <details class="quote">
 <summary>Source code in <code>multibar\api\signatures.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 99</span>
-<span class="normal">100</span>
-<span class="normal">101</span>
-<span class="normal">102</span>
-<span class="normal">103</span>
-<span class="normal">104</span>
-<span class="normal">105</span>
-<span class="normal">106</span>
-<span class="normal">107</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
 <span class="k">def</span> <span class="nf">middle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SignatureSegmentProtocol</span><span class="p">:</span>
     <span class="sd">"""</span>
 <span class="sd">    Returns</span>
@@ -855,15 +892,15 @@
 </table>
 <details class="quote">
 <summary>Source code in <code>multibar\api\signatures.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span>
-<span class="normal">87</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
 <span class="k">def</span> <span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SignatureSegmentProtocol</span><span class="p">:</span>
     <span class="sd">"""</span>
 <span class="sd">    Returns</span>
@@ -888,45 +925,30 @@
         Bases: <code><a class="autorefs autorefs-external" href="https://docs.python.org/3.9/library/typing.html#module-typing">typing</a>.<a class="autorefs autorefs-external" title="typing.Protocol" href="https://docs.python.org/3.9/library/typing.html#typing.Protocol">Protocol</a></code></p>
 <p>Signature segment protocol (protocol for one char, that has two states).</p>
 <p><strong>Examples:</strong></p>
-<div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">dataclasses</span>
-<span class="gp">...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
-<span class="gp">... </span><span class="k">class</span> <span class="nc">SignatureSegment</span><span class="p">:</span>
-<span class="gp">... </span>    <span class="n">on_filled</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">"+"</span><span class="p">)</span>
-<span class="gp">... </span>    <span class="n">on_unfilled</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">"-"</span><span class="p">)</span>
-<span class="gp">...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">isinstance</span><span class="p">(</span><span class="n">SignatureSegment</span><span class="p">(),</span> <span class="n">SignatureSegmentProtocol</span><span class="p">)</span>
-<span class="go">True</span>
+<details class="example">
+<summary>Expand example of usage</summary>
+<div class="highlight"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">dataclasses</span>
+<span class="o">...</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nd">@dataclasses</span><span class="o">.</span><span class="n">dataclass</span>
+<span class="o">...</span> <span class="k">class</span> <span class="nc">SignatureSegment</span><span class="p">:</span>
+<span class="o">...</span>     <span class="n">on_filled</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">"+"</span><span class="p">)</span>
+<span class="o">...</span>     <span class="n">on_unfilled</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">dataclasses</span><span class="o">.</span><span class="n">field</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="s2">"-"</span><span class="p">)</span>
+<span class="o">...</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">SignatureSegment</span><span class="p">(),</span> <span class="n">SignatureSegmentProtocol</span><span class="p">)</span>
+<span class="kc">True</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="k">def</span> <span class="nf">function_that_accepts_signature_segment</span><span class="p">(</span>
+<span class="o">...</span>     <span class="n">segment</span><span class="p">:</span> <span class="n">SignatureSegmentProtocol</span><span class="p">,</span> <span class="o">/</span>
+<span class="o">...</span> <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
+<span class="o">...</span>     <span class="k">return</span> <span class="n">segment</span><span class="o">.</span><span class="n">on_filled</span><span class="p">,</span> <span class="n">segment</span><span class="o">.</span><span class="n">on_unfilled</span>
+<span class="o">...</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">function_that_accepts_signature_segment</span><span class="p">(</span><span class="n">SignatureSegment</span><span class="p">())</span>  <span class="c1"># Mypy happy :)</span>
+<span class="p">(</span><span class="s1">'+'</span><span class="p">,</span> <span class="s1">'-'</span><span class="p">)</span>
 </code></pre></div>
-<div class="highlight"><pre><span></span><code><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">function_that_accepts_signature_segment</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">segment</span><span class="p">:</span> <span class="n">SignatureSegmentProtocol</span><span class="p">,</span> <span class="o">/</span>
-<span class="gp">... </span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]:</span>
-<span class="gp">... </span>    <span class="k">return</span> <span class="n">segment</span><span class="o">.</span><span class="n">on_filled</span><span class="p">,</span> <span class="n">segment</span><span class="o">.</span><span class="n">on_unfilled</span>
-<span class="gp">...</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">function_that_accepts_signature_segment</span><span class="p">(</span><span class="n">SignatureSegment</span><span class="p">())</span>  <span class="c1"># Mypy happy :)</span>
-<span class="go">('+', '-')</span>
-</code></pre></div>
+</details>
 <details class="quote">
 <summary>Source code in <code>multibar\api\signatures.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">27</span>
 <span class="normal">28</span>
 <span class="normal">29</span>
 <span class="normal">30</span>
@@ -951,29 +973,53 @@
 <span class="normal">49</span>
 <span class="normal">50</span>
 <span class="normal">51</span>
-<span class="normal">52</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@typing</span><span class="o">.</span><span class="n">runtime_checkable</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@typing</span><span class="o">.</span><span class="n">runtime_checkable</span>
 <span class="k">class</span> <span class="nc">SignatureSegmentProtocol</span><span class="p">(</span><span class="n">typing</span><span class="o">.</span><span class="n">Protocol</span><span class="p">):</span>
     <span class="sd">"""Signature segment protocol (protocol for one char, that has two states).</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; import dataclasses</span>
-<span class="sd">    ...</span>
-<span class="sd">    &gt;&gt;&gt; @dataclasses.dataclass</span>
-<span class="sd">    ... class SignatureSegment:</span>
-<span class="sd">    ...     on_filled: str = dataclasses.field(default="+")</span>
-<span class="sd">    ...     on_unfilled: str = dataclasses.field(default="-")</span>
-<span class="sd">    ...</span>
-<span class="sd">    &gt;&gt;&gt; isinstance(SignatureSegment(), SignatureSegmentProtocol)</span>
-<span class="sd">    True</span>
+<span class="sd">    ??? example "Expand example of usage"</span>
+<span class="sd">        ```py</span>
+<span class="sd">        &gt;&gt;&gt; import dataclasses</span>
+<span class="sd">        ...</span>
+<span class="sd">        &gt;&gt;&gt; @dataclasses.dataclass</span>
+<span class="sd">        ... class SignatureSegment:</span>
+<span class="sd">        ...     on_filled: str = dataclasses.field(default="+")</span>
+<span class="sd">        ...     on_unfilled: str = dataclasses.field(default="-")</span>
+<span class="sd">        ...</span>
+<span class="sd">        &gt;&gt;&gt; isinstance(SignatureSegment(), SignatureSegmentProtocol)</span>
+<span class="sd">        True</span>
 
-<span class="sd">    &gt;&gt;&gt; def function_that_accepts_signature_segment(</span>
-<span class="sd">    ...     segment: SignatureSegmentProtocol, /</span>
-<span class="sd">    ... ) -&gt; tuple[str, str]:</span>
-<span class="sd">    ...     return segment.on_filled, segment.on_unfilled</span>
-<span class="sd">    ...</span>
-<span class="sd">    &gt;&gt;&gt; function_that_accepts_signature_segment(SignatureSegment())  # Mypy happy :)</span>
-<span class="sd">    ('+', '-')</span>
+<span class="sd">        &gt;&gt;&gt; def function_that_accepts_signature_segment(</span>
+<span class="sd">        ...     segment: SignatureSegmentProtocol, /</span>
+<span class="sd">        ... ) -&gt; tuple[str, str]:</span>
+<span class="sd">        ...     return segment.on_filled, segment.on_unfilled</span>
+<span class="sd">        ...</span>
+<span class="sd">        &gt;&gt;&gt; function_that_accepts_signature_segment(SignatureSegment())  # Mypy happy :)</span>
+<span class="sd">        ('+', '-')</span>
+<span class="sd">        ```</span>
 <span class="sd">    """</span>
 
     <span class="nd">@property</span>
@@ -1028,15 +1074,15 @@
 </table>
 <details class="quote">
 <summary>Source code in <code>multibar\api\signatures.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
 <span class="k">def</span> <span class="nf">on_filled</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">"""</span>
 <span class="sd">    Returns</span>
@@ -1079,15 +1125,15 @@
 </table>
 <details class="quote">
 <summary>Source code in <code>multibar\api\signatures.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
 <span class="k">def</span> <span class="nf">on_unfilled</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
     <span class="sd">"""</span>
 <span class="sd">    Returns</span>

@@ -18,6 +18,8 @@
 <link href="css/material.css" rel="stylesheet"/>
 <link href="css/mkdocs.css" rel="stylesheet"/>
 <link href="css/progressbar.css" rel="stylesheet"/>
+<link href="css/critic.css" rel="stylesheet"/>
+<link href="css/navmenu.css" rel="stylesheet"/>
 <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
 <body data-md-color-accent="purple" data-md-color-primary="teal" data-md-color-scheme="default" dir="ltr">
@@ -154,6 +156,11 @@
       </a>
 </li>
 <li class="md-tabs__item">
+<a class="md-tabs__link" href="about/">
+        About
+      </a>
+</li>
+<li class="md-tabs__item">
 <a class="md-tabs__link" href="api/math_operations/">
         Reference
       </a>
@@ -270,23 +277,43 @@
 <li class="md-nav__item md-nav__item--nested">
 <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
 <label class="md-nav__link" for="__nav_5">
+          About
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="About" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="about/">
+        About
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6">
           Reference
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="Reference" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_5">
+<label class="md-nav__title" for="__nav_6">
 <span class="md-nav__icon md-icon"></span>
           Reference
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" id="__nav_5_1" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5_1">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" id="__nav_6_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6_1">
           api
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="api" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_5_1">
+<label class="md-nav__title" for="__nav_6_1">
 <span class="md-nav__icon md-icon"></span>
           api
         </label>
@@ -335,13 +362,13 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" id="__nav_5_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5_2">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" id="__nav_6_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6_2">
           impl
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="impl" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_5_2">
+<label class="md-nav__title" for="__nav_6_2">
 <span class="md-nav__icon md-icon"></span>
           impl
         </label>
@@ -435,11 +462,89 @@
 <a class="md-content__button md-icon" href="https://github.com/Animatea/python-multibar/tree/main/docs/index.md" title="Edit this page">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 12h8v2H8v-2m2 8H6V4h7v5h5v3.1l2-2V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4v-2m-2-2h4.1l.9-.9V16H8v2m12.2-5c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"></path></svg>
 </a>
-<h1>Index</h1>
 <ul>
 <li class="i18n-link i18n-link-found i18n-link-uk"><a href="index.uk/">Українська</a></li>
 <li class="i18n-link i18n-link-found i18n-link-ru"><a href="index.ru/">Русский</a></li>
 </ul>
+<h1 align="center">Welcome to Python-Multibar!</h1>
+<p><img align="left" src="https://media.giphy.com/media/UeRFyF2fJcfnwjVkIn/giphy.gif" width="200px"/></p>
+<p>Project: python-multibar
+<br/>
+License: Apache 2.0
+<br/>
+About: Tool for static progress bars writing.
+<br/>
+OS: Independent
+<br/>
+Python: 3.9+
+<br/>
+Typing: Typed
+<br/>
+Topic: Utilities
+<br>
+<p align="center">
+<br>
+<a href="https://pypi.org/project/python-multibar/">Python-Multibar on PyPi</a>
+    ·
+    <a href="https://github.com/Animatea/python-multibar/issues">Report Bug</a>
+    ·
+    <a href="https://github.com/Animatea/python-multibar/issues">Request Feature</a>
+</br></p></br></p>
+<div class="admonition nav-menu">
+<p class="admonition-title">Navigation menu</p>
+</div>
+<p><a class="md-button" href="howto.ru/"><strong>How to read documentation</strong></a>
+<a class="md-button" href="faq.ru/"><strong>FAQ</strong></a>
+<a class="md-button" href="quickstart.ru/"><strong>Quickstart</strong></a>
+<a class="md-button" href="about.ru/"><strong>Python-Multibar</strong></a>
+<a class="md-button" href="errors/"><strong>Go to documentation</strong></a></p>
+<h1 align="center">Мини-карта Python-Multibar</h1>
+<div class="mermaid">
+    classDiagram
+    PInterface &lt;|-- ProgressbarWriter : Implements
+    SAbstraction &lt;|-- Sector : Implements
+    CAbstraction &lt;|-- CalculationService : Implements
+    SignatureSegment &lt;-- Signature : Uses by default
+    Signature --&gt; PSProtocol : Matches
+    SignatureSegment --&gt; SSProtocol : Matches
+    Sector --o ProgressbarWriter : By default
+    CalculationService --o ProgressbarWriter : By default
+    Signature --o ProgressbarWriter : By default
+    PCInterface &lt;|-- ProgressbarClient : Implements
+    HInterface &lt;|-- Hooks : Implements
+    CMInterface &lt;|-- ContractManager : Implements
+    CMInterface --&gt; ContractInterface : Interacts with
+    Hooks --o ProgressbarClient : By default
+    ContractManager --o ProgressbarClient : By default
+    ProgressbarWriter --o ProgressbarClient : By default
+</div>
+<h1 align="center">Acknowledgments</h1>
+<p align="center">
+<a href="https://choosealicense.com">Choose an Open Source License</a>
+<br>
+<a href="https://shields.io">Img Shields</a>
+<br>
+<a href="https://pages.github.com">GitHub Pages</a>
+<br>
+<a href="https://www.python.org">Python</a>
+<br>
+<a href="https://www.python.org/community/">Python Community</a>
+<br/>
+<a href="https://www.mkdocs.org">MkDocs</a>
+<br/>
+<a href="https://squidfunk.github.io/mkdocs-material/">MkDocs Material</a>
+<br/>
+<a href="https://gitlab.com/mkdocs-i18n/mkdocs-i18n">MkDocs i18n</a>
+<br/>
+<a href="https://github.com/fralau/mkdocs-mermaid2-plugin">MkDocs mermaid2</a>
+<br/>
+<a href="https://github.com/facelessuser/pymdown-extensions">MkDocs pymdown</a>
+<br/>
+<a href="https://github.com/mkdocstrings/python">MkDocs mkdocstrings</a>
+<br/>
+<a href="https://github.com/facelessuser">Isaac Muse</a>
+<br/>
+</br></br></br></br></p>
 </article>
 </div>
 </div>
@@ -497,5 +602,7 @@
 <script src="assets/javascripts/bundle.d691e9de.min.js"></script>
 <script src="js/mermaid.js"></script>
 <script src="js/tabs.js"></script>
-</body>
+<script>mermaid.initialize({
+    theme: "dark"
+});</script></body>
 </html>

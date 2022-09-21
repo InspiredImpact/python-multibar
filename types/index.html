@@ -18,6 +18,8 @@
 <link href="../css/material.css" rel="stylesheet"/>
 <link href="../css/mkdocs.css" rel="stylesheet"/>
 <link href="../css/progressbar.css" rel="stylesheet"/>
+<link href="../css/critic.css" rel="stylesheet"/>
+<link href="../css/navmenu.css" rel="stylesheet"/>
 <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
 <body data-md-color-accent="purple" data-md-color-primary="teal" data-md-color-scheme="default" dir="ltr">
@@ -157,6 +159,11 @@
       </a>
 </li>
 <li class="md-tabs__item">
+<a class="md-tabs__link" href="../about/">
+        About
+      </a>
+</li>
+<li class="md-tabs__item">
 <a class="md-tabs__link md-tabs__link--active" href="../api/math_operations/">
         Reference
       </a>
@@ -269,26 +276,46 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
 <label class="md-nav__link" for="__nav_5">
+          About
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="About" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+          About
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../about/">
+        About
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6">
           Reference
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="Reference" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_5">
+<label class="md-nav__title" for="__nav_6">
 <span class="md-nav__icon md-icon"></span>
           Reference
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" id="__nav_5_1" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5_1">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" id="__nav_6_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6_1">
           api
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="api" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_5_1">
+<label class="md-nav__title" for="__nav_6_1">
 <span class="md-nav__icon md-icon"></span>
           api
         </label>
@@ -337,13 +364,13 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" id="__nav_5_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5_2">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" id="__nav_6_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6_2">
           impl
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="impl" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_5_2">
+<label class="md-nav__title" for="__nav_6_2">
 <span class="md-nav__icon md-icon"></span>
           impl
         </label>
@@ -428,6 +455,11 @@
 <nav aria-label="types" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#multibar.types.HookSignatureType">
+    HookSignatureType
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#multibar.types.__all__">
     __all__
   </a>
@@ -506,6 +538,11 @@
 <nav aria-label="types" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#multibar.types.HookSignatureType">
+    HookSignatureType
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#multibar.types.__all__">
     __all__
   </a>
@@ -562,70 +599,29 @@
 <a class="md-content__button md-icon" href="https://github.com/Animatea/python-multibar/tree/main/docs/types.md" title="Edit this page">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M8 12h8v2H8v-2m2 8H6V4h7v5h5v3.1l2-2V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4v-2m-2-2h4.1l.9-.9V16H8v2m12.2-5c.1 0 .3.1.4.2l1.3 1.3c.2.2.2.6 0 .8l-1 1-2.1-2.1 1-1c.1-.1.2-.2.4-.2m0 3.9L14.1 23H12v-2.1l6.1-6.1 2.1 2.1Z"></path></svg>
 </a>
-<p>
-<div class="progress progress-80plus candystripe">
-<div class="progress-bar" style="width:85.00%">
-<p class="progress-label">85%</p>
-</div>
-</div>
-<div class="progress progress-100plus candystripe candystripe-animate">
-<div class="progress-bar" style="width:100.00%">
-<p class="progress-label">100%</p>
-</div>
-</div>
-</p>
-<p>
-<div class="progress progress-0plus thin">
-<div class="progress-bar" style="width:0.00%">
-<p class="progress-label"></p>
-</div>
-</div>
-<div class="progress progress-0plus thin">
-<div class="progress-bar" style="width:5.00%">
-<p class="progress-label"></p>
-</div>
-</div>
-<div class="progress progress-20plus thin">
-<div class="progress-bar" style="width:25.00%">
-<p class="progress-label"></p>
-</div>
-</div>
-<div class="progress progress-40plus thin">
-<div class="progress-bar" style="width:45.00%">
-<p class="progress-label"></p>
-</div>
-</div>
-<div class="progress progress-60plus thin">
-<div class="progress-bar" style="width:65.00%">
-<p class="progress-label"></p>
-</div>
-</div>
-<div class="progress progress-80plus thin">
-<div class="progress-bar" style="width:85.00%">
-<p class="progress-label"></p>
-</div>
-</div>
-<div class="progress progress-100plus thin">
-<div class="progress-bar" style="width:100.00%">
-<p class="progress-label"></p>
-</div>
-</div>
-</p>
-<h1>Goals</h1>
-<hr/>
-<p>
-<div class="progress progress-20plus">
-<div class="progress-bar" style="width:25.00%">
-<p class="progress-label">25%</p>
-</div>
-</div>
-</p>
+<h1>Types</h1>
 <div class="doc doc-object doc-module">
 <h2 class="doc doc-heading" id="multibar.types">
 <code>multibar.types</code>
 <a class="headerlink" href="#multibar.types" title="Permanent link">¤</a></h2>
 <div class="doc doc-contents first">
+<p>Python-Multibar project types.</p>
 <div class="doc doc-children">
+<div class="doc doc-object doc-attribute">
+<h3 class="doc doc-heading" id="multibar.types.HookSignatureType">
+<code class="highlight language-python"><span class="n">HookSignatureType</span><span class="p">:</span> <span class="n">typing_extensions</span><span class="o">.</span><span class="n">TypeAlias</span> <span class="o">=</span> <span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[</span><span class="bp">Ellipsis</span><span class="p">,</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="nb">bool</span><span class="p">]]</span></code>
+<span class="doc doc-labels">
+<small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+</span>
+<a class="headerlink" href="#multibar.types.HookSignatureType" title="Permanent link">¤</a></h3>
+<div class="doc doc-contents">
+<p>Type for hook callable signature.</p>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>By default hook callable accepts <code>*args</code> and <code>**kwargs</code> parameters.</p>
+</div>
+</div>
+</div>
 <div class="doc doc-object doc-attribute">
 <h3 class="doc doc-heading" id="multibar.types.__all__">
 <code class="highlight language-python"><span class="n">__all__</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'ProgressMetadataType'</span><span class="p">)</span></code>
@@ -643,26 +639,31 @@
 <div class="doc doc-contents">
 <p class="doc doc-class-bases">
         Bases: <code><a class="autorefs autorefs-external" href="https://docs.python.org/3.9/library/typing.html#module-typing">typing</a>.<a class="autorefs autorefs-external" title="typing.TypedDict" href="https://docs.python.org/3.9/library/typing.html#typing.TypedDict">TypedDict</a></code></p>
+<p>Progress metadata type for hooks triggering.</p>
 <details class="quote">
 <summary>Source code in <code>multibar\types.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ProgressMetadataType</span><span class="p">(</span><span class="n">typing</span><span class="o">.</span><span class="n">TypedDict</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ProgressMetadataType</span><span class="p">(</span><span class="n">typing</span><span class="o">.</span><span class="n">TypedDict</span><span class="p">,</span> <span class="n">total</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="sd">"""Progress metadata type for hooks triggering."""</span>
+
     <span class="n">start_value</span><span class="p">:</span> <span class="nb">int</span>
     <span class="sd">"""Start value (current progress)."""</span>
 

@@ -4,7 +4,7 @@
 <br>
 Лицензия: Apache 2.0
 <br>
-Описание: Tool for static progress bars writing.
+Описание: Инструмент для статической генерации прогрессбаров.
 <br>
 ОС: Независим
 <br>
@@ -120,6 +120,7 @@ Some more of the features of python-multibar are in the project examples.
 * [Python Community](https://www.python.org/community/)
 * [MkDocs](https://www.mkdocs.org)
 * [MkDocs Material](https://squidfunk.github.io/mkdocs-material/)
+* [MkDocs Community](https://www.mkdocs.org)
 
 <p align="right"><a href="#top"><img height="20" src="https://img.shields.io/badge/back_to-top-green?style=social&logo=github"></a></p>
 

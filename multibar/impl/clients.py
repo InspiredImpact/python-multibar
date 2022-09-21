@@ -98,7 +98,23 @@ class ProgressbarClient(abc_clients.ProgressbarClientAware):
         *,
         length: int = 20,
     ) -> abc_progressbars.ProgressbarAware[abc_sectors.AbstractSector]:
-        # << inherited docstring for multibar.api.clients.ProgressbarClientAware >>
+        """Generates a progressbar, can be a wrapper for ProgressWriterAware.write()
+        to implement hooks and various kinds of checks.
+
+        Parameters
+        ----------
+        start_value : int, /
+            Start value (current progress) for progressbar math operations.
+        end_value : int, /
+            End value (needed progress) for progressbar math operations.
+        length : int = 20, *
+            Length of progressbar for progressbar math operations.
+
+        Returns
+        -------
+        progressbars.ProgressbarAware[sectors.AbstractSector]
+            Progressbar instance.
+        """
         writer = self._writer
         call_metadata: progress_types.ProgressMetadataType = {
             "calculation_service_cls": writer.calculation_cls,
@@ -119,26 +135,63 @@ class ProgressbarClient(abc_clients.ProgressbarClientAware):
         return progressbar
 
     def set_hooks(self, hooks: abc_hooks.HooksAware, /) -> ProgressbarClient:
-        # << inherited docstring for multibar.api.clients.ProgressbarClientAware >>
+        """Sets hooks to the client.
+
+        Parameters
+        ----------
+        hooks : hooks_.HooksAware
+            Any hooks to set.
+
+        Returns
+        -------
+        Self
+            ProgressbarClient object to allow fluent-style.
+        """
         self._hooks = hooks
         return self
 
     def update_hooks(self, hooks: abc_hooks.HooksAware, /) -> ProgressbarClient:
-        # << inherited docstring for multibar.api.clients.ProgressbarClientAware >>
+        """Updates hooks for the client.
+
+        Parameters
+        ----------
+        hooks : hooks_.HooksAware
+            Any hooks to update.
+
+        Returns
+        -------
+        Self
+            ProgressbarClient object to allow fluent-style.
+        """
         self._hooks.update(hooks)
         return self
 
     @property
     def hooks(self) -> abc_hooks.HooksAware:
-        # << inherited docstring for multibar.api.clients.ProgressbarClientAware >>
+        """
+        Returns
+        -------
+        hooks_.HooksAware
+            Client hooks.
+        """
         return self._hooks
 
     @property
     def contract_manager(self) -> abc_contracts.ContractManagerAware:
-        # << inherited docstring for multibar.api.clients.ProgressbarClientAware >>
+        """
+        Returns
+        -------
+        contracts.ContractManagerAware
+            Client contract manager for checks.
+        """
         return self._contract_manager
 
     @property
     def writer(self) -> abc_writers.ProgressbarWriterAware:
-        # << inherited docstring for multibar.api.clients.ProgressbarClientAware >>
+        """
+        Returns
+        -------
+        writers.ProgressbarWriterAware[sectors.AbstractSector]
+            Progressbar writer for progress generating.
+        """
         return self._writer

@@ -3,6 +3,8 @@ site_name: python-multibar
 site_description: "Flexible wrapper for static progressbar writing."
 site_dir: "site"
 
+docs_dir: docs/
+
 # Github metadata
 repo_url: https://github.com/Animatea/python-multibar
 repo_name: Animatea/python-multibar
@@ -45,34 +47,16 @@ theme:
 # Navigation menu
 nav:
   - "Home":
-    # Translated
     - index.md
-    - index.uk.md
-    - index.ru.md
-
-  - HowTo:
-    # Translated
-    - howto.md
-    - howto.uk.md
-    - howto.ru.md
 
   - Quickstart:
-    # Translated
     - quickstart.md
-    - quickstart.uk.md
-    - quickstart.ru.md
 
   - FAQ:
-    # Translated
     - faq.md
-    - faq.uk.md
-    - faq.ru.md
 
   - About:
-    # Translated
     - about.md
-    - about.uk.md
-    - about.ru.md
 
   - "Reference":
       - "api":
@@ -103,6 +87,7 @@ nav:
 
 plugins:
   - search
+  - autorefs
 
   # Plugin for diagrams
   - mermaid2:
@@ -139,30 +124,6 @@ plugins:
         # Observe for updates
         - multibar
 
-  # i18n plugin configuration
-  - i18n:
-      languages:
-        uk: "Українська"
-        ru: "Русский"
-        en: "English"
-
-      default_language: "en"
-
-      translate_nav:
-        uk:
-          section title: "Розділ"
-          subsection: "Підрозділ"
-          page title: "Сторінка з перекладеним заголовком"
-
-        en:
-          section title: "Section"
-          subsection: "Subsection"
-          page title: "Page with title translated"
-
-        ru:
-          section title: "Раздел"
-          subsection: "Подраздел"
-          page title: "Страница с переведенным заголовком"
 
 # Documentation Extensions
 markdown_extensions:
@@ -172,6 +133,11 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.critic
   - pymdownx.details
+
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+
   - admonition
   - attr_list
   - md_in_html
@@ -188,6 +154,7 @@ extra_css:
   - css/progressbar.css
   - css/critic.css
   - css/navmenu.css
+  - css/emojis.css
 
 # Additional javascript
 extra_javascript:
@@ -196,20 +163,6 @@ extra_javascript:
 
 # Extra metadata
 extra:
-  alternate:
-    # For i18n
-    - name: English
-      link: ""
-      lang: en
-
-    - name: Ukrainian
-      link: index.uk/
-      lang: uk  # <--- "uk" by ISO 639-1, not "ua".
-
-    - name: Russian
-      link: index.ru/
-      lang: ru
-
   # Footer icons
   social:
     - icon: fontawesome/brands/python  # Pypi

@@ -4,9 +4,9 @@
 <br>
 Ліцензія: Apache 2.0
 <br>
-Опис: Tool for static progress bars writing.
+Опис: Інструмент для статичної генерації прогресбарів.
 <br>
-ОС: Independent
+ОС: Незалежний
 <br>
 Python: 3.9+
 <br>
@@ -120,6 +120,8 @@ Out: <class 'multibar.impl.progressbars.Progressbar'>
 * [Python Community](https://www.python.org/community/)
 * [MkDocs](https://www.mkdocs.org)
 * [MkDocs Material](https://squidfunk.github.io/mkdocs-material/)
+* [MkDocs Community](https://www.mkdocs.org)
+
 
 <p align="right"><a href="#top"><img height="20" src="https://img.shields.io/badge/back_to-top-green?style=social&logo=github"></a></p>
 

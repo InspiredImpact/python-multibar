@@ -127,6 +127,8 @@ class HooksAware(abc.ABC):
     def trigger_post_execution(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """Triggers all post-execution callbacks.
 
+        Parameters
+        ----------
         *args : typing.Any
             Arguments to trigger.
         **kwargs : typing.Any
@@ -142,6 +144,8 @@ class HooksAware(abc.ABC):
     def trigger_pre_execution(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """Triggers all pre-execution callbacks.
 
+        Parameters
+        ----------
         *args : typing.Any
             Arguments to trigger.
         **kwargs : typing.Any
@@ -157,6 +161,8 @@ class HooksAware(abc.ABC):
     def trigger_on_error(self, *args: typing.Any, **kwargs: typing.Any) -> None:
         """Triggers all on-error callbacks.
 
+        Parameters
+        ----------
         *args : typing.Any
             Arguments to trigger.
         **kwargs : typing.Any

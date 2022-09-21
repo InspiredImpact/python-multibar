@@ -1,7 +1,8 @@
 mkdocs-material
-mkdocs-i18n
+mkdocs-static-i18n
 mkdocs-mermaid2-plugin
 pymdown-extensions
 Markdown
+mkdocstrings
+mkdocstrings-python
 mkdocs-autorefs
-markdown-exec

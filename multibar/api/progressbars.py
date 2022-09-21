@@ -26,18 +26,6 @@ from returns.primitives.hkt import Kind1
 
 from . import sectors
 
-if typing.TYPE_CHECKING:
-
-    class SupportsGetitem(typing.Protocol):
-        """Checks for `__getitem__` method implementation.
-
-        !!! warning
-            Defined in `typing.TYPE_CHECKING` block.
-        """
-
-        def __getitem__(self, item: typing.Any) -> typing.Any:
-            ...
-
 
 SectorT = typing.TypeVar("SectorT", bound=sectors.AbstractSector)
 _NewValueType = typing.TypeVar("_NewValueType", bound=sectors.AbstractSector)

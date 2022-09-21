@@ -23,6 +23,11 @@ line-length = 120
 target-version = ['py39']
 include = '\.pyi?$'
 
+[tool.isort]
+py_version = 39
+profile= "black"
+src_paths = ["multibar", "tests", "examples"]
+
 [tool.poetry]
 name = "python-multibar"
 version = "4.0.0"

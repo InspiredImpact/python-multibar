@@ -79,7 +79,7 @@ Out: <class 'multibar.impl.progressbars.Progressbar'>
 ```
 ### Documentation
 You can access the documentation by clicking on the following link:
-- [animatea.github.io/python-multibar](animatea.github.io/python-multibar/)
+- [animatea.github.io/python-multibar](https://animatea.github.io/python-multibar/)
 
 ### Examples
 Some more of the features of python-multibar are in the project examples.

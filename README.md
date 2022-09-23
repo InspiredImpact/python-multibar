@@ -16,7 +16,7 @@ Topic: Utilities
 <br />
     <p align="center">
     <br />
-    <a href="animatea.github.io/python-multibar/">Documentation</a>
+    <a href="https://animatea.github.io/python-multibar/">Documentation</a>
     ·
     <a href="https://github.com/Animatea/python-multibar/issues">Report Bug</a>
     ·

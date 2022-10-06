@@ -30,7 +30,7 @@ src_paths = ["multibar", "tests", "examples"]
 
 [tool.poetry]
 name = "python-multibar"
-version = "4.0.0"
+version = "4.0.1"
 description = "Flexible wrapper for static progressbar writing."
 authors = ["DenyS <animatea.programming@gmail.com>"]
 readme = "PYPI_README.md"

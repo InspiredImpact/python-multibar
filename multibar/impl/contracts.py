@@ -20,6 +20,7 @@ __all__ = (
     "ContractManager",
     "WriteProgressContract",
     "WRITE_PROGRESS_CONTRACT",
+    "INPUT_VALUES_CONTRACT",
 )
 
 import typing
@@ -219,7 +220,7 @@ class WriteProgressContract(contracts.ContractAware):
         start, end, length = meta["start_value"], meta["end_value"], meta["length"]
         if start > end:
             return contracts.ContractCheck.terminated(
-                errors=["Start value cannot be more than end value."],
+                errors=["`Start` value cannot be more than `End` value."],
                 metadata=call_metadata,
             )
 
@@ -320,3 +321,6 @@ and if `length` is more that zero.
     For subscribing or unsubscribing of `WriteProgressContract` its recommended
     to use this variable, because this methods depends on object `id`.
 """
+
+INPUT_VALUES_CONTRACT = WRITE_PROGRESS_CONTRACT
+"""Alias to WRITE_PROGRESS_CONTRACT."""

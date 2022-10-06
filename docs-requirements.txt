@@ -6,3 +6,4 @@ Markdown
 mkdocstrings
 mkdocstrings-python
 mkdocs-autorefs
+termynal

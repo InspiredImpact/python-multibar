@@ -28,8 +28,9 @@ Topic: Utilities
 !!! nav-menu "Navigation menu"
 [**FAQ**](faq.md){ .md-button }
 [**Quickstart**](quickstart.md){ .md-button }
+[**Showcase**](showcase.md){ .md-button }
 [**Python-Multibar**](about.md){ .md-button }
-[**Go to documentation**](errors.md){ .md-button }
+[**Docs**](errors.md){ .md-button }
 
 <h1 align="center">Python-Multibar Minimap</h1>
 
@@ -76,6 +77,8 @@ Topic: Utilities
 <a href="https://github.com/mkdocstrings/python">MkDocs mkdocstrings</a>
 <br/>
 <a href="https://mkdocstrings.github.io/autorefs/">MkDocs auto-refs</a>
+<br/>
+<a href="https://github.com/daxartio/termynal">Mkdocs termynal</a>
 <br/>
 <a href="https://github.com/facelessuser">Isaac Muse</a>
 <br/>

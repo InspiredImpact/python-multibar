@@ -26,7 +26,6 @@ from returns.primitives.hkt import Kind1
 
 from . import sectors
 
-
 SectorT = typing.TypeVar("SectorT", bound=sectors.AbstractSector)
 _NewValueType = typing.TypeVar("_NewValueType", bound=sectors.AbstractSector)
 _InstanceKind = typing.TypeVar("_InstanceKind", bound="ProgressbarAware[typing.Any]")

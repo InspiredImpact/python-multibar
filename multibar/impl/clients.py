@@ -110,6 +110,21 @@ class ProgressbarClient(abc_clients.ProgressbarClientAware):
         length : int = 20, *
             Length of progressbar for progressbar math operations.
 
+        Raises
+        ------
+        errors.TerminatedContractError
+            This contract is signed by default. Checks if the Start value is greater
+            than the End value, if so, an error will be raised.
+
+            !!! info
+                You can unsubscribe from this contract as follows:
+                ```py hl_lines="4"
+                import multibar
+
+                client = multibar.ProgressbarClient()
+                client.contract_manager.terminate(multibar.INPUT_VALUES_CONTRACT)
+                ```
+
         Returns
         -------
         progressbars.ProgressbarAware[sectors.AbstractSector]

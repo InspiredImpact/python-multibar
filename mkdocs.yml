@@ -58,6 +58,9 @@ nav:
   - About:
     - about.md
 
+  - Showcase:
+    - showcase.md
+
   - "Reference":
       - "api":
         - api/math_operations.md
@@ -88,6 +91,7 @@ nav:
 plugins:
   - search
   - autorefs
+  - termynal
 
   # Plugin for diagrams
   - mermaid2:

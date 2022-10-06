@@ -21,6 +21,7 @@
 <link href="../../css/critic.css" rel="stylesheet"/>
 <link href="../../css/navmenu.css" rel="stylesheet"/>
 <link href="../../css/emojis.css" rel="stylesheet"/>
+<link href="../../termynal.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
 <body data-md-color-accent="purple" data-md-color-primary="teal" data-md-color-scheme="default" dir="ltr">
@@ -131,6 +132,11 @@
 <li class="md-tabs__item">
 <a class="md-tabs__link" href="../../about/">
         About
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../showcase/">
+        Showcase
       </a>
 </li>
 <li class="md-tabs__item">
@@ -246,26 +252,46 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
 <label class="md-nav__link" for="__nav_5">
+          Showcase
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Showcase" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+          Showcase
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../showcase/">
+        Showcase
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6">
           Reference
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="Reference" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_5">
+<label class="md-nav__title" for="__nav_6">
 <span class="md-nav__icon md-icon"></span>
           Reference
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" id="__nav_5_1" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5_1">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" id="__nav_6_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6_1">
           api
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="api" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_5_1">
+<label class="md-nav__title" for="__nav_6_1">
 <span class="md-nav__icon md-icon"></span>
           api
         </label>
@@ -314,13 +340,13 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" id="__nav_5_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5_2">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" id="__nav_6_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6_2">
           impl
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="impl" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_5_2">
+<label class="md-nav__title" for="__nav_6_2">
 <span class="md-nav__icon md-icon"></span>
           impl
         </label>
@@ -356,6 +382,11 @@
   </a>
 <nav aria-label="contracts" class="md-nav">
 <ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#multibar.impl.contracts.INPUT_VALUES_CONTRACT">
+    INPUT_VALUES_CONTRACT
+  </a>
+</li>
 <li class="md-nav__item">
 <a class="md-nav__link" href="#multibar.impl.contracts.WRITE_PROGRESS_CONTRACT">
     WRITE_PROGRESS_CONTRACT
@@ -527,6 +558,11 @@
 <nav aria-label="contracts" class="md-nav">
 <ul class="md-nav__list">
 <li class="md-nav__item">
+<a class="md-nav__link" href="#multibar.impl.contracts.INPUT_VALUES_CONTRACT">
+    INPUT_VALUES_CONTRACT
+  </a>
+</li>
+<li class="md-nav__item">
 <a class="md-nav__link" href="#multibar.impl.contracts.WRITE_PROGRESS_CONTRACT">
     WRITE_PROGRESS_CONTRACT
   </a>
@@ -636,6 +672,17 @@
 <p>Implementation of progressbar contracts.</p>
 <div class="doc doc-children">
 <div class="doc doc-object doc-attribute">
+<h3 class="doc doc-heading" id="multibar.impl.contracts.INPUT_VALUES_CONTRACT">
+<code class="highlight language-python"><span class="n">INPUT_VALUES_CONTRACT</span> <span class="o">=</span> <span class="n">WRITE_PROGRESS_CONTRACT</span></code>
+<span class="doc doc-labels">
+<small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
+</span>
+<a class="headerlink" href="#multibar.impl.contracts.INPUT_VALUES_CONTRACT" title="Permanent link">¤</a></h3>
+<div class="doc doc-contents">
+<p>Alias to WRITE_PROGRESS_CONTRACT.</p>
+</div>
+</div>
+<div class="doc doc-object doc-attribute">
 <h3 class="doc doc-heading" id="multibar.impl.contracts.WRITE_PROGRESS_CONTRACT">
 <code class="highlight language-python"><span class="n">WRITE_PROGRESS_CONTRACT</span> <span class="o">=</span> <span class="n">WriteProgressContract</span><span class="p">()</span></code>
 <span class="doc doc-labels">
@@ -654,7 +701,7 @@ to use this variable, because this methods depends on object <code>id</code>.</p
 </div>
 <div class="doc doc-object doc-attribute">
 <h3 class="doc doc-heading" id="multibar.impl.contracts.__all__">
-<code class="highlight language-python"><span class="n">__all__</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'ContractManager'</span><span class="p">,</span> <span class="s1">'WriteProgressContract'</span><span class="p">,</span> <span class="s1">'WRITE_PROGRESS_CONTRACT'</span><span class="p">)</span></code>
+<code class="highlight language-python"><span class="n">__all__</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'ContractManager'</span><span class="p">,</span> <span class="s1">'WriteProgressContract'</span><span class="p">,</span> <span class="s1">'WRITE_PROGRESS_CONTRACT'</span><span class="p">,</span> <span class="s1">'INPUT_VALUES_CONTRACT'</span><span class="p">)</span></code>
 <span class="doc doc-labels">
 <small class="doc doc-label doc-label-module-attribute"><code>module-attribute</code></small>
 </span>
@@ -677,8 +724,7 @@ plugin.</p>
 </div>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\contracts.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 33</span>
-<span class="normal"> 34</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 34</span>
 <span class="normal"> 35</span>
 <span class="normal"> 36</span>
 <span class="normal"> 37</span>
@@ -825,7 +871,8 @@ plugin.</p>
 <span class="normal">178</span>
 <span class="normal">179</span>
 <span class="normal">180</span>
-<span class="normal">181</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ContractManager</span><span class="p">(</span><span class="n">contracts</span><span class="o">.</span><span class="n">ContractManagerAware</span><span class="p">):</span>
+<span class="normal">181</span>
+<span class="normal">182</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ContractManager</span><span class="p">(</span><span class="n">contracts</span><span class="o">.</span><span class="n">ContractManagerAware</span><span class="p">):</span>
     <span class="sd">"""Implementation of contracts.ContractManagerAware.</span>
 
 <span class="sd">    !!! note</span>
@@ -1020,15 +1067,15 @@ plugin.</p>
 </table>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\contracts.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">43</span>
-<span class="normal">44</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">44</span>
 <span class="normal">45</span>
 <span class="normal">46</span>
 <span class="normal">47</span>
 <span class="normal">48</span>
 <span class="normal">49</span>
 <span class="normal">50</span>
-<span class="normal">51</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">raise_errors</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">51</span>
+<span class="normal">52</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">raise_errors</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">"""</span>
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -1142,8 +1189,7 @@ plugin.</p>
 </table>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\contracts.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 89</span>
-<span class="normal"> 90</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 90</span>
 <span class="normal"> 91</span>
 <span class="normal"> 92</span>
 <span class="normal"> 93</span>
@@ -1177,7 +1223,8 @@ plugin.</p>
 <span class="normal">121</span>
 <span class="normal">122</span>
 <span class="normal">123</span>
-<span class="normal">124</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">check_contract</span><span class="p">(</span>
+<span class="normal">124</span>
+<span class="normal">125</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">check_contract</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">contract</span><span class="p">:</span> <span class="n">contracts</span><span class="o">.</span><span class="n">ContractAware</span><span class="p">,</span>
     <span class="o">/</span><span class="p">,</span>
@@ -1286,8 +1333,7 @@ plugin.</p>
 </table>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\contracts.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">72</span>
-<span class="normal">73</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">73</span>
 <span class="normal">74</span>
 <span class="normal">75</span>
 <span class="normal">76</span>
@@ -1301,7 +1347,8 @@ plugin.</p>
 <span class="normal">84</span>
 <span class="normal">85</span>
 <span class="normal">86</span>
-<span class="normal">87</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">check_contracts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">87</span>
+<span class="normal">88</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">check_contracts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">"""Checks all contracts.</span>
 
 <span class="sd">    Parameters</span>
@@ -1351,15 +1398,15 @@ plugin.</p>
 </table>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\contracts.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">163</span>
-<span class="normal">164</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">164</span>
 <span class="normal">165</span>
 <span class="normal">166</span>
 <span class="normal">167</span>
 <span class="normal">168</span>
 <span class="normal">169</span>
 <span class="normal">170</span>
-<span class="normal">171</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
+<span class="normal">171</span>
+<span class="normal">172</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
 <span class="k">def</span> <span class="nf">contracts</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">contracts</span><span class="o">.</span><span class="n">ContractAware</span><span class="p">]:</span>
     <span class="sd">"""</span>
 <span class="sd">    Returns</span>
@@ -1402,15 +1449,15 @@ plugin.</p>
 </table>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\contracts.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">173</span>
-<span class="normal">174</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">174</span>
 <span class="normal">175</span>
 <span class="normal">176</span>
 <span class="normal">177</span>
 <span class="normal">178</span>
 <span class="normal">179</span>
 <span class="normal">180</span>
-<span class="normal">181</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
+<span class="normal">181</span>
+<span class="normal">182</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@property</span>
 <span class="k">def</span> <span class="nf">raise_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="sd">"""</span>
 <span class="sd">    Returns</span>
@@ -1474,8 +1521,7 @@ but throws an error.</p>
 </table>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\contracts.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">56</span>
-<span class="normal">57</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">57</span>
 <span class="normal">58</span>
 <span class="normal">59</span>
 <span class="normal">60</span>
@@ -1488,7 +1534,8 @@ but throws an error.</p>
 <span class="normal">67</span>
 <span class="normal">68</span>
 <span class="normal">69</span>
-<span class="normal">70</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">set_raise_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">70</span>
+<span class="normal">71</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">set_raise_errors</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">:</span> <span class="nb">bool</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">"""Render broken contract may contain IO operations</span>
 <span class="sd">    if raise_errors is False. Otherwise, it returns nothing,</span>
 <span class="sd">    but throws an error.</span>
@@ -1556,8 +1603,7 @@ but throws an error.</p>
 </table>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\contracts.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">126</span>
-<span class="normal">127</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">127</span>
 <span class="normal">128</span>
 <span class="normal">129</span>
 <span class="normal">130</span>
@@ -1568,7 +1614,8 @@ but throws an error.</p>
 <span class="normal">135</span>
 <span class="normal">136</span>
 <span class="normal">137</span>
-<span class="normal">138</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">subscribe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">contracts</span><span class="o">.</span><span class="n">ContractAware</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">138</span>
+<span class="normal">139</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">subscribe</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">contracts</span><span class="o">.</span><span class="n">ContractAware</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">"""Subscribes for contract.</span>
 
 <span class="sd">    Parameters</span>
@@ -1634,8 +1681,7 @@ but throws an error.</p>
 </table>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\contracts.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">140</span>
-<span class="normal">141</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">141</span>
 <span class="normal">142</span>
 <span class="normal">143</span>
 <span class="normal">144</span>
@@ -1646,7 +1692,8 @@ but throws an error.</p>
 <span class="normal">149</span>
 <span class="normal">150</span>
 <span class="normal">151</span>
-<span class="normal">152</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">terminate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">contracts</span><span class="o">.</span><span class="n">ContractAware</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">152</span>
+<span class="normal">153</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">terminate</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">contract</span><span class="p">:</span> <span class="n">contracts</span><span class="o">.</span><span class="n">ContractAware</span><span class="p">,</span> <span class="o">/</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">"""Terminates any contract.</span>
 
 <span class="sd">    Parameters</span>
@@ -1690,14 +1737,14 @@ but throws an error.</p>
 </table>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\contracts.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">154</span>
-<span class="normal">155</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">155</span>
 <span class="normal">156</span>
 <span class="normal">157</span>
 <span class="normal">158</span>
 <span class="normal">159</span>
 <span class="normal">160</span>
-<span class="normal">161</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">terminate_all</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="normal">161</span>
+<span class="normal">162</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">terminate_all</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
     <span class="sd">"""Terminates all contracts.</span>
 
 <span class="sd">    Returns</span>
@@ -1727,8 +1774,7 @@ plugin.</p>
 </div>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\contracts.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">189</span>
-<span class="normal">190</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">190</span>
 <span class="normal">191</span>
 <span class="normal">192</span>
 <span class="normal">193</span>
@@ -1850,7 +1896,8 @@ plugin.</p>
 <span class="normal">309</span>
 <span class="normal">310</span>
 <span class="normal">311</span>
-<span class="normal">312</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">WriteProgressContract</span><span class="p">(</span><span class="n">contracts</span><span class="o">.</span><span class="n">ContractAware</span><span class="p">):</span>
+<span class="normal">312</span>
+<span class="normal">313</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">WriteProgressContract</span><span class="p">(</span><span class="n">contracts</span><span class="o">.</span><span class="n">ContractAware</span><span class="p">):</span>
     <span class="sd">"""Implementation of contracts.ContractAware.</span>
 
 <span class="sd">    !!! note</span>
@@ -1883,7 +1930,7 @@ plugin.</p>
         <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">length</span> <span class="o">=</span> <span class="n">meta</span><span class="p">[</span><span class="s2">"start_value"</span><span class="p">],</span> <span class="n">meta</span><span class="p">[</span><span class="s2">"end_value"</span><span class="p">],</span> <span class="n">meta</span><span class="p">[</span><span class="s2">"length"</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">start</span> <span class="o">&gt;</span> <span class="n">end</span><span class="p">:</span>
             <span class="k">return</span> <span class="n">contracts</span><span class="o">.</span><span class="n">ContractCheck</span><span class="o">.</span><span class="n">terminated</span><span class="p">(</span>
-                <span class="n">errors</span><span class="o">=</span><span class="p">[</span><span class="s2">"Start value cannot be more than end value."</span><span class="p">],</span>
+                <span class="n">errors</span><span class="o">=</span><span class="p">[</span><span class="s2">"`Start` value cannot be more than `End` value."</span><span class="p">],</span>
                 <span class="n">metadata</span><span class="o">=</span><span class="n">call_metadata</span><span class="p">,</span>
             <span class="p">)</span>
 
@@ -2047,8 +2094,7 @@ plugin.</p>
 </table>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\contracts.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">197</span>
-<span class="normal">198</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">198</span>
 <span class="normal">199</span>
 <span class="normal">200</span>
 <span class="normal">201</span>
@@ -2084,7 +2130,8 @@ plugin.</p>
 <span class="normal">231</span>
 <span class="normal">232</span>
 <span class="normal">233</span>
-<span class="normal">234</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">contracts</span><span class="o">.</span><span class="n">ContractCheck</span><span class="p">:</span>
+<span class="normal">234</span>
+<span class="normal">235</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">check</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">contracts</span><span class="o">.</span><span class="n">ContractCheck</span><span class="p">:</span>
     <span class="sd">"""Checks contract for errors and warnings.</span>
 
 <span class="sd">    Parameters</span>
@@ -2109,7 +2156,7 @@ plugin.</p>
     <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">length</span> <span class="o">=</span> <span class="n">meta</span><span class="p">[</span><span class="s2">"start_value"</span><span class="p">],</span> <span class="n">meta</span><span class="p">[</span><span class="s2">"end_value"</span><span class="p">],</span> <span class="n">meta</span><span class="p">[</span><span class="s2">"length"</span><span class="p">]</span>
     <span class="k">if</span> <span class="n">start</span> <span class="o">&gt;</span> <span class="n">end</span><span class="p">:</span>
         <span class="k">return</span> <span class="n">contracts</span><span class="o">.</span><span class="n">ContractCheck</span><span class="o">.</span><span class="n">terminated</span><span class="p">(</span>
-            <span class="n">errors</span><span class="o">=</span><span class="p">[</span><span class="s2">"Start value cannot be more than end value."</span><span class="p">],</span>
+            <span class="n">errors</span><span class="o">=</span><span class="p">[</span><span class="s2">"`Start` value cannot be more than `End` value."</span><span class="p">],</span>
             <span class="n">metadata</span><span class="o">=</span><span class="n">call_metadata</span><span class="p">,</span>
         <span class="p">)</span>
 
@@ -2210,8 +2257,7 @@ Otherwise, it returns nothing, but throws an error.</p>
 </table>
 <details class="quote">
 <summary>Source code in <code>multibar\impl\contracts.py</code></summary>
-<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">268</span>
-<span class="normal">269</span>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">269</span>
 <span class="normal">270</span>
 <span class="normal">271</span>
 <span class="normal">272</span>
@@ -2254,7 +2300,8 @@ Otherwise, it returns nothing, but throws an error.</p>
 <span class="normal">309</span>
 <span class="normal">310</span>
 <span class="normal">311</span>
-<span class="normal">312</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@impure</span>
+<span class="normal">312</span>
+<span class="normal">313</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@impure</span>
 <span class="k">def</span> <span class="nf">render_terminated_contract</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">check</span><span class="p">:</span> <span class="n">contracts</span><span class="o">.</span><span class="n">ContractCheck</span><span class="p">,</span>
@@ -2379,5 +2426,6 @@ Otherwise, it returns nothing, but throws an error.</p>
 <script src="../../assets/javascripts/bundle.d691e9de.min.js"></script>
 <script src="../../js/mermaid.js"></script>
 <script src="../../js/tabs.js"></script>
+<script src="../../termynal.js"></script>
 </body>
 </html>

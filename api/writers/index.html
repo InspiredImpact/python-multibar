@@ -21,6 +21,7 @@
 <link href="../../css/critic.css" rel="stylesheet"/>
 <link href="../../css/navmenu.css" rel="stylesheet"/>
 <link href="../../css/emojis.css" rel="stylesheet"/>
+<link href="../../termynal.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
 </head>
 <body data-md-color-accent="purple" data-md-color-primary="teal" data-md-color-scheme="default" dir="ltr">
@@ -131,6 +132,11 @@
 <li class="md-tabs__item">
 <a class="md-tabs__link" href="../../about/">
         About
+      </a>
+</li>
+<li class="md-tabs__item">
+<a class="md-tabs__link" href="../../showcase/">
+        Showcase
       </a>
 </li>
 <li class="md-tabs__item">
@@ -246,26 +252,46 @@
 </ul>
 </nav>
 </li>
-<li class="md-nav__item md-nav__item--active md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
+<li class="md-nav__item md-nav__item--nested">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" id="__nav_5" type="checkbox"/>
 <label class="md-nav__link" for="__nav_5">
+          Showcase
+          <span class="md-nav__icon md-icon"></span>
+</label>
+<nav aria-label="Showcase" class="md-nav" data-md-level="1">
+<label class="md-nav__title" for="__nav_5">
+<span class="md-nav__icon md-icon"></span>
+          Showcase
+        </label>
+<ul class="md-nav__list" data-md-scrollfix="">
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../showcase/">
+        Showcase
+      </a>
+</li>
+</ul>
+</nav>
+</li>
+<li class="md-nav__item md-nav__item--active md-nav__item--nested">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_6" id="__nav_6" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6">
           Reference
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="Reference" class="md-nav" data-md-level="1">
-<label class="md-nav__title" for="__nav_5">
+<label class="md-nav__title" for="__nav_6">
 <span class="md-nav__icon md-icon"></span>
           Reference
         </label>
 <ul class="md-nav__list" data-md-scrollfix="">
 <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
-<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_1" id="__nav_5_1" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5_1">
+<input checked="" class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_1" id="__nav_6_1" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6_1">
           api
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="api" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_5_1">
+<label class="md-nav__title" for="__nav_6_1">
 <span class="md-nav__icon md-icon"></span>
           api
         </label>
@@ -390,13 +416,13 @@
 </nav>
 </li>
 <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5_2" id="__nav_5_2" type="checkbox"/>
-<label class="md-nav__link" for="__nav_5_2">
+<input class="md-nav__toggle md-toggle" data-md-toggle="__nav_6_2" id="__nav_6_2" type="checkbox"/>
+<label class="md-nav__link" for="__nav_6_2">
           impl
           <span class="md-nav__icon md-icon"></span>
 </label>
 <nav aria-label="impl" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_5_2">
+<label class="md-nav__title" for="__nav_6_2">
 <span class="md-nav__icon md-icon"></span>
           impl
         </label>
@@ -949,8 +975,8 @@
 <h4 class="doc doc-heading" id="multibar.api.writers.ProgressbarWriterAware.calculation_cls">
 <code class="highlight language-python"><span class="n">calculation_cls</span><span class="p">()</span></code>
 <span class="doc doc-labels">
-<small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
 <small class="doc doc-label doc-label-property"><code>property</code></small>
+<small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
 </span>
 <a class="headerlink" href="#multibar.api.writers.ProgressbarWriterAware.calculation_cls" title="Permanent link">¤</a></h4>
 <div class="doc doc-contents">
@@ -1092,8 +1118,8 @@
 <h4 class="doc doc-heading" id="multibar.api.writers.ProgressbarWriterAware.progressbar_cls">
 <code class="highlight language-python"><span class="n">progressbar_cls</span><span class="p">()</span></code>
 <span class="doc doc-labels">
-<small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
 <small class="doc doc-label doc-label-property"><code>property</code></small>
+<small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
 </span>
 <a class="headerlink" href="#multibar.api.writers.ProgressbarWriterAware.progressbar_cls" title="Permanent link">¤</a></h4>
 <div class="doc doc-contents">
@@ -1146,8 +1172,8 @@
 <h4 class="doc doc-heading" id="multibar.api.writers.ProgressbarWriterAware.sector_cls">
 <code class="highlight language-python"><span class="n">sector_cls</span><span class="p">()</span></code>
 <span class="doc doc-labels">
-<small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
 <small class="doc doc-label doc-label-property"><code>property</code></small>
+<small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
 </span>
 <a class="headerlink" href="#multibar.api.writers.ProgressbarWriterAware.sector_cls" title="Permanent link">¤</a></h4>
 <div class="doc doc-contents">
@@ -1200,8 +1226,8 @@
 <h4 class="doc doc-heading" id="multibar.api.writers.ProgressbarWriterAware.signature">
 <code class="highlight language-python"><span class="n">signature</span><span class="p">()</span></code>
 <span class="doc doc-labels">
-<small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
 <small class="doc doc-label doc-label-property"><code>property</code></small>
+<small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
 </span>
 <a class="headerlink" href="#multibar.api.writers.ProgressbarWriterAware.signature" title="Permanent link">¤</a></h4>
 <div class="doc doc-contents">
@@ -1462,5 +1488,6 @@
 <script src="../../assets/javascripts/bundle.d691e9de.min.js"></script>
 <script src="../../js/mermaid.js"></script>
 <script src="../../js/tabs.js"></script>
+<script src="../../termynal.js"></script>
 </body>
 </html>

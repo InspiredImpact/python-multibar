@@ -1,4 +1,4 @@
-# Python-Multibar 4.0.1 (06.10.2022)
+# Python-Multibar 4.0.2 (06.10.2022)
 
 ## Features
 - Add `multibar.INPUT_VALUES_CONTRACT` (alias to `multibar.WRITE_PROGRESS_CONTRACT`)

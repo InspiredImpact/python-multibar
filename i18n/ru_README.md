@@ -16,7 +16,7 @@ Typing: Typed
 <br />
     <p align="center">
     <br />
-    <a href="animatea.github.io/python-multibar/">Документация</a>
+    <a href="https://animatea.github.io/python-multibar/">Документация</a>
     ·
     <a href="https://github.com/Animatea/python-multibar/issues">Сообщить о баге</a>
     ·
